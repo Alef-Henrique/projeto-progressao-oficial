@@ -17,14 +17,18 @@ export const Footer: React.FC = () => {
           {/* Brand & Introduction */}
           <div className="lg:col-span-1 flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0289C6] to-[#004B7C] flex items-center justify-center text-white font-bold text-lg border border-white/20">
-                P
-              </div>
+            <div className="h-12 flex items-center group-hover:scale-105 transition-transform">
+              <img
+                src="/assets/logo-oficial.webp"
+                alt="Progressão Caxias - Curso & Colégio"
+                className="h-full w-auto object-contain"
+              />
+            </div>
               <div className="flex flex-col">
                 <span className="font-serif-heading font-bold text-lg text-white leading-tight">
                   PROGRESSÃO CAXIAS
                 </span>
-                <span className="text-[10px] uppercase tracking-widest text-[#0289C6] font-semibold">
+                <span className="text-[10px] uppercase tracking-widest text-white font-semibold">
                   CURSO & COLÉGIO
                 </span>
               </div>

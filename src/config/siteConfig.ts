@@ -22,9 +22,9 @@ export const SITE_CONFIG = {
   officeHours: "Segunda a Sexta: 07h às 21h | Sábados: 08h às 14h",
   workingHours: "Segunda a Sexta: 07h às 21h | Sábados: 08h às 14h",
   social: {
-    instagram: "https://instagram.com/progressaocaxias",
-    facebook: "https://facebook.com/progressaocaxias",
-    youtube: "https://youtube.com/@progressaocaxias"
+    instagram: "https://www.instagram.com/progressaoeducacao",
+    facebook: "https://www.facebook.com/progressaoeducacao",
+    youtube: "https://www.youtube.com/@progressaoeducacao"
   },
   seo: {
     siteUrl: "https://progressaocaxias.com.br",
