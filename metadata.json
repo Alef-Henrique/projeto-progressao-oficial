@@ -1,0 +1,6 @@
+{
+  "name": "Curso Progressão Caxias",
+  "description": "Site institucional completo do Curso Progressão Caxias. Colégio e Cursos Preparatórios em Duque de Caxias.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
