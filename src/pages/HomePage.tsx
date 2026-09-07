@@ -81,7 +81,7 @@ const OBJECTIVE_CARDS = [
     id: 'militar',
     title: 'Preparatório Militar',
     href: '/cursos/preparatorio-militar',
-    image: 'public/assets/david-lopes-eags.jpeg',
+    image: '/assets/david-lopes-eags.jpeg',
   },
   {
     id: 'colegio',
