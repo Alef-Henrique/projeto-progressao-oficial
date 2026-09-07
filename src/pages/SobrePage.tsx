@@ -58,7 +58,7 @@ export const SobrePage: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="rounded-2xl overflow-hidden shadow-xl border border-[#E1E5E8] bg-white">
               <img
-                src="public/assets/sobre-nos.jpeg"
+                src="/assets/sobre-nos.jpeg"
                 alt="Ambiente pedagógico do Progressão Caxias"
                 className="w-full h-80 object-cover"
               />

@@ -87,19 +87,19 @@ const OBJECTIVE_CARDS = [
     id: 'colegio',
     title: 'Colégio',
     href: '/colegio',
-    image: 'public/assets/colegio-I.webp',
+    image: '/assets/colegio-I.webp',
   },
   {
     id: 'vestibular',
     title: 'Pré-Vestibular & ENEM',
     href: '/cursos/pre-vestibular',
-    image: 'public/assets/img-pre-vestibular.jpeg',
+    image: '/assets/img-pre-vestibular.jpeg',
   },
   {
     id: 'concursos',
     title: 'Concursos Públicos',
     href: '/cursos/concursos',
-    image: 'public/assets/pmerj.jpeg',
+    image: '/assets/pmerj.jpeg',
   },
   {
     id: 'tecnicos',
@@ -542,7 +542,7 @@ export const HomePage: React.FC = () => {
               {/* Imagem com Badge */}
               <div className="relative h-56 sm:h-60 overflow-hidden">
                 <img
-                  src="public/assets/img-colegio-2.webp"
+                  src="/assets/img-colegio-2.webp"
                   alt="Estudantes do Ensino Fundamental II no Colégio Progressão"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -612,7 +612,7 @@ export const HomePage: React.FC = () => {
               {/* Imagem com Badge */}
               <div className="relative h-56 sm:h-60 overflow-hidden">
                 <img
-                  src="public/assets/img-ensino-medio.webp"
+                  src="/assets/img-ensino-medio.webp"
                   alt="Estudantes do Ensino Médio no Colégio Progressão"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

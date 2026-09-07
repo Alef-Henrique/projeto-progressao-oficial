@@ -72,7 +72,7 @@ export const ColegioHubPage: React.FC = () => {
             {/* Imagem e Badges */}
             <div className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-md group">
               <img
-                src="public/assets/capa-fundamental2.webp"
+                src="/assets/capa-fundamental2.webp"
                 alt="Estudantes do Ensino Fundamental II no Colégio Progressão Caxias"
                 className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
               />
@@ -161,7 +161,7 @@ export const ColegioHubPage: React.FC = () => {
             {/* Imagem e Badges */}
             <div className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-md group">
               <img
-                src="public/assets/img-ensino-2.jpg"
+                src="/assets/img-ensino-2.jpg"
                 alt="Estudantes do Ensino Médio no Colégio Progressão Caxias"
                 className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
               />

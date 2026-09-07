@@ -15,37 +15,37 @@ export interface CarouselImageItem {
 export const CAROUSEL_APPROVAL_IMAGES: CarouselImageItem[] = [
   {
     id: 'banner-1',
-    imageUrl: 'public/assets/aprovado-eam.jpeg',
+    imageUrl: '/assets/aprovado-eam.jpeg',
     title: 'Aprovação Conquistada - Progressão Caxias',
   },
   {
     id: 'banner-2',
-    imageUrl: 'public/assets/aprovado-eam2.jpeg',
+    imageUrl: '/assets/aprovado-eam2.jpeg',
     title: 'Aprovação ESA - Progressão Caxias',
   },
   {
     id: 'banner-3',
-    imageUrl: 'public/assets/aprovado-esa.jpeg',
+    imageUrl: '/assets/aprovado-esa.jpeg',
     title: 'Aprovação ENEM - Progressão Caxias',
   },
   {
     id: 'banner-4',
-    imageUrl: 'public/assets/aprovado-esa2.jpeg',
+    imageUrl: '/assets/aprovado-esa2.jpeg',
     title: 'Aprovação EsPCEx - Progressão Caxias',
   },
   {
     id: 'banner-5',
-    imageUrl: 'public/assets/depoimentos-4.webp',
+    imageUrl: '/assets/depoimentos-4.webp',
     title: 'Aprovação Colégio Naval - Progressão Caxias',
   },
   {
     id: 'banner-6',
-    imageUrl: 'public/assets/depoimentos-6.jpg',
+    imageUrl: '/assets/depoimentos-6.jpg',
     title: 'Aprovação UERJ - Progressão Caxias',
   },
     {
     id: 'banner-7',
-    imageUrl: 'public/assets/depoimentos-5.jpg',
+    imageUrl: '/assets/depoimentos-5.jpg',
     title: 'Aprovação UERJ - Progressão Caxias',
   },
 
