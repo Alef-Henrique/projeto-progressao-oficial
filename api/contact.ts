@@ -27,12 +27,65 @@ export default async function handler(
       phone,
       interest,
       message,
-    } = req.body;
+    } = req.body || {};
 
-    if (!name || !email || !phone || !interest) {
+    // Validação do nome
+    if (
+      typeof name !== 'string' ||
+      name.trim().length < 2 ||
+      name.length > 100
+    ) {
       return res.status(400).json({
         success: false,
-        message: 'Preencha todos os campos obrigatórios.',
+        message: 'Nome inválido.',
+      });
+    }
+
+    // Validação do e-mail
+    if (
+      typeof email !== 'string' ||
+      email.length > 150 ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: 'E-mail inválido.',
+      });
+    }
+
+    // Validação do telefone
+    if (
+      typeof phone !== 'string' ||
+      phone.trim().length < 10 ||
+      phone.length > 30
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: 'Telefone inválido.',
+      });
+    }
+
+    // Validação da área de interesse
+    if (
+      typeof interest !== 'string' ||
+      interest.trim().length < 1 ||
+      interest.length > 100
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: 'Área de interesse inválida.',
+      });
+    }
+
+    // Validação da mensagem
+    if (
+      message !== undefined &&
+      message !== null &&
+      (typeof message !== 'string' || message.length > 2000)
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: 'Mensagem muito longa.',
       });
     }
 
@@ -40,15 +93,17 @@ export default async function handler(
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_TO,
       replyTo: email,
-      subject: `Novo contato - ${name}`,
-      html: `
-        <h2>Novo contato pelo site</h2>
+      subject: `Novo contato - ${name.trim()}`,
+      text: `
+Novo contato pelo site
 
-        <p><strong>Nome:</strong> ${name}</p>
-        <p><strong>E-mail:</strong> ${email}</p>
-        <p><strong>Telefone:</strong> ${phone}</p>
-        <p><strong>Área de interesse:</strong> ${interest}</p>
-        <p><strong>Mensagem:</strong> ${message || 'Não informada'}</p>
+Nome: ${name.trim()}
+E-mail: ${email.trim()}
+Telefone: ${phone.trim()}
+Área de interesse: ${interest.trim()}
+
+Mensagem:
+${message?.trim() || 'Não informada'}
       `,
     });
 
