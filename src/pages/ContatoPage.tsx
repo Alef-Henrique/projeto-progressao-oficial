@@ -47,7 +47,7 @@ export const ContatoPage: React.FC = () => {
     setFormData(prev => ({ ...prev, phone: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
 
@@ -68,21 +68,52 @@ export const ContatoPage: React.FC = () => {
       return;
     }
 
-    setIsSubmitting(true);
+setIsSubmitting(true);
 
-    // Simulate reliable dispatch
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        interest: 'militar',
-        message: '',
-        privacyAccepted: false
-      });
-    }, 1200);
+try {
+  const response = await fetch('/api/contact', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      interest: formData.interest,
+      message: formData.message,
+    }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Erro ao enviar mensagem.');
+  }
+
+  setIsSuccess(true);
+
+  setFormData({
+    name: '',
+    email: '',
+    phone: '',
+    interest: 'militar',
+    message: '',
+    privacyAccepted: false,
+  });
+
+} catch (error) {
+  console.error('Erro ao enviar formulário:', error);
+
+  setErrorMessage(
+    error instanceof Error
+      ? error.message
+      : 'Não foi possível enviar sua mensagem. Tente novamente.'
+  );
+
+} finally {
+  setIsSubmitting(false);
+}
   };
 
   const whatsappDirectUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`;
@@ -366,7 +397,7 @@ export const ContatoPage: React.FC = () => {
                       Concordo que os dados fornecidos sejam utilizados pelo Curso Progressão Caxias exclusivamente para atendimento pedagógico, em conformidade com a nossa{' '}
                       <button
                         type="button"
-                        onClick={() => openPrivacyModal('privacy')}
+                        onClick={() => openPrivacyModal()}
                         className="text-[#0289C6] underline hover:text-[#004B7C]"
                       >
                         Política de Privacidade
