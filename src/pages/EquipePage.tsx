@@ -116,14 +116,6 @@ export const EquipePage: React.FC = () => {
           ))}
         </div>
       </section>
-
-      {/* CTA */}
-      <CTASection
-        title="VENHA CONHECER NOSSA EQUIPE PEDAGÓGICA"
-        subtitle="Agende um atendimento presencial em nossa unidade em Duque de Caxias."
-        primaryCtaText="FALAR COM A COORDENAÇÃO"
-        primaryCtaHref="/contato"
-      />
     </div>
   );
 };

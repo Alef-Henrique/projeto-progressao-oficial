@@ -132,61 +132,73 @@ export const COURSES_DATA: Record<string, CourseData> = {
   'pre-vestibular': {
     id: 'pre-vestibular',
     slug: '/cursos/pre-vestibular',
-    title: 'Pré-Vestibular',
-    subtitle: 'Preparação especializada para os vestibulares regionais e estaduais mais exigentes (UERJ, UFRJ, USP, UNICAMP e particulares).',
-    badge: 'Vestibulares Tradicionais',
+    title: 'Pré-Vestibular & ENEM',
+    subtitle: 'Preparação integrada para o ENEM (foco em TRI e Redação Nota 1000) e os vestibulares mais concorridos (UERJ, Medicina, UFRJ e federais).',
+    badge: 'ENEM & Vestibulares Tradicionais',
     iconName: 'BookOpen',
     image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1000&q=80',
-    classFormat: 'Presencial | Manhã, Tarde ou Noite',
-    description: 'Turmas específicas para exames discursivos e vestibulares tradicionais com foco em alto rendimento.',
-    detailedText: 'Os vestibulares tradicionais, como o Exame de Qualificação e Discursivo da UERJ, possuem formatos próprios de questões analíticas e obras literárias específicas. O Progressão Caxias oferece um programa desenhado para gabaritar essas provas.',
+    classFormat: 'Presencial e Online | Manhã, Tarde ou Noite',
+    description: 'Treinamento completo combinando a inteligência analítica do ENEM com o aprofundamento das provas discursivas da UERJ e vestibulares de Medicina.',
+    detailedText: 'No Progressão Caxias, a preparação para o ENEM e para os Vestibulares Estaduais (como UERJ) ocorre de maneira integrada e estratégica. O aluno desenvolve rapidez de resolução e coerência pedagógica para a TRI do ENEM, domina o laboratório semanal de Redação Nota 1000, e simultaneamente se aprofunda nas obras literárias obrigatórias e na fundamentação de questões discursivas para cursos de alta nota de corte.',
     targetAudience: [
-      'Candidatos ao vestibular da UERJ e universidades públicas estaduais',
-      'Vestibulandos que necessitam de treinamento em provas discursivas e obras literárias obrigatórias',
-      'Estudantes com foco em carreiras de alta nota de corte'
+      'Estudantes que buscam os cursos mais concorridos (Medicina, Direito, Engenharias e Odontologia)',
+      'Candidatos ao ENEM com foco em vagas federais via SISU, bolsas PROUNI e FIES',
+      'Vestibulandos que prestarão UERJ (Exame de Qualificação e Discursivo) e vestibulares estaduais',
+      'Alunos do 3º ano do Ensino Médio ou já formados em busca de aprovação com excelência'
     ],
     disciplines: [
-      'Língua Portuguesa e Análise das Obras Literárias indicadas pelas bancas',
-      'Física Teórica e Experimental voltada a questões discursivas',
-      'Química com resolução passo a passo de problemas discursivos',
-      'Biologia Celular, Genética, Fisiologia e Ecologia com foco interpretativo',
-      'História Geral e do Brasil com abordagem crítica e contextual',
-      'Geografia Física, Política e Geopolítica Contemporânea',
-      'Matemática discursiva com rigor formal de desenvolvimento'
+      'Linguagens, Códigos e Análise das Obras Literárias Obrigatórias (ENEM e UERJ)',
+      'Ciências da Natureza: Física, Química e Biologia com resolução de questões discursivas',
+      'Ciências Humanas: História, Geografia, Filosofia e Sociologia com pensamento crítico',
+      'Matemática e suas Tecnologias: Modelagem de problemas e desenvolvimento formal discursivo',
+      'Laboratório Semanal de Redação com correções individuais pelas 5 competências do INEP e banca UERJ',
+      'Plantões de Resolução de Provas Anteriores e Oficinas de Estratégia de Prova'
     ],
     disciplinas: [
-      'Língua Portuguesa e Literatura',
-      'Física Teórica e Discursiva',
-      'Química Aplicada',
-      'Biologia e Genética',
-      'História e Atualidades',
-      'Matemática Discursiva'
+      'Linguagens & Literatura',
+      'Redação Nota 1000',
+      'Ciências da Natureza',
+      'Ciências Humanas',
+      'Matemática & TRI',
+      'Provas Discursivas'
     ],
     differentials: [
-      'Estudo minucioso das leituras e livros obrigatórios de cada edital',
-      'Treinamento específico para justificativas discursivas e respostas concisas',
-      'Plantões de resolução de provas dos últimos 15 anos',
-      'Professores com décadas de experiência nas principais bancas do Rio de Janeiro'
+      'Laboratório Semanal de Redação com correção individualizada nos critérios INEP e banca UERJ',
+      'Treinamento específico em Teoria de Resposta ao Item (TRI) e gerenciamento de tempo de prova',
+      'Estudo aprofundado das obras literárias oficiais exigidas no edital da UERJ',
+      'Treinamento técnico de respostas discursivas para pontuação máxima no espelho da banca',
+      'Simulados duplos oficiais: calendário modelo ENEM e calendário modelo UERJ',
+      'Professores especialistas nas bancas mais concorridas do Rio de Janeiro'
     ],
-    methodology: 'Abordagem analítica dos editais, aulas temáticas sobre livros obrigatórios e baterias de questões discursivas.',
-    methodologySummary: 'Abordagem analítica dos editais, aulas temáticas sobre livros obrigatórios e baterias de questões discursivas.',
-    simuladosFrequency: 'Simulados específicos por banca (ex: Simulados modelo UERJ e modelo tradicional).',
-    simuladosInfo: 'Simulados no formato Exame de Qualificação e Exame Discursivo UERJ.',
-    resultsPlaceholder: '[NÚMERO DE APROVAÇÕES NA UERJ / VESTIBULARES]',
-    testimonialsPlaceholder: '[DEPOIMENTO DO ALUNO APROVADO - Relato sobre a aprovação em universidade pública através do Pré-Vestibular do Progressão Caxias.]',
+    methodology: 'Metodologia integrada: teoria sólida, oficinas semanais de redação, análise de obras literárias e simulados diagnósticos frequentes.',
+    methodologySummary: 'Metodologia integrada: teoria sólida, oficinas semanais de redação, análise de obras literárias e simulados diagnósticos frequentes.',
+    simuladosFrequency: 'Simulados mensais modelo ENEM (em 2 domingos consecutivos) e simulados específicos UERJ (Qualificação e Discursivo).',
+    simuladosInfo: 'Simulados oficiais com cálculo estimado de TRI do ENEM e cadernos no formato exato da banca UERJ.',
+    resultsPlaceholder: '[NÚMERO DE APROVAÇÕES NO ENEM E UERJ]',
+    testimonialsPlaceholder: '[DEPOIMENTO DO ALUNO APROVADO - Relato sobre a aprovação em universidade pública através do Pré-Vestibular & ENEM do Progressão Caxias.]',
     concursosAtendidos: [
-      'UERJ (Vestibular Estadual - Exame de Qualificação e Discursivo)',
-      'Vestibulares de Medicina (Faculdades particulares renomadas)',
-      'Outras universidades estaduais e federais com modelos próprios'
+      'ENEM / SISU (Universidades Federais em todo o Brasil)',
+      'UERJ (Vestibular Estadual - Qualificação e Discursivo)',
+      'PROUNI e FIES (Bolsas e financiamento estudantil)',
+      'Vestibulares de Medicina (Faculdades particulares renomadas e estaduais)',
+      'Universidades em Portugal conveniadas com a nota do ENEM'
     ],
     faqs: [
       {
-        question: 'O curso trabalha os livros de literatura cobrados na UERJ?',
-        answer: 'Sim, realizamos aulas especiais e fornecemos cadernos de análise literária para todas as obras indicadas no edital vigente.'
+        question: 'Como funciona a preparação conjunta para o ENEM e para a UERJ?',
+        answer: 'Nossa grade contempla tanto a matriz de competências e TRI do ENEM quanto os conteúdos específicos, obras literárias e formato discursivo exigidos pela UERJ, permitindo que o aluno concorra com força máxima em ambas as frentes.'
       },
       {
-        question: 'Como funciona o treinamento para as provas discursivas?',
-        answer: 'O aluno aprende a estruturar respostas técnicas, diretas e fundamentadas exatamente como os corretores das bancas pontuam no espelho de correção.'
+        question: 'Quantas redações posso produzir e enviar para correção por mês?',
+        answer: 'O estudante tem direito a envios semanais de redações, com devolutiva detalhada e individualizada pontuando cada competência do ENEM e a estrutura discursiva da UERJ.'
+      },
+      {
+        question: 'O curso analisa todos os livros cobrados na UERJ?',
+        answer: 'Sim, realizamos aulas especiais e fornecemos material exclusivo de análise de enredo, personagens e contexto sociocultural para todas as obras indicadas no edital.'
+      },
+      {
+        question: 'Os simulados do curso contam com nota calculada pela TRI?',
+        answer: 'Sim, os simulados do ENEM possuem calibragem estatística para que o aluno compreenda a coerência pedagógica do seu padrão de acertos e estime sua pontuação real.'
       }
     ]
   },

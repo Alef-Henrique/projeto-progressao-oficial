@@ -726,8 +726,6 @@ export const HomePage: React.FC = () => {
         <AccordionFAQ items={GENERAL_FAQS} />
       </section>
 
-      {/* 8. CTA FINAL */}
-      <CTASection />
     </div>
   );
 };

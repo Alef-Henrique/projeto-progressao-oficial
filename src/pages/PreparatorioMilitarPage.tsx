@@ -3,7 +3,6 @@ import { Shield, CheckCircle2, Star, Target, Clock, Award, BookOpen, AlertCircle
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
-import { CTASection } from '../components/common/CTASection';
 import { COURSES_DATA } from '../data/siteData';
 
 export const PreparatorioMilitarPage: React.FC = () => {
@@ -146,11 +145,11 @@ export const PreparatorioMilitarPage: React.FC = () => {
             Matérias & Conteúdo Programático
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center">
-            {course.disciplinas.map((disc, i) => (
-              <div key={i} className="bg-white p-3 rounded-xl border border-[#E1E5E8] font-semibold text-xs text-[#004B7C] shadow-xs">
-                {disc}
-              </div>
-            ))}
+          {(course.disciplinas ?? []).map((disc, i) => (
+            <div key={i} className="bg-white p-3 rounded-xl border border-[#E1E5E8] font-semibold text-xs text-[#004B7C] shadow-xs">
+              {disc}
+            </div>
+          ))}
           </div>
         </div>
       </section>
@@ -189,13 +188,6 @@ export const PreparatorioMilitarPage: React.FC = () => {
         <AccordionFAQ items={course.faqs} title="DÚVIDAS SOBRE O PREPARATÓRIO MILITAR" />
       </section>
 
-      {/* CTA */}
-      <CTASection
-        title="CONQUISTE SUA VAGA NA CARREIRA MILITAR"
-        subtitle="Venha conversar com nossa equipe pedagógica e garanta seu material didático para a próxima turma militar em Duque de Caxias."
-        primaryCtaText="GARANTIR MINHA MATRÍCULA MILITAR"
-        primaryCtaHref="/contato"
-      />
     </div>
   );
 };

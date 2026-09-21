@@ -321,71 +321,24 @@ export const CursosHubPage: React.FC = () => {
             </Link>
           </div>
 
-          {/* Card 3: ENEM */}
-          <div className="bg-white rounded-3xl p-8 border border-[#E1E5E8] shadow-sm hover:shadow-2xl hover:border-[#0289C6]/60 transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-14 h-14 rounded-2xl bg-[#015E96] text-white flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
-                  <GraduationCap className="w-7 h-7 text-[#0289C6]" />
-                </div>
-                <span className="text-xs font-bold text-[#0289C6] uppercase tracking-wider bg-[#0289C6]/10 px-3 py-1 rounded-full">
-                  Exame Nacional
-                </span>
-              </div>
-              <h3 className="font-serif-heading text-2xl font-bold text-[#004B7C] mb-2 group-hover:text-[#0289C6] transition-colors">
-                ENEM
-              </h3>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-[11px] font-semibold bg-[#004B7C]/10 text-[#004B7C] px-2.5 py-0.5 rounded-md">
-                  Presencial
-                </span>
-                <span className="text-[11px] font-semibold bg-[#0289C6]/10 text-[#0289C6] px-2.5 py-0.5 rounded-md">
-                  Online
-                </span>
-              </div>
-              <p className="text-sm text-[#0A131F]/80 leading-relaxed mb-6">
-                {COURSES_DATA['enem'].subtitle}
-              </p>
-
-              <div className="space-y-2 mb-8">
-                <span className="text-xs font-bold text-[#004B7C] uppercase tracking-wider block">
-                  Pilares do Curso:
-                </span>
-                <ul className="space-y-1.5 text-xs text-[#0A131F]/80">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#0289C6] shrink-0" />
-                    <span>Teoria de Resposta ao Item (TRI) e estratégias</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#0289C6] shrink-0" />
-                    <span>Laboratório semanal de Redação Nota 1000</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <Link
-              href="/cursos/enem"
-              className="inline-flex items-center justify-between w-full bg-[#004B7C] group-hover:bg-[#0289C6] text-white px-5 py-3.5 rounded-xl font-bold text-sm transition-all duration-200 shadow-md"
-            >
-              <span>VER DETALHES DO CURSO ENEM</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-
-          {/* Card 4: Pré-Vestibular */}
+          {/* Card 3: Pré-Vestibular & ENEM */}
           <div className="bg-white rounded-3xl p-8 border border-[#E1E5E8] shadow-sm hover:shadow-2xl hover:border-[#0289C6]/60 transition-all duration-300 flex flex-col justify-between group">
             <div>
               <div className="flex items-center justify-between mb-6">
                 <div className="w-14 h-14 rounded-2xl bg-[#004B7C] text-white flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
                   <BookOpen className="w-7 h-7 text-[#0289C6]" />
                 </div>
-                <span className="text-xs font-bold text-[#0289C6] uppercase tracking-wider bg-[#0289C6]/10 px-3 py-1 rounded-full">
-                  Vestibulares Tradicionais
-                </span>
+                <div className="flex flex-wrap gap-1.5 justify-end">
+                  <span className="text-[10px] font-bold text-[#004B7C] uppercase tracking-wider bg-[#004B7C]/10 px-2.5 py-1 rounded-full">
+                    ENEM (TRI & Redação 1000)
+                  </span>
+                  <span className="text-[10px] font-bold text-[#0289C6] uppercase tracking-wider bg-[#0289C6]/10 px-2.5 py-1 rounded-full">
+                    UERJ & Medicina
+                  </span>
+                </div>
               </div>
               <h3 className="font-serif-heading text-2xl font-bold text-[#004B7C] mb-2 group-hover:text-[#0289C6] transition-colors">
-                Pré-Vestibular
+                Pré-Vestibular & ENEM
               </h3>
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-[11px] font-semibold bg-[#004B7C]/10 text-[#004B7C] px-2.5 py-0.5 rounded-md">
@@ -401,16 +354,20 @@ export const CursosHubPage: React.FC = () => {
 
               <div className="space-y-2 mb-8">
                 <span className="text-xs font-bold text-[#004B7C] uppercase tracking-wider block">
-                  Foco em Provas Discursivas:
+                  Pilares de Preparação Integrada:
                 </span>
                 <ul className="space-y-1.5 text-xs text-[#0A131F]/80">
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#0289C6] shrink-0" />
-                    <span>Vestibular Estadual UERJ (Qualificação e Discursivo)</span>
+                    <span>Teoria de Resposta ao Item (TRI) e Redação Nota 1000</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#0289C6] shrink-0" />
-                    <span>Estudo aprofundado dos livros obrigatórios</span>
+                    <span>UERJ (Qualificação e Discursivo) e obras literárias</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#0289C6] shrink-0" />
+                    <span>Simulados oficiais duplos (Modelo ENEM e Modelo UERJ)</span>
                   </li>
                 </ul>
               </div>
@@ -420,7 +377,7 @@ export const CursosHubPage: React.FC = () => {
               href="/cursos/pre-vestibular"
               className="inline-flex items-center justify-between w-full bg-[#004B7C] group-hover:bg-[#0289C6] text-white px-5 py-3.5 rounded-xl font-bold text-sm transition-all duration-200 shadow-md"
             >
-              <span>VER DETALHES DO PRÉ-VESTIBULAR</span>
+              <span>VER DETALHES DO PRÉ-VESTIBULAR & ENEM</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -543,4 +500,3 @@ export const CursosHubPage: React.FC = () => {
     </div>
   );
 };
-

@@ -63,9 +63,8 @@ const PageRenderer: React.FC = () => {
       return <CursosHubPage />;
     case '/cursos/preparatorio-militar':
       return <PreparatorioMilitarPage />;
-    case '/cursos/enem':
-      return <EnemPage />;
     case '/cursos/pre-vestibular':
+    case '/cursos/enem':
       return <PreVestibularPage />;
     case '/cursos/concursos':
       return <ConcursosPage />;
@@ -132,4 +131,3 @@ export default function App() {
     </RouterProvider>
   );
 }
-

@@ -14,7 +14,10 @@ import {
   WHATSAPP_DEFAULT_MESSAGE 
 } from '../config/siteConfig';
 
+
+
 export const ContatoPage: React.FC = () => {
+
   const { openPrivacyModal } = useRouter();
 
   // Form State
@@ -255,6 +258,7 @@ try {
 
           {/* Right Column: Interactive Form */}
           <div className="lg:col-span-7">
+
             <div className="bg-white p-8 sm:p-10 rounded-3xl border border-[#E1E5E8] shadow-lg">
               {isSuccess ? (
                 <div className="py-12 flex flex-col items-center text-center gap-4 animate-fadeIn">

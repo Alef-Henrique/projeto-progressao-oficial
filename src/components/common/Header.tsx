@@ -122,12 +122,8 @@ export const Header: React.FC = () => {
             className="flex items-center gap-3 focus:outline-none focus:ring-0 border-0 outline-none rounded-lg p-1 group"
             aria-label="Progressão Caxias - Curso & Colégio"
           >
-            <div className="h-12 flex items-center group-hover:scale-105 transition-transform">
-              <img
-                src="/assets/logo-oficial.webp"
-                alt="Progressão Caxias - Curso & Colégio"
-                className="h-full w-auto object-contain"
-              />
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0289C6] to-[#015E96] flex items-center justify-center text-white font-bold text-xl shadow-md border border-white/20 group-hover:scale-105 transition-transform">
+              P
             </div>
             <div className="flex flex-col">
               <span className="font-serif-heading font-bold text-base sm:text-lg text-white tracking-wide leading-tight group-hover:text-[#0289C6] transition-colors">
@@ -343,27 +339,15 @@ export const Header: React.FC = () => {
                       </div>
                     </Link>
                     <Link
-                      href="/cursos/enem"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/cursos/enem' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
-                    >
-                      <GraduationCap className="w-4 h-4 text-[#0289C6] shrink-0" />
-                      <div>
-                        <div className="font-semibold text-white">ENEM</div>
-                        <div className="text-[11px] text-[#E1E5E8]/70">Foco em TRI e Redação Nota 1000</div>
-                      </div>
-                    </Link>
-                    <Link
                       href="/cursos/pre-vestibular"
                       className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/cursos/pre-vestibular' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        currentPath === '/cursos/pre-vestibular' || currentPath === '/cursos/enem' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
                       }`}
                     >
                       <BookOpen className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
-                        <div className="font-semibold text-white">Pré-Vestibular</div>
-                        <div className="text-[11px] text-[#E1E5E8]/70">UERJ e vestibulares tradicionais</div>
+                        <div className="font-semibold text-white">Pré-Vestibular & ENEM</div>
+                        <div className="text-[11px] text-[#E1E5E8]/70">UERJ, TRI, Redação Nota 1000 e Medicina</div>
                       </div>
                     </Link>
                     <Link
@@ -531,11 +515,15 @@ export const Header: React.FC = () => {
                   <Link href="/cursos/preparatorio-militar" className="text-sm py-1.5 px-3 rounded-lg text-[#E1E5E8] hover:text-white hover:bg-white/5">
                     Preparatório Militar
                   </Link>
-                  <Link href="/cursos/enem" className="text-sm py-1.5 px-3 rounded-lg text-[#E1E5E8] hover:text-white hover:bg-white/5">
-                    ENEM
-                  </Link>
-                  <Link href="/cursos/pre-vestibular" className="text-sm py-1.5 px-3 rounded-lg text-[#E1E5E8] hover:text-white hover:bg-white/5">
-                    Pré-Vestibular
+                  <Link 
+                    href="/cursos/pre-vestibular" 
+                    className={`text-sm py-1.5 px-3 rounded-lg transition-colors ${
+                      currentPath === '/cursos/pre-vestibular' || currentPath === '/cursos/enem' 
+                        ? 'text-[#0289C6] font-semibold bg-white/5' 
+                        : 'text-[#E1E5E8] hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    Pré-Vestibular & ENEM
                   </Link>
                   <Link href="/cursos/concursos" className="text-sm py-1.5 px-3 rounded-lg text-[#E1E5E8] hover:text-white hover:bg-white/5">
                     Concursos Públicos

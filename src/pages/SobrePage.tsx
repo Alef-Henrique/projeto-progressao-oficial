@@ -186,16 +186,6 @@ export const SobrePage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <CTASection
-        title="FAÇA PARTE DA FAMÍLIA PROGRESSÃO CAXIAS"
-        subtitle="Venha conhecer de perto nossa equipe, nossa estrutura e nosso plano pedagógico."
-        primaryCtaText="FALE COM NOSSA EQUIPE"
-        primaryCtaHref="/contato"
-        secondaryCtaText="CONHECER NOSSA ESTRUTURA"
-        secondaryCtaHref="/estrutura"
-      />
     </div>
   );
 };

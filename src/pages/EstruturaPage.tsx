@@ -123,13 +123,6 @@ export const EstruturaPage: React.FC = () => {
         onNext={() => setLightboxIndex(prev => (prev < STRUCTURE_ITEMS.length - 1 ? prev + 1 : 0))}
       />
 
-      {/* CTA */}
-      <CTASection
-        title="AGENDE UMA VISITA À NOSSA UNIDADE"
-        subtitle="Conheça pessoalmente nossas salas de aula, espaços de estudo e converse com nossa coordenação pedagógica."
-        primaryCtaText="AGENDAR VISITA"
-        primaryCtaHref="/contato"
-      />
     </div>
   );
 };
