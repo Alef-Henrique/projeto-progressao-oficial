@@ -4,8 +4,8 @@
  */
 
 // WHATSAPP: configure aqui o número com DDD (ex: "5521999999999")
-export const WHATSAPP_NUMBER = "5521999999999";
-export const WHATSAPP_DISPLAY = "(21) 99999-9999";
+export const WHATSAPP_NUMBER = "5521998723644";
+export const WHATSAPP_DISPLAY = "(21) 99872-3644";
 export const WHATSAPP_DEFAULT_MESSAGE = "Olá! Gostaria de saber mais sobre as turmas e matrículas do Curso Progressão Caxias.";
 
 export const SITE_CONFIG = {
