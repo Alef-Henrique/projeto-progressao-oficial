@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Menu, X, ArrowRight, Shield, GraduationCap, School, BookOpen, Award, Info, Users, Building, Instagram, Facebook, Youtube, Wrench } from 'lucide-react';
 import { Link, useRouter } from '../routing/RouterContext';
 import { SITE_CONFIG } from '../../config/siteConfig';
+import logoProgressao from "/assets/logo-oficial.webp";
 
 export const Header: React.FC = () => {
   const { currentPath } = useRouter();
@@ -122,8 +123,12 @@ export const Header: React.FC = () => {
             className="flex items-center gap-3 focus:outline-none focus:ring-0 border-0 outline-none rounded-lg p-1 group"
             aria-label="Progressão Caxias - Curso & Colégio"
           >
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0289C6] to-[#015E96] flex items-center justify-center text-white font-bold text-xl shadow-md border border-white/20 group-hover:scale-105 transition-transform">
-              P
+            <div className="h-14 flex items-center group-hover:scale-105 transition-transform">
+              <img
+                src={logoProgressao}
+                alt="Logo Projeto Progressão"
+                className="w-full h-full object-contain p-1"
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-serif-heading font-bold text-base sm:text-lg text-white tracking-wide leading-tight group-hover:text-[#0289C6] transition-colors">

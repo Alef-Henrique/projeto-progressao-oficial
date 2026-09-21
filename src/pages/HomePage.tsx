@@ -542,7 +542,7 @@ export const HomePage: React.FC = () => {
               {/* Imagem com Badge */}
               <div className="relative h-56 sm:h-60 overflow-hidden">
                 <img
-                  src="/assets/img-colegio-2.webp"
+                  src="/assets/img-colegio-2.avif"
                   alt="Estudantes do Ensino Fundamental II no Colégio Progressão"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -612,7 +612,7 @@ export const HomePage: React.FC = () => {
               {/* Imagem com Badge */}
               <div className="relative h-56 sm:h-60 overflow-hidden">
                 <img
-                  src="/assets/img-ensino-medio.webp"
+                  src="/assets/img-ensino-medio.avif"
                   alt="Estudantes do Ensino Médio no Colégio Progressão"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

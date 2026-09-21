@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
           {/* Brand & Introduction */}
           <div className="lg:col-span-1 flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-3 group">
-            <div className="h-12 flex items-center group-hover:scale-105 transition-transform">
+            <div className="h-14 flex items-center group-hover:scale-105 transition-transform">
               <img
                 src="/assets/logo-oficial.webp"
                 alt="Progressão Caxias - Curso & Colégio"
