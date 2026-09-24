@@ -20,8 +20,8 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
   bannerCtaTarget = '#catalogo-materiais',
   onBannerCtaClick
 }) => {
-  // Categoria ativa no seletor segmentado
-  const [activeCategory, setActiveCategory] = useState<'colegio' | 'cursos'>('colegio');
+  // Lista unificada de todos os materiais didáticos
+  const materials = DIDACTIC_MATERIALS_DATA;
   
   // Índice atual do carrossel
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -42,11 +42,6 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
   const isDraggingRef = useRef<boolean>(false);
   const dragStartXRef = useRef<number>(0);
 
-  // Filtrar materiais pela categoria selecionada
-  const filteredMaterials = DIDACTIC_MATERIALS_DATA.filter(
-    (item) => item.category === activeCategory
-  );
-
   // Atualizar contagem de itens visíveis conforme tamanho da tela
   useEffect(() => {
     const handleResize = () => {
@@ -66,15 +61,7 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
   }, []);
 
   // Máximo de páginas/slides permitidos
-  const maxIndex = Math.max(0, filteredMaterials.length - visibleCount);
-
-  // Resetar índice quando alternar categoria
-  const handleCategoryChange = (category: 'colegio' | 'cursos') => {
-    if (category !== activeCategory) {
-      setActiveCategory(category);
-      setCurrentIndex(0);
-    }
-  };
+  const maxIndex = Math.max(0, materials.length - visibleCount);
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
@@ -225,7 +212,7 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
                 <div className="relative z-10 bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-3xl border border-white/20 shadow-2xl overflow-hidden group">
                   <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-[#002B48]">
                     <img
-                      src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1000&q=80"
+                      src="assets/material-colegio-02.jpg"
                       alt="Materiais didáticos e apostilas do Colégio e Cursos Progressão Caxias"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       loading="lazy"
@@ -260,7 +247,7 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* HEADER DA SEÇÃO COM ESPAÇO GENEROSO */}
-          <div className="flex flex-col items-center text-center mb-12">
+          <div className="flex flex-col items-center text-center mb-10">
             <span className="text-xs sm:text-sm font-bold text-[#0289C6] uppercase tracking-wider mb-2">
               NOSSOS MATERIAIS
             </span>
@@ -271,40 +258,7 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
               Materiais organizados para acompanhar cada etapa da formação e preparação dos nossos alunos.
             </p>
 
-            {/* SELETOR SEGMENTADO DE CATEGORIAS */}
-            <div 
-              className="mt-8 inline-flex items-center p-1.5 bg-[#E1E5E8]/60 backdrop-blur-sm rounded-2xl border border-[#E1E5E8] shadow-inner"
-              role="tablist"
-              aria-label="Filtro de categoria dos materiais didáticos"
-            >
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeCategory === 'colegio'}
-                onClick={() => handleCategoryChange('colegio')}
-                className={`px-6 sm:px-8 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0289C6] ${
-                  activeCategory === 'colegio'
-                    ? 'bg-[#0289C6] text-white shadow-md'
-                    : 'text-[#004B7C] hover:text-[#015E96] hover:bg-white/40'
-                }`}
-              >
-                COLÉGIO
-              </button>
-              
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeCategory === 'cursos'}
-                onClick={() => handleCategoryChange('cursos')}
-                className={`px-6 sm:px-8 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#0289C6] ${
-                  activeCategory === 'cursos'
-                    ? 'bg-[#0289C6] text-white shadow-md'
-                    : 'text-[#004B7C] hover:text-[#015E96] hover:bg-white/40'
-                }`}
-              >
-                CURSOS PREPARATÓRIOS
-              </button>
-            </div>
+            
           </div>
 
           {/* ============================================================ */}
@@ -318,10 +272,8 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
             {/* CONTROLES DE NAVEGAÇÃO SUPERIORES / SETAS */}
             <div className="flex items-center justify-between mb-6">
               <span className="text-xs sm:text-sm font-medium text-[#0A131F]/60">
-                Mostrando materiais de{' '}
-                <strong className="text-[#004B7C]">
-                  {activeCategory === 'colegio' ? 'Colégio (Ensino Fundamental & Médio)' : 'Cursos Preparatórios'}
-                </strong>
+                Apostilas e coleções didáticas do{' '}
+                <strong className="text-[#004B7C]">Colégio & Cursos Preparatórios</strong>
               </span>
 
               <div className="flex items-center gap-2">
@@ -361,7 +313,7 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
                   transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
                 }}
               >
-                {filteredMaterials.map((material) => (
+                {materials.map((material) => (
                   <div
                     key={material.id}
                     className="shrink-0 px-3 w-full sm:w-1/2 lg:w-1/4 transition-all"
@@ -371,32 +323,24 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
                       
                       {/* PARTE SUPERIOR: IMAGEM DO MATERIAL */}
                       <div>
-                        <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F0F4F8]">
-                          <img
-                            src={material.image}
-                            alt={material.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                            loading="lazy"
-                            referrerPolicy="no-referrer"
-                          />
+                      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F0F4F8]">
+                        <img
+                          src={material.image}
+                          alt={material.title}
+                          className="w-full h-full object-contain transition-transform duration-500 ease-out"
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                        />
 
-                          {/* Badge da categoria/segmento */}
-                          <div className="absolute top-3 left-3 bg-[#004B7C]/90 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-sm">
-                            {material.badge || material.segment}
-                          </div>
 
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#0A131F]/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0A131F]/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                      </div>
 
-                        {/* CONTEÚDO DO CARD: TÍTULO E DESCRIÇÃO CURTA */}
+                        {/* CONTEÚDO DO CARD: TÍTULO */}
                         <div className="p-5 sm:p-6">
-                          <h4 className="font-serif-heading text-lg sm:text-xl font-bold text-[#004B7C] group-hover:text-[#0289C6] transition-colors leading-snug mb-2.5">
+                          <h4 className="font-serif-heading text-lg sm:text-xl font-bold text-[#004B7C] group-hover:text-[#0289C6] transition-colors leading-snug">
                             {material.title}
                           </h4>
-                          
-                          <p className="text-xs sm:text-sm text-[#0A131F]/70 leading-relaxed line-clamp-3 mb-4">
-                            {material.description}
-                          </p>
                         </div>
                       </div>
 
@@ -464,9 +408,6 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
 
             {/* Topo do modal com badge e título */}
             <div>
-              <span className="text-xs font-bold text-[#0289C6] uppercase tracking-wider bg-[#0289C6]/10 px-3 py-1 rounded-full inline-block mb-2">
-                {selectedMaterial.badge || selectedMaterial.segment}
-              </span>
               <h3 
                 id="modal-material-title"
                 className="font-serif-heading text-2xl sm:text-3xl font-bold text-[#004B7C] leading-snug"
