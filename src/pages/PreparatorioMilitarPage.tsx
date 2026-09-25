@@ -46,7 +46,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
             <img
               src={course.image}
               alt="Estudantes em preparação para carreiras militares"
-              className="w-full h-80 sm:h-96 object-cover"
+              className="w-full h-90 sm:h-110 object-cover"
             />
           </div>
 

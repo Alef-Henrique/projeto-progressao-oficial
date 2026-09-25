@@ -15,7 +15,7 @@ export const DIDACTIC_MATERIALS_DATA: DidacticMaterialItem[] = [
       'Atividades de leitura, redação e interpretação',
       'Plataforma digital integrada de apoio'
     ],
-    image: '/assets/material-prog.jpg',
+    image: '/assets/fundamental-02.jpeg',
     link: '#contato'
   },
   {

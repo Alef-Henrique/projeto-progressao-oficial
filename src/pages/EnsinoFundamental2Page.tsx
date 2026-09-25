@@ -75,7 +75,7 @@ export const EnsinoFundamental2Page: React.FC = () => {
             <img
               src={data.image}
               alt="Jovens estudantes no Ensino Fundamental II no Colégio Progressão Caxias"
-              className="w-full h-80 sm:h-96 object-cover"
+              className="w-full h-80 sm:h-96 object-contain"
             />
           </div>
 

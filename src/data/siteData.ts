@@ -8,7 +8,7 @@ export const COURSES_DATA: Record<string, CourseData> = {
     subtitle: 'Preparação de alta intensidade e disciplina para as escolas e academias militares mais disputadas do Brasil.',
     badge: 'Carreiras Militares',
     iconName: 'Shield',
-    image: 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80',
+    image: '/assets/emerson-moura-esa.jpg',
     classFormat: 'Presencial | Manhã, Tarde ou Noite',
     description: 'Turmas intensivas para EsPCEx, AFA, Colégio Naval, EPCAr, ESA, EEAr e Colégios Militares.',
     detailedText: 'O curso preparatório militar do Progressão Caxias foca no desenvolvimento da base teórica densa em exatas e linguagens, combinada com resolução exaustiva de provas anteriores, treinamento de velocidade e simulados regulares nos moldes oficiais de cada força armada.',
@@ -76,7 +76,7 @@ export const COURSES_DATA: Record<string, CourseData> = {
     subtitle: 'Estratégia focada na Teoria de Resposta ao Item (TRI), Redação Nota 1000 e domínio das 4 áreas do conhecimento.',
     badge: 'Exame Nacional',
     iconName: 'GraduationCap',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80',
+    image: '/assets/vestibular.webp',
     classFormat: 'Presencial | Manhã, Tarde ou Noite',
     description: 'Treinamento completo para conquistar nota máxima no ENEM e garantir vaga no SISU, PROUNI ou FIES.',
     detailedText: 'O Exame Nacional do Ensino Médio exige mais do que saber a matéria: exige interpretação ágil, resistência física e psicológica para 5 horas de prova e estratégia de pontuação através da TRI. O Progressão Caxias trabalha cada competência exigida pela matriz do ENEM.',
@@ -136,7 +136,7 @@ export const COURSES_DATA: Record<string, CourseData> = {
     subtitle: 'Preparação integrada para o ENEM (foco em TRI e Redação Nota 1000) e os vestibulares mais concorridos (UERJ, Medicina, UFRJ e federais).',
     badge: 'ENEM & Vestibulares Tradicionais',
     iconName: 'BookOpen',
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1000&q=80',
+    image: '/assets/vestibular.webp',
     classFormat: 'Presencial e Online | Manhã, Tarde ou Noite',
     description: 'Treinamento completo combinando a inteligência analítica do ENEM com o aprofundamento das provas discursivas da UERJ e vestibulares de Medicina.',
     detailedText: 'No Progressão Caxias, a preparação para o ENEM e para os Vestibulares Estaduais (como UERJ) ocorre de maneira integrada e estratégica. O aluno desenvolve rapidez de resolução e coerência pedagógica para a TRI do ENEM, domina o laboratório semanal de Redação Nota 1000, e simultaneamente se aprofunda nas obras literárias obrigatórias e na fundamentação de questões discursivas para cursos de alta nota de corte.',
@@ -473,7 +473,7 @@ export const SCHOOL_SEGMENTS_DATA: Record<string, SchoolSegmentData> = {
     title: 'Ensino Fundamental II',
     ageRange: '6º ao 9º Ano',
     badge: 'Anos Finais (6º ao 9º Ano)',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/fundamental.jpeg',
     summary: 'Aprofundamento científico e humanista, maior autonomia nos estudos e preparação estratégica para escolas técnicas e colégios militares.',
     pedagogicalProposal: 'No Ensino Fundamental II do Colégio Progressão Caxias, os estudantes vivenciam a maturidade acadêmica com professores especialistas em cada disciplina, laboratório prático e base sólida voltada para os concursos do CEFET, IFRJ, FAETEC e Colégios Militares.',
     developmentGoals: [
@@ -519,7 +519,7 @@ export const SCHOOL_SEGMENTS_DATA: Record<string, SchoolSegmentData> = {
     title: 'Ensino Médio',
     ageRange: '1º, 2º e 3º Anos',
     badge: 'Preparação Acadêmica e de Vida',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/page-ensino-medio.jpg',
     summary: 'Aprofundamento científico, formação humana sólida e conexão direta com a preparação para ENEM, UERJ e carreiras militares.',
     pedagogicalProposal: 'No Ensino Médio do Colégio Progressão Caxias, a excelência escolar converge com a preparação para os grandes vestibulares e concursos. O aluno vivencia uma rotina madura de aprendizado, com professores altamente qualificados, simulados frequentes e orientação para escolhas profissionais.',
     developmentGoals: [
@@ -780,31 +780,31 @@ export const STRUCTURE_ITEMS: StructureItem[] = [
     title: 'Salas de Aula Climatizadas e Equipadas',
     category: 'salas',
     description: 'Ambientes confortáveis, com isolamento acústico adequado, iluminação projetada para longas sessões de estudo e equipamentos multimídia para projeção de aulas dinâmicas.',
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/sala-climatizada.JPG',
     features: ['Ar-condicionado e climatização constante', 'Carteiras ergonômicas para estudo prolongado', 'Recursos audiovisuais de alta resolução', 'Quadro panorâmico para explanação aprofundada']
   },
   {
     id: 'str-2',
-    title: 'Espaços de Estudo Individual e em Grupo',
+    title: 'Espaço para reuniões com os responsáveis',
     category: 'estudo',
-    description: 'Área silenciosa com cabines individuais para foco absoluto e mesas para resolução compartilhada de questões entre colegas e monitores.',
-    image: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80',
+    description: 'Ambiente acolhedor e privativo para atendimento e alinhamento pedagógico constante entre coordenação, professores e famílias dos estudantes.',
+    image: '/assets/sala-reuniao-paes.JPG',
     features: ['Cabines individuais com iluminação direcionada', 'Tomadas e pontos de energia para dispositivos', 'Bancadas para estudo em duplas ou trios', 'Ambiente com fiscalização de silêncio']
   },
   {
     id: 'str-3',
-    title: 'Estrutura Pedagógica e Plantão de Dúvidas',
+    title: 'Nossa fachada',
     category: 'pedagogico',
-    description: 'Salas reservadas para atendimento personalizado entre alunos e professores monitores, permitindo sanar dificuldades específicas de exercícios e redação.',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80',
+    description: 'Localização privilegiada de fácil acesso em Duque de Caxias, com estrutura moderna, recepção segura e identificação visual acolhedora.',
+    image: '/assets/fachada-02.JPG',
     features: ['Atendimento com horários agendados', 'Espaço dedicado à correção de redação individualizada', 'Material de consulta e livros de referência', 'Acompanhamento de metas do estudante']
   },
   {
     id: 'str-4',
-    title: 'Áreas de Convivência e Intervalo',
+    title: 'Nossa sala para concursos',
     category: 'convivencia',
-    description: 'Espaço arejado e seguro para descanso entre os turnos de aula, permitindo a integração saudável e momentos de descontração necessários para a saúde mental.',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
+    description: 'Ambiente climatizado e planejado especialmente para turmas preparatórias de concursos públicos, com foco intensivo em alta performance e simulados.',
+    image: '/assets/sala-concursos.JPG',
     features: ['Ambiente ventilado e protegido', 'Bebedouros refrigerados e banheiros higienizados', 'Ponto de alimentação e cantina', 'Monitoramento e segurança na entrada e saída']
   }
 ];

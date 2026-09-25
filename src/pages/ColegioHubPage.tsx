@@ -72,9 +72,9 @@ export const ColegioHubPage: React.FC = () => {
             {/* Imagem e Badges */}
             <div className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-md group">
               <img
-                src="/assets/capa-fundamental2.webp"
+                src="/assets/fundamental.jpeg"
                 alt="Estudantes do Ensino Fundamental II no Colégio Progressão Caxias"
-                className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-80 sm:h-96 object-contain group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A131F]/80 via-transparent to-transparent"></div>
               <div className="absolute bottom-4 left-4 right-4 text-white">
