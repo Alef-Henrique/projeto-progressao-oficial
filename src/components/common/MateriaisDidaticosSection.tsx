@@ -421,7 +421,7 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
               <img
                 src={selectedMaterial.image}
                 alt={selectedMaterial.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full sm:h-80 object-contain"
                 referrerPolicy="no-referrer"
               />
             </div>

@@ -101,12 +101,6 @@ const OBJECTIVE_CARDS = [
     href: '/cursos/concursos',
     image: '/assets/pmerj.jpeg',
   },
-  {
-    id: 'tecnicos',
-    title: 'Cursos Técnicos',
-    href: '/cursos/tecnicos',
-    image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=800&q=80',
-  },
 ];
 
 export const HomePage: React.FC = () => {

@@ -184,23 +184,6 @@ try {
               </div>
 
               <div className="bg-white p-5 rounded-2xl border border-[#E1E5E8] shadow-xs flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#015E96] text-white flex items-center justify-center shrink-0 mt-0.5">
-                  <Phone className="w-5 h-5 text-[#0289C6]" />
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold text-[#0289C6] uppercase tracking-wider block">
-                    Telefone Fixo
-                  </span>
-                  <p className="text-sm font-semibold text-[#004B7C]">
-                    {SITE_CONFIG.phone}
-                  </p>
-                  <p className="text-xs text-[#0A131F]/60 mt-0.5">
-                    Central de Atendimento Telefônico
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-white p-5 rounded-2xl border border-[#E1E5E8] shadow-xs flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-[#25D366] text-white flex items-center justify-center shrink-0 mt-0.5">
                   <WhatsAppIcon className="w-5 h-5 text-white" />
                 </div>

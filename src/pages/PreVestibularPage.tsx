@@ -86,31 +86,6 @@ export const PreVestibularPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="bg-[#E1E5E8]/30 p-6 rounded-2xl border border-[#E1E5E8] flex flex-col gap-3">
-              <div className="flex items-center gap-2 text-[#004B7C] font-bold text-sm">
-                <Target className="w-4 h-4 text-[#0289C6]" />
-                <span>Público-Alvo:</span>
-              </div>
-              <ul className="space-y-1.5 text-xs sm:text-sm text-[#0A131F]/80">
-                {Array.isArray(course.targetAudience) ? (
-                  course.targetAudience.map((target, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <span className="text-[#0289C6] font-bold">•</span>
-                      <span>{target}</span>
-                    </li>
-                  ))
-                ) : (
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#0289C6] font-bold">•</span>
-                    <span>{course.targetAudience}</span>
-                  </li>
-                )}
-              </ul>
-              <div className="pt-2 border-t border-[#E1E5E8] flex items-center gap-2 text-xs text-[#0A131F]/70">
-                <Clock className="w-4 h-4 text-[#0289C6]" />
-                <span>Formato das aulas: {course.classFormat}</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>

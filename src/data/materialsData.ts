@@ -10,10 +10,9 @@ export const DIDACTIC_MATERIALS_DATA: DidacticMaterialItem[] = [
     title: 'Coleção Fundamental II',
     description: 'Material didático integrado para o 6º ao 9º ano com teoria contextualizada, exercícios gradativos e projetos interdisciplinares.',
     features: [
-      'Teoria objetiva com mapas mentais',
-      'Caderno de exercícios com níveis de dificuldade',
+      'Teoria objetiva e contextualizada por disciplina',
       'Atividades de leitura, redação e interpretação',
-      'Plataforma digital integrada de apoio'
+      'Exercícios e atividades voltados à fixação dos conteúdos'
     ],
     image: '/assets/fundamental-02.jpeg',
     link: '#contato'
@@ -36,12 +35,12 @@ export const DIDACTIC_MATERIALS_DATA: DidacticMaterialItem[] = [
     id: 'mat-col-redacao',
     category: 'colegio',
     title: 'Material para pré-vestibular e redação',
-    description: 'Cadernos de produção textual, oficinas de escrita analítica e práticas orientadas para o desenvolvimento da competência leitora e crítica.',
+    description: 'Conteúdos selecionados para auxiliar na preparação para vestibulares, com teoria, exercícios e práticas de redação.',
     features: [
-      'Critérios de correção detalhados por competência',
-      'Propostas temáticas autorais e contemporâneas',
-      'Folhas padronizadas de rascunho e versão definitiva',
-      'Comentários e repertórios socioculturais'
+      'Conteúdos direcionados para o vestibular',
+      'Práticas de redação e produção textual',
+      'Questões e exercícios de preparação',
+      'Exercícios de fixação e revisão'
     ],
     image: '/assets/colegio-material.jpg',
     link: '#contato'

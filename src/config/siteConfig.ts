@@ -17,12 +17,11 @@ export const SITE_CONFIG = {
   state: "RJ",
   // Endereço oficial da unidade:
   address: "Rua Bento Gonçalves 23, Duque de Caxias - RJ",
-  phone: "[INSERIR TELEFONE DA SECRETARIA]",
   email: "contato@progressaocaxias.com.br", // placeholder editável
-  officeHours: "Segunda a Sexta: 07h às 21h | Sábados: 08h às 14h",
-  workingHours: "Segunda a Sexta: 07h às 21h | Sábados: 08h às 14h",
+  officeHours: "Segunda a Sexta: 07h às 21h | Sábados: 07h30 às 16h30",
+  workingHours: "Segunda a Sexta: 07h às 21h | Sábados: 07h30 às 16h30",
   social: {
-    instagram: "https://www.instagram.com/progressaoeducacao",
+    instagram: "https://www.instagram.com/progressao_caxias",
     facebook: "https://www.facebook.com/progressaoeducacao",
     youtube: "https://www.youtube.com/@progressaoeducacao"
   },
