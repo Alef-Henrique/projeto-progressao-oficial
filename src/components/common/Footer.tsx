@@ -84,12 +84,12 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link href="/colegio/fundamental-2" className="hover:text-white hover:translate-x-1 transition-all inline-block">
-                  Ensino Fundamental II (6º ao 9º)
+                  Ensino Fundamental II (6º ao 9º Ano)
                 </Link>
               </li>
               <li>
                 <Link href="/colegio/ensino-medio" className="hover:text-white hover:translate-x-1 transition-all inline-block">
-                  Ensino Médio (1º ao 3º Ano)
+                  Ensino Médio (1º ao 3º Série)
                 </Link>
               </li>
             </ul>
@@ -149,10 +149,6 @@ export const Footer: React.FC = () => {
                 <WhatsAppIcon className="w-4 h-4 shrink-0 mt-0.5 text-[#0289C6]" />
                 <span>WhatsApp: {WHATSAPP_DISPLAY}</span>
               </a>
-              <div className="flex items-start gap-2">
-                <Phone className="w-4 h-4 text-[#0289C6] shrink-0 mt-0.5" />
-                <span>Tel: {SITE_CONFIG.phone}</span>
-              </div>
               <div className="flex items-start gap-2">
                 <Mail className="w-4 h-4 text-[#0289C6] shrink-0 mt-0.5" />
                 <span className="break-all">{SITE_CONFIG.email}</span>
