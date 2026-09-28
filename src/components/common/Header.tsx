@@ -76,7 +76,7 @@ export const Header: React.FC = () => {
           <div className="flex items-center gap-4 text-[11px] sm:text-xs">
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-[#0289C6] animate-pulse"></span>
-              <span className="font-semibold text-white">Faça sua Matrícula</span> • Duque de Caxias / RJ
+              <span className="font-semibold text-white">Matrículas 2027 Abertas! </span>Quem começa agora chega na frente.
             </span>
           </div>
           <div className="flex items-center gap-3 text-[11px] sm:text-xs">
@@ -413,7 +413,7 @@ export const Header: React.FC = () => {
               href="/cursos"
               className="inline-flex items-center justify-center gap-2 bg-[#0289C6] hover:bg-[#015E96] text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-[#0289C6] focus:ring-offset-2 focus:ring-offset-[#004B7C] active:scale-95"
             >
-              <span>QUERO ME PREPARAR</span>
+              <span>QUERO GARANTIR MINHA VAGA</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -568,7 +568,7 @@ export const Header: React.FC = () => {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <p className="text-center text-xs text-[#E1E5E8]/60">
-              Curso Progressão Caxias • Duque de Caxias / RJ
+              Matrículas 2027 abertas! Quem começa agora chega na frente.
             </p>
           </div>
         </div>

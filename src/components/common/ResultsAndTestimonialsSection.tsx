@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { AnimatedCounter } from './AnimatedCounter';
+import { ApprovedInstitutionsCarousel } from './ApprovedInstitutionsCarousel';
 
 interface ResultsAndTestimonialsSectionProps {
   showViewAllButton?: boolean;
@@ -135,7 +136,7 @@ export const ResultsAndTestimonialsSection: React.FC<ResultsAndTestimonialsSecti
           RESULTADOS E DEPOIMENTOS
         </h2>
         <p className="text-sm sm:text-base text-[#0A131F]/70 mt-2 font-normal">
-          Histórias reais de quem se dedicou, praticou com afinco e alcançou a aprovação almejada.
+          Números que não mentem. Aqui, aprovação é rotina, não sorte.
         </p>
       </div>
 
@@ -167,10 +168,13 @@ export const ResultsAndTestimonialsSection: React.FC<ResultsAndTestimonialsSecti
             <AnimatedCounter target={31} suffix=" anos" duration={1600} />
           </span>
           <span className="text-xs sm:text-sm font-semibold text-[#0A131F]/75 uppercase tracking-wider">
-            Anos de História em Duque de Caxias
+             de História em Duque de Caxias
           </span>
         </div>
       </div>
+
+      {/* CARROSSEL DAS INSTITUIÇÕES ONDE OS ALUNOS FORAM APROVADOS */}
+      <ApprovedInstitutionsCarousel />
 
       {/* Carrossel Automático (Cards são Imagens Somente) */}
       <div

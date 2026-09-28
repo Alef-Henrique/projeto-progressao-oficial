@@ -398,7 +398,7 @@ export const HomePage: React.FC = () => {
                 href="/cursos"
                 className="inline-flex items-center justify-center gap-2 bg-[#0289C6] hover:bg-white hover:text-[#004B7C] text-white px-7 py-4 rounded-xl font-bold text-sm tracking-wide shadow-lg hover:shadow-xl transition-all duration-200 active:scale-95 group"
               >
-                <span>CONHEÇA NOSSOS PREPARATÓRIOS</span>
+                <span>QUERO MINHA APROVAÇÃO</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -413,10 +413,10 @@ export const HomePage: React.FC = () => {
             Escolha Sua Preparação
           </span>
           <h2 className="font-serif-heading text-2xl sm:text-4xl font-bold text-[#004B7C] mt-1 mb-3">
-            QUAL É O SEU PRÓXIMO OBJETIVO?
+            QUAL VAGA VOCÊ VAI CONQUISTAR?
           </h2>
           <p className="text-sm sm:text-base text-[#0A131F]/70 max-w-2xl">
-            Descubra as turmas desenhadas especificamente para o formato da prova que você deseja prestar.
+            Descubra a turma feita pro formato exato da prova que você vai prestar. Sem enrolação
           </p>
         </div>
 

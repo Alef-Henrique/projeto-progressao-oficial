@@ -176,7 +176,7 @@ export const ResultadosPage: React.FC = () => {
               <AnimatedCounter target={31} suffix=" anos" duration={1600} />
             </span>
             <span className="text-xs font-bold text-[#0A131F]/70 uppercase tracking-wider">
-              Anos de História em Duque de Caxias
+              de História em Duque de Caxias
             </span>
           </div>
         </div>

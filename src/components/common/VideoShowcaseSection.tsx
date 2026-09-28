@@ -299,8 +299,7 @@ export const VideoShowcaseSection: React.FC = () => {
 
           {/* Citação do depoimento */}
           <p className="text-sm sm:text-base text-[#0A131F]/80 leading-relaxed mb-6 font-normal">
-            “A preparação no Progressão foi fundamental para a minha aprovação na ESA. Aqui encontrei professores comprometidos, um ambiente disciplinado e todo o suporte que eu precisava para evoluir nos estudos.”
-          </p>
+          A preparação no Progressão foi fundamental para a minha aprovação na ESA. Aqui encontrei professores comprometidos, um ambiente disciplinado e todo o suporte que eu precisava para evoluir nos estudos.</p>
 
           {/* Linha divisória ciano */}
           <div className="w-12 h-0.5 bg-[#0289C6] mb-4" />
@@ -311,7 +310,7 @@ export const VideoShowcaseSection: React.FC = () => {
               {anthony.studentName}
             </h4>
             <span className="text-xs sm:text-sm text-[#0A131F]/70 font-medium">
-              Aprovado na ESA
+              Anthony Salgueiro, Aprovado na ESA
             </span>
           </div>
         </div>
@@ -334,7 +333,8 @@ export const VideoShowcaseSection: React.FC = () => {
 
           {/* Citação do depoimento */}
           <p className="text-sm sm:text-base text-[#0A131F]/80 leading-relaxed mb-6 font-normal">
-            “Com o apoio dos professores, os simulados e uma preparação focada, consegui conquistar minha aprovação em Medicina na UERJ e na UFRJ. O Progressão foi fundamental para transformar meu esforço em resultado.”
+          Com o apoio dos professores, os simulados e uma preparação focada, consegui conquistar minha aprovação em Medicina na UERJ e na UFRJ. O Progressão foi fundamental para transformar meu esforço em resultado.
+
           </p>
 
           {/* Linha divisória ciano */}
