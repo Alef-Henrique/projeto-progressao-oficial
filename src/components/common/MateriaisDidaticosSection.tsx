@@ -211,7 +211,7 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
                 <div className="relative z-10 bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-3xl border border-white/20 shadow-2xl overflow-hidden group">
                   <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-[#002B48]">
                     <img
-                      src="assets/material-colegio-02.jpg"
+                      src="assets/material-colegio-02.webp"
                       alt="Materiais didáticos e apostilas do Colégio e Cursos Progressão Caxias"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       loading="lazy"
