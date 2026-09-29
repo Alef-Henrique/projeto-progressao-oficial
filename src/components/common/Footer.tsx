@@ -34,12 +34,9 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
             <p className="text-xs sm:text-sm text-[#E1E5E8]/80 leading-relaxed">
-              Instituição de ensino com excelência pedagógica, rigor e disciplina. Formando gerações e liderando aprovações em Duque de Caxias.
+            Rigor, disciplina e resultado. Formando gerações e liderando aprovações em Duque de Caxias.
+
             </p>
-            <div className="pt-2 flex items-center gap-2 text-xs text-[#0289C6] font-medium">
-              <ShieldCheck className="w-4 h-4 text-[#0289C6]" />
-              <span>Colégio e Cursos Preparatórios</span>
-            </div>
           </div>
 
           {/* Coluna 1: O Progressão */}

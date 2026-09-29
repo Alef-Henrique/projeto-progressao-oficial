@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { 
-  ArrowRight, Shield, GraduationCap, BookOpen, School, 
-  CheckCircle2, Clock, Users, UserCheck, TrendingUp, Target, 
-  ChevronRight, ChevronLeft, Brain, Sparkles, Compass
+import {
+  ArrowRight, Shield, GraduationCap, BookOpen, School,
+  CheckCircle2, Clock, Users, UserCheck, TrendingUp, Target,
+  ChevronRight, ChevronLeft, Brain, Sparkles, Compass,
+  ClipboardCheck, Award
 } from 'lucide-react';
 import { Link } from '../components/routing/RouterContext';
 import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { CTASection } from '../components/common/CTASection';
 import { ResultsAndTestimonialsSection } from '../components/common/ResultsAndTestimonialsSection';
+import { NossosCursosETurmasSection } from '../components/common/NossosCursosETurmasSection';
 import { VideoShowcaseSection } from '../components/common/VideoShowcaseSection';
 import { MateriaisDidaticosSection } from '../components/common/MateriaisDidaticosSection';
-import { 
-  COURSES_DATA, 
-  DIFFERENTIALS_DATA, 
-  GENERAL_FAQS 
+import {
+  COURSES_DATA,
+  DIFFERENTIALS_DATA,
+  GENERAL_FAQS
 } from '../data/siteData';
 
 const HERO_SLIDES = [
@@ -33,7 +35,7 @@ const HERO_SLIDES = [
     alt: 'Preparação focada para Carreiras Militares e Concursos Públicos',
     badge: 'Carreiras Militares & Concursos',
     title: 'Disciplina, Foco e Alta Intensidade',
-    description: 'Treinamento rigoroso com simulados cronometrados nos moldes oficiais das bancas.',
+    description: 'Rumo à farda e à carreira das armas.',
     icon: Target,
   },
   {
@@ -42,7 +44,7 @@ const HERO_SLIDES = [
     alt: 'Corpo docente especializado em bancas examinadoras',
     badge: 'Professores Especialistas',
     title: 'Aulas Dinâmicas & Resolução Prática',
-    description: 'Mestres e especialistas com vivência comprovada nas principais bancas do país.',
+    description: 'Do Fundamental ao terceirão, sem abrir mão da excelência.',
     icon: Users,
   },
   {
@@ -51,7 +53,7 @@ const HERO_SLIDES = [
     alt: 'Estudo intensivo para ENEM e Vestibulares UERJ e Medicina',
     badge: 'Pré-Vestibular & ENEM',
     title: 'Estratégia TRI & Redação Nota 1000',
-    description: 'Metodologia focada na pontuação máxima para SISU, UERJ e vestibulares de Medicina.',
+    description: 'Direto ao ponto pra UERJ e pro ENEM.',
     icon: GraduationCap,
   },
   {
@@ -60,7 +62,7 @@ const HERO_SLIDES = [
     alt: 'Alunos no Colégio Progressão com foco e formação integral',
     badge: 'Colégio Progressão',
     title: 'Educação Básica de Referência',
-    description: 'Ensino Fundamental II e Ensino Médio com formação sólida e excelência acadêmica.',
+    description: 'A vaga que muda sua vida começa na sua rotina de estudo.',
     icon: School,
   },
 ];
@@ -80,24 +82,28 @@ const OBJECTIVE_CARDS = [
   {
     id: 'militar',
     title: 'Preparatório Militar',
+    description: 'Treinamento intensivo focado nas bancas da EsPCEx, AFA, Colégio Naval, EPCAr, ESA e EEAr.',
     href: '/cursos/preparatorio-militar',
     image: '/assets/david-lopes-eags.jpeg',
   },
   {
     id: 'colegio',
     title: 'Colégio',
+    description: 'Ensino Fundamental II e Ensino Médio com formação acadêmica forte e foco no protagonismo juvenil.',
     href: '/colegio',
     image: '/assets/colegio-I.webp',
   },
   {
     id: 'vestibular',
     title: 'Pré-Vestibular & ENEM',
+    description: 'Preparação integrada com metodologia TRI, Redação Nota 1000 e foco no vestibular da UERJ.',
     href: '/cursos/pre-vestibular',
     image: '/assets/img-pre-vestibular.jpeg',
   },
   {
     id: 'concursos',
     title: 'Concursos Públicos',
+    description: 'Habilitações práticas e profissionalizantes com rápida inserção no mercado de trabalho e indústrias.',
     href: '/cursos/concursos',
     image: '/assets/pmerj.jpeg',
   },
@@ -314,7 +320,7 @@ export const HomePage: React.FC = () => {
       />
 
       {/* 1. HERO SECTION */}
-      <section 
+      <section
         className="relative w-full bg-[#0A131F] text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-white/10"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
@@ -324,9 +330,8 @@ export const HomePage: React.FC = () => {
           {HERO_SLIDES.map((slide, index) => (
             <div
               key={`bg-${slide.id}`}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
               style={{
                 backgroundImage: `url(${slide.image})`,
                 backgroundSize: 'cover',
@@ -336,22 +341,22 @@ export const HomePage: React.FC = () => {
           ))}
 
           {/* Sombra azul suave por cima das imagens */}
-          <div 
+          <div
             className="absolute inset-0 bg-gradient-to-r from-[#003B61]/65 via-[#004B7C]/25 to-[#015E96]/15 pointer-events-none"
           />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10 flex flex-col justify-between">
           <div className="max-w-3xl flex flex-col items-start gap-6">
-            <h1 
+            <h1
               className="font-serif-heading text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.18] drop-shadow-md"
               aria-label="SUA JORNADA RUMO À APROVAÇÃO COMEÇA AQUI."
             >
               <span className="inline">
                 {typedLine1 || <span className="invisible select-none" aria-hidden="true">&#8203;</span>}
                 {cursorPos === 1 && (
-                  <span 
-                    className="inline-block w-[3px] sm:w-[4px] lg:w-[5px] h-[0.82em] ml-1 sm:ml-1.5 bg-[#0289C6] align-baseline rounded-full animate-pulse" 
+                  <span
+                    className="inline-block w-[3px] sm:w-[4px] lg:w-[5px] h-[0.82em] ml-1 sm:ml-1.5 bg-[#0289C6] align-baseline rounded-full animate-pulse"
                     aria-hidden="true"
                   />
                 )}
@@ -369,17 +374,16 @@ export const HomePage: React.FC = () => {
                   </>
                 )}
                 {cursorPos === 2 && (
-                  <span 
-                    className={`inline-block w-[3px] sm:w-[4px] lg:w-[5px] h-[0.82em] ml-1 sm:ml-1.5 bg-[#0289C6] align-baseline rounded-full ${
-                      cursorFade ? 'opacity-0 transition-opacity duration-1000' : 'animate-pulse opacity-100'
-                    }`}
+                  <span
+                    className={`inline-block w-[3px] sm:w-[4px] lg:w-[5px] h-[0.82em] ml-1 sm:ml-1.5 bg-[#0289C6] align-baseline rounded-full ${cursorFade ? 'opacity-0 transition-opacity duration-1000' : 'animate-pulse opacity-100'
+                      }`}
                     aria-hidden="true"
                   />
                 )}
               </span>
             </h1>
 
-            <p 
+            <p
               className="text-xl sm:text-2xl lg:text-3xl text-white font-semibold tracking-wide drop-shadow-sm min-h-[2.5rem] flex items-center"
               aria-live="polite"
               aria-label={HERO_ROTATING_TEXTS[rotatingIndex]}
@@ -387,9 +391,9 @@ export const HomePage: React.FC = () => {
               <span className="text-white font-bold">
                 {rotatingText || <span className="invisible select-none" aria-hidden="true">&#8203;</span>}
               </span>
-              <span 
-                className="inline-block w-[3px] sm:w-[4px] h-[0.85em] ml-1.5 bg-white align-baseline rounded-full animate-pulse" 
-                aria-hidden="true" 
+              <span
+                className="inline-block w-[3px] sm:w-[4px] h-[0.85em] ml-1.5 bg-white align-baseline rounded-full animate-pulse"
+                aria-hidden="true"
               />
             </p>
 
@@ -421,7 +425,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Container do Carrossel com 4 cards fixos e botões passadores */}
-        <div 
+        <div
           className="relative px-2 sm:px-4"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -475,13 +479,16 @@ export const HomePage: React.FC = () => {
                     {/* Degradê escuro para alto contraste e legibilidade */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A131F]/95 via-[#0A131F]/60 to-transparent transition-opacity duration-300 group-hover:via-[#0A131F]/50" />
 
-                    {/* Conteúdo: Somente Título e Saiba Mais */}
-                    <div className="relative z-10 flex flex-col gap-4">
+                    {/* Conteúdo: Título, Parágrafo Descritivo e Saiba Mais */}
+                    <div className="relative z-10 flex flex-col gap-2.5">
                       <h3 className="font-serif-heading text-xl sm:text-2xl font-bold text-white group-hover:text-[#68C5DB] transition-colors leading-snug drop-shadow-sm">
                         {card.title}
                       </h3>
+                      <p className="text-xs sm:text-sm text-white/80 leading-relaxed line-clamp-2">
+                        {card.description}
+                      </p>
 
-                      <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-white group-hover:text-[#68C5DB] transition-colors pt-3 border-t border-white/20">
+                      <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-white group-hover:text-[#68C5DB] transition-colors pt-2.5 border-t border-white/20 mt-1">
                         <span>Saiba Mais</span>
                         <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -500,11 +507,10 @@ export const HomePage: React.FC = () => {
                   key={idx}
                   onClick={() => setObjectiveIndex(idx)}
                   aria-label={`Ir para grupo ${idx + 1}`}
-                  className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none ${
-                    objectiveIndex === idx 
-                      ? 'w-8 bg-[#004B7C]' 
-                      : 'w-2.5 bg-[#E1E5E8] hover:bg-[#0289C6]/60'
-                  }`}
+                  className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none ${objectiveIndex === idx
+                    ? 'w-8 bg-[#004B7C]'
+                    : 'w-2.5 bg-[#E1E5E8] hover:bg-[#0289C6]/60'
+                    }`}
                 />
               ))}
             </div>
@@ -521,11 +527,10 @@ export const HomePage: React.FC = () => {
             <span>Colégio Progressão • Educação Básica</span>
           </div>
           <h2 className="font-serif-heading text-2xl sm:text-4xl font-bold text-[#004B7C] mb-3">
-            FORMAÇÃO DE EXCELÊNCIA DA BASE AO TERCEIRÃO
+            FORMAÇÃO DE EXCELÊNCIA
           </h2>
           <p className="text-sm sm:text-base text-[#0A131F]/70 max-w-2xl leading-relaxed">
-            Uma proposta pedagógica completa em Duque de Caxias, combinando rigor acadêmico, acolhimento humano e preparação contínua para o futuro dos seus filhos.
-          </p>
+            Rigor acadêmico, acolhimento humano e preparação contínua. Uma proposta pedagógica completa em Duque de Caxias, pensada para o futuro dos seus filhos.          </p>
         </div>
 
         {/* Cards dos Segmentos de Ensino */}
@@ -678,40 +683,78 @@ export const HomePage: React.FC = () => {
       {/* VÍDEOS INSTITUCIONAL E DEPOIMENTOS */}
       <VideoShowcaseSection />
 
+      {/* NOSSOS CURSOS E TURMAS (PRESENCIAL E ONLINE) */}
+      <NossosCursosETurmasSection />
+
       {/* SEÇÃO — MATERIAIS DIDÁTICOS (BANNER + CARROSSEL) */}
       <MateriaisDidaticosSection />
 
-      {/* 5. DIFERENCIAIS (6 Cards) */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <div className="flex flex-col items-center text-center mb-12">
-          <span className="text-xs sm:text-sm font-semibold text-[#0289C6] uppercase tracking-wider">
-            Nossos Pilares
-          </span>
-          <h2 className="font-serif-heading text-2xl sm:text-4xl font-bold text-[#004B7C] mt-1 mb-3">
-            POR QUE ESCOLHER O PROGRESSÃO?
+      {/* 5. NOSSOS PILARES (6 Blocos Institucionais) */}
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full" id="nossos-pilares">
+        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#004B7C]/10 text-[#004B7C] text-xs font-bold uppercase tracking-wider mb-3">
+            <Award className="w-4 h-4 text-[#0289C6]" />
+            <span>Nossos Pilares</span>
+          </div>
+          <h2 className="font-serif-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-[#004B7C] tracking-tight mb-4">
+            Por que escolher o Progressão?
           </h2>
-          <p className="text-sm sm:text-base text-[#0A131F]/70 max-w-2xl">
-            Uma estrutura séria, desenhada para eliminar distrações e acelerar a evolução acadêmica de cada estudante.
+          <p className="text-sm sm:text-base lg:text-lg text-[#0A131F]/70 max-w-2xl leading-relaxed">
+            Uma estrutura séria, sem distração, pensada pra transformar dedicação em aprovação.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {DIFFERENTIALS_DATA.map((diff, idx) => (
-            <div
-              key={idx}
-              className="bg-white p-6 rounded-2xl border border-[#E1E5E8] hover:border-[#0289C6]/60 hover:shadow-md transition-all duration-200 flex flex-col gap-3"
-            >
-              <div className="w-10 h-10 rounded-xl bg-[#004B7C] text-white flex items-center justify-center">
-                {idx % 2 === 0 ? <CheckCircle2 className="w-5 h-5 text-[#0289C6]" /> : <Target className="w-5 h-5 text-[#0289C6]" />}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+          {DIFFERENTIALS_DATA.map((diff) => {
+            const renderIcon = () => {
+              switch (diff.icon) {
+                case 'GraduationCap':
+                  return <GraduationCap className="w-5 h-5 text-[#0289C6] group-hover:text-white transition-colors" />;
+                case 'BookOpen':
+                  return <BookOpen className="w-5 h-5 text-[#0289C6] group-hover:text-white transition-colors" />;
+                case 'ClipboardCheck':
+                  return <ClipboardCheck className="w-5 h-5 text-[#0289C6] group-hover:text-white transition-colors" />;
+                case 'UserCheck':
+                  return <UserCheck className="w-5 h-5 text-[#0289C6] group-hover:text-white transition-colors" />;
+                case 'TrendingUp':
+                  return <TrendingUp className="w-5 h-5 text-[#0289C6] group-hover:text-white transition-colors" />;
+                case 'Target':
+                  return <Target className="w-5 h-5 text-[#0289C6] group-hover:text-white transition-colors" />;
+                default:
+                  return <Shield className="w-5 h-5 text-[#0289C6] group-hover:text-white transition-colors" />;
+              }
+            };
+
+            return (
+              <div
+                key={diff.id}
+                className="bg-white p-7 sm:p-8 rounded-2xl sm:rounded-3xl border border-[#E1E5E8] hover:border-[#0289C6]/60 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative"
+              >
+                <div>
+                  {/* Top: Ícone sutil + Identificador do Pilar */}
+                  <div className="flex items-center justify-between gap-3 mb-5">
+                    <div className="w-11 h-11 rounded-xl bg-[#004B7C]/10 border border-[#004B7C]/15 group-hover:bg-[#004B7C] flex items-center justify-center transition-colors duration-300 shadow-sm">
+                      {renderIcon()}
+                    </div>
+                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#0289C6] px-2.5 py-1 rounded-full bg-[#0289C6]/10">
+                      Pilar {diff.pilarNumber}
+                    </span>
+                  </div>
+
+                  {/* Título do Pilar */}
+                  <h3 className="font-serif-heading text-lg sm:text-xl font-bold text-[#004B7C] group-hover:text-[#013558] transition-colors mb-2.5">
+                    {diff.title}
+                  </h3>
+
+                  {/* Texto Explicativo */}
+                  <p className="text-xs sm:text-sm text-[#0A131F]/75 leading-relaxed">
+                    {diff.description}
+                  </p>
+                </div>
+
               </div>
-              <h3 className="font-serif-heading text-lg font-bold text-[#004B7C]">
-                {diff.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-[#0A131F]/70 leading-relaxed">
-                {diff.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

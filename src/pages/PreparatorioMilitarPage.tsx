@@ -154,35 +154,6 @@ export const PreparatorioMilitarPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Resultados & Depoimentos com Placeholders */}
-      <section className="py-16 bg-[#E1E5E8]/30 border-y border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="text-xs font-bold text-[#0289C6] uppercase tracking-wider block mb-2">
-            Mural de Conquistas Militares
-          </span>
-          <h3 className="font-serif-heading text-3xl font-bold text-[#004B7C] mb-3">
-            {course.resultsPlaceholder}
-          </h3>
-          <p className="text-sm text-[#0A131F]/70 leading-relaxed mb-8">
-            Histórico consistente de alunos formados no Progressão Caxias ingressando nas Forças Armadas brasileiras.
-          </p>
-
-          <div className="bg-white p-8 rounded-2xl border border-[#E1E5E8] shadow-sm text-left">
-            <div className="flex items-center gap-1 text-[#0289C6] mb-3">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-current text-[#0289C6]" />
-              ))}
-            </div>
-            <p className="text-sm text-[#0A131F]/80 italic leading-relaxed mb-4">
-              "{course.testimonialsPlaceholder}"
-            </p>
-            <span className="text-xs font-bold text-[#004B7C] uppercase tracking-wider block">
-              [NOME DO ALUNO APROVADO] • EsPCEx / ESA
-            </span>
-          </div>
-        </div>
-      </section>
-
       {/* FAQs */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <AccordionFAQ items={course.faqs} title="DÚVIDAS SOBRE O PREPARATÓRIO MILITAR" />

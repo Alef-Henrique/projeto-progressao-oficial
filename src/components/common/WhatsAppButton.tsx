@@ -30,7 +30,7 @@ export const WhatsAppButton: React.FC = () => {
         <div className="hidden sm:flex items-center gap-2 bg-[#0A131F] text-white py-2 px-3.5 rounded-xl shadow-xl border border-[#015E96] text-xs animate-fadeIn max-w-xs">
           <div className="flex flex-col">
             <span className="font-semibold text-[#0289C6]">Dúvidas sobre matrículas?</span>
-            <span className="text-[#E1E5E8]/80 text-[11px]">Fale com nosso consultor no WhatsApp</span>
+            <span className="text-[#E1E5E8]/80 text-[11px]">Fale com nossa consultora no WhatsApp</span>
           </div>
           <button
             type="button"

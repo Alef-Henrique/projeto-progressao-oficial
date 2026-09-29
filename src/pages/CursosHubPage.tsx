@@ -488,15 +488,8 @@ export const CursosHubPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <CTASection
-        title="NÃO TEM CERTEZA DE QUAL CURSO OU MODALIDADE ESCOLHER?"
-        subtitle="Nossos consultores pedagógicos orientam você sobre cursos técnicos, editais, horários das aulas presenciais e acesso à plataforma online."
-        primaryCtaText="FALAR COM CONSULTOR PEDAGÓGICO"
-        primaryCtaHref="/contato"
-        secondaryCtaText="VER RESULTADOS DE ALUNOS"
-        secondaryCtaHref="/resultados"
-      />
+      {/* FORMULÁRIO RD STATION*/}
+
     </div>
   );
 };

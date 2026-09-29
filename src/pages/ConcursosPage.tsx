@@ -47,7 +47,7 @@ export const ConcursosPage: React.FC = () => {
             <img
               src={course.image}
               alt="Alunos estudando para concursos públicos no Progressão Caxias"
-              className="w-full h-80 sm:h-96 object-cover"
+              className="w-full h-80 sm:h-96 object-contain"
             />
           </div>
 
@@ -143,45 +143,13 @@ export const ConcursosPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Resultados & Depoimentos */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full text-center">
-        <span className="text-xs font-bold text-[#0289C6] uppercase tracking-wider block mb-2">
-          Aprovações em Concursos
-        </span>
-        <h3 className="font-serif-heading text-3xl font-bold text-[#004B7C] mb-3">
-          {course.resultsPlaceholder}
-        </h3>
-        <p className="text-sm text-[#0A131F]/70 leading-relaxed mb-8">
-          Histórias de concurseiros que conquistaram a estabilidade do serviço público através de método e disciplina.
-        </p>
-
-        <div className="bg-white p-8 rounded-2xl border border-[#E1E5E8] shadow-sm text-left">
-          <div className="flex items-center gap-1 text-[#0289C6] mb-3">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-4 h-4 fill-current text-[#0289C6]" />
-            ))}
-          </div>
-          <p className="text-sm text-[#0A131F]/80 italic leading-relaxed mb-4">
-            "{course.testimonialsPlaceholder}"
-          </p>
-          <span className="text-xs font-bold text-[#004B7C] uppercase tracking-wider block">
-            [NOME DO ALUNO APROVADO] • Concurso Público
-          </span>
-        </div>
-      </section>
 
       {/* FAQs */}
       <section className="py-16 bg-[#E1E5E8]/30 border-t border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
         <AccordionFAQ items={course.faqs} title="DÚVIDAS SOBRE O PREPARATÓRIO DE CONCURSOS" />
       </section>
 
-      {/* CTA */}
-      <CTASection
-        title="ESTUDE PARA CONCURSOS COM QUEM ENTENDE DE APROVAÇÃO"
-        subtitle="Entre em contato com nossa equipe pedagógica e efetue sua matrícula nas turmas de Duque de Caxias."
-        primaryCtaText="FAZER MINHA MATRÍCULA"
-        primaryCtaHref="/contato"
-      />
+      {/*FORMULÁRIO RD STATION*/}
     </div>
   );
 };

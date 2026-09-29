@@ -58,6 +58,7 @@ export interface TeacherMember {
   bio: string;
   credentials: string[];
   imagePlaceholderText: string;
+  image?: string;
 }
 
 export interface TestimonialItem {

@@ -3,6 +3,7 @@ import {
   ChevronLeft, ChevronRight, ArrowRight, BookOpen, 
   CheckCircle2, Layers, ShieldCheck, X, MessageCircle
 } from 'lucide-react';
+import { Link } from '../routing/RouterContext';
 import { DIDACTIC_MATERIALS_DATA } from '../../data/materialsData';
 import { DidacticMaterialItem } from '../../types';
 import { WHATSAPP_NUMBER } from '../../config/siteConfig';
@@ -17,7 +18,7 @@ interface MateriaisDidaticosSectionProps {
 }
 
 export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps> = ({
-  bannerCtaTarget = '#catalogo-materiais',
+  bannerCtaTarget = '/cursos',
   onBannerCtaClick
 }) => {
   // Lista unificada de todos os materiais didáticos
@@ -173,34 +174,32 @@ export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps>
               {/* Pequeno Label */}
               <div className="inline-flex items-center gap-2 bg-[#0289C6]/20 text-[#68C5DB] border border-[#0289C6]/40 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-5">
                 <BookOpen className="w-3.5 h-3.5 text-[#0289C6]" />
-                <span>Material Didático</span>
+                <span>Disciplina hoje, grandes conquistas amanhã</span>
               </div>
 
               {/* Headline Principal */}
               <h2 className="font-serif-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
-                CONTEÚDO QUE PREPARA PARA{' '}
+                ESTUDAR DÓI. NÃO PASSAR.{' '}
                 <span className="text-[#0289C6] underline decoration-[#0289C6]/40 decoration-4 underline-offset-8">
-                  NOVOS HORIZONTES
+                  DÓI MAIS AINDA
                 </span>
               </h2>
 
               {/* Texto Institucional Fiel */}
               <p className="text-sm sm:text-base text-[#E1E5E8]/90 leading-relaxed max-w-2xl mb-8">
-                Os materiais didáticos do Progressão acompanham cada etapa da jornada do aluno, 
-                oferecendo conteúdos organizados para apoiar o aprendizado no Colégio e a preparação 
-                para diferentes objetivos.
+                Cada aula, cada simulado e cada correção existem pra te aproximar da aprovação. Chega de estudar sem direção, aqui você sabe exatamente o que estudar e por quê.
               </p>
 
               {/* CTA Configurável */}
               <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                <a
+                <Link
                   href={bannerCtaTarget}
                   onClick={handleBannerCta}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#0289C6] hover:bg-[#015E96] text-white px-7 py-3.5 rounded-xl font-bold text-sm transition-all shadow-lg hover:shadow-xl hover:shadow-[#0289C6]/20 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-[#0289C6] focus:ring-offset-2 focus:ring-offset-[#003A60]"
                 >
-                  <span>CONHEÇA NOSSOS MATERIAIS</span>
+                  <span>CONHEÇA NOSSOS CURSOS</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                </a>
+                </Link>
               </div>
             </div>
 

@@ -377,45 +377,13 @@ export const PreVestibularPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Resultados & Depoimentos */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full text-center">
-        <span className="text-xs font-bold text-[#0289C6] uppercase tracking-wider block mb-2">
-          Aprovações no ENEM & Vestibulares
-        </span>
-        <h3 className="font-serif-heading text-3xl font-bold text-[#004B7C] mb-3">
-          {course.resultsPlaceholder}
-        </h3>
-        <p className="text-sm text-[#0A131F]/70 leading-relaxed mb-8">
-          Alunos aprovados na UERJ, UFRJ, UFF, UNIRIO, UFRRJ e principais faculdades de Medicina do país.
-        </p>
-
-        <div className="bg-white p-8 rounded-2xl border border-[#E1E5E8] shadow-sm text-left">
-          <div className="flex items-center gap-1 text-[#0289C6] mb-3">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-4 h-4 fill-current text-[#0289C6]" />
-            ))}
-          </div>
-          <p className="text-sm text-[#0A131F]/80 italic leading-relaxed mb-4">
-            "{course.testimonialsPlaceholder}"
-          </p>
-          <span className="text-xs font-bold text-[#004B7C] uppercase tracking-wider block">
-            [NOME DO ALUNO APROVADO] • ENEM / UERJ / Medicina
-          </span>
-        </div>
-      </section>
-
       {/* FAQs */}
       <section className="py-16 bg-[#E1E5E8]/30 border-t border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
         <AccordionFAQ items={course.faqs} title="DÚVIDAS SOBRE O PRÉ-VESTIBULAR & ENEM" />
       </section>
 
-      {/* CTA */}
-      <CTASection
-        title="CONQUISTE SUA VAGA NA UNIVERSIDADE PÚBLICA"
-        subtitle="Venha planejar sua preparação para o ENEM e UERJ com a equipe pedagógica líder em Duque de Caxias."
-        primaryCtaText="GARANTIR VAGA NO PRÉ-VESTIBULAR & ENEM"
-        primaryCtaHref="/contato"
-      />
+      {/*FORMULÁRIO RD STATION*/}
+
     </div>
   );
 };

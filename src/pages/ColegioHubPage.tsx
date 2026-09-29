@@ -273,16 +273,6 @@ export const ColegioHubPage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Final */}
-      <CTASection
-        title="FAÇA A MATRÍCULA ESCOLAR DO SEU FILHO"
-        subtitle="Venha conhecer nossa proposta pedagógica para o Ensino Fundamental II e Ensino Médio. Faça a matrícula com a nossa equipe em Duque de Caxias."
-        primaryCtaText="EFETUAR MATRÍCULA"
-        primaryCtaHref="/contato"
-        secondaryCtaText="CONHECER NOSSA ESTRUTURA"
-        secondaryCtaHref="/estrutura"
-      />
     </div>
   );
 };

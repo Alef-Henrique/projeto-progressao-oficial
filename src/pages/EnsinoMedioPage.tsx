@@ -122,39 +122,10 @@ export const EnsinoMedioPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Resultados Placeholder */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full text-center">
-        <div className="bg-white p-8 rounded-2xl border border-[#E1E5E8] shadow-sm">
-          <span className="text-xs font-bold text-[#0289C6] uppercase tracking-wider block mb-2">
-            Desempenho no Terceirão
-          </span>
-          <h3 className="font-serif-heading text-2xl font-bold text-[#004B7C] mb-3">
-            [NÚMERO DE APROVAÇÕES DO ENSINO MÉDIO]
-          </h3>
-          <p className="text-sm text-[#0A131F]/70 leading-relaxed mb-6">
-            Alunos do Ensino Médio que conquistaram aprovações diretas em universidades públicas e escolas de formação militar.
-          </p>
-
-          <div className="p-4 rounded-xl bg-[#E1E5E8]/30 border border-[#E1E5E8] text-xs sm:text-sm italic text-[#0A131F]/80">
-            "[DEPOIMENTO DO ALUNO FORMANDO - Relato sobre a transição do colégio para o vestibular no Progressão Caxias.]"
-          </div>
-        </div>
-      </section>
-
       {/* FAQs */}
       <section className="py-16 bg-[#E1E5E8]/30 border-t border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
         <AccordionFAQ items={data.faqs} title="DÚVIDAS SOBRE O ENSINO MÉDIO" />
       </section>
-
-      {/* CTA */}
-      <CTASection
-        title="GARANTA A VAGA DO SEU FILHO NO ENSINO MÉDIO"
-        subtitle="O Ensino Médio que prepara para o vestibular com seriedade e resultados comprovados em Duque de Caxias."
-        primaryCtaText="AGENDAR ENTREVISTA DE MATRÍCULA"
-        primaryCtaHref="/contato"
-        secondaryCtaText="VER PREPARATÓRIOS MILITARES"
-        secondaryCtaHref="/cursos/preparatorio-militar"
-      />
     </div>
   );
 };

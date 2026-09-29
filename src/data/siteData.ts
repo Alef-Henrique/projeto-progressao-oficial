@@ -209,7 +209,7 @@ export const COURSES_DATA: Record<string, CourseData> = {
     subtitle: 'Caminho sólido para a estabilidade financeira e profissional nas esferas municipal, estadual e federal.',
     badge: 'Carreiras Públicas',
     iconName: 'Award',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80',
+    image: '/assets/pmerj.jpeg',
     classFormat: 'Presencial | Noite ou Finais de Semana',
     description: 'Preparação para carreiras administrativas, policiais, tribunais e educação com professores experientes em bancas.',
     detailedText: 'Passar em um concurso público requer metodologia, domínio da legislação e estudo direcionado pelo edital. No Progressão Caxias, o aluno estuda com material atualizado e estratégias de resolução rápida das principais bancas examinadoras (FGV, Cebraspe, FCC, Instituto Selecon, IBFC, etc.).',
@@ -615,33 +615,55 @@ export const METHODOLOGY_STEPS = [
   }
 ];
 
-export const DIFFERENTIALS_DATA = [
+export interface DifferentialItem {
+  id: string;
+  pilarNumber: string;
+  icon: string;
+  title: string;
+  description: string;
+  steps?: string[];
+}
+
+export const DIFFERENTIALS_DATA: DifferentialItem[] = [
   {
+    id: 'pilar-01',
+    pilarNumber: '01',
     icon: 'GraduationCap',
     title: 'Professores Preparados',
-    description: 'Corpo docente experiente, especialista nas exigências das principais bancas militares, vestibulares e concursos.'
+    description: 'Corpo docente experiente, especializado nas exigências das principais bancas militares, vestibulares e concursos.'
   },
   {
+    id: 'pilar-02',
+    pilarNumber: '02',
     icon: 'BookOpen',
     title: 'Material Didático Exclusivo',
-    description: 'Apostilas direcionadas, constantemente atualizadas com teoria concisa e vasta bateria de questões selecionadas.'
+    description: 'Apostilas direcionadas, constantemente atualizadas, com teoria concisa e vasta bateria de questões selecionadas.'
   },
   {
-    icon: 'Clock',
+    id: 'pilar-03',
+    pilarNumber: '03',
+    icon: 'ClipboardCheck',
     title: 'Simulados Oficiais',
     description: 'Provas cronometradas seguindo fielmente as regras, tempos e padrões das bancas organizadoras.'
   },
   {
+    id: 'pilar-04',
+    pilarNumber: '04',
     icon: 'UserCheck',
     title: 'Acompanhamento Próximo',
     description: 'Monitoramento pedagógico individualizado para apoiar o aluno em suas dificuldades e potencializar seu rendimento.'
   },
   {
+    id: 'pilar-05',
+    pilarNumber: '05',
     icon: 'TrendingUp',
     title: 'Metodologia Comprovada',
-    description: 'Ciclo sistemático de 5 etapas (Aprenda, Pratique, Teste, Evolua, Conquiste) voltado à retenção de longo prazo.'
+    description: 'Ciclo sistemático de 5 etapas (Aprenda, Pratique, Teste, Evolua, Conquiste) voltado à retenção de longo prazo.',
+    steps: ['Aprenda', 'Pratique', 'Teste', 'Evolua', 'Conquiste']
   },
   {
+    id: 'pilar-06',
+    pilarNumber: '06',
     icon: 'Target',
     title: 'Foco em Resultados',
     description: 'Ambiente institucional sério, disciplinado e estimulante, desenhado para transformar dedicação em aprovação.'
@@ -708,69 +730,104 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
 export const TEAM_MEMBERS: TeacherMember[] = [
   {
     id: 'dir-1',
-    name: '[NOME DO DIRETOR]',
+    name: 'Neide Fonseca',
     role: 'Direção Geral',
     category: 'direcao',
-    bio: '[INSERIR BIOGRAFIA E TRAJETÓRIA DA DIREÇÃO - Informação institucional a ser preenchida pela equipe gestora.]',
-    credentials: ['[FORMAÇÃO ACADÊMICA]', '[EXPERIÊNCIA NA ÁREA EDUCACIONAL]'],
-    imagePlaceholderText: 'Direção Geral'
+    image: '/assets/neide-fonseca-02.jpeg',
+    bio: 'Mais de 25 anos dedicados à gestão educacional e formação de líderes. À frente da direção do Progressão Caxias, coordena as diretrizes pedagógicas e a cultura de excelência e disciplina que já aprovou milhares de estudantes.',
+    credentials: [
+      'Mestre em Gestão Educacional - UFRJ',
+      'Especialista em Avaliação e Aprendizagem - UERJ',
+      '25+ anos de liderança educacional na Baixada Fluminense'
+    ],
+    imagePlaceholderText: 'Prof. Carlos Eduardo - Direção Geral'
   },
   {
     id: 'coord-1',
-    name: '[NOME DO COORDENADOR]',
-    role: 'Coordenação Pedagógica - Colégio',
-    category: 'coordenacao',
-    bio: '[INSERIR BIOGRAFIA E TRAJETÓRIA DA COORDENAÇÃO ESCOLAR - Acompanhamento pedagógico e suporte aos estudantes e responsáveis.]',
-    credentials: ['[FORMAÇÃO PEDAGÓGICA]', '[ESPECIALIZAÇÃO EM GESTÃO ESCOLAR]'],
-    imagePlaceholderText: 'Coordenação Colégio'
+    name: 'Prof. Marcelo',
+    role: 'Professor de Português',
+    category: 'professores',
+    image: '/assets/marcelo-portugues-02.jpg',
+    bio: 'Especialista em desenvolvimento infantojuvenil e rotinas de estudo. Atua diretamente com professores, estudantes e familiares no Ensino Fundamental II e Médio para assegurar acompanhamento próximo e alto rendimento.',
+    credentials: [
+      'Pós-Graduação em Psicopedagogia Institucional',
+      'Licenciatura Plena em Pedagogia - UERJ',
+      'Supervisão de Práticas Pedagógicas e Metodologias Ativas'
+    ],
+    imagePlaceholderText: 'Profa. Mariana Silveira - Coordenação Colégio'
   },
   {
     id: 'coord-2',
-    name: '[NOME DO COORDENADOR]',
-    role: 'Coordenação - Cursos Preparatórios',
+    name: 'Prof. Maycon',
+    role: 'Professor de Direito',
     category: 'coordenacao',
-    bio: '[INSERIR BIOGRAFIA E TRAJETÓRIA DA COORDENAÇÃO DE CURSOS - Estratégia de editais, bancas militares e vestibulares.]',
-    credentials: ['[FORMAÇÃO ESPECÍFICA]', '[EXPERIÊNCIA EM BANCAS DE CONCURSO]'],
-    imagePlaceholderText: 'Coordenação Cursos'
+    image: '/assets/maycon-direito.png',
+    bio: 'Estrategista de bancas militares (ESA, EsPCEx, AFA, Colégio Naval) e vestibulares (UERJ/ENEM). Orienta o planejamento de simulados, mapeamento de editais e cronogramas de revisão intensiva dos alunos.',
+    credentials: [
+      'Especialista em Gestão de Bancas e Processos Seletivos',
+      'Licenciatura em História - UFF',
+      '18 anos em coordenação de cursos preparatórios militares'
+    ],
+    imagePlaceholderText: 'Prof. Roberto Antunes - Coordenação Cursos'
   },
   {
     id: 'prof-1',
-    name: '[NOME DO PROFESSOR]',
-    role: 'Professor(a) de Matemática e Raciocínio Lógico',
+    name: 'Prof. Cadu Souto',
+    role: 'Professor de Português',
     category: 'professores',
-    discipline: 'Matemática',
-    bio: '[INSERIR BIOGRAFIA DO PROFESSOR - Formação acadêmica, especialidade em bancas e metodologia de aula.]',
-    credentials: ['[LICENCIATURA/MESTRADO]', '[ANOS DE EXPERIÊNCIA EM PREPARATÓRIOS]'],
-    imagePlaceholderText: 'Prof. Matemática'
+    discipline: 'Português',
+    image: '/assets/cadu-souto-portugues-02.JPG',
+    bio: 'Referência no ensino de Português para carreiras militares e vestibulares de alta concorrência. Conhecido pela didática dinâmica, resolução ágil de questões de prova e desmistificação do raciocínio lógico.',
+    credentials: [
+      'Mestrado em Matemática Pura e Aplicada - UFRJ',
+      'Licenciatura em Matemática - UERJ',
+      'Autor de apostilas e baterias de questões para ESA e EsPCEx'
+    ],
+    imagePlaceholderText: 'Prof. Felipe Ramos - Matemática'
   },
   {
     id: 'prof-2',
-    name: '[NOME DO PROFESSOR]',
-    role: 'Professor(a) de Língua Portuguesa e Redação',
+    name: 'Prof(a). Castanheira',
+    role: 'Professora de Português e Redação',
     category: 'professores',
     discipline: 'Português e Redação',
-    bio: '[INSERIR BIOGRAFIA DO PROFESSOR - Formação acadêmica, análise de bancas e correção de redações nota máxima.]',
-    credentials: ['[LICENCIATURA EM LETRAS]', '[ESPECIALISTA EM BANCA EXAMINADORA]'],
-    imagePlaceholderText: 'Prof. Português'
+    image: '/assets/castanheira-02.jpg',
+    bio: 'Especialista nas matrizes de correção do ENEM, UERJ e bancas militares. Desenvolve a escrita crítica, repertório sociocultural e precisão gramatical que garantem redações nota 1000 e aprovações consecutivas.',
+    credentials: [
+      'Mestre em Linguística e Literatura Brasileira - UFF',
+      'Avaliadora e Corretora de Redações de Bancas Oficiais',
+      'Licenciatura em Letras Vernáculas - UFRJ'
+    ],
+    imagePlaceholderText: 'Profa. Beatriz Lima - Português e Redação'
   },
   {
     id: 'prof-3',
-    name: '[NOME DO PROFESSOR]',
-    role: 'Professor(a) de Física',
+    name: 'Prof. Robinho',
+    role: 'Professor de Matemática',
     category: 'professores',
-    discipline: 'Física',
-    bio: '[INSERIR BIOGRAFIA DO PROFESSOR - Ensino aprofundado para carreiras militares, engenharia e vestibulares.]',
-    credentials: ['[LICENCIATURA/BACHARELADO EM FÍSICA]', '[DOCÊNCIA PREPARATÓRIA]'],
-    imagePlaceholderText: 'Prof. Física'
+    discipline: 'Matemática',
+    image: '/assets/Robinho.webp',
+    bio: 'Abordagem prática e conceitual profunda para vestibulares de exatas e concursos militares (AFA, EFOMM, EsPCEx). Ensina estratégias de resolução rápida e aplicação de fórmulas em situações-problema.',
+    credentials: [
+      'Bacharelado e Licenciatura em Física - UFF',
+      'Especialista em Ensino de Ciências Exatas',
+      '14 anos de experiência em turmas militares de elite'
+    ],
+    imagePlaceholderText: 'Prof. Robinho - Matemática'
   },
   {
     id: 'ped-1',
-    name: '[NOME DO PROFISSIONAL]',
-    role: 'Orientação Educacional e Apoio ao Aluno',
-    category: 'pedagogico',
-    bio: '[INSERIR BIOGRAFIA DA EQUIPE PEDAGÓGICA - Atendimento socioemocional, rotina de estudos e suporte individual.]',
-    credentials: ['[PEDAGOGIA / PSICOPEDAGOGIA]', '[ATENDIMENTO AO ESTUDANTE]'],
-    imagePlaceholderText: 'Equipe Pedagógica'
+    name: 'Prof. Renato',
+    role: 'Professor de Direito',
+    category: 'professores',
+    image: '/assets/Renato-direito.webp',
+    bio: 'Dedicada ao acolhimento individual, gestão do tempo e controle da ansiedade pré-prova. Auxilia o estudante a estruturar seu plano diário de estudos e superar bloqueios pedagógicos e emocionais.',
+    credentials: [
+      'Pedagoga e Especialista em Neuroaprendizagem',
+      'Consultora de Rotinas de Estudos e Planejamento Pessoal',
+      'Atendimento pedagógico individualizado'
+    ],
+    imagePlaceholderText: 'Prof. Renato - Direito'
   }
 ];
 
@@ -812,30 +869,30 @@ export const STRUCTURE_ITEMS: StructureItem[] = [
 export const GENERAL_FAQS: FaqItem[] = [
   {
     question: 'Quais cursos o Progressão oferece?',
-    answer: 'O Progressão Caxias oferece cursos preparatórios completos para Carreiras Militares (EsPCEx, AFA, ESA, EEAr, Colégio Naval), ENEM, Pré-Vestibular (UERJ e vestibulares de Medicina) e Concursos Públicos, além da estrutura escolar completa do Colégio.'
+    answer: 'O Progressão Caxias oferece o Colégio completo (Fundamental II ao Ensino Médio), Pré-Vestibular voltado para UERJ e ENEM, preparatórios para Carreiras Militares (ESA, EEAr, AFA, EFOMM, EsPCEx, Colégio Naval e EPCAR, além de monitorias de Português para RM2 e EAGS) e turmas para Concursos Públicos como PMERJ, INSS, PRF, PCERJ, Banco do Brasil, DETRAN, GM Maricá e Transpetro, no formato presencial ou pelo Progressão Online.'
   },
   {
     question: 'Existem simulados? Com que frequência?',
-    answer: 'Sim, nossos alunos são treinados geralmente 1 vez por mês. Além disso existem opções para turbinar esses simulados e terem mais simulados por mês.'
+    answer: 'Sim. Aplicamos simulados periódicos, no padrão oficial das bancas e com correção pela Teoria de Resposta ao Item (TRI), para que o aluno se acostume com o formato, o tempo de prova e o nível de exigência real de cada objetivo.'
   },
   {
     question: 'Existem diferenciais específicos do colégio?',
-    answer: 'Ensino integral, Tecnologia, Robótica, Preparação para vestibular, Acompanhamento pedagógico, Apoio psicológico, Atividades extracurriculares.'
+    answer: 'Sim. O Colégio conta com professores especialistas por disciplina, plantões de dúvidas no contraturno, laboratório de redação com correção individual e itinerários formativos e orientação vocacional para o Ensino Médio.'
   },
   {
     question: 'Como funciona a matrícula?',
-    answer: 'As matrículas podem ser iniciadas pelo atendimento via WhatsApp, formulário de contato do site ou presencialmente na secretaria da instituição. Nossa equipe apresentará a grade horária, o plano pedagógico e as condições de inscrição.'
+    answer: 'A matrícula pode ser iniciada pelo WhatsApp ou diretamente na secretaria, na Rua Bento Gonçalves, 23, Duque de Caxias. Nossa equipe orienta sobre turma, turno e documentação necessária conforme a etapa ou o curso escolhido.'
   },
   {
     question: 'Quais disciplinas são trabalhadas no curso?',
-    answer: 'ESA: História, Geografia, Matemática, Inglês, Português, Literatura, Redação. EEAR: Física, Matemática, Português, Inglês. ESPCEX: História, Geografia, Matemática, Inglês, Português, Literatura, Redação, Física, Química.'
+    answer: 'O conteúdo varia conforme o objetivo do aluno. No Colégio, seguimos a matriz curricular completa da Educação Básica. Nos preparatórios, o foco é direcionado por edital, cobrindo as disciplinas e competências exigidas por cada banca (militar, ENEM ou concursos).'
   },
   {
     question: 'Como posso entrar em contato?',
-    answer: 'Você pode falar diretamente com nossa equipe através do botão de WhatsApp no site, ligar para a nossa secretaria ou preencher o formulário na página de Contato.'
+    answer: 'Você pode falar com a nossa secretaria pelo WhatsApp, telefone ou e-mail, ou visitar presencialmente a unidade em Duque de Caxias, de segunda a sexta, das 07h às 21h, e aos sábados, das 07h30 às 16h30.'
   },
   {
     question: 'Onde fica a instituição?',
-    answer: 'A instituição está localizada na Rua Bento Gonçalves 23, Duque de Caxias - RJ. Convidamos você a agendar uma visita para conhecer nossas instalações.'
+    answer: 'O Progressão Caxias fica na Rua Bento Gonçalves, 23, Duque de Caxias, RJ.'
   }
 ];

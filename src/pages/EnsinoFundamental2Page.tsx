@@ -249,14 +249,6 @@ export const EnsinoFundamental2Page: React.FC = () => {
       <section className="py-16 bg-[#F4F6F8] border-t border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
         <AccordionFAQ items={data.faqs} title="DÚVIDAS FREQUENTES SOBRE O FUNDAMENTAL II" />
       </section>
-
-      {/* CTA */}
-      <CTASection
-        title="CONHEÇA O FUNDAMENTAL II DO PROGRESSÃO"
-        subtitle="Venha conversar com a coordenação pedagógica e garanta a melhor preparação para seu filho."
-        primaryCtaText="AGENDAR VISITA COM A COORDENAÇÃO"
-        primaryCtaHref="/contato"
-      />
     </div>
   );
 };

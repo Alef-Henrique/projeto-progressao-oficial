@@ -74,12 +74,12 @@ export const ApprovedInstitutionsCarousel: React.FC = () => {
   };
 
   return (
-    <div 
-      id="aprovacoes-instituicoes" 
+    <div
+      id="aprovacoes-instituicoes"
       className="mb-14 sm:mb-16 w-full"
     >
       <div className="w-full">
-        
+
         {/* CABEÇALHO */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0289C6]/10 text-[#0289C6] text-xs font-bold tracking-wider uppercase mb-2.5">
@@ -90,14 +90,14 @@ export const ApprovedInstitutionsCarousel: React.FC = () => {
           <h3 className="font-serif-heading text-2xl sm:text-3xl md:text-4xl font-bold text-[#004B7C] tracking-tight">
             Nossos alunos aprovados em
           </h3>
-          
+
           <p className="text-xs sm:text-sm text-[#0A131F]/70 mt-2 font-normal">
             Instituições militares prestigiadas, universidades federais e estaduais com alta concorrência em todo o país.
           </p>
         </div>
 
         {/* CONTÊINER DO CARROSSEL COM BOTÕES PASSADORES */}
-        <div 
+        <div
           className="relative group/carousel px-2 sm:px-4"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
@@ -144,10 +144,11 @@ export const ApprovedInstitutionsCarousel: React.FC = () => {
                     
                     {/* PARTE SUPERIOR: IMAGEM FICTÍCIA */}
                     <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#F0F4F8]">
+
                       <img
                         src={item.imageUrl}
                         alt={item.fullName}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                        className="w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out object-contain"
                         loading="lazy"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
@@ -162,7 +163,7 @@ export const ApprovedInstitutionsCarousel: React.FC = () => {
                       />
 
                       {/* Fallback caso a imagem não carregue */}
-                      <div className="img-fallback hidden absolute inset-0 bg-[#004B7C]/10 items-center justify-center text-[#004B7C] font-bold text-xl">
+                      <div className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out bg-white">
                         {item.shortName}
                       </div>
                     </div>
@@ -188,11 +189,10 @@ export const ApprovedInstitutionsCarousel: React.FC = () => {
                 type="button"
                 onClick={() => setCurrentIndex(dotIdx)}
                 aria-label={`Ir para a página ${dotIdx + 1} de instituições`}
-                className={`h-2 rounded-full transition-all duration-300 focus:outline-none ${
-                  currentIndex === dotIdx
-                    ? 'w-6 sm:w-8 bg-[#0289C6]'
-                    : 'w-2 bg-[#E1E5E8] hover:bg-[#0289C6]/50'
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 focus:outline-none ${currentIndex === dotIdx
+                  ? 'w-6 sm:w-8 bg-[#0289C6]'
+                  : 'w-2 bg-[#E1E5E8] hover:bg-[#0289C6]/50'
+                  }`}
               />
             ))}
           </div>

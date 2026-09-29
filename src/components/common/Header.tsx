@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Menu, X, ArrowRight, Shield, GraduationCap, School, BookOpen, Award, Info, Users, Building, Instagram, Facebook, Youtube, Wrench } from 'lucide-react';
+import { ChevronDown, Menu, X, ArrowRight, Shield, GraduationCap, School, BookOpen, Award, Info, Users, Building, Instagram, Facebook, Youtube, Wrench, Laptop } from 'lucide-react';
 import { Link, useRouter } from '../routing/RouterContext';
 import { SITE_CONFIG } from '../../config/siteConfig';
 import logoProgressao from "/assets/logo-oficial.webp";
@@ -150,23 +150,21 @@ export const Header: React.FC = () => {
             >
               <button
                 type="button"
-                className={`nav-menu-btn group flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 ${
-                  isHistoryActive || activeDropdown === 'progressao'
+                className={`nav-menu-btn group flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 ${isHistoryActive || activeDropdown === 'progressao'
                     ? 'is-active text-white font-semibold'
                     : 'text-[#E1E5E8] hover:text-white'
-                }`}
+                  }`}
                 aria-expanded={activeDropdown === 'progressao'}
                 aria-haspopup="true"
               >
                 <span className="relative z-10">Nossa História</span>
                 <ChevronDown
-                  className={`relative z-10 w-4 h-4 transition-all duration-200 ${
-                    activeDropdown === 'progressao'
+                  className={`relative z-10 w-4 h-4 transition-all duration-200 ${activeDropdown === 'progressao'
                       ? 'rotate-180 text-[#0289C6]'
                       : isHistoryActive
-                      ? 'text-[#0289C6]'
-                      : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
-                  }`}
+                        ? 'text-[#0289C6]'
+                        : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
+                    }`}
                 />
               </button>
 
@@ -175,9 +173,8 @@ export const Header: React.FC = () => {
                   <div className="bg-[#002e4c] rounded-xl shadow-2xl border border-[#015E96] p-2 flex flex-col gap-1 backdrop-blur-xl">
                     <Link
                       href="/sobre"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/sobre' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/sobre' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
                       <Info className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
@@ -187,9 +184,8 @@ export const Header: React.FC = () => {
                     </Link>
                     <Link
                       href="/estrutura"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/estrutura' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/estrutura' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
                       <Building className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
@@ -199,9 +195,8 @@ export const Header: React.FC = () => {
                     </Link>
                     <Link
                       href="/equipe"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/equipe' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/equipe' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
                       <Users className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
@@ -222,23 +217,21 @@ export const Header: React.FC = () => {
             >
               <button
                 type="button"
-                className={`nav-menu-btn group flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 ${
-                  isColegioActive || activeDropdown === 'colegio'
+                className={`nav-menu-btn group flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 ${isColegioActive || activeDropdown === 'colegio'
                     ? 'is-active text-white font-semibold'
                     : 'text-[#E1E5E8] hover:text-white'
-                }`}
+                  }`}
                 aria-expanded={activeDropdown === 'colegio'}
                 aria-haspopup="true"
               >
                 <span className="relative z-10">Colégio</span>
                 <ChevronDown
-                  className={`relative z-10 w-4 h-4 transition-all duration-200 ${
-                    activeDropdown === 'colegio'
+                  className={`relative z-10 w-4 h-4 transition-all duration-200 ${activeDropdown === 'colegio'
                       ? 'rotate-180 text-[#0289C6]'
                       : isColegioActive
-                      ? 'text-[#0289C6]'
-                      : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
-                  }`}
+                        ? 'text-[#0289C6]'
+                        : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
+                    }`}
                 />
               </button>
 
@@ -247,9 +240,8 @@ export const Header: React.FC = () => {
                   <div className="bg-[#002e4c] rounded-xl shadow-2xl border border-[#015E96] p-2 flex flex-col gap-1 backdrop-blur-xl">
                     <Link
                       href="/colegio"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/colegio' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/colegio' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
                       <School className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
@@ -260,9 +252,8 @@ export const Header: React.FC = () => {
                     <div className="h-px bg-white/10 my-1"></div>
                     <Link
                       href="/colegio/fundamental-2"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/colegio/fundamental-2' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/colegio/fundamental-2' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
                       <div className="w-2 h-2 rounded-full bg-[#0289C6]"></div>
                       <div>
@@ -272,9 +263,8 @@ export const Header: React.FC = () => {
                     </Link>
                     <Link
                       href="/colegio/ensino-medio"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/colegio/ensino-medio' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/colegio/ensino-medio' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
                       <div className="w-2 h-2 rounded-full bg-[#0289C6]"></div>
                       <div>
@@ -295,23 +285,21 @@ export const Header: React.FC = () => {
             >
               <button
                 type="button"
-                className={`nav-menu-btn group flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 ${
-                  isCursosActive || activeDropdown === 'cursos'
+                className={`nav-menu-btn group flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 ${isCursosActive || activeDropdown === 'cursos'
                     ? 'is-active text-white font-semibold'
                     : 'text-[#E1E5E8] hover:text-white'
-                }`}
+                  }`}
                 aria-expanded={activeDropdown === 'cursos'}
                 aria-haspopup="true"
               >
                 <span className="relative z-10">Cursos</span>
                 <ChevronDown
-                  className={`relative z-10 w-4 h-4 transition-all duration-200 ${
-                    activeDropdown === 'cursos'
+                  className={`relative z-10 w-4 h-4 transition-all duration-200 ${activeDropdown === 'cursos'
                       ? 'rotate-180 text-[#0289C6]'
                       : isCursosActive
-                      ? 'text-[#0289C6]'
-                      : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
-                  }`}
+                        ? 'text-[#0289C6]'
+                        : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
+                    }`}
                 />
               </button>
 
@@ -320,9 +308,8 @@ export const Header: React.FC = () => {
                   <div className="bg-[#002e4c] rounded-xl shadow-2xl border border-[#015E96] p-2 flex flex-col gap-1 backdrop-blur-xl">
                     <Link
                       href="/cursos"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/cursos' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/cursos' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
                       <Award className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
@@ -333,9 +320,8 @@ export const Header: React.FC = () => {
                     <div className="h-px bg-white/10 my-1"></div>
                     <Link
                       href="/cursos/preparatorio-militar"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/cursos/preparatorio-militar' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/cursos/preparatorio-militar' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
                       <Shield className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
@@ -345,9 +331,8 @@ export const Header: React.FC = () => {
                     </Link>
                     <Link
                       href="/cursos/pre-vestibular"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/cursos/pre-vestibular' || currentPath === '/cursos/enem' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/cursos/pre-vestibular' || currentPath === '/cursos/enem' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
                       <BookOpen className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
@@ -357,9 +342,8 @@ export const Header: React.FC = () => {
                     </Link>
                     <Link
                       href="/cursos/concursos"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/cursos/concursos' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/cursos/concursos' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
                       <Award className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
@@ -369,14 +353,13 @@ export const Header: React.FC = () => {
                     </Link>
                     <Link
                       href="/cursos/tecnicos"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${
-                        currentPath === '/cursos/tecnicos' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/cursos/tecnicos' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                        }`}
                     >
-                      <Wrench className="w-4 h-4 text-[#0289C6] shrink-0" />
+                      <Laptop className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
-                        <div className="font-semibold text-white">Cursos Técnicos</div>
-                        <div className="text-[11px] text-[#E1E5E8]/70">CEFET, IFRJ, FAETEC e profissionalizantes</div>
+                        <div className="font-semibold text-white">Progressão Online</div>
+                        <div className="text-[11px] text-[#E1E5E8]/70">Preparação online para concursos públicos</div>
                       </div>
                     </Link>
                   </div>
@@ -386,22 +369,20 @@ export const Header: React.FC = () => {
 
             <Link
               href="/resultados"
-              className={`nav-menu-btn px-3 py-2 rounded-md transition-colors duration-200 ${
-                isResultadosActive
+              className={`nav-menu-btn px-3 py-2 rounded-md transition-colors duration-200 ${isResultadosActive
                   ? 'is-active text-white font-semibold'
                   : 'text-[#E1E5E8] hover:text-white'
-              }`}
+                }`}
             >
               <span className="relative z-10">Resultados</span>
             </Link>
 
             <Link
               href="/contato"
-              className={`nav-menu-btn px-3 py-2 rounded-md transition-colors duration-200 ${
-                isContatoActive
+              className={`nav-menu-btn px-3 py-2 rounded-md transition-colors duration-200 ${isContatoActive
                   ? 'is-active text-white font-semibold'
                   : 'text-[#E1E5E8] hover:text-white'
-              }`}
+                }`}
             >
               <span className="relative z-10">Contato</span>
             </Link>
@@ -442,9 +423,8 @@ export const Header: React.FC = () => {
           <nav className="flex flex-col gap-1.5" aria-label="Menu Mobile">
             <Link
               href="/"
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base ${
-                currentPath === '/' ? 'bg-[#015E96] text-[#0289C6] font-bold' : 'text-white hover:bg-[#015E96]/50'
-              }`}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base ${currentPath === '/' ? 'bg-[#015E96] text-[#0289C6] font-bold' : 'text-white hover:bg-[#015E96]/50'
+                }`}
             >
               Início
             </Link>
@@ -520,13 +500,12 @@ export const Header: React.FC = () => {
                   <Link href="/cursos/preparatorio-militar" className="text-sm py-1.5 px-3 rounded-lg text-[#E1E5E8] hover:text-white hover:bg-white/5">
                     Preparatório Militar
                   </Link>
-                  <Link 
-                    href="/cursos/pre-vestibular" 
-                    className={`text-sm py-1.5 px-3 rounded-lg transition-colors ${
-                      currentPath === '/cursos/pre-vestibular' || currentPath === '/cursos/enem' 
-                        ? 'text-[#0289C6] font-semibold bg-white/5' 
+                  <Link
+                    href="/cursos/pre-vestibular"
+                    className={`text-sm py-1.5 px-3 rounded-lg transition-colors ${currentPath === '/cursos/pre-vestibular' || currentPath === '/cursos/enem'
+                        ? 'text-[#0289C6] font-semibold bg-white/5'
                         : 'text-[#E1E5E8] hover:text-white hover:bg-white/5'
-                    }`}
+                      }`}
                   >
                     Pré-Vestibular & ENEM
                   </Link>
@@ -534,7 +513,7 @@ export const Header: React.FC = () => {
                     Concursos Públicos
                   </Link>
                   <Link href="/cursos/tecnicos" className="text-sm py-1.5 px-3 rounded-lg text-[#E1E5E8] hover:text-white hover:bg-white/5">
-                    Cursos Técnicos
+                    Progressão Online
                   </Link>
                 </div>
               )}
@@ -542,18 +521,16 @@ export const Header: React.FC = () => {
 
             <Link
               href="/resultados"
-              className={`px-4 py-3 rounded-xl text-base ${
-                currentPath === '/resultados' ? 'bg-[#015E96] text-[#0289C6] font-bold' : 'text-white hover:bg-[#015E96]/50'
-              }`}
+              className={`px-4 py-3 rounded-xl text-base ${currentPath === '/resultados' ? 'bg-[#015E96] text-[#0289C6] font-bold' : 'text-white hover:bg-[#015E96]/50'
+                }`}
             >
               Resultados
             </Link>
 
             <Link
               href="/contato"
-              className={`px-4 py-3 rounded-xl text-base ${
-                currentPath === '/contato' ? 'bg-[#015E96] text-[#0289C6] font-bold' : 'text-white hover:bg-[#015E96]/50'
-              }`}
+              className={`px-4 py-3 rounded-xl text-base ${currentPath === '/contato' ? 'bg-[#015E96] text-[#0289C6] font-bold' : 'text-white hover:bg-[#015E96]/50'
+                }`}
             >
               Contato
             </Link>

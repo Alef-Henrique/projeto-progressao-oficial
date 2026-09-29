@@ -17,7 +17,6 @@ import { EstruturaPage } from './pages/EstruturaPage';
 import { EquipePage } from './pages/EquipePage';
 import { ColegioHubPage } from './pages/ColegioHubPage';
 import { EducacaoInfantilPage } from './pages/EducacaoInfantilPage';
-import { EnsinoFundamental1Page } from './pages/EnsinoFundamental1Page';
 import { EnsinoFundamental2Page } from './pages/EnsinoFundamental2Page';
 import { EnsinoMedioPage } from './pages/EnsinoMedioPage';
 import { CursosHubPage } from './pages/CursosHubPage';
@@ -25,7 +24,7 @@ import { PreparatorioMilitarPage } from './pages/PreparatorioMilitarPage';
 import { EnemPage } from './pages/EnemPage';
 import { PreVestibularPage } from './pages/PreVestibularPage';
 import { ConcursosPage } from './pages/ConcursosPage';
-import { CursosTecnicosPage } from './pages/CursosTecnicosPage';
+import { ProgressaoOnlinePage } from './pages/ProgressaoOnlinePage';
 import { ResultadosPage } from './pages/ResultadosPage';
 import { ContatoPage } from './pages/ContatoPage';
 import { Home } from 'lucide-react';
@@ -53,7 +52,6 @@ const PageRenderer: React.FC = () => {
       return <EducacaoInfantilPage />;
     case '/colegio/fundamental-1':
     case '/colegio/ensino-fundamental':
-      return <EnsinoFundamental1Page />;
     case '/colegio/fundamental-2':
     case '/colegio/ensino-fundamental-2':
       return <EnsinoFundamental2Page />;
@@ -70,7 +68,10 @@ const PageRenderer: React.FC = () => {
       return <ConcursosPage />;
     case '/cursos/tecnicos':
     case '/cursos/cursos-tecnicos':
-      return <CursosTecnicosPage />;
+    case '/online':
+    case '/progressao-online':
+    case '/cursos/online':
+      return <ProgressaoOnlinePage />;
     case '/resultados':
       return <ResultadosPage />;
     case '/contato':

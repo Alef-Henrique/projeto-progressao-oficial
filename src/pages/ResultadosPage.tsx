@@ -255,18 +255,8 @@ export const ResultadosPage: React.FC = () => {
         </div>
       </section>
 
-     
-
-      {/* CTA */}
-      <CTASection
-        badge="Faça sua Matrícula no Progressão Caxias"
-        title="FAÇA SUA MATRÍCULA E ESTEJA NO PRÓXIMO MURAL DE APROVADOS"
-        subtitle="Dê o primeiro passo para conquistar a sua vaga. Efetue sua matrícula e inicie sua preparação com a metodologia que mais aprova em Duque de Caxias."
-        primaryCtaText="FAZER MINHA MATRÍCULA"
-        primaryCtaHref="/contato"
-        secondaryCtaText="CONHECER OS CURSOS"
-        secondaryCtaHref="/cursos"
-      />
+      {/*fORMULARIO RD STATION*/}
+  
     </div>
   );
 };
