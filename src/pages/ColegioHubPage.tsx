@@ -1,18 +1,19 @@
 import React from 'react';
-import { 
-  ArrowRight, 
-  School, 
-  Compass, 
-  GraduationCap, 
-  Target, 
-  Users, 
-  Award, 
-  ShieldCheck 
+import {
+  ArrowRight,
+  School,
+  Compass,
+  GraduationCap,
+  Target,
+  Users,
+  Award,
+  ShieldCheck
 } from 'lucide-react';
 import { Link } from '../components/routing/RouterContext';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { CTASection } from '../components/common/CTASection';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 
 export const ColegioHubPage: React.FC = () => {
   return (
@@ -74,7 +75,7 @@ export const ColegioHubPage: React.FC = () => {
               <img
                 src="/assets/fundamental.jpeg"
                 alt="Estudantes do Ensino Fundamental II no Colégio Progressão Caxias"
-              className="w-full h-80 sm:h-96 object-contain group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-80 sm:h-96 object-contain group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A131F]/80 via-transparent to-transparent"></div>
               <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -273,6 +274,14 @@ export const ColegioHubPage: React.FC = () => {
           </div>
         </div>
       </section>
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
     </div>
   );
 };

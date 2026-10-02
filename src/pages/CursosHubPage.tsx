@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
-import { 
-  ArrowRight, 
-  Shield, 
-  GraduationCap, 
-  BookOpen, 
-  Award, 
-  CheckCircle2, 
-  School, 
-  Wrench, 
-  Laptop, 
-  Building2, 
-  Video, 
-  Calendar, 
-  Users, 
+import {
+  ArrowRight,
+  Shield,
+  GraduationCap,
+  BookOpen,
+  Award,
+  CheckCircle2,
+  School,
+  Wrench,
+  Laptop,
+  Building2,
+  Video,
+  Calendar,
+  Users,
   Sparkles,
   Check
 } from 'lucide-react';
 import { Link } from '../components/routing/RouterContext';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { CTASection } from '../components/common/CTASection';
 import { COURSES_DATA } from '../data/siteData';
 
@@ -488,7 +489,14 @@ export const CursosHubPage: React.FC = () => {
         </div>
       </section>
 
-      {/* FORMULÁRIO RD STATION*/}
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
 
     </div>
   );

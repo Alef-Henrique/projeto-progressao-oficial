@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
-import { 
-  BookOpen, 
-  CheckCircle2, 
-  Star, 
-  Target, 
-  Clock, 
-  Award, 
-  FileText, 
-  GraduationCap, 
-  PenTool, 
-  Sparkles, 
-  Compass, 
-  BarChart3, 
-  Layers 
+import {
+  BookOpen,
+  CheckCircle2,
+  Star,
+  Target,
+  Clock,
+  Award,
+  FileText,
+  GraduationCap,
+  PenTool,
+  Sparkles,
+  Compass,
+  BarChart3,
+  Layers
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { CTASection } from '../components/common/CTASection';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { COURSES_DATA } from '../data/siteData';
 
 export const PreVestibularPage: React.FC = () => {
@@ -109,22 +110,20 @@ export const PreVestibularPage: React.FC = () => {
           <div className="flex items-center justify-center gap-3 mb-8">
             <button
               onClick={() => setActiveTab('enem')}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-200 ${
-                activeTab === 'enem'
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-200 ${activeTab === 'enem'
                   ? 'bg-[#004B7C] text-white shadow-md'
                   : 'bg-white text-[#0A131F]/70 hover:bg-[#E1E5E8]/40 border border-[#E1E5E8]'
-              }`}
+                }`}
             >
               <GraduationCap className="w-4 h-4 text-[#68C5DB]" />
               <span>Frente ENEM (Sisu, Prouni & TRI)</span>
             </button>
             <button
               onClick={() => setActiveTab('uerj')}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-200 ${
-                activeTab === 'uerj'
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-200 ${activeTab === 'uerj'
                   ? 'bg-[#004B7C] text-white shadow-md'
                   : 'bg-white text-[#0A131F]/70 hover:bg-[#E1E5E8]/40 border border-[#E1E5E8]'
-              }`}
+                }`}
             >
               <BookOpen className="w-4 h-4 text-[#68C5DB]" />
               <span>Frente UERJ & Vestibulares Tradicionais</span>
@@ -367,11 +366,11 @@ export const PreVestibularPage: React.FC = () => {
               Grade Curricular Integrada • Pré-Vestibular & ENEM
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center">
-            {(course.disciplinas ?? []).map((disc, i) => (
-              <div key={i} className="bg-white p-3 rounded-xl border border-[#E1E5E8] font-semibold text-xs text-[#004B7C] shadow-xs">
-                {disc}
-              </div>
-            ))}
+              {(course.disciplinas ?? []).map((disc, i) => (
+                <div key={i} className="bg-white p-3 rounded-xl border border-[#E1E5E8] font-semibold text-xs text-[#004B7C] shadow-xs">
+                  {disc}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -382,7 +381,14 @@ export const PreVestibularPage: React.FC = () => {
         <AccordionFAQ items={course.faqs} title="DÚVIDAS SOBRE O PRÉ-VESTIBULAR & ENEM" />
       </section>
 
-      {/*FORMULÁRIO RD STATION*/}
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
 
     </div>
   );

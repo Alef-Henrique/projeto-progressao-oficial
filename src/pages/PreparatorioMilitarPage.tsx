@@ -4,6 +4,7 @@ import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { COURSES_DATA } from '../data/siteData';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 
 export const PreparatorioMilitarPage: React.FC = () => {
   const course = COURSES_DATA['preparatorio-militar'];
@@ -145,11 +146,11 @@ export const PreparatorioMilitarPage: React.FC = () => {
             Matérias & Conteúdo Programático
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center">
-          {(course.disciplinas ?? []).map((disc, i) => (
-            <div key={i} className="bg-white p-3 rounded-xl border border-[#E1E5E8] font-semibold text-xs text-[#004B7C] shadow-xs">
-              {disc}
-            </div>
-          ))}
+            {(course.disciplinas ?? []).map((disc, i) => (
+              <div key={i} className="bg-white p-3 rounded-xl border border-[#E1E5E8] font-semibold text-xs text-[#004B7C] shadow-xs">
+                {disc}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -158,6 +159,14 @@ export const PreparatorioMilitarPage: React.FC = () => {
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <AccordionFAQ items={course.faqs} title="DÚVIDAS SOBRE O PREPARATÓRIO MILITAR" />
       </section>
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
 
     </div>
   );

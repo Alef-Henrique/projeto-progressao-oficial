@@ -4,6 +4,7 @@ import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { CTASection } from '../components/common/CTASection';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { COURSES_DATA } from '../data/siteData';
 
 export const ConcursosPage: React.FC = () => {
@@ -149,7 +150,14 @@ export const ConcursosPage: React.FC = () => {
         <AccordionFAQ items={course.faqs} title="DÚVIDAS SOBRE O PREPARATÓRIO DE CONCURSOS" />
       </section>
 
-      {/*FORMULÁRIO RD STATION*/}
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
     </div>
   );
 };

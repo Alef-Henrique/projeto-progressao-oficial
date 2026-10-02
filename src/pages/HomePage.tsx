@@ -9,6 +9,7 @@ import { Link } from '../components/routing/RouterContext';
 import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { CTASection } from '../components/common/CTASection';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { HeroBannerCarousel } from '../components/common/HeroBannerCarousel';
 import { ResultsAndTestimonialsSection } from '../components/common/ResultsAndTestimonialsSection';
 import { NossosCursosETurmasSection } from '../components/common/NossosCursosETurmasSection';
@@ -126,7 +127,7 @@ export const HomePage: React.FC = () => {
       {/* 1. HERO BANNERS CAROUSEL (RESPONSIVO COM OS 3 BANNERS DO PROGRESSÃO) */}
       <HeroBannerCarousel />
 
-    
+
       {/* 2. OBJETIVO DO ALUNO (Carrossel com 4 cards fixos e botões passadores) */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full" id="objetivos">
         <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
@@ -479,6 +480,15 @@ export const HomePage: React.FC = () => {
       <section className="py-16 sm:py-20 bg-[#E1E5E8]/30 border-y border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
         <AccordionFAQ items={GENERAL_FAQS} />
       </section>
+
+      <div className="w-full flex justify-center px-4">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
 
     </div>
   );

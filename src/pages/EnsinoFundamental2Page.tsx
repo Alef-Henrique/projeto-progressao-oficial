@@ -6,6 +6,7 @@ import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { CTASection } from '../components/common/CTASection';
 import { SCHOOL_SEGMENTS_DATA } from '../data/siteData';
 import { WHATSAPP_NUMBER } from '../config/siteConfig';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 
 export const EnsinoFundamental2Page: React.FC = () => {
   const data = SCHOOL_SEGMENTS_DATA['fundamental-2'];
@@ -124,7 +125,7 @@ export const EnsinoFundamental2Page: React.FC = () => {
               <p className="text-sm sm:text-base text-[#E1E5E8]/90 leading-relaxed">
                 O aluno do Fundamental II do Progressão Caxias conta com uma preparação que vai além da sala de aula tradicional. Integramos ao currículo os conteúdos exigidos pelas bancas mais disputadas do Rio de Janeiro, garantindo bagagem para quem sonha em ingressar em escolas técnicas federais ou carreiras públicas.
               </p>
-              
+
               <div className="pt-2">
                 <span className="text-xs font-bold text-[#0289C6] uppercase tracking-wider block mb-3">
                   Exames e Instituições Alvo da Nossa Formação:
@@ -249,6 +250,14 @@ export const EnsinoFundamental2Page: React.FC = () => {
       <section className="py-16 bg-[#F4F6F8] border-t border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
         <AccordionFAQ items={data.faqs} title="DÚVIDAS FREQUENTES SOBRE O FUNDAMENTAL II" />
       </section>
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import React from 'react';
-import { 
-  Laptop, 
-  Shield, 
-  FileText, 
-  Landmark, 
-  Building2, 
-  ArrowRight, 
+import {
+  Laptop,
+  Shield,
+  FileText,
+  Landmark,
+  Building2,
+  ArrowRight,
   ChevronRight,
   GraduationCap,
   Sparkles,
@@ -15,6 +15,7 @@ import {
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { Link } from '../components/routing/RouterContext';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 
 interface OnlineCourseItem {
   id: string;
@@ -282,6 +283,14 @@ export const ProgressaoOnlinePage: React.FC = () => {
           </div>
         </div>
       </section>
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Touch Swipe for mobile/tablet
+  // Touch Swipe para mobile/tablet
   const touchStartXRef = useRef<number | null>(null);
   const touchEndXRef = useRef<number | null>(null);
 
@@ -33,7 +33,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
     return () => clearInterval(timer);
   }, [isPaused, nextSlide]);
 
-  // Swipe Gestures
+  // Gestos de Swipe
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartXRef.current = e.targetTouches[0].clientX;
   };
@@ -54,7 +54,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
     touchEndXRef.current = null;
   };
 
-  // Keyboard navigation
+  // Navegação por teclado
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
       prevSlide();
@@ -68,28 +68,28 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
     {
       id: 'colegio',
       title: 'COLÉGIO',
-      image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
+      image: '/assets/banner-colegio.png',
       alt: 'Aluno do Colégio em sala de aula com caderno e uniforme',
       href: '/colegio',
     },
     {
       id: 'pre-vest',
       title: 'PRÉ-VEST',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
+      image: '/assets/banner-prevestibular02.png',
       alt: 'Aluno estudando focado para ENEM e UERJ',
-      href: '/cursos/pre-vestibular',
+      href: '/cursos/pre-vestibular02',
     },
     {
       id: 'militar',
       title: 'MILITAR',
-      image: 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80',
+      image: '/assets/banner-militar.png',
       alt: 'Aluno fardado em preparação militar com disciplina',
       href: '/cursos/preparatorio-militar',
     },
     {
       id: 'concursos',
       title: 'CONCURSOS',
-      image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=80',
+      image: '/assets/banner-concursos-02.png',
       alt: 'Aprovado em concursos públicos civis e policiais',
       href: '/cursos/concursos',
     },
@@ -107,94 +107,124 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {/* Textura sutil de listras diagonais fiel à identidade visual militar/institucional */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-40 z-0"
-        style={{
-          backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 18px, transparent 18px, transparent 36px)'
-        }}
-      />
-
-      {/* CONTAINER PRINCIPAL DOS SLIDES */}
-      <div className="relative w-full min-h-[520px] xs:min-h-[550px] sm:min-h-[580px] md:min-h-[480px] lg:min-h-[540px] xl:min-h-[600px] flex items-center">
+      {/* CONTAINER PRINCIPAL: PROPORÇÃO HORIZONTAL FIEL AO DESIGN ORIGINAL */}
+      <div className="relative w-full min-h-[490px] xs:min-h-[500px] sm:min-h-[520px] md:h-[380px] lg:h-[420px] xl:h-[450px] flex items-center justify-center">
         
         {/* ============================================================ */}
         {/* SLIDE 1: 31 ANOS APROVANDO EM CAXIAS - DESDE 1995 */}
         {/* ============================================================ */}
         <div
           className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-            currentSlide === 0 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
+            currentSlide === 0 ? 'opacity-100 z-20 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
           }`}
           aria-hidden={currentSlide !== 0}
         >
-          {/* LAYOUT DESKTOP & TABLET (HORIZONTAL ~1400x600) */}
-          <div className="hidden md:flex w-full h-full relative items-center max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-            
-            {/* LADO ESQUERDO: TEXTO E SELO */}
-            <div className="w-[52%] lg:w-[48%] xl:w-[45%] flex flex-col justify-center py-10 lg:py-16 z-20">
+          {/* Fundo base neutro sólido */}
+          <div className="absolute inset-0 bg-[#001D33] pointer-events-none" aria-hidden="true" />
+
+          {/* LAYOUT DESKTOP & TABLET: COMPOSIÇÃO HORIZONTAL FIEL AO DESIGN ORIGINAL */}
+          <div className="hidden md:block absolute inset-0 w-full h-full overflow-hidden bg-[#00223B]">
+            {/* Fundo base texturizado com listras diagonais no fundo */}
+            <div 
+              className="absolute inset-0 pointer-events-none opacity-45 z-0"
+              style={{
+                backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
+              }}
+            />
+
+            {/* 1. ÁREA DIREITA: FUNDO AZUL COM LISTRAS DIAGONAIS CONTÍNUAS (ATRÁS DA FOTOGRAFIA) */}
+            <div 
+              className="absolute right-0 top-0 bottom-0 h-full z-10 overflow-hidden bg-[#00223B]"
+              style={{
+                left: '28%'
+              }}
+            >
+              {/* Textura de listras diagonais azul contínua preenchendo toda a área direita disponível */}
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-50 z-0"
+                style={{
+                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.075) 0px, rgba(255,255,255,0.075) 18px, transparent 18px, transparent 36px)'
+                }}
+              />
+
+              {/* Fotografia ampla preservando a nitidez total das pessoas */}
+              <img
+                src="/assets/banner-meninas.png"
+                alt="Alunos da unidade Caxias uniformizados e focados na preparação acadêmica"
+                className="relative z-10 w-full h-full object-cover object-[36%_18%]"
+                style={{
+                  maskImage: 'linear-gradient(105deg, transparent 0%, transparent 10%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 100%)',
+                  WebkitMaskImage: 'linear-gradient(105deg, transparent 0%, transparent 10%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 100%)'
+                }}
+                loading="eager"
+              />
+            </div>
+
+            {/* 2. ÁREA DO TEXTO: FUNDO AZUL-MARINHO SÓLIDO COM CORTE DIAGONAL DIRETO SOBRE A FOTO */}
+            <div 
+              className="absolute left-0 top-0 bottom-0 h-full z-20 bg-[#001D33] flex flex-col justify-center pl-8 sm:pl-10 lg:pl-16 xl:pl-24 pr-4"
+              style={{
+                width: '40%',
+                clipPath: 'polygon(0 0, 100% 0, 77.5% 100%, 0 100%)'
+              }}
+            >
               <div className="flex flex-col items-start leading-[0.95] tracking-tight font-black uppercase text-left">
-                <span className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight drop-shadow-md">
+                <span className="text-white text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight drop-shadow-md">
                   31 ANOS
                 </span>
-                <span className="text-[#FFBF00] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight my-1.5 lg:my-2.5 drop-shadow-md">
+                <span className="text-[#FFBF00] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight my-1 lg:my-2 drop-shadow-md">
                   APROVANDO
                 </span>
-                <span className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight drop-shadow-md">
+                <span className="text-white text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight drop-shadow-md">
                   EM CAXIAS
                 </span>
               </div>
 
               {/* SELO DESDE 1995 */}
-              <div className="mt-5 sm:mt-6 lg:mt-8">
+              <div className="mt-4 lg:mt-6">
                 <span className="inline-block bg-[#FFBF00] text-[#00223B] font-black text-xs sm:text-sm lg:text-base px-4 lg:px-5 py-1.5 lg:py-2 rounded uppercase tracking-wider shadow-md">
                   DESDE 1995
                 </span>
               </div>
             </div>
-
-            {/* LADO DIREITO: FOTO DOS ALUNOS COM CORTE DIAGONAL DINÂMICO */}
-            <div className="absolute right-0 top-0 bottom-0 w-[55%] lg:w-[58%] xl:w-[60%] h-full z-10 overflow-hidden [clip-path:polygon(14%_0,_100%_0,_100%_100%,_0%_100%)]">
-              <img
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80"
-                alt="Alunos da unidade Caxias uniformizados e focados na preparação acadêmica"
-                className="w-full h-full object-cover object-[center_30%]"
-                loading="eager"
-              />
-              {/* Gradiente suave na borda esquerda para integração perfeita com o fundo azul */}
-              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#00223B] via-[#00223B]/40 to-transparent pointer-events-none" />
-            </div>
-
           </div>
 
-          {/* LAYOUT MOBILE (VERTICAL RESPONSIVO, SEM CORTES, PARA 360px - 767px) */}
-          <div className="flex md:hidden flex-col w-full h-full justify-center px-4 sm:px-6 py-8 sm:py-10 z-10">
-            {/* Foto dos alunos no topo */}
-            <div className="w-full aspect-[16/10] sm:aspect-[16/9] max-h-64 sm:max-h-72 overflow-hidden rounded-2xl shadow-xl relative border border-white/10 shrink-0">
+          {/* LAYOUT MOBILE: COMPOSIÇÃO VERTICAL RESPONSIVA (SEM CORTES) */}
+          <div className="flex md:hidden flex-col w-full h-full justify-center px-3.5 sm:px-6 py-3 sm:py-4 z-20 max-w-md mx-auto">
+            {/* Foto dos alunos no topo com fundo de listras diagonais */}
+            <div className="relative w-full aspect-[16/10] max-h-40 xs:max-h-44 sm:max-h-52 overflow-hidden rounded-xl shadow-lg border border-white/15 shrink-0 bg-[#002B48]">
+              {/* Textura de listras diagonais no fundo da imagem */}
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-50 z-0"
+                style={{
+                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
+                }}
+              />
               <img
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+                src="/assets/banner-meninas.png"
                 alt="Alunos da unidade Caxias uniformizados e focados"
-                className="w-full h-full object-cover object-[center_25%]"
+                className="relative z-10 w-full h-full object-cover object-[center_25%]"
                 loading="eager"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#00223B]/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#00223B]/70 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Textos abaixo da foto */}
-            <div className="pt-6 pb-2 flex flex-col items-center text-center">
-              <div className="flex flex-col items-center leading-[0.98] tracking-tight font-black uppercase">
-                <span className="text-white text-3xl sm:text-4xl font-black tracking-tight drop-shadow-sm">
+            {/* Bloco de Textos abaixo da foto: FUNDO AZUL-MARINHO SÓLIDO (COR LISA SEM LISTRAS) */}
+            <div className="mt-2.5 sm:mt-3 bg-[#001D33] rounded-xl sm:rounded-2xl p-3 xs:p-3.5 sm:p-4 border border-white/10 shadow-lg flex flex-col items-center text-center shrink-0 w-full">
+              <div className="flex flex-col items-center leading-none tracking-tight font-black uppercase w-full">
+                <span className="text-white text-xl xs:text-2xl sm:text-3xl font-black tracking-tight drop-shadow-sm whitespace-nowrap">
                   31 ANOS
                 </span>
-                <span className="text-[#FFBF00] text-3xl sm:text-4xl font-black tracking-tight my-1 drop-shadow-sm">
+                <span className="text-[#FFBF00] text-xl xs:text-2xl sm:text-3xl font-black tracking-tight my-1 drop-shadow-sm whitespace-nowrap">
                   APROVANDO
                 </span>
-                <span className="text-white text-3xl sm:text-4xl font-black tracking-tight drop-shadow-sm">
+                <span className="text-white text-xl xs:text-2xl sm:text-3xl font-black tracking-tight drop-shadow-sm whitespace-nowrap">
                   EM CAXIAS
                 </span>
               </div>
 
-              <div className="mt-4">
-                <span className="inline-block bg-[#FFBF00] text-[#00223B] font-black text-xs sm:text-sm px-4 py-1.5 rounded uppercase tracking-wider shadow-md">
+              <div className="mt-2.5 sm:mt-3">
+                <span className="inline-block bg-[#FFBF00] text-[#00223B] font-black text-[11px] xs:text-xs sm:text-sm px-3.5 py-1.5 rounded uppercase tracking-wider shadow-md whitespace-nowrap">
                   DESDE 1995
                 </span>
               </div>
@@ -205,18 +235,19 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
 
         {/* ============================================================ */}
         {/* SLIDE 2: TUDO EM UMA SÓ UNIDADE - 4 CATEGORIAS */}
+        {/* COMPOSIÇÃO DE DOIS FUNDOS: TEXTO SÓLIDO + IMAGENS TEXTURIZADAS */}
         {/* ============================================================ */}
         <div
           className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-            currentSlide === 1 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
+            currentSlide === 1 ? 'opacity-100 z-20 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
           }`}
           aria-hidden={currentSlide !== 1}
         >
-          {/* LAYOUT DESKTOP & TABLET (4 COLUNAS VERTICAIS LADO A LADO) */}
-          <div className="hidden md:flex w-full h-full relative items-stretch max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          {/* LAYOUT DESKTOP & TABLET: DOIS FUNDOS DISTINTOS CONFORME O BANNER DE REFERÊNCIA */}
+          <div className="hidden md:flex w-full h-full relative items-stretch">
             
-            {/* LADO ESQUERDO: TÍTULO "TUDO EM UMA SÓ UNIDADE" */}
-            <div className="w-[32%] lg:w-[28%] xl:w-[26%] flex flex-col justify-center py-8 pr-4 lg:pr-6 z-20 shrink-0">
+            {/* 1. ÁREA DO TEXTO: FUNDO AZUL-MARINHO SÓLIDO (SEM TEXTURA) */}
+            <div className="w-[30%] lg:w-[28%] xl:w-[25%] h-full bg-[#001D33] flex flex-col justify-center pl-8 sm:pl-10 lg:pl-16 xl:pl-24 pr-6 z-20 shrink-0 border-r border-white/20 shadow-2xl">
               <div className="flex flex-col items-start leading-[0.95] tracking-tight font-black uppercase text-left">
                 <span className="text-white text-3xl lg:text-4xl xl:text-5xl font-black tracking-tight drop-shadow-md">
                   TUDO EM
@@ -234,85 +265,108 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
               </span>
             </div>
 
-            {/* LADO DIREITO: AS 4 COLUNAS VERTICAIS LADO A LADO COM FOTOS E TÍTULOS */}
-            <div className="w-[68%] lg:w-[72%] xl:w-[74%] grid grid-cols-4 h-full border-l border-white/15 my-auto py-4 sm:py-6">
-              {banner2Categories.map((cat, idx) => (
-                <Link
-                  key={cat.id}
-                  href={cat.href}
-                  className={`group relative flex flex-col justify-end overflow-hidden ${
-                    idx < 3 ? 'border-r border-white/15' : ''
-                  } transition-all duration-300 hover:brightness-105`}
-                >
-                  {/* Foto vertical */}
-                  <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#001726]">
-                    <img
-                      src={cat.image}
-                      alt={cat.alt}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#001726] via-[#001726]/20 to-transparent opacity-75 group-hover:opacity-60 transition-opacity" />
-                  </div>
+            {/* 2. ÁREA DAS IMAGENS: FUNDO AZUL COM TEXTURA DE LISTRAS DIAGONAIS CONTÍNUA COMPARTILHADA */}
+            <div className="flex-1 relative h-full bg-[#002B48] overflow-hidden">
+              {/* Textura de listras diagonais contínua para toda a área das 4 imagens */}
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-45 z-0"
+                style={{
+                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
+                }}
+              />
 
-                  {/* Barra inferior sólida com linha amarela e título */}
-                  <div className="relative z-10 bg-[#001726] border-t-2 border-[#FFBF00] py-3 lg:py-4 px-1.5 text-center w-full">
-                    <span className="text-white font-black text-xs sm:text-sm lg:text-base xl:text-lg tracking-wider uppercase group-hover:text-[#FFBF00] transition-colors">
-                      {cat.title}
-                    </span>
-                  </div>
-                </Link>
-              ))}
+              {/* As 4 colunas verticais sobre a mesma textura contínua */}
+              <div className="relative z-10 grid grid-cols-4 h-full w-full">
+                {banner2Categories.map((cat, idx) => (
+                  <Link
+                    key={cat.id}
+                    href={cat.href}
+                    className={`group relative flex flex-col justify-end h-full overflow-hidden ${
+                      idx < 3 ? 'border-r border-white/20' : ''
+                    } transition-all duration-300 hover:brightness-105`}
+                  >
+                    {/* Foto vertical sobre a textura contínua */}
+                    <div className="absolute inset-0 w-full h-full overflow-hidden">
+                      <img
+                        src={cat.image}
+                        alt={cat.alt}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                        loading="lazy"
+                      />
+                      {/* Gradiente sutil para integrar com a textura de fundo */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#001D33] via-[#001D33]/15 to-transparent opacity-75 group-hover:opacity-50 transition-opacity" />
+                    </div>
+
+                    {/* Barra inferior sólida escura com faixa amarela superior (Azul-Marinho Sólido) */}
+                    <div className="relative z-20 bg-[#001D33] border-t-4 border-[#FFBF00] py-3.5 lg:py-5 px-1.5 text-center w-full">
+                      <span className="text-white font-black text-xs sm:text-sm lg:text-base xl:text-lg tracking-wider uppercase group-hover:text-[#FFBF00] transition-colors">
+                        {cat.title}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
 
           </div>
 
-          {/* LAYOUT MOBILE (GRID DE 2 COLUNAS RESPONSIVO, SEM APERTO, PARA 360px - 767px) */}
-          <div className="flex md:hidden flex-col w-full h-full justify-center px-4 sm:px-6 py-6 sm:py-8 z-10">
-            {/* Título Centralizado */}
-            <div className="flex flex-col items-center text-center mb-4 sm:mb-5">
-              <div className="flex flex-col items-center leading-[0.98] tracking-tight font-black uppercase">
-                <span className="text-white text-2xl xs:text-3xl font-black tracking-tight drop-shadow-sm">
+          {/* LAYOUT MOBILE: TÍTULO SÓLIDO + ÁREA DE IMAGENS TEXTURIZADA CONTÍNUA */}
+          <div className="flex md:hidden flex-col w-full h-full justify-center px-3.5 sm:px-6 py-3 sm:py-4 z-20 max-w-md mx-auto">
+            {/* Bloco de Texto Superior com Fundo Azul-Marinho Sólido (Sem Textura) */}
+            <div className="bg-[#001D33] rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/10 shadow-lg text-center mb-2.5 sm:mb-3 shrink-0">
+              <div className="flex flex-col items-center leading-none tracking-tight font-black uppercase">
+                <span className="text-white text-lg xs:text-xl sm:text-2xl font-black tracking-tight drop-shadow-sm">
                   TUDO EM
                 </span>
-                <span className="text-[#FFBF00] text-2xl xs:text-3xl font-black tracking-tight my-0.5 drop-shadow-sm">
+                <span className="text-[#FFBF00] text-lg xs:text-xl sm:text-2xl font-black tracking-tight my-0.5 drop-shadow-sm">
                   UMA SÓ
                 </span>
-                <span className="text-white text-2xl xs:text-3xl font-black tracking-tight drop-shadow-sm">
+                <span className="text-white text-lg xs:text-xl sm:text-2xl font-black tracking-tight drop-shadow-sm">
                   UNIDADE
                 </span>
               </div>
-              <span className="text-[#68C5DB] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mt-1.5">
+              <span className="text-[#68C5DB] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mt-1 block">
                 PROGRESSÃO CAXIAS
               </span>
             </div>
 
-            {/* Grid 2x2 das Categorias */}
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-4 w-full">
-              {banner2Categories.map((cat) => (
-                <Link
-                  key={cat.id}
-                  href={cat.href}
-                  className="group relative rounded-xl overflow-hidden border border-white/15 shadow-md flex flex-col bg-[#001726] transition-transform active:scale-95"
-                >
-                  <div className="relative aspect-[1/1] sm:aspect-[4/5] w-full overflow-hidden">
-                    <img
-                      src={cat.image}
-                      alt={cat.alt}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#001726]/90 via-[#001726]/20 to-transparent" />
-                  </div>
-                  
-                  {/* Faixa inferior */}
-                  <div className="bg-[#001726] border-t-2 border-[#FFBF00] py-1.5 sm:py-2 px-1 text-center">
-                    <span className="text-white font-black text-xs sm:text-sm tracking-wider uppercase group-hover:text-[#FFBF00] transition-colors">
-                      {cat.title}
-                    </span>
-                  </div>
-                </Link>
-              ))}
+            {/* Área das Imagens com Fundo Azul Texturizado Contínuo com Listras Diagonais */}
+            <div className="relative w-full rounded-2xl overflow-hidden p-2 xs:p-2.5 sm:p-3 bg-[#002B48] border border-white/15 shadow-xl">
+              {/* Textura de listras diagonais contínua para toda a área das imagens */}
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-45 z-0"
+                style={{
+                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
+                }}
+              />
+
+              {/* Grid 2x2 das Categorias sobre a textura contínua */}
+              <div className="relative z-10 grid grid-cols-2 gap-2 xs:gap-2.5 sm:gap-3 w-full">
+                {banner2Categories.map((cat) => (
+                  <Link
+                    key={cat.id}
+                    href={cat.href}
+                    className="group relative rounded-xl overflow-hidden border border-white/20 shadow-md flex flex-col bg-[#001726] transition-transform active:scale-95"
+                  >
+                    <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden">
+                      <img
+                        src={cat.image}
+                        alt={cat.alt}
+                        className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#001726]/85 via-transparent to-transparent" />
+                    </div>
+                    
+                    {/* Faixa inferior sólida com linha amarela e textos 100% visíveis e nítidos */}
+                    <div className="bg-[#001D33] border-t-2 border-[#FFBF00] py-2 px-1 text-center relative z-10 flex items-center justify-center min-h-[30px] sm:min-h-[34px]">
+                      <span className="text-white font-black text-xs sm:text-sm tracking-wide uppercase group-hover:text-[#FFBF00] transition-colors whitespace-nowrap block truncate">
+                        {cat.title}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
 
           </div>
@@ -324,80 +378,125 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
         {/* ============================================================ */}
         <div
           className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-            currentSlide === 2 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
+            currentSlide === 2 ? 'opacity-100 z-20 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
           }`}
           aria-hidden={currentSlide !== 2}
         >
-          {/* LAYOUT DESKTOP & TABLET (HORIZONTAL ~1920x600) */}
-          <div className="hidden md:flex w-full h-full relative items-center max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-            
-            {/* LADO ESQUERDO: TEXTO E BOTÃO MATRÍCULAS ABERTAS */}
-            <div className="w-[50%] lg:w-[48%] xl:w-[45%] flex flex-col justify-center py-10 lg:py-16 z-20">
+          {/* Fundo base neutro sólido */}
+          <div className="absolute inset-0 bg-[#001D33] pointer-events-none" aria-hidden="true" />
+
+          {/* LAYOUT DESKTOP & TABLET: COMPOSIÇÃO HORIZONTAL FIEL AO DESIGN ORIGINAL */}
+          <div className="hidden md:block absolute inset-0 w-full h-full overflow-hidden bg-[#00223B]">
+            {/* Fundo base texturizado com listras diagonais no fundo */}
+            <div 
+              className="absolute inset-0 pointer-events-none opacity-45 z-0"
+              style={{
+                backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
+              }}
+            />
+
+            {/* 1. ÁREA DIREITA: FUNDO AZUL COM LISTRAS DIAGONAIS CONTÍNUAS (ATRÁS DA FOTOGRAFIA) */}
+            <div 
+              className="absolute right-0 top-0 bottom-0 h-full z-10 overflow-hidden bg-[#00223B]"
+              style={{
+                left: '28%'
+              }}
+            >
+              {/* Textura de listras diagonais azul contínua preenchendo toda a área direita disponível */}
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-50 z-0"
+                style={{
+                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.075) 0px, rgba(255,255,255,0.075) 18px, transparent 18px, transparent 36px)'
+                }}
+              />
+
+              {/* Fotografia ampla preservando a nitidez total das pessoas */}
+              <img
+                src="/assets/banner-militar-02.png"
+                alt="Aprovados de farda das Forças Armadas - ESA, EEAr e EsPCEx do Curso Progressão"
+                className="relative z-10 w-full h-full object-cover object-[70%_20%]"
+                style={{
+                  maskImage: 'linear-gradient(105deg, transparent 0%, transparent 10%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 100%)',
+                  WebkitMaskImage: 'linear-gradient(105deg, transparent 0%, transparent 10%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 100%)'
+                }}
+                loading="lazy"
+              />
+            </div>
+
+            {/* 2. ÁREA DO TEXTO: FUNDO AZUL-MARINHO SÓLIDO COM CORTE DIAGONAL DIRETO SOBRE A FOTO */}
+            <div 
+              className="absolute left-0 top-0 bottom-0 h-full z-20 bg-[#001D33] flex flex-col justify-center pl-8 sm:pl-10 lg:pl-16 xl:pl-24 pr-4"
+              style={{
+                width: '40%',
+                clipPath: 'polygon(0 0, 100% 0, 77.5% 100%, 0 100%)'
+              }}
+            >
               <div className="flex flex-col items-start leading-[0.95] tracking-tight font-black uppercase text-left">
-                <span className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight drop-shadow-md">
+                <span className="text-white text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight drop-shadow-md">
                   NASCEMOS
                 </span>
-                <span className="text-[#FFBF00] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight my-2 lg:my-3 drop-shadow-md">
+                <span className="text-[#FFBF00] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight my-1 lg:my-2 drop-shadow-md">
                   PRÉ-MILITAR
                 </span>
               </div>
 
-              {/* BOTÃO MATRÍCULAS ABERTAS */}
-              <div className="mt-6 sm:mt-8">
+              {/* BOTÃO PRÉ-MATRÍCULA DESKTOP */}
+              <div className="mt-4 lg:mt-6">
                 <Link
-                  href="/contato"
-                  className="inline-flex items-center gap-2.5 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-xs sm:text-sm lg:text-base px-6 lg:px-8 py-3 lg:py-3.5 rounded uppercase tracking-wider shadow-lg hover:shadow-xl transition-all duration-200 active:scale-95 group"
+                  href="/cursos/preparatorio-militar"
+                  aria-label="Fazer Pré-Matrícula no Preparatório Militar"
+                  style={{ backgroundColor: '#FFBF00', color: '#00223B', opacity: 1, display: 'inline-flex' }}
+                  className="inline-flex items-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-xs sm:text-sm lg:text-base px-6 lg:px-7 py-2.5 lg:py-3 rounded-lg uppercase tracking-wider shadow-lg hover:shadow-xl transition-all duration-200 active:scale-95 group"
                 >
-                  <span>MATRÍCULAS ABERTAS</span>
-                  <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 group-hover:translate-x-1 transition-transform" />
+                  <span className="font-black text-[#00223B] tracking-wider">PRÉ-MATRÍCULA</span>
+                  <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 text-[#00223B] group-hover:translate-x-1 transition-transform shrink-0" />
                 </Link>
+
               </div>
             </div>
-
-            {/* LADO DIREITO: FOTO DOS APROVADOS DE FARDA (ESA / EEAR / ESPCEX) */}
-            <div className="absolute right-0 top-0 bottom-0 w-[55%] lg:w-[58%] xl:w-[60%] h-full z-10 overflow-hidden [clip-path:polygon(16%_0,_100%_0,_100%_100%,_0%_100%)]">
-              <img
-                src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1600&q=80"
-                alt="Aprovados de farda das Forças Armadas - ESA, EEAr e EsPCEx do Curso Progressão"
-                className="w-full h-full object-cover object-[70%_25%]"
-                loading="lazy"
-              />
-              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#00223B] via-[#00223B]/40 to-transparent pointer-events-none" />
-            </div>
-
           </div>
 
-          {/* LAYOUT MOBILE (VERTICAL RESPONSIVO, SEM CORTES, PARA 360px - 767px) */}
-          <div className="flex md:hidden flex-col w-full h-full justify-center px-4 sm:px-6 py-8 sm:py-10 z-10">
-            {/* Foto dos aprovados no topo */}
-            <div className="w-full aspect-[16/10] sm:aspect-[16/9] max-h-64 sm:max-h-72 overflow-hidden rounded-2xl shadow-xl relative border border-white/10 shrink-0">
+          {/* LAYOUT MOBILE: COMPOSIÇÃO VERTICAL RESPONSIVA (SEM CORTES) */}
+          <div className="flex md:hidden flex-col w-full h-full justify-center px-3.5 sm:px-6 py-3 sm:py-4 z-20 max-w-md mx-auto">
+            {/* Foto dos aprovados no topo com fundo de listras diagonais */}
+            <div className="relative w-full aspect-[16/10] max-h-40 xs:max-h-44 sm:max-h-52 overflow-hidden rounded-xl shadow-lg border border-white/15 shrink-0 bg-[#002B48]">
+              {/* Textura de listras diagonais no fundo da imagem */}
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-50 z-0"
+                style={{
+                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
+                }}
+              />
               <img
-                src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80"
+                src="/assets/banner-militar-02.png"
                 alt="Aprovados de farda das Forças Armadas - ESA, EEAr e EsPCEx"
-                className="w-full h-full object-cover object-[center_20%]"
+                className="relative z-10 w-full h-full object-cover object-[center_20%]"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#00223B]/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#00223B]/70 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Textos e Botão abaixo da foto */}
-            <div className="pt-6 pb-2 flex flex-col items-center text-center">
-              <div className="flex flex-col items-center leading-[0.98] tracking-tight font-black uppercase">
-                <span className="text-white text-3xl sm:text-4xl font-black tracking-tight drop-shadow-sm">
+            {/* Bloco de Textos e Botão abaixo da foto: FUNDO AZUL-MARINHO SÓLIDO (COR LISA SEM LISTRAS) */}
+            <div className="mt-2.5 sm:mt-3 bg-[#001D33] rounded-xl sm:rounded-2xl p-3 xs:p-3.5 sm:p-4 border border-white/10 shadow-lg flex flex-col items-center text-center shrink-0 w-full">
+              <div className="flex flex-col items-center leading-none tracking-tight font-black uppercase w-full">
+                <span className="text-white text-xl xs:text-2xl sm:text-3xl font-black tracking-tight drop-shadow-sm">
                   NASCEMOS
                 </span>
-                <span className="text-[#FFBF00] text-3xl sm:text-4xl font-black tracking-tight my-1.5 drop-shadow-sm">
+                <span className="text-[#FFBF00] text-xl xs:text-2xl sm:text-3xl font-black tracking-tight my-1 drop-shadow-sm whitespace-nowrap">
                   PRÉ-MILITAR
                 </span>
               </div>
 
-              <div className="mt-5">
+               {/* BOTÃO PRÉ-MATRÍCULA MOBILE */}
+              <div className="mt-2.5 sm:mt-3 flex justify-center w-full">
                 <Link
-                  href="/contato"
-                  className="inline-flex items-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-xs sm:text-sm px-6 py-3 rounded uppercase tracking-wider shadow-lg active:scale-95 transition-all"
+                  href="/cursos/preparatorio-militar"
+                  aria-label="Fazer Pré-Matrícula no Preparatório Militar"
+                  style={{ backgroundColor: '#FFBF00', color: '#00223B', opacity: 1, display: 'inline-flex' }}
+                  className="inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-xs sm:text-sm px-6 py-2.5 rounded-lg uppercase tracking-wider shadow-lg active:scale-95 transition-all whitespace-nowrap group z-20"
                 >
-                  <span>MATRÍCULAS ABERTAS</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span className="font-black text-[#00223B] tracking-wider">PRÉ-MATRÍCULA</span>
+                  <ArrowRight className="w-4 h-4 text-[#00223B] group-hover:translate-x-1 transition-transform shrink-0" />
                 </Link>
               </div>
             </div>
@@ -408,44 +507,25 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
       </div>
 
       {/* ============================================================ */}
-      {/* CONTROLES DE NAVEGAÇÃO: BOTÕES ANTERIOR E PRÓXIMO */}
+      {/* CONTROLES DE NAVEGAÇÃO: BOTÕES PASSADORES (ANTERIOR E PRÓXIMO) */}
       {/* ============================================================ */}
       <button
         type="button"
         onClick={prevSlide}
         aria-label="Slide anterior"
-        className="hidden sm:flex absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-[#001726]/80 hover:bg-[#FFBF00] text-white hover:text-[#00223B] border border-white/20 transition-all duration-200 items-center justify-center shadow-lg active:scale-90 focus:outline-none focus:ring-2 focus:ring-[#FFBF00]"
+        className="flex absolute left-1.5 xs:left-2 sm:left-3 lg:left-3 xl:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-full bg-[#001726]/85 hover:bg-[#FFBF00] text-white hover:text-[#00223B] border border-white/20 transition-all duration-200 items-center justify-center shadow-lg active:scale-90 focus:outline-none focus:ring-2 focus:ring-[#FFBF00] touch-manipulation"
       >
-        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+        <ChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
       </button>
 
       <button
         type="button"
         onClick={nextSlide}
         aria-label="Próximo slide"
-        className="hidden sm:flex absolute right-2 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-[#001726]/80 hover:bg-[#FFBF00] text-white hover:text-[#00223B] border border-white/20 transition-all duration-200 items-center justify-center shadow-lg active:scale-90 focus:outline-none focus:ring-2 focus:ring-[#FFBF00]"
+        className="flex absolute right-1.5 xs:right-2 sm:right-3 lg:right-3 xl:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-full bg-[#001726]/85 hover:bg-[#FFBF00] text-white hover:text-[#00223B] border border-white/20 transition-all duration-200 items-center justify-center shadow-lg active:scale-90 focus:outline-none focus:ring-2 focus:ring-[#FFBF00] touch-manipulation"
       >
-        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+        <ChevronRight className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
       </button>
-
-      {/* ============================================================ */}
-      {/* INDICADORES / PAGINAÇÃO (DOTS) */}
-      {/* ============================================================ */}
-      <div className="absolute bottom-2.5 sm:bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#001726]/60 backdrop-blur-xs border border-white/10">
-        {Array.from({ length: totalSlides }).map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            onClick={() => setCurrentSlide(index)}
-            aria-label={`Ir para o banner ${index + 1}`}
-            className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 focus:outline-none ${
-              currentSlide === index
-                ? 'w-7 sm:w-9 bg-[#FFBF00]'
-                : 'w-2 sm:w-2.5 bg-white/40 hover:bg-white/75'
-            }`}
-          />
-        ))}
-      </div>
     </section>
   );
 };

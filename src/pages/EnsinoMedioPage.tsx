@@ -6,6 +6,7 @@ import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { CTASection } from '../components/common/CTASection';
 import { SCHOOL_SEGMENTS_DATA } from '../data/siteData';
 import { Link } from '../components/routing/RouterContext';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 
 export const EnsinoMedioPage: React.FC = () => {
   const data = SCHOOL_SEGMENTS_DATA['ensino-medio'];
@@ -126,6 +127,14 @@ export const EnsinoMedioPage: React.FC = () => {
       <section className="py-16 bg-[#E1E5E8]/30 border-t border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
         <AccordionFAQ items={data.faqs} title="DÚVIDAS SOBRE O ENSINO MÉDIO" />
       </section>
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
     </div>
   );
 };

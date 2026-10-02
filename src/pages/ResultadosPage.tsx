@@ -4,6 +4,7 @@ import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { CTASection } from '../components/common/CTASection';
 import { AnimatedCounter } from '../components/common/AnimatedCounter';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 
 export const ResultadosPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('todos');
@@ -104,7 +105,7 @@ export const ResultadosPage: React.FC = () => {
       id: 11,
       category: 'militar',
       name: 'Amanda Marinho',
-      exam:'EAGS',
+      exam: 'EAGS',
       examFull: '',
       year: '2024',
       image: '/assets/amanda-marinho-eags.jpg',
@@ -196,11 +197,10 @@ export const ResultadosPage: React.FC = () => {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
-                  activeTab === tab.id
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${activeTab === tab.id
                     ? 'bg-[#004B7C] text-white shadow-md'
                     : 'bg-[#E1E5E8]/60 text-[#0A131F]/80 hover:bg-[#E1E5E8] hover:text-[#004B7C]'
-                }`}
+                  }`}
               >
                 {tab.label}
               </button>
@@ -234,7 +234,7 @@ export const ResultadosPage: React.FC = () => {
                 <span className="text-[10px] sm:text-[11px] font-semibold text-[#68C5DB] uppercase tracking-wider">
                   Aprovado(a)
                 </span>
-                
+
                 {/* Nome do Aluno */}
                 <h3 className="font-serif-heading text-base sm:text-lg font-bold text-white leading-tight drop-shadow-sm group-hover:text-[#68C5DB] transition-colors line-clamp-1">
                   {item.name}
@@ -255,8 +255,15 @@ export const ResultadosPage: React.FC = () => {
         </div>
       </section>
 
-      {/*fORMULARIO RD STATION*/}
-  
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
+
     </div>
   );
 };

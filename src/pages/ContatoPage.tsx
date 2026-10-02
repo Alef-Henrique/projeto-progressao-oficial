@@ -148,11 +148,11 @@ export const ContatoPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Main Form & Info Grid */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Left Column: Contact Info & Direct Channels */}
-          <div className="lg:col-span-5 flex flex-col gap-8">
+      {/* Main Form & Info Section (Single Column Layout) */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
+        <div className="flex flex-col gap-10 sm:gap-12 w-full">
+          {/* 1. Bloco: Informações da Unidade & Canais Institucionais */}
+          <div className="flex flex-col gap-6 sm:gap-8 w-full">
             <div>
               <span className="text-xs sm:text-sm font-semibold text-[#0289C6] uppercase tracking-wider">
                 Canais Institucionais
@@ -160,14 +160,14 @@ export const ContatoPage: React.FC = () => {
               <h2 className="font-serif-heading text-2xl sm:text-3xl font-bold text-[#004B7C] mt-1 mb-3">
                 INFORMAÇÕES DA UNIDADE
               </h2>
-              <p className="text-sm text-[#0A131F]/70 leading-relaxed">
+              <p className="text-sm text-[#0A131F]/70 leading-relaxed max-w-2xl">
                 Nossa equipe de secretários e orientadores pedagógicos está à disposição para esclarecer qualquer dúvida sobre nosso projeto de ensino.
               </p>
             </div>
 
             {/* Info Cards */}
-            <div className="space-y-4">
-              <div className="bg-white p-5 rounded-2xl border border-[#E1E5E8] shadow-xs flex items-start gap-4">
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+              <div className="bg-white p-5 rounded-2xl border border-[#E1E5E8] shadow-xs flex items-start gap-4 sm:col-span-2">
                 <div className="w-10 h-10 rounded-xl bg-[#004B7C] text-white flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin className="w-5 h-5 text-[#0289C6]" />
                 </div>
@@ -241,9 +241,15 @@ export const ContatoPage: React.FC = () => {
           </div>
 
 
-          <RDStationForm
-            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
-          />
+          <div className="bg-white p-8 flex justify-center">
+            <div className="w-full max-w-[600px]">
+              {/* RD STATION — PROVISÓRIO */}
+              <RDStationForm
+                formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+              />
+            </div>
+          </div>
+
         </div>
       </section>
 
