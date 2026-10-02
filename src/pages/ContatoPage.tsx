@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { 
-  MapPin, Phone, Mail, Clock, Send, CheckCircle2, 
-  AlertCircle, Building2, ExternalLink, ShieldCheck 
+import {
+  MapPin, Phone, Mail, Clock, Send, CheckCircle2,
+  AlertCircle, Building2, ExternalLink, ShieldCheck
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { useRouter } from '../components/routing/RouterContext';
 import { WhatsAppIcon } from '../components/common/WhatsAppButton';
-import { 
-  SITE_CONFIG, 
-  WHATSAPP_NUMBER, 
-  WHATSAPP_DISPLAY, 
-  WHATSAPP_DEFAULT_MESSAGE 
+import { RDStationForm } from '../components/rdstation/RDStationForm';
+import {
+  SITE_CONFIG,
+  WHATSAPP_NUMBER,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_DEFAULT_MESSAGE
 } from '../config/siteConfig';
 
 
@@ -71,52 +72,52 @@ export const ContatoPage: React.FC = () => {
       return;
     }
 
-setIsSubmitting(true);
+    setIsSubmitting(true);
 
-try {
-  const response = await fetch('/api/contact', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      interest: formData.interest,
-      message: formData.message,
-    }),
-  });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          interest: formData.interest,
+          message: formData.message,
+        }),
+      });
 
-  const data = await response.json();
+      const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || 'Erro ao enviar mensagem.');
-  }
+      if (!response.ok) {
+        throw new Error(data.message || 'Erro ao enviar mensagem.');
+      }
 
-  setIsSuccess(true);
+      setIsSuccess(true);
 
-  setFormData({
-    name: '',
-    email: '',
-    phone: '',
-    interest: 'militar',
-    message: '',
-    privacyAccepted: false,
-  });
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        interest: 'militar',
+        message: '',
+        privacyAccepted: false,
+      });
 
-} catch (error) {
-  console.error('Erro ao enviar formulário:', error);
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
 
-  setErrorMessage(
-    error instanceof Error
-      ? error.message
-      : 'Não foi possível enviar sua mensagem. Tente novamente.'
-  );
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'Não foi possível enviar sua mensagem. Tente novamente.'
+      );
 
-} finally {
-  setIsSubmitting(false);
-}
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const whatsappDirectUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`;
@@ -239,178 +240,10 @@ try {
             </div>
           </div>
 
-          {/* Right Column: Interactive Form */}
-          <div className="lg:col-span-7">
 
-            <div className="bg-white p-8 sm:p-10 rounded-3xl border border-[#E1E5E8] shadow-lg">
-              {isSuccess ? (
-                <div className="py-12 flex flex-col items-center text-center gap-4 animate-fadeIn">
-                  <div className="w-16 h-16 rounded-full bg-[#25D366]/20 text-[#25D366] flex items-center justify-center">
-                    <CheckCircle2 className="w-10 h-10" />
-                  </div>
-                  <h3 className="font-serif-heading text-2xl font-bold text-[#004B7C]">
-                    Mensagem Recebida com Sucesso!
-                  </h3>
-                  <p className="text-sm text-[#0A131F]/70 max-w-md leading-relaxed">
-                    Agradecemos o seu contato. Nossa equipe pedagógica entrará em contato com você o mais breve possível para esclarecer todas as informações solicitadas.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setIsSuccess(false)}
-                    className="mt-4 px-6 py-2.5 bg-[#004B7C] hover:bg-[#015E96] text-white rounded-xl text-xs font-bold transition-all"
-                  >
-                    Enviar Outra Mensagem
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                  <div>
-                    <h3 className="font-serif-heading text-2xl font-bold text-[#004B7C]">
-                      Solicite Informações ou Pré-Matrícula
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[#0A131F]/70 mt-1">
-                      Preencha os campos abaixo e entraremos em contato rapidamente.
-                    </p>
-                  </div>
-
-                  {errorMessage && (
-                    <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
-                      <AlertCircle className="w-4 h-4 shrink-0" />
-                      <span>{errorMessage}</span>
-                    </div>
-                  )}
-
-                  {/* Nome Completo */}
-                  <div>
-                    <label htmlFor="name" className="block text-xs font-bold text-[#004B7C] uppercase tracking-wider mb-1.5">
-                      Nome Completo *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      required
-                      placeholder="Ex: João da Silva"
-                      value={formData.name}
-                      onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl border border-[#E1E5E8] focus:outline-none focus:ring-2 focus:ring-[#0289C6] text-sm text-[#0A131F]"
-                    />
-                  </div>
-
-                  {/* E-mail e Telefone */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="email" className="block text-xs font-bold text-[#004B7C] uppercase tracking-wider mb-1.5">
-                        E-mail *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        required
-                        placeholder="seuemail@exemplo.com"
-                        value={formData.email}
-                        onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full px-4 py-3 rounded-xl border border-[#E1E5E8] focus:outline-none focus:ring-2 focus:ring-[#0289C6] text-sm text-[#0A131F]"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="phone" className="block text-xs font-bold text-[#004B7C] uppercase tracking-wider mb-1.5">
-                        Telefone / WhatsApp *
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        required
-                        placeholder="(21) 99999-9999"
-                        value={formData.phone}
-                        onChange={handlePhoneChange}
-                        className="w-full px-4 py-3 rounded-xl border border-[#E1E5E8] focus:outline-none focus:ring-2 focus:ring-[#0289C6] text-sm text-[#0A131F]"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Interesse */}
-                  <div>
-                    <label htmlFor="interest" className="block text-xs font-bold text-[#004B7C] uppercase tracking-wider mb-1.5">
-                      Área de Interesse *
-                    </label>
-                    <select
-                      id="interest"
-                      value={formData.interest}
-                      onChange={e => setFormData(prev => ({ ...prev, interest: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl border border-[#E1E5E8] focus:outline-none focus:ring-2 focus:ring-[#0289C6] text-sm text-[#0A131F] bg-white"
-                    >
-                      <optgroup label="Cursos Preparatórios">
-                        <option value="militar">Preparatório Militar (EsPCEx,ESA EEAR, Naval e mais)</option>
-                        <option value="pre-vestibular">Pré-Vestibular</option>
-                        <option value="concursos">Concursos Públicos (Policiais e Administrativos)</option>
-                      </optgroup>
-                      <optgroup label="Colégio Regular">
-                        <option value="infantil">Colégio - Educação Infantil</option>
-                        <option value="fundamental">Colégio - Ensino Fundamental</option>
-                        <option value="medio">Colégio - Ensino Médio</option>
-                      </optgroup>
-                      <optgroup label="Outros">
-                        <option value="duvidas">Dúvidas Gerais / Agendamento de Visita</option>
-                      </optgroup>
-                    </select>
-                  </div>
-
-                  {/* Mensagem */}
-                  <div>
-                    <label htmlFor="message" className="block text-xs font-bold text-[#004B7C] uppercase tracking-wider mb-1.5">
-                      Mensagem ou Dúvida (Opcional)
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={4}
-                      placeholder="Conte-nos como podemos ajudar você..."
-                      value={formData.message}
-                      onChange={e => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl border border-[#E1E5E8] focus:outline-none focus:ring-2 focus:ring-[#0289C6] text-sm text-[#0A131F]"
-                    ></textarea>
-                  </div>
-
-                  {/* LGPD Consent Checkbox */}
-                  <div className="flex items-start gap-2.5 pt-1">
-                    <input
-                      type="checkbox"
-                      id="privacy"
-                      checked={formData.privacyAccepted}
-                      onChange={e => setFormData(prev => ({ ...prev, privacyAccepted: e.target.checked }))}
-                      className="mt-1 w-4 h-4 rounded text-[#0289C6] focus:ring-[#0289C6] border-[#E1E5E8]"
-                    />
-                    <label htmlFor="privacy" className="text-xs text-[#0A131F]/70 leading-normal">
-                      Concordo que os dados fornecidos sejam utilizados pelo Curso Progressão Caxias exclusivamente para atendimento pedagógico, em conformidade com a nossa{' '}
-                      <button
-                        type="button"
-                        onClick={() => openPrivacyModal()}
-                        className="text-[#0289C6] underline hover:text-[#004B7C]"
-                      >
-                        Política de Privacidade
-                      </button>.
-                    </label>
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full mt-2 bg-[#004B7C] hover:bg-[#015E96] active:bg-[#0A131F] text-white py-4 rounded-xl font-bold text-sm tracking-wide shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
-                  >
-                    {isSubmitting ? (
-                      <span>ENVIANDO MENSAGEM...</span>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4 text-[#0289C6]" />
-                        <span>ENVIAR SOLICITAÇÃO</span>
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
         </div>
       </section>
 

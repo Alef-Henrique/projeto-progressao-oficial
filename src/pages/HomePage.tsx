@@ -9,6 +9,7 @@ import { Link } from '../components/routing/RouterContext';
 import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { CTASection } from '../components/common/CTASection';
+import { HeroBannerCarousel } from '../components/common/HeroBannerCarousel';
 import { ResultsAndTestimonialsSection } from '../components/common/ResultsAndTestimonialsSection';
 import { NossosCursosETurmasSection } from '../components/common/NossosCursosETurmasSection';
 import { VideoShowcaseSection } from '../components/common/VideoShowcaseSection';
@@ -19,64 +20,7 @@ import {
   GENERAL_FAQS
 } from '../data/siteData';
 
-const HERO_SLIDES = [
-  {
-    id: 1,
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Estudantes do Curso Progressão Caxias em sala de aula moderna e colaborativa',
-    badge: 'Tradição & Excelência',
-    title: 'Duas Grandes Frentes Educacionais',
-    description: 'Colégio Regular e Cursos Preparatórios de Alta Performance em Duque de Caxias.',
-    icon: Shield,
-  },
-  {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Preparação focada para Carreiras Militares e Concursos Públicos',
-    badge: 'Carreiras Militares & Concursos',
-    title: 'Disciplina, Foco e Alta Intensidade',
-    description: 'Rumo à farda e à carreira das armas.',
-    icon: Target,
-  },
-  {
-    id: 3,
-    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Corpo docente especializado em bancas examinadoras',
-    badge: 'Professores Especialistas',
-    title: 'Aulas Dinâmicas & Resolução Prática',
-    description: 'Do Fundamental ao terceirão, sem abrir mão da excelência.',
-    icon: Users,
-  },
-  {
-    id: 4,
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Estudo intensivo para ENEM e Vestibulares UERJ e Medicina',
-    badge: 'Pré-Vestibular & ENEM',
-    title: 'Estratégia TRI & Redação Nota 1000',
-    description: 'Direto ao ponto pra UERJ e pro ENEM.',
-    icon: GraduationCap,
-  },
-  {
-    id: 5,
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Alunos no Colégio Progressão com foco e formação integral',
-    badge: 'Colégio Progressão',
-    title: 'Educação Básica de Referência',
-    description: 'A vaga que muda sua vida começa na sua rotina de estudo.',
-    icon: School,
-  },
-];
 
-const FULL_HERO_LINE_1 = 'SUA JORNADA RUMO À';
-const FULL_HERO_LINE_2 = 'APROVAÇÃO COMEÇA AQUI.';
-
-const HERO_ROTATING_TEXTS = [
-  'Preparatório Militar',
-  'Enem',
-  'Pré-Vestibular',
-  'Concursos Públicos',
-  'Cursos Técnicos',
-];
 
 const OBJECTIVE_CARDS = [
   {
@@ -110,8 +54,7 @@ const OBJECTIVE_CARDS = [
 ];
 
 export const HomePage: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+
 
   // Estados do Carrossel de Objetivos (4 cards fixos no desktop com botões passadores)
   const [objectiveIndex, setObjectiveIndex] = useState(0);
@@ -172,145 +115,7 @@ export const HomePage: React.FC = () => {
     setTouchEndX(null);
   };
 
-  // Typewriter effect state for hero title
-  const [typedLine1, setTypedLine1] = useState(() => {
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return FULL_HERO_LINE_1;
-    }
-    return '';
-  });
 
-  const [typedLine2, setTypedLine2] = useState(() => {
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return FULL_HERO_LINE_2;
-    }
-    return '';
-  });
-
-  const [cursorPos, setCursorPos] = useState<1 | 2 | null>(() => {
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return null;
-    }
-    return 1;
-  });
-
-  const [cursorFade, setCursorFade] = useState(false);
-
-  // Typewriter effect state for rotating course categories
-  const [rotatingIndex, setRotatingIndex] = useState(0);
-  const [rotatingText, setRotatingText] = useState('');
-  const [isDeletingRotating, setIsDeletingRotating] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setRotatingText(HERO_ROTATING_TEXTS[rotatingIndex]);
-      return;
-    }
-
-    const currentPhrase = HERO_ROTATING_TEXTS[rotatingIndex];
-    let timer: NodeJS.Timeout;
-
-    if (!isDeletingRotating) {
-      if (rotatingText.length < currentPhrase.length) {
-        timer = setTimeout(() => {
-          setRotatingText(currentPhrase.slice(0, rotatingText.length + 1));
-        }, 75);
-      } else {
-        // Pausa de 1.8s ao completar a palavra para leitura
-        timer = setTimeout(() => {
-          setIsDeletingRotating(true);
-        }, 1800);
-      }
-    } else {
-      if (rotatingText.length > 0) {
-        timer = setTimeout(() => {
-          setRotatingText(currentPhrase.slice(0, rotatingText.length - 1));
-        }, 35);
-      } else {
-        // Pausa curta de 250ms antes de começar a próxima palavra
-        timer = setTimeout(() => {
-          setIsDeletingRotating(false);
-          setRotatingIndex((prev) => (prev + 1) % HERO_ROTATING_TEXTS.length);
-        }, 250);
-      }
-    }
-
-    return () => clearTimeout(timer);
-  }, [rotatingText, isDeletingRotating, rotatingIndex]);
-
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-  }, []);
-
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-  }, []);
-
-  useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 4500);
-    return () => clearInterval(interval);
-  }, [isPaused, nextSlide]);
-
-  // Execute typewriter animation once on page load
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
-
-    let timeoutId: NodeJS.Timeout;
-    let isCancelled = false;
-
-    let l1Index = 1;
-    const typeL1 = () => {
-      if (isCancelled) return;
-      if (l1Index <= FULL_HERO_LINE_1.length) {
-        setTypedLine1(FULL_HERO_LINE_1.slice(0, l1Index));
-        l1Index++;
-        timeoutId = setTimeout(typeL1, 60);
-      } else {
-        // Pause 400ms before starting line 2
-        timeoutId = setTimeout(() => {
-          if (isCancelled) return;
-          setCursorPos(2);
-          let l2Index = 1;
-          const typeL2 = () => {
-            if (isCancelled) return;
-            if (l2Index <= FULL_HERO_LINE_2.length) {
-              setTypedLine2(FULL_HERO_LINE_2.slice(0, l2Index));
-              l2Index++;
-              timeoutId = setTimeout(typeL2, 60);
-            } else {
-              // Finished line 2: keep cursor blinking for 2.5s, then fade out smoothly
-              timeoutId = setTimeout(() => {
-                if (isCancelled) return;
-                setCursorFade(true);
-                timeoutId = setTimeout(() => {
-                  if (isCancelled) return;
-                  setCursorPos(null);
-                }, 1000);
-              }, 2500);
-            }
-          };
-          typeL2();
-        }, 400);
-      }
-    };
-
-    // Initial 200ms pause on mount before typing begins
-    timeoutId = setTimeout(typeL1, 200);
-
-    return () => {
-      isCancelled = true;
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
-  const activeSlide = HERO_SLIDES[currentSlide];
-  const line2Aprovacao = typedLine2.slice(0, 9);
-  const line2Rest = typedLine2.slice(9);
   return (
     <div className="flex flex-col w-full">
       <SEO
@@ -318,98 +123,10 @@ export const HomePage: React.FC = () => {
         description="Sua jornada rumo à aprovação começa aqui. O Curso Progressão Caxias oferece Colégio e Preparatórios Militares, ENEM, Vestibulares e Concursos em Duque de Caxias."
         canonicalPath="/"
       />
+      {/* 1. HERO BANNERS CAROUSEL (RESPONSIVO COM OS 3 BANNERS DO PROGRESSÃO) */}
+      <HeroBannerCarousel />
 
-      {/* 1. HERO SECTION */}
-      <section
-        className="relative w-full bg-[#0A131F] text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-white/10"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
-        {/* Dynamic Ambient Background Carousel - 5 Slides */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {HERO_SLIDES.map((slide, index) => (
-            <div
-              key={`bg-${slide.id}`}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
-                }`}
-              style={{
-                backgroundImage: `url(${slide.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center right',
-              }}
-            />
-          ))}
-
-          {/* Sombra azul suave por cima das imagens */}
-          <div
-            className="absolute inset-0 bg-gradient-to-r from-[#003B61]/65 via-[#004B7C]/25 to-[#015E96]/15 pointer-events-none"
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10 flex flex-col justify-between">
-          <div className="max-w-3xl flex flex-col items-start gap-6">
-            <h1
-              className="font-serif-heading text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.18] drop-shadow-md"
-              aria-label="SUA JORNADA RUMO À APROVAÇÃO COMEÇA AQUI."
-            >
-              <span className="inline">
-                {typedLine1 || <span className="invisible select-none" aria-hidden="true">&#8203;</span>}
-                {cursorPos === 1 && (
-                  <span
-                    className="inline-block w-[3px] sm:w-[4px] lg:w-[5px] h-[0.82em] ml-1 sm:ml-1.5 bg-[#0289C6] align-baseline rounded-full animate-pulse"
-                    aria-hidden="true"
-                  />
-                )}
-              </span>
-              <br />
-              <span className="inline">
-                {typedLine2.length === 0 ? (
-                  <span className="invisible select-none" aria-hidden="true">&#8203;</span>
-                ) : (
-                  <>
-                    <span className="bg-[#0289C6] text-white px-2 sm:px-2.5 py-0.5 rounded-lg inline-block">
-                      {line2Aprovacao}
-                    </span>
-                    <span>{line2Rest}</span>
-                  </>
-                )}
-                {cursorPos === 2 && (
-                  <span
-                    className={`inline-block w-[3px] sm:w-[4px] lg:w-[5px] h-[0.82em] ml-1 sm:ml-1.5 bg-[#0289C6] align-baseline rounded-full ${cursorFade ? 'opacity-0 transition-opacity duration-1000' : 'animate-pulse opacity-100'
-                      }`}
-                    aria-hidden="true"
-                  />
-                )}
-              </span>
-            </h1>
-
-            <p
-              className="text-xl sm:text-2xl lg:text-3xl text-white font-semibold tracking-wide drop-shadow-sm min-h-[2.5rem] flex items-center"
-              aria-live="polite"
-              aria-label={HERO_ROTATING_TEXTS[rotatingIndex]}
-            >
-              <span className="text-white font-bold">
-                {rotatingText || <span className="invisible select-none" aria-hidden="true">&#8203;</span>}
-              </span>
-              <span
-                className="inline-block w-[3px] sm:w-[4px] h-[0.85em] ml-1.5 bg-white align-baseline rounded-full animate-pulse"
-                aria-hidden="true"
-              />
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full pt-3">
-              <Link
-                href="/cursos"
-                className="inline-flex items-center justify-center gap-2 bg-[#0289C6] hover:bg-white hover:text-[#004B7C] text-white px-7 py-4 rounded-xl font-bold text-sm tracking-wide shadow-lg hover:shadow-xl transition-all duration-200 active:scale-95 group"
-              >
-                <span>QUERO MINHA APROVAÇÃO</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
+    
       {/* 2. OBJETIVO DO ALUNO (Carrossel com 4 cards fixos e botões passadores) */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full" id="objetivos">
         <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
