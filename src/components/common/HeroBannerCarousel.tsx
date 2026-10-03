@@ -77,7 +77,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
       title: 'PRÉ-VEST',
       image: '/assets/banner-prevestibular02.png',
       alt: 'Aluno estudando focado para ENEM e UERJ',
-      href: '/cursos/pre-vestibular02',
+      href: '/cursos/pre-vestibular',
     },
     {
       id: 'militar',

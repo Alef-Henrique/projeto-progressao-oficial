@@ -98,11 +98,7 @@ export const Footer: React.FC = () => {
               Cursos
             </h3>
             <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-[#E1E5E8]/80">
-              <li>
-                <Link href="/cursos" className="hover:text-white hover:translate-x-1 transition-all inline-block font-semibold text-white">
-                  Todos os Preparatórios
-                </Link>
-              </li>
+
               <li>
                 <Link href="/cursos/preparatorio-militar" className="hover:text-white hover:translate-x-1 transition-all inline-block">
                   Preparatório Militar

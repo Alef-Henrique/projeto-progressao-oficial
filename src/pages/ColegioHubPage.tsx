@@ -26,11 +26,21 @@ export const ColegioHubPage: React.FC = () => {
 
       <Breadcrumbs items={[{ label: 'Colégio' }, { label: 'Visão Geral' }]} />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#004B7C] via-[#015E96] to-[#0A131F] text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#015E96]">
-        <div className="max-w-4xl mx-auto text-center">
+           {/* Hero Section */}
+      <section className="relative bg-[#00223B] text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
+        {/* Textura sutil de listras diagonais de fundo */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-25"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 22px, transparent 22px, transparent 44px)'
+          }}
+        />
+        {/* Gradiente radial decorativo */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0289C6]/20 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative max-w-4xl mx-auto text-center z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-md mb-4 border border-white/20">
-            <School className="w-4 h-4 text-white" />
+            <School className="w-4 h-4 text-[#FFBF00]" />
             <span className="text-white">Colégio Progressão Caxias • Duque de Caxias / RJ</span>
           </div>
           <h1 className="font-serif-heading text-3xl sm:text-5xl font-bold mb-4 leading-tight">

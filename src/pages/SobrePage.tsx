@@ -17,9 +17,19 @@ export const SobrePage: React.FC = () => {
       <Breadcrumbs items={[{ label: 'O Progressão' }, { label: 'Sobre Nós' }]} />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#004B7C] via-[#015E96] to-[#0A131F] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#015E96]">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="text-xs sm:text-sm font-semibold text-[#0289C6] uppercase tracking-wider block mb-2">
+      <section className="relative bg-[#00223B] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
+        {/* Textura sutil de listras diagonais de fundo */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-25"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 22px, transparent 22px, transparent 44px)'
+          }}
+        />
+        {/* Gradiente radial decorativo */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0289C6]/20 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative max-w-4xl mx-auto text-center z-10">
+          <span className="text-xs sm:text-sm font-semibold text-[#FFBF00] uppercase tracking-wider block mb-2">
             Nossa Instituição
           </span>
           <h1 className="font-serif-heading text-3xl sm:text-5xl font-bold mb-4 leading-tight">
@@ -58,7 +68,7 @@ export const SobrePage: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="rounded-2xl overflow-hidden shadow-xl border border-[#E1E5E8] bg-white">
               <img
-                src="/assets/sobre-nos.jpeg"
+                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1000&q=80"
                 alt="Ambiente pedagógico do Progressão Caxias"
                 className="w-full h-80 object-cover"
               />

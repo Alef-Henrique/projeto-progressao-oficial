@@ -306,18 +306,7 @@ export const Header: React.FC = () => {
               {activeDropdown === 'cursos' && (
                 <div className="absolute top-full left-0 w-80 pt-2 z-50 animate-fadeIn">
                   <div className="bg-[#002e4c] rounded-xl shadow-2xl border border-[#015E96] p-2 flex flex-col gap-1 backdrop-blur-xl">
-                    <Link
-                      href="/cursos"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/cursos' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
-                        }`}
-                    >
-                      <Award className="w-4 h-4 text-[#0289C6] shrink-0" />
-                      <div>
-                        <div className="font-semibold text-white">Todos os Preparatórios</div>
-                        <div className="text-[11px] text-[#E1E5E8]/70">Encontre o preparatório ideal</div>
-                      </div>
-                    </Link>
-                    <div className="h-px bg-white/10 my-1"></div>
+
                     <Link
                       href="/cursos/preparatorio-militar"
                       className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/cursos/preparatorio-militar' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
@@ -391,7 +380,7 @@ export const Header: React.FC = () => {
           {/* Desktop Right CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href="/cursos"
+              href="/contato"
               className="inline-flex items-center justify-center gap-2 bg-[#0289C6] hover:bg-[#015E96] text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-[#0289C6] focus:ring-offset-2 focus:ring-offset-[#004B7C] active:scale-95"
             >
               <span>QUERO GARANTIR MINHA VAGA</span>
@@ -494,9 +483,7 @@ export const Header: React.FC = () => {
               </button>
               {mobileSubmenu.cursos && (
                 <div className="px-4 pb-3 flex flex-col gap-2 pt-1 border-t border-white/5">
-                  <Link href="/cursos" className="text-sm py-1.5 px-3 rounded-lg text-[#0289C6] font-semibold">
-                    Todos os Preparatórios
-                  </Link>
+
                   <Link href="/cursos/preparatorio-militar" className="text-sm py-1.5 px-3 rounded-lg text-[#E1E5E8] hover:text-white hover:bg-white/5">
                     Preparatório Militar
                   </Link>
@@ -538,7 +525,7 @@ export const Header: React.FC = () => {
 
           <div className="pt-6 pb-4 border-t border-white/10 flex flex-col gap-3">
             <Link
-              href="/cursos"
+              href="/contato"
               className="w-full flex items-center justify-center gap-2 bg-[#0289C6] text-white py-3.5 rounded-xl font-bold text-center shadow-lg"
             >
               <span>QUERO ME PREPARAR</span>

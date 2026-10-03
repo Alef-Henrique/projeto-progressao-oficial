@@ -22,17 +22,28 @@ export const EquipePage: React.FC = () => {
 
       <Breadcrumbs items={[{ label: 'O Progressão' }, { label: 'Nossa Equipe' }]} />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#004B7C] via-[#015E96] to-[#0A131F] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#015E96]">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="text-xs sm:text-sm font-semibold text-[#0289C6] uppercase tracking-wider block mb-2">
+{/* Hero Section */}
+      <section className="relative bg-[#00223B] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
+        {/* Textura sutil de listras diagonais de fundo */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-25"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 22px, transparent 22px, transparent 44px)'
+          }}
+        />
+        {/* Gradiente radial decorativo */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0289C6]/20 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative max-w-4xl mx-auto text-center z-10">
+          <span className="text-xs sm:text-sm font-semibold text-[#FFBF00] uppercase tracking-wider block mb-2">
             Educadores & Gestores
           </span>
           <h1 className="font-serif-heading text-3xl sm:text-5xl font-bold mb-4 leading-tight">
-            PROFESSORES ESPECIALISTAS NA SUA APROVAÇÃO
+            DOCENTES ESPECIALISTAS E COORDENAÇÃO PRESENTE
           </h1>
           <p className="text-sm sm:text-lg text-[#E1E5E8]/90 max-w-2xl mx-auto leading-relaxed">
-            Professores preparados e experientes, que conhecem as exigências das principais provas e trabalham para transformar dedicação em resultado.          </p>
+            Uma equipe que alia sólida formação acadêmica, profunda experiência nas bancas examinadoras e dedicação ao desenvolvimento de cada aluno.
+          </p>
         </div>
       </section>
 

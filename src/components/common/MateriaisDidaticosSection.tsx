@@ -18,7 +18,7 @@ interface MateriaisDidaticosSectionProps {
 }
 
 export const MateriaisDidaticosSection: React.FC<MateriaisDidaticosSectionProps> = ({
-  bannerCtaTarget = '/cursos',
+  bannerCtaTarget = '/cursos/preparatorio-militar',
   onBannerCtaClick
 }) => {
   // Lista unificada de todos os materiais didáticos
