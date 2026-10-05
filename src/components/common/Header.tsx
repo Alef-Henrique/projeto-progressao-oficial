@@ -135,7 +135,7 @@ export const Header: React.FC = () => {
                 PROGRESSÃO CAXIAS
               </span>
               <span className="text-[10px] uppercase tracking-widest text-[#E1E5E8] font-semibold">
-                CURSO & COLÉGIO
+                COLÉGIO & CURSO
               </span>
             </div>
           </Link>

@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
             <div className="h-14 flex items-center group-hover:scale-105 transition-transform">
               <img
                 src="/assets/logo-oficial.webp"
-                alt="Progressão Caxias - Curso & Colégio"
+                alt="Progressão Caxias - Colégio & Curso"
                 className="h-full w-auto object-contain"
               />
             </div>
@@ -29,7 +29,7 @@ export const Footer: React.FC = () => {
                   PROGRESSÃO CAXIAS
                 </span>
                 <span className="text-[10px] uppercase tracking-widest text-white font-semibold">
-                  CURSO & COLÉGIO
+                  COLÉGIO & CURSO
                 </span>
               </div>
             </Link>
