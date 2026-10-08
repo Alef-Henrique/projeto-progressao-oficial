@@ -9,18 +9,13 @@ export interface ConcursoMilitarDiferencial {
 }
 
 export interface ConcursoMilitarPreparacao {
-  cargaHoraria: string;
-  encontros: string;
-  manha: string;
-  tarde: string;
-  noite: string;
   modalidades: string[];
 }
 
 export interface MilitaryPreparatory {
   id: string;
   nome: string;
-  subtitulo: string;
+  subtitulo?: string;
   imagem: string;
   orgao: string;
   orgaoLabel?: string;
@@ -71,9 +66,8 @@ export type ConcursoMilitar = MilitaryPreparatory;
 export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
   {
     id: 'rm2',
-    nome: 'Monitoria de Português RM2',
-    subtitulo: 'Oficial da Marinha Temporário',
-    imagem: '/assets/capas-militar/rm2-img.png',
+    nome: 'Mentoria de Português RM2',
+    imagem: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80',
     orgao: 'Marinha do Brasil (Distritos Navais em todo o Brasil)',
     edital: 'Processo Seletivo para o Serviço Militar Voluntário (SMV-OF)',
     dataPublicacao: '[INFORMAR DATA DE PUBLICAÇÃO]',
@@ -162,11 +156,6 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
       }
     ],
     preparacao: {
-      cargaHoraria: '[INFORMAR CARGA HORÁRIA]',
-      encontros: '[INFORMAR ENCONTROS]',
-      manha: '[INFORMAR HORÁRIO MANHÃ]',
-      tarde: '[INFORMAR HORÁRIO TARDE]',
-      noite: '[INFORMAR HORÁRIO NOITE]',
       modalidades: [
         'Presencial na Unidade Caxias',
         'Online — aulas ao vivo com interação em tempo real',
@@ -179,7 +168,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     id: 'esa',
     nome: 'ESA',
     subtitulo: 'Escola de Sargentos das Armas',
-    imagem: '/assets/capas-militar/esa-sargentos.png',
+    imagem: 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1200&q=80',
     orgao: 'Exército Brasileiro.',
     instituicao: 'Escola de Sargentos das Armas(ESA).',
     concurso: 'Curso de Formação e Graduação de Sargentos (CFGS) — ingresso em 2027.',
@@ -249,11 +238,6 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
       }
     ],
     preparacao: {
-      cargaHoraria: '[INFORMAR CARGA HORÁRIA]',
-      encontros: '[INFORMAR ENCONTROS]',
-      manha: '[INFORMAR HORÁRIO MANHÃ]',
-      tarde: '[INFORMAR HORÁRIO TARDE]',
-      noite: '[INFORMAR HORÁRIO NOITE]',
       modalidades: [
         'Presencial na Unidade Caxias',
         'Online — aulas ao vivo com interação em tempo real',
@@ -266,7 +250,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     id: 'eear',
     nome: 'EEAr',
     subtitulo: 'Escola de Especialistas de Aeronáutica',
-    imagem: '/assets/capas-militar/concurso-aeronautica.png',
+    imagem: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1200&q=80',
     orgao: 'Força Aérea Brasileira (FAB).',
     instituicao: 'Escola de Especialistas de Aeronáutica (EEAR), em Guaratinguetá–SP.',
     concurso: 'Exame de Admissão ao Curso de Formação de Sargentos (CFS).',
@@ -355,11 +339,6 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
       }
     ],
     preparacao: {
-      cargaHoraria: '[INFORMAR CARGA HORÁRIA]',
-      encontros: '[INFORMAR ENCONTROS]',
-      manha: '[INFORMAR HORÁRIO MANHÃ]',
-      tarde: '[INFORMAR HORÁRIO TARDE]',
-      noite: '[INFORMAR HORÁRIO NOITE]',
       modalidades: [
         'Presencial na Unidade Caxias',
         'Online — aulas ao vivo com interação em tempo real',
@@ -370,9 +349,9 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
   },
   {
     id: 'eags',
-    nome: 'Monitoria de Português EAGS',
+    nome: 'Mentoria de Português EAGS',
     subtitulo: 'Estágio de Adaptação à Graduação de Sargentos',
-    imagem: '/assets/capas-militar/Concurso-eags.jpg',
+    imagem: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
     orgao: 'Força Aérea Brasileira - FAB (EEAr - Guaratinguetá/SP)',
     edital: 'Exame de Admissão ao Estágio de Adaptação à Graduação de Sargentos da Aeronáutica',
     dataPublicacao: '[INFORMAR DATA DE PUBLICAÇÃO]',
@@ -403,7 +382,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
       'Assistência médico-hospitalar e odontológica gratuita pelo SISAU'
     ],
     disciplinas: [
-      'Língua Portuguesa Intensiva (Foco Total da Monitoria: Interpretação de Texto, Ortografia Oficial, Morfologia, Análise Sintática, Regência e Concordância)',
+      'Língua Portuguesa Intensiva (Foco Total da Mentoria: Interpretação de Texto, Ortografia Oficial, Morfologia, Análise Sintática, Regência e Concordância)',
       'Conhecimentos Especializados (Específicos da área técnica do edital: Administração, Enfermagem, Eletrônica, Eletricidade, Informática, Música, Obras, etc.)'
     ],
     etapas: [
@@ -432,7 +411,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
         descricao: 'Adaptação e formação na EEAr por 1 ano até a formatura como Terceiro-Sargento.'
       }
     ],
-    sobre: 'O EAGS é a porta de entrada mais rápida para se tornar Sargento de Carreira da Aeronáutica para quem já concluiu ou está concluindo o Ensino Técnico. A prova é composta exclusivamente por Língua Portuguesa e Conhecimentos da especialidade técnica. Como todos os candidatos dominam sua área técnica, a nota da prova de Língua Portuguesa é o verdadeiro divisor de águas que define a aprovação. Nossa monitoria foca nos detalhes gramaticais e na banca da Aeronáutica.',
+    sobre: 'O EAGS é a porta de entrada mais rápida para se tornar Sargento de Carreira da Aeronáutica para quem já concluiu ou está concluindo o Ensino Técnico. A prova é composta exclusivamente por Língua Portuguesa e Conhecimentos da especialidade técnica. Como todos os candidatos dominam sua área técnica, a nota da prova de Língua Portuguesa é o verdadeiro divisor de águas que define a aprovação. Nossa mentoria foca nos detalhes gramaticais e na banca da Aeronáutica.',
     diferenciais: [
       {
         titulo: 'Formação',
@@ -460,11 +439,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
       }
     ],
     preparacao: {
-      cargaHoraria: '[INFORMAR CARGA HORÁRIA]',
-      encontros: '[INFORMAR ENCONTROS]',
-      manha: '[INFORMAR HORÁRIO MANHÃ]',
-      tarde: '[INFORMAR HORÁRIO TARDE]',
-      noite: '[INFORMAR HORÁRIO NOITE]',
+
       modalidades: [
         'Presencial na Unidade Caxias',
         'Online — aulas ao vivo com interação em tempo real',
@@ -477,7 +452,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     id: 'afa',
     nome: 'AFA',
     subtitulo: 'Academia da Força Aérea',
-    imagem: '/assets/capas-militar/concurso-afa.jpg',
+    imagem: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80',
     orgao: 'Força Aérea Brasileira (FAB).',
     instituicao: 'Academia da Força Aérea (AFA), em Pirassununga–SP.',
     concurso: 'Exame de Admissão aos Cursos de Formação de Oficiais da Aeronáutica (EA CFOAV/INT/INF 2027).',
@@ -568,11 +543,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
       }
     ],
     preparacao: {
-      cargaHoraria: '[INFORMAR CARGA HORÁRIA]',
-      encontros: '[INFORMAR ENCONTROS]',
-      manha: '[INFORMAR HORÁRIO MANHÃ]',
-      tarde: '[INFORMAR HORÁRIO TARDE]',
-      noite: '[INFORMAR HORÁRIO NOITE]',
+
       modalidades: [
         'Presencial na Unidade Caxias',
         'Online — aulas ao vivo com interação em tempo real',
@@ -585,7 +556,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     id: 'efomm',
     nome: 'EFOMM',
     subtitulo: 'Escola de Formação de Oficiais da Marinha Mercante',
-    imagem: '/assets/capas-militar/efomm.jpg',
+    imagem: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80',
     orgaoLabel: 'Órgão responsável',
     orgao: 'Marinha do Brasil.',
     instituicao: 'Escola de Formação de Oficiais da Marinha Mercante (EFOMM), com formação no CIAGA (Rio de Janeiro–RJ) e no CIABA (Belém–PA).',
@@ -674,11 +645,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
       }
     ],
     preparacao: {
-      cargaHoraria: '[INFORMAR CARGA HORÁRIA]',
-      encontros: '[INFORMAR ENCONTROS]',
-      manha: '[INFORMAR HORÁRIO MANHÃ]',
-      tarde: '[INFORMAR HORÁRIO TARDE]',
-      noite: '[INFORMAR HORÁRIO NOITE]',
+
       modalidades: [
         'Presencial na Unidade Caxias',
         'Online — aulas ao vivo com interação em tempo real',
@@ -691,7 +658,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     id: 'espcex',
     nome: 'EsPCEx',
     subtitulo: 'Escola Preparatória de Cadetes do Exército',
-    imagem: '/assets/capas-militar/espcex.jpg',
+    imagem: 'https://images.unsplash.com/photo-1579208575657-c595a05383b7?auto=format&fit=crop&w=1200&q=80',
     orgao: 'Exército Brasileiro.',
     instituicao: 'Escola Preparatória de Cadetes do Exército (EsPCEx), localizada em Campinas–SP.',
     concurso: 'Concurso de Admissão à EsPCEx 2026/2027.',
@@ -780,11 +747,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
       }
     ],
     preparacao: {
-      cargaHoraria: '[INFORMAR CARGA HORÁRIA]',
-      encontros: '[INFORMAR ENCONTROS]',
-      manha: '[INFORMAR HORÁRIO MANHÃ]',
-      tarde: '[INFORMAR HORÁRIO TARDE]',
-      noite: '[INFORMAR HORÁRIO NOITE]',
+
       modalidades: [
         'Presencial na Unidade Caxias',
         'Online — aulas ao vivo com interação em tempo real',
@@ -797,7 +760,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     id: 'colegio-naval',
     nome: 'Colégio Naval',
     subtitulo: 'Escola de Formação de Aspirantes da Marinha',
-    imagem: '/assets/capas-militar/colegio-naval.jpeg',
+    imagem: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80',
     orgao: 'Marinha do Brasil.',
     edital: 'Concurso de Admissão ao Colégio Naval (CPACN)',
     ultimoEditalLabel: 'Último edital consultado',
@@ -874,11 +837,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
       }
     ],
     preparacao: {
-      cargaHoraria: '[INFORMAR CARGA HORÁRIA]',
-      encontros: '[INFORMAR ENCONTROS]',
-      manha: '[INFORMAR HORÁRIO MANHÃ]',
-      tarde: '[INFORMAR HORÁRIO TARDE]',
-      noite: '[INFORMAR HORÁRIO NOITE]',
+
       modalidades: [
         'Presencial na Unidade Caxias',
         'Online — aulas ao vivo com interação em tempo real',
@@ -891,7 +850,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     id: 'epcar',
     nome: 'EPCAR',
     subtitulo: 'Escola Preparatória de Cadetes do Ar',
-    imagem: '/assets/capas-militar/epcar.png',
+    imagem: 'https://images.unsplash.com/photo-1519074069444-1ba4eae16e60?auto=format&fit=crop&w=1200&q=80',
     orgao: 'Força Aérea Brasileira (FAB).',
     instituicao: 'Escola Preparatória de Cadetes do Ar (EPCAR).',
     concurso: 'Exame de Admissão ao Curso Preparatório de Cadetes do Ar (CPCAR 2027).',
@@ -916,7 +875,12 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     remuneracaoFormacao: 'O valor deve ser confirmado no edital e nas normas remuneratórias aplicáveis; não consegui confirmar um valor oficial atualizado para divulgação.',
     remuneracaoFormado: 'O valor deve ser confirmado no edital e nas normas remuneratórias aplicáveis; não consegui confirmar um valor oficial atualizado para divulgação.',
     beneficios: [
-      'Formação gratuita, alojamento, alimentação, uniformes e assistência médica, conforme as regras da instituição.'
+      'Ensino Médio de elite acadêmica e militar no Berço dos Aviadores da FAB',
+      'Vaga direta garantida na Academia da Força Aérea (AFA/SP) sem novo vestibular',
+      'Recebimento de bolsa-auxílio financeira mensal durante os 3 anos de curso',
+      'Custeio integral de alojamento, fardas, alimentação de alta qualidade e material didático',
+      'Assistência médico-hospitalar e odontológica do Sistema de Saúde da Aeronáutica (SISAU)',
+      'Treinamento físico, liderança militar, espírito aeronáutico e convivência em internato'
     ],
     disciplinas: [
       'Língua Portuguesa (Gramática Geral, Morfologia, Sintaxe do Período, Ortografia e Interpretação Textual)',
@@ -966,15 +930,11 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
       },
       {
         titulo: 'Benefícios',
-        descricao: 'Formação gratuita, alojamento, alimentação, uniformes e assistência médica, conforme as regras da instituição.'
+        descricao: 'Estrutura completa com alojamentos, 4 refeições diárias, fardas e saúde integral custeados.'
       }
     ],
     preparacao: {
-      cargaHoraria: '[INFORMAR CARGA HORÁRIA]',
-      encontros: '[INFORMAR ENCONTROS]',
-      manha: '[INFORMAR HORÁRIO MANHÃ]',
-      tarde: '[INFORMAR HORÁRIO TARDE]',
-      noite: '[INFORMAR HORÁRIO NOITE]',
+
       modalidades: [
         'Presencial na Unidade Caxias',
         'Online — aulas ao vivo com interação em tempo real',

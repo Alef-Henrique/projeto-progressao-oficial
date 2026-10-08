@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
-import {
-  Sparkles,
-  CheckCircle2,
-  ArrowRight,
-  ChevronRight,
-  ChevronLeft,
-  Star,
-  MessageCircle,
+import React, { useState, useEffect } from 'react';
+import { 
+  Sparkles, 
+  ArrowRight, 
+  ChevronRight, 
+  ChevronLeft, 
+  Star, 
+  MessageCircle, 
   Check
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { WHATSAPP_NUMBER } from '../config/siteConfig';
-import { RDStationForm } from '../components/rdstation/RDStationForm';
+import { PRODUTOS_ACELERADOR_VEST, AceleradorProduto } from '../data/aceleradorVestData';
+import { AceleradorProdutoModal } from '../components/vestibular/AceleradorProdutoModal';
+import { TurmasVestibularSection } from '../components/vestibular/TurmasVestibularSection';
+import { TurmaDetalhesModal } from '../components/turmas/TurmaDetalhesModal';
+import { TurmaDetalhes } from '../data/turmasData';
 
 export const PreVestibularPage: React.FC = () => {
+  // Estado para o produto selecionado do Acelerador Vest (Modal de Detalhes)
+  const [selectedProduto, setSelectedProduto] = useState<AceleradorProduto | null>(null);
+
+  // Estado para a turma selecionada do Pré-Vestibular (Modal / Página de Detalhes)
+  const [selectedTurma, setSelectedTurma] = useState<TurmaDetalhes | null>(null);
+
   // Estado para o carrossel de depoimentos reais
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
-
-  // Estado interativo para o mockup da questão do PROG Provas
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>('C');
 
   // Estado do formulário de pré-inscrição
   const [formData, setFormData] = useState({
@@ -77,13 +83,13 @@ export const PreVestibularPage: React.FC = () => {
   ];
 
   const handlePrevTestimonial = () => {
-    setCurrentTestimonialIndex((prev) =>
+    setCurrentTestimonialIndex((prev) => 
       prev === 0 ? approvedStudents.length - 1 : prev - 1
     );
   };
 
   const handleNextTestimonial = () => {
-    setCurrentTestimonialIndex((prev) =>
+    setCurrentTestimonialIndex((prev) => 
       (prev + 1) % approvedStudents.length
     );
   };
@@ -100,6 +106,20 @@ export const PreVestibularPage: React.FC = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Fecha modais com tecla ESC
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedProduto(null);
+        setSelectedTurma(null);
+      }
+    };
+    if (selectedProduto || selectedTurma) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedProduto, selectedTurma]);
 
   return (
     <div className="flex flex-col w-full bg-[#F8FAFC] text-[#0A131F] selection:bg-[#FFBF00] selection:text-[#00223B]">
@@ -122,7 +142,7 @@ export const PreVestibularPage: React.FC = () => {
       {/* ============================================================ */}
       <section className="relative bg-[#00223B] text-white pt-16 pb-20 sm:pt-20 sm:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
         {/* Textura sutil e elegante de listras diagonais suaves e escuras oficial do Progressão */}
-        <div
+        <div 
           className="absolute inset-0 pointer-events-none z-0"
           style={{
             backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
@@ -168,7 +188,7 @@ export const PreVestibularPage: React.FC = () => {
 
                 <button
                   type="button"
-                  onClick={() => scrollToSection('diferenciais')}
+                  onClick={() => scrollToSection('turmas-vestibular')}
                   className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 font-bold text-sm sm:text-base px-6 py-4 rounded-xl uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer"
                 >
                   <span>CONHECER O PRÉ-VEST</span>
@@ -233,6 +253,11 @@ export const PreVestibularPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* ============================================================ */}
+      {/* 3.1 SEÇÃO OFICIAL: TURMA PRÉ-VESTIBULAR 2027 */}
+      {/* ============================================================ */}
+      <TurmasVestibularSection onSelectTurma={setSelectedTurma} />
 
       {/* ============================================================ */}
       {/* 4. SEÇÃO — APROVADOS (CARROSSEL DE HISTÓRIAS REAIS) */}
@@ -314,276 +339,87 @@ export const PreVestibularPage: React.FC = () => {
       </section>
 
       {/* ============================================================ */}
-      {/* 5. SEÇÃO — POR QUE O PROG É DIFERENTE? */}
+      {/* 5. SEÇÃO — PRODUTOS DO ACELERADOR VEST */}
       {/* ============================================================ */}
-      <section id="diferenciais" className="py-16 sm:py-24 bg-[#001D33] text-white px-4 sm:px-6 lg:px-8 border-y border-[#015E96]/30">
+      <section id="diferenciais" className="py-16 sm:py-24 bg-white text-[#0A131F] px-4 sm:px-6 lg:px-8 border-y border-[#E1E5E8]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Texto */}
-            <div className="lg:col-span-6 flex flex-col items-start">
-              <span className="text-xs sm:text-sm font-bold text-[#38BDF8] uppercase tracking-wider block mb-2">
-                Inovação no Cursinho
-              </span>
-              <h2 className="font-serif-heading text-2xl sm:text-4xl font-black text-white tracking-tight uppercase leading-snug mb-5">
-                Por que o PROG é diferente?
-              </h2>
-
-              <p className="text-base sm:text-lg text-[#E1E5E8]/90 leading-relaxed mb-6 font-normal">
-                Além de se preparar de forma antecipada e garantir descontos especiais, acreditamos que em pleno 2027 não dá para estudar do mesmo jeito do século passado. Por isso, mapeamos as principais dificuldades dos estudantes e desenvolvemos ferramentas específicas para cada uma delas.
-              </p>
-
-              {/* Destaque Visual */}
-              <div className="bg-[#0289C6]/20 border-l-4 border-[#FFBF00] p-4 sm:p-5 rounded-r-2xl my-2">
-                <span className="text-base sm:text-lg font-black text-white block">
-                  Preparação inteligente para uma nova geração de estudantes.
-                </span>
-                <span className="text-xs text-[#E1E5E8]/80 mt-1 block">
-                  Mais do que assistir a aulas: análise de dados, acompanhamento individual e estratégias de prova.
-                </span>
-              </div>
-            </div>
-
-            {/* Composição Visual Digital (Estudante + Elementos de Desempenho) */}
-            <div className="lg:col-span-6 relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-[#002B48] aspect-[16/10] sm:aspect-[4/3]">
-                <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80"
-                  alt="Estudante utilizando notebook e tablet para estudos de alta performance"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001D33]/40 via-transparent to-transparent pointer-events-none" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/* 6. TECNOLOGIA — PROG NITRO */}
-      {/* ============================================================ */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Informações da ferramenta */}
-          <div className="lg:col-span-5 flex flex-col items-start">
+          {/* Cabeçalho da Seção */}
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <span className="text-xs sm:text-sm font-bold text-[#0289C6] uppercase tracking-wider block mb-2">
-              Tecnologia Educacional
+              Ecossistema Completo de Preparação
             </span>
-            <span className="text-sm font-extrabold text-[#D97706] uppercase tracking-widest block mb-1">
-              PROG Nitro
-            </span>
-            <h2 className="font-serif-heading text-2xl sm:text-4xl font-black text-[#00223B] tracking-tight uppercase mb-4">
-              Estudando certo, sempre.
+            <h2 className="font-serif-heading text-2xl sm:text-4xl font-black text-[#00223B] tracking-tight uppercase leading-snug mb-4">
+              Produtos do Acelerador Vest
             </h2>
-            <p className="text-base text-[#64748B] leading-relaxed mb-6">
-              O PROG Nitro cria trilhas personalizadas com inteligência artificial que focam no que realmente importa para cada aluno.
-            </p>
-
-            <ul className="space-y-3 mb-8 text-sm text-[#0A131F]/80">
-              <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-5 h-5 text-[#0289C6] shrink-0 mt-0.5" />
-                <span>Identifica lacunas de conteúdo antes dos simulados oficiais</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-5 h-5 text-[#0289C6] shrink-0 mt-0.5" />
-                <span>Sugere exercícios sob medida de acordo com seu curso pretendido</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-5 h-5 text-[#0289C6] shrink-0 mt-0.5" />
-                <span>Painel claro de evolução semana a semana</span>
-              </li>
-            </ul>
-
-            <button
-              type="button"
-              onClick={() => scrollToSection('pre-inscricao')}
-              className="inline-flex items-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
-            >
-              <span>GARANTIR UM FUTURO SEGURO</span>
-              <ArrowRight className="w-4 h-4 text-[#FFBF00]" />
-            </button>
-          </div>
-
-          {/* Imagem Visual da Plataforma PROG Nitro */}
-          <div className="lg:col-span-7">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#0289C6]/30 bg-[#001D33] aspect-[16/10] sm:aspect-[4/3] group">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
-                alt="Plataforma PROG Nitro com painel de inteligência analítica e acompanhamento de desempenho para o ENEM"
-                className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001D33]/90 via-transparent to-[#001D33]/30 pointer-events-none" />
-
-              {/* Tag superior de identificação */}
-              <div className="absolute top-4 left-4 bg-[#001D33]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20 text-white flex items-center gap-2 shadow-lg">
-                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                <span className="text-xs font-bold uppercase tracking-wider text-white">PROG Nitro • Painel de Inteligência</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/* 7. PROG PROVAS — SISTEMA DE QUESTÕES INTENSIVO */}
-      {/* ============================================================ */}
-      <section className="py-16 sm:py-24 bg-white border-y border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Lado Esquerdo: Texto & Benefícios */}
-            <div className="lg:col-span-6 flex flex-col items-start">
-              <span className="text-xs sm:text-sm font-bold text-[#0289C6] uppercase tracking-wider block mb-1">
-                Banco de Treinamento
-              </span>
-              <span className="text-xs font-extrabold text-[#D97706] uppercase tracking-widest block mb-2">
-                PROG Provas
-              </span>
-              <h2 className="font-serif-heading text-2xl sm:text-4xl font-black text-[#00223B] tracking-tight uppercase leading-snug mb-4">
-                Evolução constante e eficaz.
-              </h2>
-              <p className="text-base text-[#64748B] leading-relaxed mb-6">
-                O PROG Provas oferece uma bateria intensa de questões com gabarito comentado e relatórios detalhados sobre seu desempenho.
-              </p>
-
-              <div className="space-y-4 w-full">
-                <div className="flex items-start gap-3 bg-[#F8FAFC] p-4 rounded-xl border border-[#E1E5E8]">
-                  <CheckCircle2 className="w-5 h-5 text-[#0289C6] shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-sm text-[#00223B]">Milhares de Questões Comentadas</h4>
-                    <p className="text-xs text-[#64748B] mt-0.5">Resoluções passo a passo de cada alternativa, com foco no raciocínio cobrado pela banca.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 bg-[#F8FAFC] p-4 rounded-xl border border-[#E1E5E8]">
-                  <CheckCircle2 className="w-5 h-5 text-[#0289C6] shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-sm text-[#00223B]">Filtros por Assunto e Nível de Dificuldade</h4>
-                    <p className="text-xs text-[#64748B] mt-0.5">Treine apenas o que você precisa: do nível fácil ao difícil, por tema específico do edital.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3 bg-[#F8FAFC] p-4 rounded-xl border border-[#E1E5E8]">
-                  <CheckCircle2 className="w-5 h-5 text-[#0289C6] shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-sm text-[#00223B]">Estatísticas de Tempo de Resolução</h4>
-                    <p className="text-xs text-[#64748B] mt-0.5">Monitore se você está gastando o tempo ideal de prova (média de 3 minutos por questão).</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Lado Direito: Mockup Interativo de uma Tela de Questões */}
-            <div className="lg:col-span-6">
-              <div className="bg-[#F8FAFC] rounded-3xl p-5 sm:p-7 border border-[#E1E5E8] shadow-xl">
-                {/* Cabeçalho da Questão */}
-                <div className="flex items-center justify-between pb-3 border-b border-[#E1E5E8] text-xs font-semibold text-[#64748B]">
-                  <span className="bg-[#004B7C] text-white px-2.5 py-1 rounded-md text-[11px] font-bold">
-                    ENEM • Ciências da Natureza
-                  </span>
-                  <span>Tempo: 02:45 min</span>
-                </div>
-
-                {/* Enunciado */}
-                <div className="my-4 text-xs sm:text-sm text-[#0A131F] leading-relaxed">
-                  <p className="font-medium mb-2">
-                    Em um circuito elétrico residencial de 127 V, um equipamento de potência 2.540 W opera de maneira constante. De acordo com os parâmetros da física e a Lei de Ohm, qual é a intensidade da corrente elétrica estabelecida no circuito?
-                  </p>
-                </div>
-
-                {/* Alternativas Interativas */}
-                <div className="space-y-2 mb-4">
-                  {[
-                    { id: 'A', text: '10 A' },
-                    { id: 'B', text: '15 A' },
-                    { id: 'C', text: '20 A (Correta: P = V × I → I = 2540 / 127 = 20 A)' },
-                    { id: 'D', text: '25 A' },
-                    { id: 'E', text: '30 A' }
-                  ].map((alt) => (
-                    <button
-                      key={alt.id}
-                      type="button"
-                      onClick={() => setSelectedAnswer(alt.id)}
-                      className={`w-full text-left p-3 rounded-xl text-xs sm:text-sm flex items-center justify-between transition-all border ${selectedAnswer === alt.id
-                          ? alt.id === 'C'
-                            ? 'bg-[#10B981]/10 border-[#10B981] text-[#065F46] font-semibold'
-                            : 'bg-[#EF4444]/10 border-[#EF4444] text-[#991B1B] font-semibold'
-                          : 'bg-white border-[#E1E5E8] text-[#0A131F] hover:bg-[#F1F5F9]'
-                        }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-md bg-[#004B7C]/10 text-[#004B7C] font-bold text-xs flex items-center justify-center shrink-0">
-                          {alt.id}
-                        </span>
-                        <span>{alt.text}</span>
-                      </div>
-                      {selectedAnswer === alt.id && alt.id === 'C' && (
-                        <Check className="w-4 h-4 text-[#10B981] shrink-0" />
-                      )}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Indicador de Desempenho */}
-                <div className="bg-white p-3.5 rounded-xl border border-[#E1E5E8] flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-2 text-[#0A131F]">
-                    <span className="font-bold text-[#10B981]">78%</span>
-                    <span>dos estudantes do Progressão acertaram esta questão</span>
-                  </div>
-                  <span className="text-[11px] font-semibold text-[#004B7C]">Gabarito Oficial</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/* 11. SEÇÃO — JORNADA DO ALUNO (TIMELINE 01 A 06) */}
-      {/* ============================================================ */}
-      <section className="py-16 sm:py-24 bg-[#F1F5F9] px-4 sm:px-6 lg:px-8 border-t border-[#E1E5E8]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs sm:text-sm font-bold text-[#0289C6] uppercase tracking-wider block mb-2">
-              Passo a Passo Rumo à Universidade
-            </span>
-            <h2 className="font-serif-heading text-2xl sm:text-4xl font-black text-[#00223B] tracking-tight uppercase">
-              Do primeiro dia até a aprovação.
-            </h2>
-            <p className="mt-2 text-sm sm:text-base text-[#64748B]">
-              Uma jornada clara, planejada e orientada para você não perder tempo estudando sem rumo.
+            <p className="text-sm sm:text-base text-[#0A131F]/70 max-w-3xl mx-auto leading-relaxed">
+              Recursos, plataformas e simulados que potencializam a preparação para o ENEM e ajudam o aluno a estudar de forma mais personalizada e estratégica.
             </p>
           </div>
 
-          {/* Timeline Responsiva: Grid no Desktop e Vertical no Mobile */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
-            {[
-              { step: '01', title: 'Diagnóstico', desc: 'Entenda seu nível atual.' },
-              { step: '02', title: 'Plano de estudos', desc: 'Descubra o que precisa estudar.' },
-              { step: '03', title: 'Prática', desc: 'Resolva questões e faça simulados.' },
-              { step: '04', title: 'Correção', desc: 'Entenda seus erros.' },
-              { step: '05', title: 'Evolução', desc: 'Acompanhe seu desempenho.' },
-              { step: '06', title: 'Aprovação', desc: 'Chegue preparado para a prova.' }
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white p-5 rounded-2xl border border-[#E1E5E8] shadow-xs flex flex-col justify-between relative group hover:border-[#0289C6] transition-colors"
+          {/* Grid de Produtos (Desktop: 3 colunas, Tablet: 2 colunas, Mobile: 1 coluna) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {PRODUTOS_ACELERADOR_VEST.map((produto) => (
+              <div 
+                key={produto.id}
+                className="bg-white rounded-2xl overflow-hidden border border-[#E1E5E8] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1 text-[#0A131F]"
               >
-                <div>
-                  <span className="text-2xl font-black text-[#0289C6] font-mono block mb-2">
-                    {item.step}
-                  </span>
-                  <h3 className="font-bold text-sm text-[#00223B] mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-[#64748B] leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-                {idx < 5 && (
-                  <div className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 z-10 text-[#CBD5E1]">
-                    →
+                {/* Topo / Header Visual do Card */}
+                <div className="bg-gradient-to-br from-[#00223B] to-[#001D33] text-white p-5 sm:p-6 relative overflow-hidden shrink-0">
+                  <div 
+                    className="absolute inset-0 pointer-events-none opacity-10"
+                    style={{
+                      backgroundImage: 'repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0px, rgba(255, 255, 255, 0.1) 16px, transparent 16px, transparent 32px)'
+                    }}
+                  />
+                  
+                  <div className="relative z-10 space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="inline-block bg-[#0289C6]/20 border border-[#0289C6]/40 text-[#38BDF8] font-bold text-[10px] px-2.5 py-0.5 rounded-md uppercase tracking-wider">
+                        {produto.categoria}
+                      </span>
+                      {produto.badge && (
+                        <span className="inline-block bg-[#FFBF00]/20 border border-[#FFBF00]/30 text-[#FFBF00] font-bold text-[10px] px-2 py-0.5 rounded-md uppercase tracking-wider">
+                          {produto.badge}
+                        </span>
+                      )}
+                    </div>
+
+                    <h3 className="font-serif-heading text-lg sm:text-xl font-black text-white uppercase leading-snug line-clamp-2 min-h-[3rem]">
+                      {produto.titulo}
+                    </h3>
+
+                    <p className="text-xs text-[#E1E5E8]/80 line-clamp-1">
+                      {produto.descricaoCurta}
+                    </p>
                   </div>
-                )}
+                </div>
+
+                {/* Conteúdo / Principais Benefícios do Card */}
+                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between gap-5 bg-white">
+                  <div className="space-y-3">
+                    <div className="bg-[#F8FAFC] p-3.5 rounded-xl border border-[#E1E5E8]">
+                      <span className="text-[10px] font-bold text-[#004B7C] uppercase tracking-wider block mb-1">
+                        Principais Benefícios
+                      </span>
+                      <p className="text-xs text-[#334155] leading-relaxed line-clamp-3">
+                        {produto.resumo}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Botão Ver Detalhes */}
+                  <div className="pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedProduto(produto)}
+                      aria-label={`Ver detalhes do ${produto.titulo}`}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
+                    >
+                      <span>Ver detalhes</span>
+                      <ArrowRight className="w-4 h-4 text-[#FFBF00] group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -591,7 +427,7 @@ export const PreVestibularPage: React.FC = () => {
       </section>
 
       {/* ============================================================ */}
-      {/* 12. CTA FINAL COM IMPACTO */}
+      {/* 6. CTA FINAL COM IMPACTO */}
       {/* ============================================================ */}
       <section className="py-16 sm:py-20 bg-[#001D33] text-white px-4 sm:px-6 lg:px-8 border-t border-[#015E96]/30 text-center">
         <div className="max-w-4xl mx-auto">
@@ -625,15 +461,197 @@ export const PreVestibularPage: React.FC = () => {
       {/* ============================================================ */}
       {/* 13. FORMULÁRIO DE PRÉ-INSCRIÇÃO (ETAPA DE MATRÍCULA) */}
       {/* ============================================================ */}
-            <div className="bg-white p-8 flex justify-center">
-              <div className="w-full max-w-[600px]">
-                {/* RD STATION — PROVISÓRIO */}
-                <RDStationForm
-                  formId="caxias_lp_geral-6b17fb580118e7e46ef8"
-                />
+      <section id="pre-inscricao" className="py-16 sm:py-24 bg-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-10">
+            <span className="text-xs sm:text-sm font-bold text-[#0289C6] uppercase tracking-wider block mb-1">
+              Garanta Sua Condição Especial
+            </span>
+            <h2 className="font-serif-heading text-2xl sm:text-4xl font-black text-[#00223B] tracking-tight uppercase">
+              A turma ideal para você.
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-[#64748B]">
+              Estude onde e quando for melhor para você. Escolha entre diferentes horários e locais disponíveis.
+            </p>
+          </div>
+
+          <div className="bg-[#F8FAFC] rounded-3xl p-6 sm:p-10 border border-[#E1E5E8] shadow-lg">
+            {formSubmitted ? (
+              <div className="text-center py-8 space-y-4">
+                <div className="w-16 h-16 rounded-full bg-[#10B981]/20 text-[#10B981] flex items-center justify-center mx-auto">
+                  <Check className="w-8 h-8" />
+                </div>
+                <h3 className="font-serif-heading text-2xl font-black text-[#00223B]">
+                  Pré-Inscrição Recebida com Sucesso!
+                </h3>
+                <p className="text-sm text-[#64748B] max-w-md mx-auto leading-relaxed">
+                  Obrigado, <strong>{formData.nome}</strong>! Nossa equipe pedagógica de Duque de Caxias entrará em contato pelo WhatsApp para detalhar horários, valores e benefícios da turma de {formData.preparacao}.
+                </p>
+
+                <div className="pt-4">
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Acabei de fazer a pré-inscrição no site do Progressão para a turma de ${formData.preparacao} (${formData.horario} - ${formData.modalidade}). Meu nome é ${formData.nome}.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-md transition-all"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-current" />
+                    <span>Confirmar Agora pelo WhatsApp</span>
+                  </a>
+                </div>
               </div>
-            </div>
-      
+            ) : (
+              <form onSubmit={handleFormSubmit} className="space-y-6">
+                {/* Nome Completo */}
+                <div>
+                  <label htmlFor="nome" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                    Nome Completo
+                  </label>
+                  <input
+                    id="nome"
+                    type="text"
+                    required
+                    value={formData.nome}
+                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                    placeholder="Ex: Mariana Silveira"
+                    className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
+                  />
+                </div>
+
+                {/* WhatsApp & E-mail */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="whatsapp" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                      WhatsApp com DDD
+                    </label>
+                    <input
+                      id="whatsapp"
+                      type="tel"
+                      required
+                      value={formData.whatsapp}
+                      onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+                      placeholder="(21) 99999-9999"
+                      className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                      E-mail (opcional)
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="seuemail@exemplo.com"
+                      className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Qual preparação você procura? */}
+                <div>
+                  <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                    Qual preparação você procura?
+                  </label>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                    {['ENEM', 'Pré-Vestibular', 'Vestibulares', 'Ainda não sei'].map((prep) => (
+                      <button
+                        key={prep}
+                        type="button"
+                        onClick={() => setFormData({ ...formData, preparacao: prep })}
+                        className={`p-3 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
+                          formData.preparacao === prep
+                            ? 'bg-[#004B7C] text-white border-[#004B7C] shadow-sm'
+                            : 'bg-white text-[#64748B] border-[#CBD5E1] hover:bg-[#F1F5F9]'
+                        }`}
+                      >
+                        {prep}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Preferência de Horário */}
+                <div>
+                  <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                    Preferência de Horário
+                  </label>
+                  <div className="grid grid-cols-3 gap-2.5">
+                    {['Manhã', 'Tarde', 'Noite'].map((h) => (
+                      <button
+                        key={h}
+                        type="button"
+                        onClick={() => setFormData({ ...formData, horario: h })}
+                        className={`p-3 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
+                          formData.horario === h
+                            ? 'bg-[#004B7C] text-white border-[#004B7C] shadow-sm'
+                            : 'bg-white text-[#64748B] border-[#CBD5E1] hover:bg-[#F1F5F9]'
+                        }`}
+                      >
+                        {h}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Modalidade */}
+                <div>
+                  <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                    Modalidade
+                  </label>
+                  <div className="grid grid-cols-3 gap-2.5">
+                    {['Presencial', 'Online', 'Ainda não sei'].map((m) => (
+                      <button
+                        key={m}
+                        type="button"
+                        onClick={() => setFormData({ ...formData, modalidade: m })}
+                        className={`p-3 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
+                          formData.modalidade === m
+                            ? 'bg-[#004B7C] text-white border-[#004B7C] shadow-sm'
+                            : 'bg-white text-[#64748B] border-[#CBD5E1] hover:bg-[#F1F5F9]'
+                        }`}
+                      >
+                        {m}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Botão de Envio */}
+                <button
+                  type="submit"
+                  className="w-full bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-sm sm:text-base py-4 rounded-xl uppercase tracking-wider shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2"
+                >
+                  <span>QUERO GARANTIR MINHA VAGA</span>
+                  <ArrowRight className="w-5 h-5 text-[#00223B]" />
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* MODAL / PAINEL SOBREPOSTO DE DETALHES DO PRODUTO */}
+      {/* ============================================================ */}
+      {selectedProduto && (
+        <AceleradorProdutoModal
+          produto={selectedProduto}
+          onClose={() => setSelectedProduto(null)}
+        />
+      )}
+
+      {/* ============================================================ */}
+      {/* MODAL / PAINEL SOBREPOSTO DE DETALHES DA TURMA */}
+      {/* ============================================================ */}
+      {selectedTurma && (
+        <TurmaDetalhesModal
+          turma={selectedTurma}
+          onClose={() => setSelectedTurma(null)}
+        />
+      )}
     </div>
   );
 };

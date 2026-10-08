@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Shield,
-  CheckCircle2,
-  Target,
-  Clock,
-  Award,
-  BookOpen,
-  X,
-  ArrowRight,
-  ArrowLeft,
-  DollarSign,
-  Calendar,
-  GraduationCap,
-  Users,
-  FileText,
+import { 
+  Shield, 
+  CheckCircle2, 
+  Target, 
+  Clock, 
+  Award, 
+  BookOpen, 
+  X, 
+  ArrowRight, 
+  ArrowLeft, 
+  DollarSign, 
+  Calendar, 
+  GraduationCap, 
+  Users, 
+  FileText, 
   Sparkles,
   Building2,
   TrendingUp,
@@ -28,21 +28,28 @@ import {
   MonitorCheck
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
-import { CTASection } from '../components/common/CTASection';
 import { Link } from '../components/routing/RouterContext';
-import {
-  MILITARY_PREPARATORIES,
-  CAREER_DIFFERENTIALS,
-  MilitaryPreparatory
+import { 
+  MILITARY_PREPARATORIES, 
+  CAREER_DIFFERENTIALS, 
+  MilitaryPreparatory 
 } from '../data/militaryData';
 import { COURSES_DATA } from '../data/siteData';
 import { WHATSAPP_NUMBER } from '../config/siteConfig';
-import { RDStationForm } from '../components/rdstation/RDStationForm';
+import { TurmaDetalhesModal } from '../components/turmas/TurmaDetalhesModal';
+import { TurmasEmDestaqueSection } from '../components/turmas/TurmasEmDestaqueSection';
+import { MentoriasSection } from '../components/mentorias/MentoriasSection';
+import { MentoriaDetalhesModal } from '../components/mentorias/MentoriaDetalhesModal';
+import { getTurmaForPreparatory, TurmaDetalhes } from '../data/turmasData';
+import { MentoriaDetalhes, getMentoriaForPreparatory } from '../data/mentoriasData';
 
 export const PreparatorioMilitarPage: React.FC = () => {
   const [selectedPreparatory, setSelectedPreparatory] = useState<MilitaryPreparatory | null>(null);
+  const [selectedTurma, setSelectedTurma] = useState<TurmaDetalhes | null>(null);
+  const [selectedMentoria, setSelectedMentoria] = useState<MentoriaDetalhes | null>(null);
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   // Fecha o modal ao pressionar ESC
@@ -50,10 +57,12 @@ export const PreparatorioMilitarPage: React.FC = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setSelectedPreparatory(null);
+        setSelectedTurma(null);
+        setSelectedMentoria(null);
       }
     };
 
-    if (selectedPreparatory) {
+    if (selectedPreparatory || selectedTurma || selectedMentoria) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
     } else {
@@ -64,7 +73,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
       document.body.style.overflow = 'unset';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [selectedPreparatory]);
+  }, [selectedPreparatory, selectedTurma, selectedMentoria]);
 
   // Rola para o topo do modal ao abrir
   useEffect(() => {
@@ -133,7 +142,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
       {/* ============================================================ */}
       <section className="relative bg-[#00223B] text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
         {/* Textura sutil e elegante de listras diagonais suaves e escuras oficial do Progressão */}
-        <div
+        <div 
           className="absolute inset-0 pointer-events-none z-0"
           style={{
             backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
@@ -208,6 +217,8 @@ export const PreparatorioMilitarPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {MILITARY_PREPARATORIES.map((prep) => {
             const badge = getStatusBadge(prep.status, prep.statusTipo);
+            const turmaVinculada = getTurmaForPreparatory(prep.id);
+            const mentoriaVinculada = getMentoriaForPreparatory(prep.id);
 
             return (
               <div
@@ -218,12 +229,12 @@ export const PreparatorioMilitarPage: React.FC = () => {
                 <div className="relative w-full h-52 sm:h-56 overflow-hidden bg-[#00223B] shrink-0">
                   <img
                     src={prep.imagem}
-                    alt={`${prep.nome} - ${prep.subtitulo}`}
+                    alt={prep.subtitulo ? `${prep.nome} - ${prep.subtitulo}` : prep.nome}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#00223B]/85 via-[#00223B]/30 to-transparent pointer-events-none" />
-
+                  
                   {/* Status do Edital no Topo Direito (Fácil Edição) */}
                   <div className="absolute top-3 right-3 z-10">
                     <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider shadow-md border ${badge.bg}`}>
@@ -232,15 +243,11 @@ export const PreparatorioMilitarPage: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Nome e Subtítulo sobrepostos ao rodapé da imagem */}
+                  {/* Nome sobreposto ao rodapé da imagem */}
                   <div className="absolute bottom-3 left-4 right-4 z-10">
                     <h3 className="font-serif-heading text-xl sm:text-2xl font-black text-white tracking-tight uppercase leading-tight drop-shadow-md">
                       {prep.nome}
                     </h3>
-                    <span className="text-[11px] font-bold text-[#FFBF00] uppercase tracking-wider block mb-0.5">
-                      {prep.subtitulo}
-                    </span>
-
                   </div>
                 </div>
 
@@ -275,16 +282,48 @@ export const PreparatorioMilitarPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* BOTÃO "SAIBA MAIS" (ABRE A MINI PÁGINA/MODAL COMPLETO) */}
-                  <button
-                    type="button"
-                    onClick={() => setSelectedPreparatory(prep)}
-                    aria-label={`Saiba mais sobre o concurso ${prep.nome}`}
-                    className="w-full mt-1 inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-[0.98] cursor-pointer"
-                  >
-                    <span>Saiba mais</span>
-                    <ArrowRight className="w-4 h-4 text-[#FFBF00] group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  {/* BOTÕES DO CARD */}
+                  <div className="space-y-2 mt-1">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedPreparatory(prep)}
+                      aria-label={`Saiba mais sobre o concurso ${prep.nome}`}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-[0.98] cursor-pointer"
+                    >
+                      <span>Saiba mais</span>
+                      <ArrowRight className="w-4 h-4 text-[#FFBF00] group-hover:translate-x-1 transition-transform" />
+                    </button>
+
+                    {turmaVinculada && (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedTurma(turmaVinculada)}
+                        aria-label={`Ver detalhes da turma de ${prep.nome}`}
+                        className="w-full inline-flex items-center justify-center gap-2 bg-[#F8FAFC] hover:bg-[#E1E5E8] text-[#004B7C] border border-[#E1E5E8] hover:border-[#004B7C]/40 font-bold text-xs py-2 px-3 rounded-xl uppercase tracking-wider transition-all active:scale-[0.98] cursor-pointer"
+                      >
+                        <Calendar className="w-3.5 h-3.5 text-[#004B7C]" />
+                        <span>Ver detalhes da turma</span>
+                      </button>
+                    )}
+
+                    {mentoriaVinculada && (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedMentoria(mentoriaVinculada)}
+                        aria-label={`Ver detalhes da mentoria de ${prep.nome}`}
+                        className="w-full inline-flex items-center justify-center gap-2 bg-[#F8FAFC] hover:bg-[#E1E5E8] text-[#004B7C] border border-[#E1E5E8] hover:border-[#004B7C]/40 font-bold text-xs py-2 px-3 rounded-xl uppercase tracking-wider transition-all active:scale-[0.98] cursor-pointer"
+                      >
+                        <Video className="w-3.5 h-3.5 text-[#0289C6]" />
+                        <span>
+                          {prep.id === 'eags' 
+                            ? 'Ver detalhes da mentoria EAGS' 
+                            : prep.id === 'rm2' 
+                              ? 'Ver detalhes da mentoria RM2' 
+                              : 'Ver detalhes da mentoria'}
+                        </span>
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             );
@@ -293,10 +332,20 @@ export const PreparatorioMilitarPage: React.FC = () => {
       </section>
 
       {/* ============================================================ */}
+      {/* 2.1 NOVA SEÇÃO: DETALHES DAS TURMAS MILITARES */}
+      {/* ============================================================ */}
+      <TurmasEmDestaqueSection onSelectTurma={setSelectedTurma} />
+
+      {/* ============================================================ */}
+      {/* 2.2 NOVA SEÇÃO: MENTORIAS PROGRESSÃO ONLINE */}
+      {/* ============================================================ */}
+      <MentoriasSection onSelectMentoria={setSelectedMentoria} />
+
+      {/* ============================================================ */}
       {/* 3. MINI PÁGINA / MODAL PADRONIZADO (SAIBA MAIS) */}
       {/* ============================================================ */}
       {selectedPreparatory && (
-        <div
+        <div 
           className="fixed inset-0 z-50 bg-[#001424]/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 lg:p-8 animate-fadeIn"
           onClick={() => setSelectedPreparatory(null)}
           role="dialog"
@@ -310,10 +359,12 @@ export const PreparatorioMilitarPage: React.FC = () => {
             {/* CABEÇALHO FIXO DO MODAL */}
             <div className="bg-[#00223B] text-white px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-between border-b border-[#015E96]/40 shrink-0">
               <div className="pr-4">
-                <span className="text-xs font-bold text-[#FFBF00] uppercase tracking-wider block">
-                  {selectedPreparatory.subtitulo}
-                </span>
-                <h2
+                {selectedPreparatory.subtitulo && (
+                  <span className="text-xs font-bold text-[#FFBF00] uppercase tracking-wider block">
+                    {selectedPreparatory.subtitulo}
+                  </span>
+                )}
+                <h2 
                   id="modal-preparatory-title"
                   className="font-serif-heading text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight uppercase"
                 >
@@ -333,7 +384,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
             </div>
 
             {/* ÁREA COM SCROLL VERTICAL INTERNO COM AS 10 SEÇÕES OBRIGATÓRIAS */}
-            <div
+            <div 
               ref={modalContentRef}
               className="overflow-y-auto p-5 sm:p-8 space-y-10 flex-1 text-[#0A131F]"
             >
@@ -348,7 +399,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#001D33] via-[#001D33]/70 to-transparent" />
-
+                  
                   {/* Badge de Status no Banner */}
                   <div className="absolute top-4 right-4 z-10">
                     {(() => {
@@ -630,7 +681,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
 
                 <div className={selectedPreparatory.beneficios.length > 1 ? "grid grid-cols-1 sm:grid-cols-2 gap-3.5" : "flex flex-col gap-3.5"}>
                   {selectedPreparatory.beneficios.map((ben, idx) => (
-                    <div
+                    <div 
                       key={idx}
                       className="bg-[#F8FAFC] p-4 sm:p-5 rounded-xl border border-[#E1E5E8] flex items-start gap-3 hover:border-[#0289C6]/40 transition-colors"
                     >
@@ -664,7 +715,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {selectedPreparatory.disciplinas.map((disc, idx) => (
-                    <div
+                    <div 
                       key={idx}
                       className="bg-[#F8FAFC] p-3.5 sm:p-4 rounded-xl border border-[#E1E5E8] flex items-start gap-3 hover:border-[#0289C6]/50 hover:bg-white transition-all shadow-2xs"
                     >
@@ -744,29 +795,6 @@ export const PreparatorioMilitarPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Grade de Horários e Carga Horária */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 mb-6 text-xs">
-                  <div className="bg-white/10 p-3.5 rounded-xl border border-white/15">
-                    <span className="text-[#FFBF00] font-bold block mb-1">Carga Horária</span>
-                    <span className="text-white font-medium">{selectedPreparatory.preparacao.cargaHoraria}</span>
-                  </div>
-                  <div className="bg-white/10 p-3.5 rounded-xl border border-white/15">
-                    <span className="text-[#FFBF00] font-bold block mb-1">Encontros</span>
-                    <span className="text-white font-medium">{selectedPreparatory.preparacao.encontros}</span>
-                  </div>
-                  <div className="bg-white/10 p-3.5 rounded-xl border border-white/15">
-                    <span className="text-[#FFBF00] font-bold block mb-1">Turno Manhã</span>
-                    <span className="text-white font-medium">{selectedPreparatory.preparacao.manha}</span>
-                  </div>
-                  <div className="bg-white/10 p-3.5 rounded-xl border border-white/15">
-                    <span className="text-[#FFBF00] font-bold block mb-1">Turno Tarde</span>
-                    <span className="text-white font-medium">{selectedPreparatory.preparacao.tarde}</span>
-                  </div>
-                  <div className="bg-white/10 p-3.5 rounded-xl border border-white/15 sm:col-span-2 lg:col-span-1">
-                    <span className="text-[#FFBF00] font-bold block mb-1">Turno Noite</span>
-                    <span className="text-white font-medium">{selectedPreparatory.preparacao.noite}</span>
-                  </div>
-                </div>
 
                 {/* Modalidades de Estudo */}
                 <div>
@@ -775,7 +803,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {selectedPreparatory.preparacao.modalidades.map((mod, idx) => (
-                      <div
+                      <div 
                         key={idx}
                         className="bg-white/10 p-3.5 rounded-xl border border-white/15 flex items-center gap-2.5"
                       >
@@ -809,7 +837,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Gostaria de me preparar para o concurso ${selectedPreparatory.nome} (${selectedPreparatory.subtitulo}) no Curso Progressão Caxias. Como posso fazer minha matrícula?`)}`}
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Gostaria de me preparar para o concurso ${selectedPreparatory.nome}${selectedPreparatory.subtitulo ? ` (${selectedPreparatory.subtitulo})` : ''} no Curso Progressão Caxias. Como posso fazer minha matrícula?`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-xs sm:text-sm py-3 px-6 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-[0.98]"
@@ -855,14 +883,23 @@ export const PreparatorioMilitarPage: React.FC = () => {
                   <span>Falar no WhatsApp</span>
                 </a>
 
-                <Link
-                  href="/contato"
-                  onClick={() => setSelectedPreparatory(null)}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-2.5 px-5 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all"
+                <a
+                  href="#formulario-contato-militar"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSelectedPreparatory(null);
+                    setTimeout(() => {
+                      const el = document.getElementById('formulario-contato-militar') || document.getElementById('contato-militar');
+                      if (el) {
+                        el.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }, 150);
+                  }}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-2.5 px-5 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer"
                 >
-                  <span>Ver Contato & Endereço</span>
+                  <span>Formulário de Contato</span>
                   <ArrowRight className="w-4 h-4 text-[#FFBF00]" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -870,7 +907,24 @@ export const PreparatorioMilitarPage: React.FC = () => {
       )}
 
       {/* ============================================================ */}
-      {/* 4. SEÇÃO: POR QUE ESCOLHER A CARREIRA MILITAR? */}
+      {/* 3.1 PÁGINA / MODAL SOBREPOSTO DE DETALHES DA TURMA */}
+      {/* ============================================================ */}
+      {selectedTurma && (
+        <TurmaDetalhesModal 
+          turma={selectedTurma} 
+          onClose={() => setSelectedTurma(null)} 
+        />
+      )}
+
+      {/* ============================================================ */}
+      {/* 3.2 PÁGINA / MODAL SOBREPOSTO DE DETALHES DA MENTORIA */}
+      {/* ============================================================ */}
+      {selectedMentoria && (
+        <MentoriaDetalhesModal 
+          mentoria={selectedMentoria} 
+          onClose={() => setSelectedMentoria(null)} 
+        />
+      )}
       {/* ============================================================ */}
       <section className="py-16 sm:py-20 bg-white border-t border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">

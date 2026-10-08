@@ -26,15 +26,44 @@ import { ConcursosPage } from './pages/ConcursosPage';
 import { ProgressaoOnlinePage } from './pages/ProgressaoOnlinePage';
 import { ResultadosPage } from './pages/ResultadosPage';
 import { ContatoPage } from './pages/ContatoPage';
+import { TurmaProDetalhePage } from './pages/TurmaProDetalhePage';
+import { FundamentalIIDetalhePage } from './pages/FundamentalIIDetalhePage';
+import { EnsinoMedioDetalhePage } from './pages/EnsinoMedioDetalhePage';
 import { Home } from 'lucide-react';
 
 const PageRenderer: React.FC = () => {
   const { currentPath } = useRouter();
 
-  // Normalize path by stripping trailing slash (except root)
-  const normalizedPath = currentPath.length > 1 && currentPath.endsWith('/')
-    ? currentPath.slice(0, -1)
-    : currentPath;
+  // Normalize path by stripping trailing slash (except root) and hash/query
+  const cleanPath = (currentPath.split('#')[0].split('?')[0] || '/');
+  const normalizedPath = cleanPath.length > 1 && cleanPath.endsWith('/')
+    ? cleanPath.slice(0, -1)
+    : cleanPath;
+
+  if (normalizedPath.startsWith('/concursos/turmas-pro/')) {
+    const slug = normalizedPath.replace(/^\/concursos\/turmas-pro\/?/, '');
+    return <TurmaProDetalhePage turmaId={slug} />;
+  }
+
+  if (normalizedPath.startsWith('/colegio/fundamental-2/') && normalizedPath !== '/colegio/fundamental-2') {
+    const slug = normalizedPath.replace(/^\/colegio\/fundamental-2\/?/, '');
+    return <FundamentalIIDetalhePage turmaId={slug} />;
+  }
+
+  if (normalizedPath.startsWith('/fundamental-ii/') && normalizedPath !== '/fundamental-ii') {
+    const slug = normalizedPath.replace(/^\/fundamental-ii\/?/, '');
+    return <FundamentalIIDetalhePage turmaId={slug} />;
+  }
+
+  if (normalizedPath.startsWith('/colegio/ensino-medio/') && normalizedPath !== '/colegio/ensino-medio') {
+    const slug = normalizedPath.replace(/^\/colegio\/ensino-medio\/?/, '');
+    return <EnsinoMedioDetalhePage turmaId={slug} />;
+  }
+
+  if (normalizedPath.startsWith('/ensino-medio/') && normalizedPath !== '/ensino-medio') {
+    const slug = normalizedPath.replace(/^\/ensino-medio\/?/, '');
+    return <EnsinoMedioDetalhePage turmaId={slug} />;
+  }
 
   switch (normalizedPath) {
     case '/':
@@ -48,12 +77,16 @@ const PageRenderer: React.FC = () => {
     case '/colegio':
       return <ColegioHubPage />;
     case '/colegio/educacao-infantil':
-      return <EducacaoInfantilPage />;
+      
     case '/colegio/fundamental-1':
     case '/colegio/ensino-fundamental':
+      
+    case '/fundamental-ii':
+    case '/fundamental-2':
     case '/colegio/fundamental-2':
     case '/colegio/ensino-fundamental-2':
       return <EnsinoFundamental2Page />;
+    case '/ensino-medio':
     case '/colegio/ensino-medio':
       return <EnsinoMedioPage />;
     case '/cursos':
@@ -63,6 +96,7 @@ const PageRenderer: React.FC = () => {
     case '/cursos/enem':
       return <PreVestibularPage />;
     case '/cursos/concursos':
+    case '/concursos':
       return <ConcursosPage />;
     case '/cursos/tecnicos':
     case '/cursos/cursos-tecnicos':

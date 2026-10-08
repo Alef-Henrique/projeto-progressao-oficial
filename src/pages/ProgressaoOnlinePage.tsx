@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Laptop,
-  ArrowRight,
+import { 
+  Laptop, 
+  ArrowRight, 
   Sparkles,
   CheckCircle2,
   PhoneCall,
@@ -12,12 +12,18 @@ import {
   Award,
   BookOpen,
   Users,
-  FileCheck
+  FileCheck,
+  AlertCircle,
+  Radio
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { WHATSAPP_NUMBER } from '../config/siteConfig';
-import { RDStationForm } from '../components/rdstation/RDStationForm';
+import { MentoriasSection } from '../components/mentorias/MentoriasSection';
+import { MentoriaDetalhesModal } from '../components/mentorias/MentoriaDetalhesModal';
+import { MentoriaDetalhes } from '../data/mentoriasData';
+import { TurmasOnline } from '../components/TurmasOnline/TurmasOnline';
+import { TURMAS_ONLINE_DATA } from '../components/TurmasOnline/data';
 
 export type OnlineCategory = 'Todos' | 'Segurança Pública' | 'Carreiras Federais' | 'Área Administrativa' | 'Trânsito' | 'Bancárias & Estatais';
 
@@ -261,12 +267,12 @@ const CONCURSOS_ONLINE: OnlineCourseItem[] = [
   },
   {
     id: 'transpetro',
-    name: 'Transpetro',
-    fullName: 'Petrobras Transporte S.A.',
+    name: 'Transpetro 2026',
+    fullName: 'Concurso da Transpetro 2026',
     category: 'Bancárias & Estatais',
-    level: 'Nível Médio / Técnico',
-    statusBadge: 'Processo Seletivo Recorrente',
-    salary: 'R$ 5.540,25 a R$ 12.739,00 + benefícios Petrobras',
+    level: 'Nível Médio / Técnico / Superior',
+    statusBadge: 'Prova em 29/11',
+    salary: 'R$ 5.464 a R$ 15.034,81 + benefícios',
     image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
     workload: '140h de conteúdo especializado',
     description: 'Curso focado nas provas da Cesgranrio para a Transpetro, subsidiária de logística e transporte de combustíveis da Petrobras.',
@@ -286,6 +292,8 @@ const CONCURSOS_ONLINE: OnlineCourseItem[] = [
 export const ProgressaoOnlinePage: React.FC = () => {
   // Modal com mini-página do curso selecionado
   const [activeCourse, setActiveCourse] = useState<OnlineCourseItem | null>(null);
+  // Modal de detalhes da mentoria selecionada
+  const [selectedMentoria, setSelectedMentoria] = useState<MentoriaDetalhes | null>(null);
 
   // Estado do formulário de inscrição / contato
   const [formData, setFormData] = useState({
@@ -300,7 +308,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
 
   // Prevenir scroll do body quando o modal estiver aberto
   useEffect(() => {
-    if (activeCourse) {
+    if (activeCourse || selectedMentoria) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -308,13 +316,14 @@ export const ProgressaoOnlinePage: React.FC = () => {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [activeCourse]);
+  }, [activeCourse, selectedMentoria]);
 
   // Fechar modal com tecla ESC
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setActiveCourse(null);
+        setSelectedMentoria(null);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -361,7 +370,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
       {/* ============================================================ */}
       <section className="relative bg-[#00223B] text-white pt-14 pb-16 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
         {/* Textura sutil e elegante de listras diagonais suaves e escuras oficial do Progressão */}
-        <div
+        <div 
           className="absolute inset-0 pointer-events-none z-0"
           style={{
             backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
@@ -374,7 +383,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
 
         <div className="relative max-w-7xl mx-auto z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-
+            
             {/* Lado Esquerdo: Textos, Proposta de Valor e Ações */}
             <div className="lg:col-span-7 flex flex-col items-start text-left">
               {/* Título Principal H1 */}
@@ -419,7 +428,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 {/* Janela de Aplicativo Digital */}
                 <div className="bg-[#001D33] rounded-3xl p-4 sm:p-5 shadow-2xl border border-[#0289C6]/30 text-white relative overflow-hidden group">
-
+                  
                   {/* Barra Superior estilo Navegador / App */}
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-xs">
                     <div className="flex items-center gap-1.5">
@@ -436,13 +445,13 @@ export const ProgressaoOnlinePage: React.FC = () => {
 
                   {/* Player de Vídeo em Destaque */}
                   <div className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-[#0A131F] mb-4 border border-white/10">
-                    <img
-                      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
-                      alt="Estudante na plataforma online Progressão"
+                    <img 
+                      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" 
+                      alt="Estudante na plataforma online Progressão" 
                       className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#001D33] via-transparent to-black/30" />
-
+                    
                     {/* Botão de Play Central */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-14 h-14 rounded-full bg-[#0289C6] text-white flex items-center justify-center shadow-xl shadow-[#0289C6]/40 transform group-hover:scale-110 transition-transform cursor-pointer">
@@ -498,7 +507,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
       <section className="bg-white border-b border-[#E1E5E8] py-8 sm:py-10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
+            
             <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#F8FAFC] border border-[#E1E5E8]/80 hover:border-[#0289C6]/40 transition-colors">
               <div className="w-12 h-12 rounded-xl bg-[#00223B] text-[#0289C6] flex items-center justify-center shrink-0 shadow-xs">
                 <Laptop className="w-6 h-6" />
@@ -555,7 +564,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
       {/* 3. SEÇÃO DE CONCURSOS & CATÁLOGO DE CURSOS ONLINE */}
       {/* ============================================================ */}
       <section id="catalogo-online" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-
+        
         {/* Cabeçalho da Seção com Título e Subtítulo */}
         <div className="flex flex-col items-center text-center mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0289C6]/10 text-[#0289C6] text-xs font-bold uppercase tracking-wider mb-3">
@@ -566,9 +575,9 @@ export const ProgressaoOnlinePage: React.FC = () => {
           <h2 className="font-serif-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-[#00223B] tracking-tight mb-4">
             Escolha seu concurso e comece hoje
           </h2>
-
+          
           <p className="text-sm sm:text-base lg:text-lg text-[#0A131F]/75 max-w-2xl leading-relaxed">
-            Conheça as oportunidades disponíveis no Progressão Online com todas as informações de requisitos, remuneração e disciplinas.
+            Conheça as oportunidades disponíveis no Progressão Online com todas as informações de requisitos e disciplinas.
           </p>
         </div>
 
@@ -612,19 +621,9 @@ export const ProgressaoOnlinePage: React.FC = () => {
                   </p>
 
                   {/* Descrição resumida */}
-                  <p className="text-xs sm:text-sm text-[#0A131F]/75 leading-relaxed mb-5 line-clamp-3">
+                  <p className="text-xs sm:text-sm text-[#0A131F]/75 leading-relaxed line-clamp-3">
                     {course.description}
                   </p>
-
-                  {/* Destaque de Remuneração */}
-                  <div className="bg-[#F8FAFC] border border-[#E1E5E8] rounded-xl p-3">
-                    <span className="text-[11px] font-semibold text-[#0A131F]/60 block mb-0.5">
-                      Remuneração inicial prevista
-                    </span>
-                    <span className="text-base font-bold text-[#00223B]">
-                      {course.salary}
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -634,55 +633,342 @@ export const ProgressaoOnlinePage: React.FC = () => {
       </section>
 
       {/* ============================================================ */}
-      {/* 4. SEÇÃO: COMO FUNCIONA O ESTUDO NO PROGRESSÃO ONLINE */}
+      {/* 3.1 SEÇÃO: TURMAS ONLINE (AULAS AO VIVO) */}
+      {/* ============================================================ */}
+      <TurmasOnline onSelectTurma={(turmaNome) => setFormData(prev => ({ ...prev, curso: turmaNome }))} />
+
+      {/* ============================================================ */}
+      {/* 3.2 SEÇÃO: MENTORIAS PROGRESSÃO ONLINE */}
+      {/* ============================================================ */}
+      <MentoriasSection onSelectMentoria={setSelectedMentoria} />
+
+      {/* ============================================================ */}
+      {/* 4. SEÇÃO: POSICIONAMENTO DAS AULAS ONLINE */}
       {/* ============================================================ */}
       <section className="bg-[#001D33] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#015E96]/30">
         <div className="max-w-7xl mx-auto">
-
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <span className="text-xs font-bold uppercase tracking-wider text-[#FFBF00] mb-2 block">
-              Passo a Passo da Aprovação
+              Posicionamento das aulas online
             </span>
-            <h2 className="font-serif-heading text-2xl sm:text-4xl font-bold mb-4">
-              Como funciona sua rotina no Progressão Online
+            <h2 className="font-serif-heading text-2xl sm:text-4xl font-black mb-3 text-white uppercase tracking-tight">
+              Posicionamento das aulas online
             </h2>
             <p className="text-sm sm:text-base text-[#E1E5E8]/80 leading-relaxed">
-              Uma metodologia testada e aprovada há mais de 30 anos, agora adaptada para acelerar seu aprendizado a distância com máxima eficiência.
+              Informação interna de apoio à conversa com o aluno.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 relative">
-              <span className="text-3xl font-black text-[#FFBF00] mb-3 block">01</span>
-              <h3 className="font-bold text-lg mb-2 text-white">Diagnóstico e Planejamento</h3>
-              <p className="text-xs sm:text-sm text-[#E1E5E8]/70 leading-relaxed">
-                Você recebe a trilha de conteúdos direcionada pelo edital, sabendo exatamente o que estudar em cada semana.
-              </p>
+          {/* Cards de Contexto de Mercado e Limitações */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            
+            {/* Card 1: Mercado de aulas online */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-[#0289C6]/40 transition-colors">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-[#004B7C]/40 border border-[#0289C6]/30 text-[#0289C6] flex items-center justify-center mb-4">
+                  <Laptop className="w-5 h-5 text-[#0289C6]" />
+                </div>
+                <h3 className="font-serif-heading font-black text-lg sm:text-xl text-white mb-4 uppercase tracking-wide">
+                  Mercado de aulas online
+                </h3>
+                <ul className="space-y-3.5 text-xs sm:text-sm text-[#E1E5E8]/85 leading-relaxed">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#0289C6] font-bold text-base leading-none mt-0.5">•</span>
+                    <span>Aulas gravadas são dominadas por gigantes: áudio e vídeo de alta qualidade, professores famosos, preço muito baixo e portfólio enorme, com assinaturas anuais de vários cursos</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#0289C6] font-bold text-base leading-none mt-0.5">•</span>
+                    <span>Existem também aulas ao vivo de professores individuais, que geram mais empatia pela proximidade com os alunos</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 relative">
-              <span className="text-3xl font-black text-[#0289C6] mb-3 block">02</span>
-              <h3 className="font-bold text-lg mb-2 text-white">Aulas Diretas ao Ponto</h3>
-              <p className="text-xs sm:text-sm text-[#E1E5E8]/70 leading-relaxed">
-                Aulas gravadas com os professores titulares do Progressão, focando no que realmente cai nas bancas examinadoras.
-              </p>
+            {/* Card 2: Limites dos gigantes */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-amber-500/40 transition-colors">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 text-[#FFBF00] flex items-center justify-center mb-4">
+                  <AlertCircle className="w-5 h-5 text-[#FFBF00]" />
+                </div>
+                <h3 className="font-serif-heading font-black text-lg sm:text-xl text-white mb-4 uppercase tracking-wide">
+                  Limites dos gigantes
+                </h3>
+                <ul className="space-y-3.5 text-xs sm:text-sm text-[#E1E5E8]/85 leading-relaxed">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#FFBF00] font-bold text-base leading-none mt-0.5">•</span>
+                    <span>Montam aulas gravadas para concursos diferentes daquele que o aluno quer</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#FFBF00] font-bold text-base leading-none mt-0.5">•</span>
+                    <span>Falta empatia e proximidade: o professor parece distante</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#FFBF00] font-bold text-base leading-none mt-0.5">•</span>
+                    <span>Não consideram a banca, se o aluno consegue resolver as questões do último concurso, nem tiram dúvidas na hora</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 relative">
-              <span className="text-3xl font-black text-[#FFBF00] mb-3 block">03</span>
-              <h3 className="font-bold text-lg mb-2 text-white">Treino Prático com Questões</h3>
-              <p className="text-xs sm:text-sm text-[#E1E5E8]/70 leading-relaxed">
-                Fixação imediata através de listas de exercícios gabaritadas e comentadas em vídeo pelos especialistas.
-              </p>
+            {/* Card 3: Limites dos professores individuais ao vivo */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-amber-500/40 transition-colors">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 text-[#FFBF00] flex items-center justify-center mb-4">
+                  <AlertCircle className="w-5 h-5 text-[#FFBF00]" />
+                </div>
+                <h3 className="font-serif-heading font-black text-lg sm:text-xl text-white mb-4 uppercase tracking-wide">
+                  Limites dos professores individuais ao vivo
+                </h3>
+                <ul className="space-y-3.5 text-xs sm:text-sm text-[#E1E5E8]/85 leading-relaxed">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#FFBF00] font-bold text-base leading-none mt-0.5">•</span>
+                    <span>A qualidade de áudio e vídeo costuma ser baixa</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-[#FFBF00] font-bold text-base leading-none mt-0.5">•</span>
+                    <span>O aluno precisa procurar outros professores para o concurso que deseja, o que sairia 10 vezes mais caro</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 relative">
-              <span className="text-3xl font-black text-[#0289C6] mb-3 block">04</span>
-              <h3 className="font-bold text-lg mb-2 text-white">Simulados & Ajuste Fino</h3>
-              <p className="text-xs sm:text-sm text-[#E1E5E8]/70 leading-relaxed">
-                Simulações periódicas nos moldes da prova para gerenciar o tempo, calibrar o emocional e medir sua evolução.
+          </div>
+
+          {/* Bloco de Destaque: Nossos diferenciais */}
+          <div className="bg-gradient-to-br from-[#002B49] to-[#001D33] border-2 border-[#FFBF00]/40 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+            <div 
+              className="absolute inset-0 pointer-events-none opacity-10"
+              style={{
+                backgroundImage: 'repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0px, rgba(255, 255, 255, 0.1) 16px, transparent 16px, transparent 32px)'
+              }}
+            />
+
+            <div className="relative z-10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8 pb-6 border-b border-white/15">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFBF00] block">
+                    A proposta do Curso Progressão
+                  </span>
+                  <h3 className="font-serif-heading text-xl sm:text-3xl font-black text-white uppercase tracking-tight">
+                    Nossos diferenciais
+                  </h3>
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0289C6]/20 border border-[#0289C6]/40 text-[#0289C6] text-xs font-bold self-start sm:self-center">
+                  <Radio className="w-3.5 h-3.5 animate-pulse text-[#0289C6]" />
+                  <span>Estúdio Próprio & Aulas Ao Vivo</span>
+                </div>
+              </div>
+
+              {/* Grade de 6 diferenciais */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/[0.08] transition-colors flex items-start gap-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#25D366]/20 text-[#25D366] flex items-center justify-center shrink-0 mt-0.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#25D366]" />
+                  </div>
+                  <p className="text-xs sm:text-sm text-white font-medium leading-relaxed">
+                    Aulas ao vivo com os melhores professores, com larga experiência e muitas aprovações
+                  </p>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/[0.08] transition-colors flex items-start gap-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#25D366]/20 text-[#25D366] flex items-center justify-center shrink-0 mt-0.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#25D366]" />
+                  </div>
+                  <p className="text-xs sm:text-sm text-white font-medium leading-relaxed">
+                    Transmissão do estúdio do curso, com equipamento de qualidade, imagem e áudio nítidos
+                  </p>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/[0.08] transition-colors flex items-start gap-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#25D366]/20 text-[#25D366] flex items-center justify-center shrink-0 mt-0.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#25D366]" />
+                  </div>
+                  <p className="text-xs sm:text-sm text-white font-medium leading-relaxed">
+                    Interação com o professor, reproduzindo ao máximo a sala de aula sem perder a qualidade do estúdio
+                  </p>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/[0.08] transition-colors flex items-start gap-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#25D366]/20 text-[#25D366] flex items-center justify-center shrink-0 mt-0.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#25D366]" />
+                  </div>
+                  <p className="text-xs sm:text-sm text-white font-medium leading-relaxed">
+                    Todo dia tem conteúdo: aula, vídeo ou PDF
+                  </p>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/[0.08] transition-colors flex items-start gap-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#25D366]/20 text-[#25D366] flex items-center justify-center shrink-0 mt-0.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#25D366]" />
+                  </div>
+                  <p className="text-xs sm:text-sm text-white font-medium leading-relaxed">
+                    O aluno sabe o assunto de antemão, faz os exercícios antes e tira as dúvidas na aula
+                  </p>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/[0.08] transition-colors flex items-start gap-3.5">
+                  <div className="w-8 h-8 rounded-lg bg-[#25D366]/20 text-[#25D366] flex items-center justify-center shrink-0 mt-0.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#25D366]" />
+                  </div>
+                  <p className="text-xs sm:text-sm text-white font-medium leading-relaxed">
+                    Vídeos tira-dúvidas semanais, transformando o celular do aluno em fonte de informação do concurso
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* 5. FORMULÁRIO DE CONSULTA E MATRÍCULA NO FINAL */}
+      {/* ============================================================ */}
+      <section id="formulario" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div className="relative overflow-hidden bg-white border border-[#E1E5E8] rounded-3xl shadow-xl p-8 sm:p-12 lg:p-16">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            
+            {/* Lado Esquerdo do Formulário */}
+            <div className="lg:col-span-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00223B]/10 text-[#00223B] text-xs font-bold uppercase tracking-wider mb-4">
+                <PhoneCall className="w-3.5 h-3.5 text-[#0289C6]" />
+                <span>Atendimento Personalizado</span>
+              </div>
+
+              <h2 className="font-serif-heading text-2xl sm:text-4xl font-bold text-[#00223B] leading-tight mb-4">
+                Fale com nossa secretaria e garanta sua condição especial
+              </h2>
+
+              <p className="text-sm sm:text-base text-[#0A131F]/75 leading-relaxed mb-6">
+                Preencha seus dados para receber a grade de disciplinas, valores com desconto e tirar todas as suas dúvidas sobre a metodologia online.
               </p>
+
+              <div className="space-y-3.5 text-xs sm:text-sm text-[#0A131F]/80">
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#25D366] shrink-0" />
+                  <span>Início imediato após a confirmação da matrícula</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#25D366] shrink-0" />
+                  <span>Acesso ilimitado às videoaulas por 12 meses</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#25D366] shrink-0" />
+                  <span>Condições especiais para ex-alunos e pagamento à vista</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Lado Direito: Formulário Interativo */}
+            <div className="lg:col-span-6 bg-[#F8FAFC] border border-[#E1E5E8] rounded-2xl p-6 sm:p-8">
+              {formSubmitted ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-4">
+                    <Check className="w-8 h-8" />
+                  </div>
+                  <h3 className="font-bold text-xl text-[#00223B] mb-2">Solicitação enviada com sucesso!</h3>
+                  <p className="text-sm text-[#0A131F]/70 mb-6">
+                    Nossa equipe pedagógica entrará em contato via WhatsApp nas próximas horas.
+                  </p>
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Enviei meus dados no site do Progressão Online para o curso ${formData.curso}. Gostaria de agilizar meu atendimento.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>Agilizar Atendimento pelo WhatsApp</span>
+                  </a>
+                </div>
+              ) : (
+                <form onSubmit={handleFormSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold text-[#00223B] uppercase mb-1">
+                      Seu Nome Completo *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Ex: Carlos Eduardo da Silva"
+                      value={formData.nome}
+                      onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                      className="w-full px-4 py-3 bg-white border border-[#E1E5E8] rounded-xl text-sm text-[#0A131F] focus:outline-none focus:border-[#0289C6] focus:ring-2 focus:ring-[#0289C6]/20 transition-all"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-[#00223B] uppercase mb-1">
+                        WhatsApp com DDD *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="(21) 99999-9999"
+                        value={formData.whatsapp}
+                        onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+                        className="w-full px-4 py-3 bg-white border border-[#E1E5E8] rounded-xl text-sm text-[#0A131F] focus:outline-none focus:border-[#0289C6] focus:ring-2 focus:ring-[#0289C6]/20 transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-[#00223B] uppercase mb-1">
+                        E-mail
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="seu@email.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full px-4 py-3 bg-white border border-[#E1E5E8] rounded-xl text-sm text-[#0A131F] focus:outline-none focus:border-[#0289C6] focus:ring-2 focus:ring-[#0289C6]/20 transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-[#00223B] uppercase mb-1">
+                      Concurso de Interesse
+                    </label>
+                    <select
+                      value={formData.curso}
+                      onChange={(e) => setFormData({ ...formData, curso: e.target.value })}
+                      className="w-full px-4 py-3 bg-white border border-[#E1E5E8] rounded-xl text-sm text-[#0A131F] focus:outline-none focus:border-[#0289C6] focus:ring-2 focus:ring-[#0289C6]/20 transition-all"
+                    >
+                      <optgroup label="Turmas Online ao Vivo">
+                        {TURMAS_ONLINE_DATA.map((t) => (
+                          <option key={t.id} value={t.nome}>
+                            {t.nome}
+                          </option>
+                        ))}
+                      </optgroup>
+                      <optgroup label="Cursos do Catálogo Online">
+                        {CONCURSOS_ONLINE.map((c) => (
+                          <option key={c.id} value={c.name}>
+                            {c.name} — {c.fullName}
+                          </option>
+                        ))}
+                      </optgroup>
+                    </select>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#0289C6] hover:bg-[#00223B] text-white py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
+                  >
+                    <span>Quero Saber Mais sobre o Curso Online</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+
+                  <p className="text-[11px] text-[#0A131F]/50 text-center">
+                    Seus dados estão protegidos. Não enviamos spam.
+                  </p>
+                </form>
+              )}
             </div>
 
           </div>
@@ -691,35 +977,22 @@ export const ProgressaoOnlinePage: React.FC = () => {
       </section>
 
       {/* ============================================================ */}
-      {/* 5. FORMULÁRIO RD STATION*/}
-      {/* ============================================================ */}
-      <div className="bg-white p-8 flex justify-center">
-        <div className="w-full max-w-[600px]">
-          {/* RD STATION — PROVISÓRIO */}
-          <RDStationForm
-            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
-          />
-        </div>
-      </div>
-
-
-      {/* ============================================================ */}
       {/* 6. MODAL INTERATIVO: MINI-PÁGINA DO CURSO SELECIONADO */}
       {/* ============================================================ */}
       {activeCourse && (
-        <div
+        <div 
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/75 backdrop-blur-sm animate-fade-in"
           onClick={() => setActiveCourse(null)}
         >
-          <div
+          <div 
             className="bg-white rounded-3xl w-full max-w-3xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-white/20 animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Cabeçalho do Modal com Foto e Informações Principais */}
             <div className="relative h-48 sm:h-56 shrink-0 bg-[#001D33] overflow-hidden">
-              <img
-                src={activeCourse.image}
-                alt={activeCourse.name}
+              <img 
+                src={activeCourse.image} 
+                alt={activeCourse.name} 
                 className="w-full h-full object-cover opacity-60"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#001D33] via-[#001D33]/60 to-transparent" />
@@ -758,7 +1031,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
 
             {/* Conteúdo com Scroll Interno */}
             <div className="p-6 overflow-y-auto space-y-6 text-[#0A131F]">
-
+              
               {/* Bloco de Visão Geral */}
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#0289C6] mb-2">
@@ -820,7 +1093,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {activeCourse.subjects.map((sub, idx) => (
-                    <span
+                    <span 
                       key={idx}
                       className="px-3 py-1 rounded-lg bg-[#00223B]/5 border border-[#00223B]/10 text-xs font-medium text-[#00223B]"
                     >
@@ -860,6 +1133,16 @@ export const ProgressaoOnlinePage: React.FC = () => {
 
           </div>
         </div>
+      )}
+
+      {/* ============================================================ */}
+      {/* MODAL / PÁGINA SOBREPOSTA DE DETALHES DA MENTORIA */}
+      {/* ============================================================ */}
+      {selectedMentoria && (
+        <MentoriaDetalhesModal 
+          mentoria={selectedMentoria} 
+          onClose={() => setSelectedMentoria(null)} 
+        />
       )}
 
     </div>

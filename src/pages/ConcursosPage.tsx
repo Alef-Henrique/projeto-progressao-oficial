@@ -1,33 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Award,
-  CheckCircle2,
-  ArrowRight,
-  Clock,
-  Target,
-  Shield,
-  X,
-  FileText,
-  DollarSign,
-  Users,
-  GraduationCap,
-  Building2,
-  MessageCircle,
-  Check,
-  Layers,
-  Scale,
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Award, 
+  CheckCircle2, 
+  ArrowRight, 
+  ArrowLeft,
+  Clock, 
+  Target, 
+  Shield, 
+  X, 
+  FileText, 
+  DollarSign, 
+  Users, 
+  GraduationCap, 
+  Building2, 
+  MessageCircle, 
+  Check, 
+  Layers, 
+  Scale, 
   Calendar,
   AlertCircle,
   HelpCircle,
   TrendingUp,
   MapPin,
-  FileCheck
+  FileCheck,
+  Compass,
+  BookOpen
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { WHATSAPP_NUMBER } from '../config/siteConfig';
-import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { CONCURSOS_PUBLICOS_DATA, ConcursoPublico, ConcursoCategory } from '../data/concursosData';
+import { TurmasConcursosSection } from '../components/turmas/TurmasConcursosSection';
+import { TurmasPro } from '../components/TurmasPro/TurmasPro';
+import { CombosProdutos } from '../components/combosProdutos/CombosProdutos';
+import { TurmaConcursoCard } from '../components/turmas/TurmaConcursoCard';
+import { TurmaConcursoDetalhesModal } from '../components/turmas/TurmaConcursoDetalhesModal';
+import { TurmaConcurso, getTurmaConcursoPorId, getTurmasConcursoPorId, TURMAS_CONCURSOS } from '../data/turmasconcursos';
 
 export const ConcursosPage: React.FC = () => {
   // Estado para categoria selecionada no filtro
@@ -35,6 +43,36 @@ export const ConcursosPage: React.FC = () => {
 
   // Estado para o concurso atualmente aberto no modal (mini página)
   const [activeConcurso, setActiveConcurso] = useState<ConcursoPublico | null>(null);
+
+  // Estado para a turma selecionada para ver detalhes
+  const [selectedTurma, setSelectedTurma] = useState<TurmaConcurso | null>(null);
+  const modalContentRef = useRef<HTMLDivElement>(null);
+
+  // Helper para exibir apenas uma tag span no card conforme solicitado:
+  // Em maiúsculas: "AGUARDANDO NOVO EDITAL", "PROVA DIA {DATA}", "INSCRIÇÕES ABERTAS"
+  const getCardTag = (concurso: ConcursoPublico) => {
+    const rawText = concurso.tagCard || (concurso.dataProva ? `prova dia ${concurso.dataProva}` : 'aguardando novo edital');
+    const lower = rawText.toLowerCase();
+
+    let styleClass = 'bg-[#0289C6] text-white border-[#38B3E6] font-bold uppercase tracking-wider';
+    if (lower.includes('prova dia') || lower.includes('prova')) {
+      styleClass = 'bg-[#FFBF00] text-[#00223B] border-amber-400 font-extrabold uppercase tracking-wider';
+    } else if (lower.includes('inscriç') || lower.includes('inscricoes')) {
+      styleClass = 'bg-emerald-600 text-white border-emerald-500 font-extrabold uppercase tracking-wider';
+    }
+
+    return {
+      text: rawText.toUpperCase(),
+      styleClass
+    };
+  };
+
+  // Rola para o topo do modal ao abrir
+  useEffect(() => {
+    if (activeConcurso && modalContentRef.current) {
+      modalContentRef.current.scrollTop = 0;
+    }
+  }, [activeConcurso]);
 
   // Estado do formulário de inscrição
   const [formData, setFormData] = useState({
@@ -91,6 +129,19 @@ export const ConcursosPage: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Rolagem suave se houver hash na URL (ex: #turmas-pro)
+  useEffect(() => {
+    const hash = window.location.hash?.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -120,79 +171,115 @@ export const ConcursosPage: React.FC = () => {
       />
 
       {/* ============================================================ */}
-      {/* 2. HERO DE ALTO IMPACTO (PADRÃO PREPARATÓRIO MILITAR PROGRESSÃO) */}
+      {/* 2. HERO DE ALTO IMPACTO (PADRÃO REFERÊNCIA PROGRESSÃO) */}
       {/* ============================================================ */}
-      <section className="relative bg-[#00223B] text-white pt-16 pb-20 sm:pt-20 sm:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
-        {/* Textura sutil e elegante de listras diagonais suaves e escuras oficial do Progressão */}
-        <div
-          className="absolute inset-0 pointer-events-none z-0"
+      <section className="relative bg-gradient-to-br from-[#00223B] via-[#002b49] to-[#001D33] text-white pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden rounded-b-3xl sm:rounded-b-[40px] lg:rounded-b-[48px] shadow-lg border-b border-[#015E96]/30">
+        {/* Textura sutil e elegante institucional de listras diagonais */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-0 opacity-40"
           style={{
-            backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
+            backgroundImage: 'repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 18px, transparent 18px, transparent 36px)'
           }}
         />
 
-        {/* Gradiente radial decorativo suave */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0289C6]/20 rounded-full blur-3xl pointer-events-none" />
+        {/* Elementos decorativos circulares/geométricos discretos no fundo */}
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full border border-[#0289C6]/20 bg-[#0289C6]/10 blur-2xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full border border-white/10 pointer-events-none" />
+        <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full border border-[#0289C6]/15 pointer-events-none" />
+        <div className="absolute top-1/2 right-12 -translate-y-1/2 w-80 h-80 rounded-full border border-white/5 pointer-events-none hidden md:block" />
 
         <div className="relative max-w-7xl mx-auto z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Lado Esquerdo: Mensagem e CTAs */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* Lado Esquerdo: Identificação, Título, Texto de Apoio e Botões */}
             <div className="lg:col-span-7 flex flex-col items-start text-left">
-              {/* H1 Principal com Tipografia Institucional Progressão */}
-              <h1 className="font-serif-heading text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-[1.08] mb-5">
-                Concursos <br className="hidden sm:inline" />
-                Públicos
+              {/* Identificação acima do título */}
+              <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white/10 text-[#E1E5E8] border border-white/15 text-[11px] sm:text-xs font-bold uppercase tracking-[0.16em] mb-6 backdrop-blur-sm shadow-xs">
+                <span>PROGRESSÃO EDUCAÇÃO · CONCURSOS 2026/2027</span>
+              </div>
+
+              {/* Título Principal */}
+              <h1 className="font-serif-heading text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl font-black text-white tracking-tight uppercase leading-[1.08] mb-6">
+                Escolha seu concurso. <br className="hidden sm:inline" />
+                <span className="text-white">Prepare-se para a aprovação.</span>
               </h1>
 
-              {/* Subtítulo Dourado Oficial */}
-              <p className="text-lg sm:text-2xl font-medium text-[#FFBF00] mb-4 leading-snug">
-                Prepare-se hoje para conquistar sua carreira amanhã.
+              {/* Texto de Apoio */}
+              <p className="text-base sm:text-lg text-[#E1E5E8]/90 max-w-xl leading-relaxed mb-8 font-normal">
+                Encontre o concurso ideal para seus objetivos e conheça nossas opções de preparação para cada carreira.
               </p>
 
-              {/* Texto Complementar */}
-              <p className="text-base sm:text-lg text-[#E1E5E8]/90 max-w-2xl leading-relaxed mb-8 font-normal">
-                Encontre a preparação ideal para os principais concursos públicos e avance com estratégia, acompanhamento e foco na aprovação.
-              </p>
-
-              {/* CTAs */}
+              {/* Botões */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+                {/* Botão principal (amarelo institucional de alto destaque) */}
                 <button
                   type="button"
-                  onClick={() => scrollToSection('inscricao')}
-                  className="inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-sm sm:text-base px-8 py-4 rounded-xl uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                  onClick={() => scrollToSection('concursos-grid')}
+                  className="inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-sm sm:text-base px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                 >
-                  <span>FAZER MINHA INSCRIÇÃO</span>
-                  <ArrowRight className="w-5 h-5 text-[#00223B]" />
+                  <span>Ver concursos</span>
+                  <ArrowRight className="w-4 h-4 text-[#00223B]" />
                 </button>
 
+                {/* Botão secundário (estilo translúcido da referência) */}
                 <button
                   type="button"
                   onClick={() => scrollToSection('como-preparamos')}
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 font-bold text-sm sm:text-base px-6 py-4 rounded-xl uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 font-bold text-sm sm:text-base px-6 py-3.5 sm:px-7 sm:py-4 rounded-xl uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer"
                 >
-                  <span>CONHECER OS CURSOS</span>
+                  <span>Conhecer nossas turmas</span>
                 </button>
-              </div>
-
-              {/* Informação sutil abaixo dos botões */}
-              <div className="mt-6 flex items-center gap-2 text-xs sm:text-sm text-[#E1E5E8]/80 font-medium">
-                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                <span>Turmas Presenciais • Duque de Caxias / RJ</span>
               </div>
             </div>
 
-            {/* Lado Direito: Composição Visual com Estudantes */}
-            <div className="lg:col-span-5 relative flex justify-center">
-              <div className="relative w-full max-w-md">
-                {/* Moldura da Imagem no Formato Quadrado */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-[#00223B] aspect-square">
-                  <img
-                    src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80"
-                    alt="Estudantes se preparando para concursos públicos com livros, computador e material didático"
-                    className="w-full h-full object-cover object-center"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#00223B]/80 via-transparent to-transparent pointer-events-none" />
+            {/* Lado Direito: Grade com 4 Cards Informativos (2x2) */}
+            <div className="lg:col-span-5 w-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                {/* CARD 1 */}
+                <div className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 sm:p-5.5 hover:bg-white/15 hover:border-white/30 hover:-translate-y-0.5 transition-all duration-300 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-serif-heading text-xl sm:text-2xl font-black text-white uppercase tracking-tight mb-1">
+                      2026/27
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#E1E5E8]/85 leading-relaxed font-normal">
+                      Calendário dos concursos
+                    </p>
+                  </div>
+                </div>
+
+                {/* CARD 2 */}
+                <div className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 sm:p-5.5 hover:bg-white/15 hover:border-white/30 hover:-translate-y-0.5 transition-all duration-300 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-serif-heading text-lg sm:text-xl font-black text-white uppercase tracking-tight mb-1">
+                      Presencial
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#E1E5E8]/85 leading-relaxed font-normal">
+                      Preparação em sala de aula
+                    </p>
+                  </div>
+                </div>
+
+                {/* CARD 3 */}
+                <div className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 sm:p-5.5 hover:bg-white/15 hover:border-white/30 hover:-translate-y-0.5 transition-all duration-300 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-serif-heading text-lg sm:text-xl font-black text-white uppercase tracking-tight mb-1">
+                      Online
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#E1E5E8]/85 leading-relaxed font-normal">
+                      Aulas e preparação a distância
+                    </p>
+                  </div>
+                </div>
+
+                {/* CARD 4 */}
+                <div className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 sm:p-5.5 hover:bg-white/15 hover:border-white/30 hover:-translate-y-0.5 transition-all duration-300 shadow-sm flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-serif-heading text-lg sm:text-xl font-black text-white uppercase tracking-tight mb-1">
+                      Estratégia
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#E1E5E8]/85 leading-relaxed font-normal">
+                      Questões, simulados e preparação
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -214,8 +301,8 @@ export const ConcursosPage: React.FC = () => {
             {/* Lista com scroll horizontal no mobile */}
             <div className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar w-full md:w-auto py-1">
               {categories.map((cat) => {
-                const count = cat === 'Todos'
-                  ? CONCURSOS_PUBLICOS_DATA.length
+                const count = cat === 'Todos' 
+                  ? CONCURSOS_PUBLICOS_DATA.length 
                   : CONCURSOS_PUBLICOS_DATA.filter(c => c.categoria.includes(cat)).length;
                 const isActive = selectedCategory === cat;
 
@@ -224,14 +311,16 @@ export const ConcursosPage: React.FC = () => {
                     key={cat}
                     type="button"
                     onClick={() => setSelectedCategory(cat)}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${isActive
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
+                      isActive
                         ? 'bg-[#004B7C] text-white shadow-md'
                         : 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A131F]/80 border border-transparent'
-                      }`}
+                    }`}
                   >
                     <span>{cat}</span>
-                    <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-black ${isActive ? 'bg-[#FFBF00] text-[#00223B]' : 'bg-[#CBD5E1] text-[#0A131F]'
-                      }`}>
+                    <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-black ${
+                      isActive ? 'bg-[#FFBF00] text-[#00223B]' : 'bg-[#CBD5E1] text-[#0A131F]'
+                    }`}>
                       {count}
                     </span>
                   </button>
@@ -254,189 +343,634 @@ export const ConcursosPage: React.FC = () => {
             Encontre o concurso certo para você.
           </h2>
           <p className="mt-3 text-base sm:text-lg text-[#64748B]">
-            "Conheça as oportunidades e descubra os requisitos, remuneração e características de cada carreira."
+            "Conheça as oportunidades e descubra os requisitos, etapas e características de cada carreira."
           </p>
         </div>
 
-        {/* Grade de 3 cards desktop, 2 tablet, 1 mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredConcursos.map((concurso) => (
-            <div
-              key={concurso.id}
-              className="bg-white rounded-3xl border border-[#E1E5E8] shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col overflow-hidden group"
-            >
-              {/* Imagem com badges sobrepostos */}
-              <div className="relative aspect-[16/10] overflow-hidden bg-[#001D33]">
-                <img
-                  src={concurso.imagem}
-                  alt={`Concurso ${concurso.nome} - ${concurso.nomeCompleto}`}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001D33]/90 via-transparent to-black/20 pointer-events-none" />
+        {/* Grade de 3 cards desktop, 2 tablet, 1 mobile (Padrão Preparatórios Militares) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {filteredConcursos.map((concurso) => {
+            const cardTag = getCardTag(concurso);
+            const turmaVinculada = getTurmaConcursoPorId(concurso.id);
 
-                {/* Nome do concurso sobre a imagem */}
-                <div className="absolute bottom-3 left-3 right-3">
-                  <span className="text-white text-xl sm:text-2xl font-black font-serif-heading drop-shadow-md">
-                    {concurso.nome}
-                  </span>
-                </div>
-              </div>
+            return (
+              <div
+                key={concurso.id}
+                className="bg-white rounded-2xl border border-[#E1E5E8] shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col overflow-hidden group"
+              >
+                {/* 1. Imagem e Identificação do Card */}
+                <div className="relative w-full min-h-[224px] sm:min-h-[244px] flex flex-col justify-between p-4 sm:p-5 overflow-hidden bg-[#001D33] shrink-0">
+                  <img
+                    src={concurso.imagem}
+                    alt={`${concurso.nome} - ${concurso.cargo}`}
+                    className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 pointer-events-none"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#001D33]/95 via-[#001D33]/60 to-[#001D33]/25 pointer-events-none" />
 
-              {/* Conteúdo do Card */}
-              <div className="p-6 flex flex-col flex-1 justify-between gap-6">
-                <div>
-                  <h3 className="font-bold text-sm text-[#004B7C] uppercase tracking-wide mb-2 line-clamp-1">
-                    {concurso.nomeCompleto}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed line-clamp-2">
-                    {concurso.descricaoCurta}
-                  </p>
-                </div>
-
-                {/* Área de Destaque: Remuneração e Escolaridade */}
-                <div className="bg-[#F8FAFC] rounded-2xl p-4 border border-[#E1E5E8] flex flex-col gap-2">
-                  <div>
-                    <span className="text-[11px] font-bold text-[#64748B] uppercase tracking-wider block">
-                      Remuneração
-                    </span>
-                    <span className="text-xl sm:text-2xl font-black text-[#00223B] font-serif-heading">
-                      {concurso.remuneracaoInicial}
+                  {/* Apenas uma tag span por card posicionada no topo */}
+                  <div className="relative z-10 self-start pointer-events-none">
+                    <span className={`inline-block px-3 py-1 text-xs rounded-full shadow-md backdrop-blur-sm border ${cardTag.styleClass}`}>
+                      {cardTag.text}
                     </span>
                   </div>
 
-                  <div className="pt-2 border-t border-[#E1E5E8] flex items-center gap-1.5 text-xs text-[#0A131F]/80">
-                    <GraduationCap className="w-4 h-4 text-[#0289C6] shrink-0" />
-                    <span className="font-semibold truncate">{concurso.escolaridade}</span>
+                  {/* 1. Identificação do concurso com espaçamento seguro em relação à tag e ao subtítulo */}
+                  <div className="relative z-10 mt-auto pt-4">
+                    <h3 className="font-serif-heading text-lg sm:text-xl font-black text-white tracking-tight uppercase leading-snug drop-shadow-md">
+                      {concurso.nome}
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-[#FFBF00] tracking-wide line-clamp-1 drop-shadow-sm mt-2 sm:mt-2.5">
+                      {concurso.cargo}
+                    </p>
                   </div>
                 </div>
 
-                {/* Botão Saiba Mais */}
-                <button
-                  type="button"
-                  onClick={() => setActiveConcurso(concurso)}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-3.5 px-6 rounded-xl uppercase tracking-wider transition-all shadow-sm hover:shadow-md cursor-pointer group-hover:bg-[#00223B]"
-                >
-                  <span>SAIBA MAIS</span>
-                  <ArrowRight className="w-4 h-4 text-[#FFBF00] group-hover:translate-x-1 transition-transform" />
-                </button>
+                {/* 2. Conteúdo do Card — Informações Principais Resumidas */}
+                <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between gap-4">
+                  <div className="space-y-2.5 text-xs text-[#0A131F]/80">
+                    {/* Órgão */}
+                    <div className="flex items-center gap-2">
+                      <Building2 className="w-4 h-4 text-[#004B7C] shrink-0" />
+                      <span className="line-clamp-1">
+                        <strong className="text-[#00223B] font-semibold">Órgão: </strong>
+                        {concurso.orgao}
+                      </span>
+                    </div>
+
+                    {/* Cargo */}
+                    <div className="flex items-center gap-2">
+                      <Target className="w-4 h-4 text-[#004B7C] shrink-0" />
+                      <span className="line-clamp-1">
+                        <strong className="text-[#00223B] font-semibold">Cargo: </strong>
+                        {concurso.cargo}
+                      </span>
+                    </div>
+
+                    {/* Banca */}
+                    {concurso.banca && (
+                      <div className="flex items-center gap-2">
+                        <FileCheck className="w-4 h-4 text-[#004B7C] shrink-0" />
+                        <span className="line-clamp-1">
+                          <strong className="text-[#00223B] font-semibold">Banca: </strong>
+                          {concurso.banca}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Vagas */}
+                    {concurso.vagas && (
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-[#004B7C] shrink-0" />
+                        <span className="line-clamp-1">
+                          <strong className="text-[#00223B] font-semibold">Vagas: </strong>
+                          {concurso.vagas}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Escolaridade */}
+                    <div className="flex items-center gap-2">
+                      <GraduationCap className="w-4 h-4 text-[#004B7C] shrink-0" />
+                      <span className="line-clamp-1">
+                        <strong className="text-[#00223B] font-semibold">Escolaridade: </strong>
+                        {concurso.escolaridade}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Botões do Card */}
+                  <div className="space-y-2 mt-1">
+                    <button
+                      type="button"
+                      onClick={() => setActiveConcurso(concurso)}
+                      aria-label={`Ver detalhes do concurso ${concurso.nome}`}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-[0.98] cursor-pointer"
+                    >
+                      <span>Ver detalhes</span>
+                      <ArrowRight className="w-4 h-4 text-[#FFBF00] group-hover:translate-x-1 transition-transform" />
+                    </button>
+
+                    {turmaVinculada && (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedTurma(turmaVinculada)}
+                        aria-label={`Ver detalhes da turma de ${concurso.nome}`}
+                        className="w-full inline-flex items-center justify-center gap-2 bg-[#F8FAFC] hover:bg-[#E1E5E8] text-[#004B7C] border border-[#E1E5E8] hover:border-[#004B7C]/40 font-bold text-xs py-2 px-3 rounded-xl uppercase tracking-wider transition-all active:scale-[0.98] cursor-pointer"
+                      >
+                        <Calendar className="w-3.5 h-3.5 text-[#004B7C]" />
+                        <span>Ver detalhes da turma</span>
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/* 7 & 8. MINI PÁGINA DENTRO DO CARD (MODAL COMPLETO) */}
+      {/* PÁGINA / PAINEL DE DETALHES COMPLETO DO CONCURSO */}
       {/* ============================================================ */}
       {activeConcurso && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#001D33]/85 backdrop-blur-md animate-fadeIn"
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 lg:p-6 bg-[#001D33]/85 backdrop-blur-md animate-fadeIn"
           onClick={() => setActiveConcurso(null)}
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
         >
-          <div
-            className="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-white/20 overflow-hidden relative"
+          <div 
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-4xl w-full max-h-[92vh] sm:max-h-[88vh] flex flex-col shadow-2xl border border-white/20 overflow-hidden relative animate-scaleUp"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Cabeçalho Fixo do Modal com Imagem, Nome e Botão Fechar */}
-            <div className="relative shrink-0 bg-[#001D33] text-white">
-              <div className="relative h-44 sm:h-56 w-full overflow-hidden">
-                <img
-                  src={activeConcurso.imagem}
-                  alt={activeConcurso.nome}
-                  className="w-full h-full object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001D33] via-[#001D33]/60 to-black/40" />
-
-                {/* Botão Fechar */}
+            {/* CABEÇALHO FIXO COM NAVEGAÇÃO "← VOLTAR PARA CONCURSOS" */}
+            <div className="bg-[#00223B] text-white px-4 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between border-b border-[#015E96]/40 shrink-0 sticky top-0 z-30 shadow-md">
+              <div className="flex items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setActiveConcurso(null)}
-                  aria-label="Fechar mini página"
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all cursor-pointer z-20"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#E1E5E8] hover:text-[#FFBF00] transition-colors py-1 px-2.5 rounded-lg hover:bg-white/10 cursor-pointer"
+                  aria-label="Voltar para concursos"
                 >
-                  <X className="w-5 h-5" />
+                  <ArrowLeft className="w-4 h-4 text-[#FFBF00]" />
+                  <span>Voltar para concursos</span>
                 </button>
-
-                {/* Badges superiores */}
-                <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
-                  <span className="bg-[#0289C6] text-white text-[11px] font-black uppercase px-3 py-1 rounded-lg shadow-md">
-                    {activeConcurso.categoria.join(' • ')}
-                  </span>
-                  <span className="bg-[#FFBF00] text-[#00223B] text-[11px] font-black uppercase px-3 py-1 rounded-lg shadow-md">
-                    {activeConcurso.destaqueEscolaridade}
-                  </span>
-                </div>
-
-                {/* Identificação Principal */}
-                <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-6">
-                  <h3 id="modal-title" className="font-serif-heading text-2xl sm:text-4xl font-black text-white leading-tight">
-                    {activeConcurso.nome}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#E1E5E8]/90 mt-1 font-medium line-clamp-1">
-                    {activeConcurso.nomeCompleto}
-                  </p>
-                </div>
+                <div className="h-4 w-px bg-white/20 hidden sm:block" />
+                <span className="text-xs font-bold text-[#FFBF00] uppercase tracking-wider hidden sm:block truncate max-w-xs">
+                  {activeConcurso.nome}
+                </span>
               </div>
+
+              {/* Botão Fechar no Cabeçalho */}
+              <button
+                type="button"
+                onClick={() => setActiveConcurso(null)}
+                aria-label="Fechar painel de detalhes"
+                className="p-2 sm:p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer shrink-0 border border-white/15"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
             </div>
 
-            {/* Conteúdo com Scroll Interno Vertical */}
-            <div className="overflow-y-auto p-5 sm:p-8 space-y-8 text-[#0A131F]">
-              {/* 8. O QUE É? */}
+            {/* ÁREA COM SCROLL INTERNO VERTICAL */}
+            <div 
+              ref={modalContentRef}
+              className="overflow-y-auto p-5 sm:p-8 space-y-8 flex-1 text-[#0A131F]"
+            >
+              {/* ============================================================ */}
+              {/* HERO DO CONCURSO: NOME DO CONCURSO + CARGO */}
+              {/* ============================================================ */}
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#E1E5E8] bg-[#00223B] text-white">
+                <div className="relative min-h-[230px] sm:min-h-[270px] w-full flex flex-col justify-between p-5 sm:p-7">
+                  <img
+                    src={activeConcurso.imagem}
+                    alt={`${activeConcurso.nome} - ${activeConcurso.cargo}`}
+                    className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#001D33] via-[#001D33]/70 to-[#001D33]/30 pointer-events-none" />
+
+                  {/* Apenas uma tag span no hero da página de detalhes posicionada no topo */}
+                  <div className="relative z-10 self-start pointer-events-none">
+                    <span className={`inline-block px-3.5 py-1 text-xs rounded-full shadow-md backdrop-blur-sm border ${getCardTag(activeConcurso).styleClass}`}>
+                      {getCardTag(activeConcurso).text}
+                    </span>
+                  </div>
+
+                  {/* Nome do Concurso + Cargo no Hero com espaçamento seguro */}
+                  <div className="relative z-10 mt-auto pt-5">
+                    <h2 id="modal-title" className="font-serif-heading text-xl sm:text-3xl lg:text-4xl font-black text-white uppercase leading-snug drop-shadow-md">
+                      {activeConcurso.nomeCompleto || activeConcurso.nome}
+                    </h2>
+                    <p className="text-sm sm:text-base font-semibold text-[#FFBF00] mt-2.5 sm:mt-3.5 drop-shadow-sm">
+                      {activeConcurso.cargo}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Barra Informativa Rápida no Banner */}
+                <div className="p-4 sm:p-5 bg-[#001D33] border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+                  <div>
+                    <span className="text-[#94A3B8] font-semibold uppercase text-[10px] block mb-0.5">
+                      Banca
+                    </span>
+                    <span className="text-white font-bold block truncate">
+                      {activeConcurso.banca || 'A definir'}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[#94A3B8] font-semibold uppercase text-[10px] block mb-0.5">
+                      Vagas
+                    </span>
+                    <span className="text-[#FFBF00] font-bold block truncate">
+                      {activeConcurso.vagas || 'Em definição'}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[#94A3B8] font-semibold uppercase text-[10px] block mb-0.5">
+                      Escolaridade
+                    </span>
+                    <span className="text-white font-bold block truncate">
+                      {activeConcurso.destaqueEscolaridade}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[#94A3B8] font-semibold uppercase text-[10px] block mb-0.5">
+                      Remuneração Inicial
+                    </span>
+                    <span className="text-[#FFBF00] font-bold block truncate">
+                      {activeConcurso.remuneracaoInicial}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* ============================================================ */}
+              {/* INFORMAÇÕES PRINCIPAIS (ORGANIZADAS EM CARDS) */}
+              {/* ============================================================ */}
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-8 h-8 rounded-lg bg-[#004B7C] flex items-center justify-center text-white shrink-0">
+                    <Target className="w-4 h-4 text-[#FFBF00]" />
+                  </div>
+                  <h3 className="font-serif-heading text-lg sm:text-xl font-bold text-[#00223B]">
+                    Informações Principais
+                  </h3>
+                </div>
+
+                {/* Lista estruturada de informações principais */}
+                <div className="bg-white rounded-2xl border border-[#E1E5E8] shadow-xs overflow-hidden divide-y divide-[#E1E5E8]">
+                  {/* Órgão */}
+                  {activeConcurso.orgao && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Building2 className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Órgão</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.orgao}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Instituição */}
+                  {activeConcurso.instituicao && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Shield className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Instituição</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.instituicao}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Cargo */}
+                  {activeConcurso.cargo && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Target className="w-3.5 h-3.5" />
+                        </div>
+                        <span>{activeConcurso.cargoLabel || 'Cargo'}</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.cargo}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Banca */}
+                  {activeConcurso.banca && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <FileCheck className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Banca</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.banca}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Último Edital / Edital */}
+                  {activeConcurso.ultimoEdital && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <FileText className="w-3.5 h-3.5" />
+                        </div>
+                        <span>{activeConcurso.ultimoEditalLabel || 'Último Edital / Edital'}</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.ultimoEdital}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Inscrições */}
+                  {activeConcurso.inscricoesPeriodo && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Calendar className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Inscrições</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.inscricoesPeriodo}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Prova Objetiva */}
+                  {activeConcurso.dataProva && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Clock className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Prova Objetiva</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.dataProva}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Vagas */}
+                  {activeConcurso.vagas && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Users className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Vagas</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.vagas}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Escolaridade */}
+                  {activeConcurso.escolaridade && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <GraduationCap className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Escolaridade</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.escolaridade}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Áreas de Atuação */}
+                  {activeConcurso.areasAtuacao && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Target className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Áreas de Atuação</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.areasAtuacao}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Idade */}
+                  {activeConcurso.idade && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Clock className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Idade</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.idade}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Remuneração */}
+                  {activeConcurso.remuneracaoInicial && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <DollarSign className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Remuneração</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.remuneracaoResumo || activeConcurso.remuneracaoInicial}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Benefícios */}
+                  {activeConcurso.beneficios && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Award className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Benefícios</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.beneficios}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Regime */}
+                  {activeConcurso.regime && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Scale className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Regime</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.regime}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Jornada */}
+                  {activeConcurso.jornada && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Calendar className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Jornada</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.jornada}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* CNH / Requisitos Adicionais */}
+                  {activeConcurso.requisitoAdicional && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Shield className="w-3.5 h-3.5" />
+                        </div>
+                        <span>CNH / Requisitos Adicionais</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.requisitoAdicional}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Situação do Concurso */}
+                  {activeConcurso.situacao && (
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3.5 sm:py-4 hover:bg-[#F8FAFC] transition-colors gap-1.5 sm:gap-6">
+                      <div className="flex items-center gap-2.5 text-xs font-bold text-[#64748B] uppercase tracking-wider shrink-0 sm:w-64">
+                        <div className="w-7 h-7 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Clock className="w-3.5 h-3.5" />
+                        </div>
+                        <span>Situação</span>
+                      </div>
+                      <div className="text-sm sm:text-base font-bold text-[#00223B] sm:text-right flex-1">
+                        {activeConcurso.situacao}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* ============================================================ */}
+              {/* O QUE É O CONCURSO? (SOBRE A CARREIRA) */}
+              {/* ============================================================ */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
-                    <Building2 className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded-lg bg-[#004B7C] flex items-center justify-center text-white shrink-0">
+                    <Shield className="w-4 h-4 text-[#FFBF00]" />
                   </div>
-                  <h4 className="font-serif-heading text-lg sm:text-xl font-black text-[#00223B]">
+                  <h3 className="font-serif-heading text-lg sm:text-xl font-bold text-[#00223B]">
                     O que é o concurso?
-                  </h4>
+                  </h3>
                 </div>
-                <p className="text-sm sm:text-base text-[#0A131F]/80 leading-relaxed bg-[#F8FAFC] p-5 rounded-2xl border border-[#E1E5E8]">
-                  {activeConcurso.sobre}
-                </p>
-              </div>
-
-              {/* GRID DE INFORMAÇÕES GERAIS */}
-              <div>
-                <h4 className="text-xs font-bold text-[#64748B] uppercase tracking-wider mb-3">
-                  Informações Gerais da Carreira
-                </h4>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs sm:text-sm">
-                  <div className="bg-[#F8FAFC] p-3.5 rounded-xl border border-[#E1E5E8]">
-                    <span className="text-[#64748B] block text-[11px] uppercase font-bold">Órgão</span>
-                    <strong className="text-[#00223B] mt-0.5 block truncate">{activeConcurso.orgao}</strong>
-                  </div>
-
-                  <div className="bg-[#F8FAFC] p-3.5 rounded-xl border border-[#E1E5E8]">
-                    <span className="text-[#64748B] block text-[11px] uppercase font-bold">Cargo</span>
-                    <strong className="text-[#00223B] mt-0.5 block truncate">{activeConcurso.cargo}</strong>
-                  </div>
-
-                  <div className="bg-[#F8FAFC] p-3.5 rounded-xl border border-[#E1E5E8]">
-                    <span className="text-[#64748B] block text-[11px] uppercase font-bold">Escolaridade</span>
-                    <strong className="text-[#00223B] mt-0.5 block truncate">{activeConcurso.escolaridade}</strong>
-                  </div>
-
-                  <div className="bg-[#F8FAFC] p-3.5 rounded-xl border border-[#E1E5E8]">
-                    <span className="text-[#64748B] block text-[11px] uppercase font-bold">Idade</span>
-                    <strong className="text-[#00223B] mt-0.5 block truncate">{activeConcurso.idade}</strong>
-                  </div>
-
-                  <div className="bg-[#F8FAFC] p-3.5 rounded-xl border border-[#E1E5E8]">
-                    <span className="text-[#64748B] block text-[11px] uppercase font-bold">Nacionalidade</span>
-                    <strong className="text-[#00223B] mt-0.5 block truncate">{activeConcurso.nacionalidade}</strong>
-                  </div>
-
-                  <div className="bg-[#F8FAFC] p-3.5 rounded-xl border border-[#E1E5E8]">
-                    <span className="text-[#64748B] block text-[11px] uppercase font-bold">Jornada</span>
-                    <strong className="text-[#00223B] mt-0.5 block truncate">{activeConcurso.jornada}</strong>
-                  </div>
+                <div className="text-sm sm:text-base text-[#0A131F]/80 leading-relaxed bg-[#F8FAFC] p-5 sm:p-6 rounded-2xl border border-[#E1E5E8]">
+                  <p>{activeConcurso.sobre}</p>
                 </div>
               </div>
+
+              {/* ============================================================ */}
+              {/* DISCIPLINAS COBRADAS NO CONCURSO */}
+              {/* ============================================================ */}
+              {activeConcurso.disciplinas && activeConcurso.disciplinas.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-[#004B7C] flex items-center justify-center text-white shrink-0">
+                      <BookOpen className="w-4 h-4 text-[#FFBF00]" />
+                    </div>
+                    <h3 className="font-serif-heading text-lg sm:text-xl font-bold text-[#00223B]">
+                      {activeConcurso.disciplinasTitulo || 'Disciplinas Cobradas'}
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#0A131F]/70 mb-3">
+                    Conteúdo programático oficial abordado com aulas aprofundadas e simulados comentados:
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {activeConcurso.disciplinas.map((disc, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-[#F8FAFC] p-3.5 sm:p-4 rounded-xl border border-[#E1E5E8] flex items-center gap-3 hover:border-[#0289C6]/50 hover:bg-white transition-all shadow-2xs"
+                      >
+                        <div className="w-6 h-6 rounded-full bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
+                          <Check className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="text-sm sm:text-base font-semibold text-[#0A131F]">
+                          {disc}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* ============================================================ */}
+              {/* ATRIBUIÇÕES DO CARGO */}
+              {/* ============================================================ */}
+              {activeConcurso.atribuicoes && (
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#004B7C] flex items-center justify-center text-white shrink-0">
+                      <FileText className="w-4 h-4 text-[#FFBF00]" />
+                    </div>
+                    <h3 className="font-serif-heading text-lg sm:text-xl font-bold text-[#00223B]">
+                      Atribuições do Cargo
+                    </h3>
+                  </div>
+                  <div className="bg-[#F8FAFC] p-5 sm:p-6 rounded-2xl border border-[#E1E5E8] text-sm sm:text-base text-[#0A131F]/80 leading-relaxed">
+                    {typeof activeConcurso.atribuicoes === 'string' ? (
+                      <p>{activeConcurso.atribuicoes}</p>
+                    ) : (
+                      <ul className="space-y-2">
+                        {activeConcurso.atribuicoes.map((atrib, idx) => (
+                          <li key={idx} className="flex items-start gap-2.5">
+                            <span className="text-[#0289C6] font-bold select-none">•</span>
+                            <span>{atrib}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* ============================================================ */}
+              {/* ETAPAS DO PROCESSO SELETIVO */}
+              {/* ============================================================ */}
+              {activeConcurso.etapas && activeConcurso.etapas.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-[#004B7C] flex items-center justify-center text-white shrink-0">
+                      <FileCheck className="w-4 h-4 text-[#FFBF00]" />
+                    </div>
+                    <h3 className="font-serif-heading text-lg sm:text-xl font-bold text-[#00223B]">
+                      Etapas do Concurso
+                    </h3>
+                  </div>
+                  <div className="space-y-3">
+                    {activeConcurso.etapas.map((etapa, idx) => (
+                      <div key={idx} className="bg-white p-4 sm:p-5 rounded-xl border border-[#E1E5E8] shadow-xs flex items-start gap-4">
+                        <span className="w-8 h-8 rounded-xl bg-[#004B7C] text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                          {etapa.numero}
+                        </span>
+                        <div className="flex-1">
+                          <span className="font-bold text-sm sm:text-base text-[#00223B] block">
+                            {etapa.titulo}
+                          </span>
+                          <p className="text-xs sm:text-sm text-[#64748B] mt-1 leading-relaxed">
+                            {etapa.descricao}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* ESPECIAL DETRAN: CARGOS DIFERENCIADOS */}
               {activeConcurso.cargosMultiplos && (
@@ -468,7 +1002,213 @@ export const ConcursosPage: React.FC = () => {
                 </div>
               )}
 
-              {/* 9. REMUNERAÇÃO: QUANTO POSSO GANHAR? */}
+              {/* ============================================================ */}
+              {/* BLOCO DE INSCRIÇÕES (QUANDO DISPONÍVEL) */}
+              {/* ============================================================ */}
+              {activeConcurso.inscricoesBloco && (
+                <div className="bg-[#F0FDF4] border-2 border-emerald-400/60 rounded-2xl p-5 sm:p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white shrink-0">
+                      <Calendar className="w-4 h-4 text-[#FFBF00]" />
+                    </div>
+                    <div>
+                      <span className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider block">
+                        Cronograma Oficial
+                      </span>
+                      <h4 className="font-serif-heading text-lg sm:text-xl font-black text-[#00223B]">
+                        Inscrições
+                      </h4>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                    <div className="bg-white p-4 rounded-xl border border-emerald-200 shadow-2xs">
+                      <span className="text-[10px] font-bold text-[#64748B] uppercase tracking-wider block mb-1">
+                        Período de Inscrição
+                      </span>
+                      <span className="text-base sm:text-lg font-black text-emerald-700 font-serif-heading block">
+                        {activeConcurso.inscricoesBloco.periodo}
+                      </span>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-xl border border-emerald-200 shadow-2xs">
+                      <span className="text-[10px] font-bold text-[#64748B] uppercase tracking-wider block mb-1">
+                        Taxa de Inscrição
+                      </span>
+                      <span className="text-base sm:text-lg font-black text-[#00223B] font-serif-heading block">
+                        {activeConcurso.inscricoesBloco.taxa}
+                      </span>
+                      <span className="text-[11px] text-[#64748B] block mt-0.5">
+                        Pagamento: {activeConcurso.inscricoesBloco.pagamentoAte}
+                      </span>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-xl border border-emerald-200 shadow-2xs">
+                      <span className="text-[10px] font-bold text-[#64748B] uppercase tracking-wider block mb-1">
+                        Situação
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase bg-emerald-100 text-emerald-800 border border-emerald-300 mt-0.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>{activeConcurso.inscricoesBloco.situacao}</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* ============================================================ */}
+              {/* BLOCO DE PROVA OBJETIVA DETALHADA (QUANDO DISPONÍVEL) */}
+              {/* ============================================================ */}
+              {activeConcurso.provaObjetivaBloco && (
+                <div className="bg-white rounded-2xl border border-[#E1E5E8] p-5 sm:p-6 shadow-xs">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-[#004B7C] flex items-center justify-center text-white shrink-0">
+                      <FileCheck className="w-4 h-4 text-[#FFBF00]" />
+                    </div>
+                    <div>
+                      <span className="text-[11px] font-bold text-[#0289C6] uppercase tracking-wider block">
+                        Estrutura do Exame
+                      </span>
+                      <h4 className="font-serif-heading text-lg sm:text-xl font-black text-[#00223B]">
+                        Prova Objetiva
+                      </h4>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5">
+                    <div className="bg-[#F8FAFC] p-3.5 rounded-xl border border-[#E1E5E8]">
+                      <span className="text-[10px] font-bold text-[#64748B] uppercase block">Data</span>
+                      <span className="text-sm sm:text-base font-black text-[#004B7C] font-mono mt-0.5 block">
+                        {activeConcurso.provaObjetivaBloco.data}
+                      </span>
+                    </div>
+                    <div className="bg-[#F8FAFC] p-3.5 rounded-xl border border-[#E1E5E8]">
+                      <span className="text-[10px] font-bold text-[#64748B] uppercase block">Duração</span>
+                      <span className="text-sm sm:text-base font-black text-[#00223B] mt-0.5 block">
+                        {activeConcurso.provaObjetivaBloco.duracao}
+                      </span>
+                    </div>
+                    <div className="bg-[#F8FAFC] p-3.5 rounded-xl border border-[#E1E5E8] col-span-2 sm:col-span-1">
+                      <span className="text-[10px] font-bold text-[#64748B] uppercase block">Total de Questões</span>
+                      <span className="text-sm sm:text-base font-black text-[#00223B] mt-0.5 block">
+                        {activeConcurso.provaObjetivaBloco.totalQuestoes}
+                      </span>
+                    </div>
+                  </div>
+
+                  <span className="text-xs font-bold text-[#00223B] block uppercase tracking-wider mb-2.5">
+                    Distribuição das Questões:
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+                    {activeConcurso.provaObjetivaBloco.distribuicao.map((item, idx) => (
+                      <div key={idx} className="bg-[#F8FAFC] p-3 rounded-xl border border-[#E1E5E8] flex items-center justify-between">
+                        <span className="text-xs sm:text-sm font-semibold text-[#0A131F]">
+                          {item.materia}
+                        </span>
+                        <span className="font-mono font-bold text-xs bg-[#004B7C] text-white px-2.5 py-1 rounded-md">
+                          {item.quantidade} questões
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex items-start gap-2 bg-amber-50 p-3.5 rounded-xl border border-amber-200 text-xs text-amber-900">
+                    <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <span>
+                      <strong className="font-bold">Critério de eliminação: </strong>
+                      {activeConcurso.provaObjetivaBloco.criterioEliminacao}
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* ============================================================ */}
+              {/* TURMAS PREPARATÓRIAS ESPECÍFICAS (NOSSAS TURMAS DO CONCURSO) */}
+              {/* ============================================================ */}
+              {(() => {
+                const turmasDoConcurso = getTurmasConcursoPorId(activeConcurso.id);
+                if (turmasDoConcurso.length > 0) {
+                  return (
+                    <div className="space-y-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-8 h-8 rounded-lg bg-[#004B7C] flex items-center justify-center text-white shrink-0">
+                          <GraduationCap className="w-4 h-4 text-[#FFBF00]" />
+                        </div>
+                        <div>
+                          <span className="text-[11px] font-bold text-[#0289C6] uppercase tracking-wider block">
+                            Preparação Oficial Progressão Caxias
+                          </span>
+                          <h3 className="font-serif-heading text-lg sm:text-2xl font-bold text-[#00223B]">
+                            Nossa Turma · {activeConcurso.nome}
+                          </h3>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 gap-6">
+                        {turmasDoConcurso.map((turmaItem) => (
+                          <TurmaConcursoCard
+                            key={turmaItem.id}
+                            turma={turmaItem}
+                            onSelectTurma={(t) => setSelectedTurma(t)}
+                            showButton={true}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (activeConcurso.turmasPreparatorias && activeConcurso.turmasPreparatorias.length > 0) {
+                  return (
+                    <div className="space-y-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-8 h-8 rounded-lg bg-[#004B7C] flex items-center justify-center text-white shrink-0">
+                          <GraduationCap className="w-4 h-4 text-[#FFBF00]" />
+                        </div>
+                        <div>
+                          <span className="text-[11px] font-bold text-[#0289C6] uppercase tracking-wider block">
+                            Preparação Oficial Progressão Caxias
+                          </span>
+                          <h3 className="font-serif-heading text-lg sm:text-2xl font-bold text-[#00223B]">
+                            Nossa Turma · {activeConcurso.nome}
+                          </h3>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 gap-6">
+                        {activeConcurso.turmasPreparatorias.map((turmaItem, tIdx) => (
+                          <div
+                            key={tIdx}
+                            className="bg-white rounded-2xl border-2 border-[#004B7C]/20 shadow-sm overflow-hidden hover:border-[#0289C6] transition-all"
+                          >
+                            <div className="bg-gradient-to-r from-[#00223B] to-[#004B7C] text-white p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                              <div>
+                                <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#FFBF00] text-[#00223B] mb-1.5">
+                                  Nossa turma
+                                </span>
+                                <h4 className="font-serif-heading text-base sm:text-xl font-bold text-white">
+                                  {turmaItem.nome}
+                                </h4>
+                                {turmaItem.subtitulo && (
+                                  <p className="text-xs sm:text-sm text-[#FFBF00] font-medium mt-0.5">
+                                    {turmaItem.subtitulo}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                return null;
+              })()}
+
+              {/* ============================================================ */}
+              {/* ESTRUTURA DE REMUNERAÇÃO E BENEFÍCIOS */}
+              {/* ============================================================ */}
               <div className="bg-gradient-to-br from-[#00223B] to-[#004B7C] text-white p-6 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden">
                 <div className="relative z-10">
                   <div className="flex items-center gap-2 text-[#FFBF00] text-xs font-bold uppercase tracking-wider mb-2">
@@ -479,18 +1219,11 @@ export const ConcursosPage: React.FC = () => {
                     Quanto posso ganhar?
                   </h4>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <div className="grid grid-cols-1 gap-4 mb-4">
                     <div className="bg-white/10 p-4 rounded-2xl border border-white/15">
                       <span className="text-xs text-[#94A3B8] uppercase block font-semibold">Remuneração Inicial</span>
                       <div className="text-2xl sm:text-3xl font-black text-[#FFBF00] font-serif-heading mt-1">
                         {activeConcurso.remuneracaoInicial}
-                      </div>
-                    </div>
-
-                    <div className="bg-white/10 p-4 rounded-2xl border border-white/15">
-                      <span className="text-xs text-[#94A3B8] uppercase block font-semibold">Remuneração na Carreira</span>
-                      <div className="text-2xl sm:text-3xl font-black text-white font-serif-heading mt-1">
-                        {activeConcurso.remuneracaoFinal}
                       </div>
                     </div>
                   </div>
@@ -508,107 +1241,18 @@ export const ConcursosPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* 10. REQUISITOS: QUEM PODE PARTICIPAR? */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
-                    <Users className="w-4 h-4" />
-                  </div>
-                  <h4 className="font-serif-heading text-lg sm:text-xl font-black text-[#00223B]">
-                    Quem pode participar?
-                  </h4>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {activeConcurso.requisitos.map((req, idx) => (
-                    <div key={idx} className="bg-[#F8FAFC] p-4 rounded-2xl border border-[#E1E5E8] flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-[#0289C6] shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-bold text-sm text-[#00223B] block">{req.titulo}</span>
-                        <p className="text-xs text-[#64748B] mt-0.5 leading-relaxed">{req.descricao}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 11. ETAPAS DO CONCURSO: COMO FUNCIONA A SELEÇÃO? */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
-                    <FileCheck className="w-4 h-4" />
-                  </div>
-                  <h4 className="font-serif-heading text-lg sm:text-xl font-black text-[#00223B]">
-                    Como funciona a seleção?
-                  </h4>
-                </div>
-                <div className="space-y-3">
-                  {activeConcurso.etapas.map((etapa, idx) => (
-                    <div key={idx} className="bg-white p-4 rounded-2xl border border-[#E1E5E8] shadow-xs flex items-start gap-4">
-                      <span className="w-8 h-8 rounded-xl bg-[#004B7C] text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">
-                        {etapa.numero}
-                      </span>
-                      <div className="flex-1">
-                        <span className="font-bold text-sm text-[#00223B] block">{etapa.titulo}</span>
-                        <p className="text-xs text-[#64748B] mt-0.5 leading-relaxed">{etapa.descricao}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 12. DIFERENCIAIS DA CARREIRA: POR QUE ESCOLHER ESSA CARREIRA? */}
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
-                    <Award className="w-4 h-4" />
-                  </div>
-                  <h4 className="font-serif-heading text-lg sm:text-xl font-black text-[#00223B]">
-                    Por que escolher essa carreira?
-                  </h4>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {activeConcurso.diferenciais.map((dif, idx) => (
-                    <div key={idx} className="bg-[#F8FAFC] p-4 rounded-2xl border border-[#E1E5E8]">
-                      <span className="font-bold text-sm text-[#004B7C] block mb-1">{dif.titulo}</span>
-                      <p className="text-xs text-[#64748B] leading-relaxed">{dif.descricao}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 13. PERFIL DO CANDIDATO */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#004B7C]/10 text-[#004B7C] flex items-center justify-center shrink-0">
-                    <Target className="w-4 h-4" />
-                  </div>
-                  <h4 className="font-serif-heading text-lg sm:text-xl font-black text-[#00223B]">
-                    Essa carreira combina com você?
-                  </h4>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {activeConcurso.perfil.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-[#E1E5E8] text-xs font-semibold text-[#0A131F]">
-                      <div className="w-2 h-2 rounded-full bg-[#10B981]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <span className="text-[10px] text-[#94A3B8] block mt-2 italic">
-                  *Características comportamentais sugeridas para a rotina do cargo; não configuram critérios eliminatórios se não previstos em edital.
-                </span>
-              </div>
-
-              {/* 14. CTA DENTRO DA MINI PÁGINA */}
+              {/* ============================================================ */}
+              {/* CTA DENTRO DO PAINEL DE DETALHES */}
+              {/* ============================================================ */}
               <div className="bg-[#001D33] text-white p-6 sm:p-8 rounded-3xl text-center space-y-4 shadow-xl">
                 <span className="text-xs font-bold text-[#FFBF00] uppercase tracking-wider block">
                   Preparação Especializada em Duque de Caxias
                 </span>
                 <h4 className="font-serif-heading text-xl sm:text-2xl font-black text-white">
-                  Quer se preparar para esse concurso?
+                  Quer se preparar para o concurso {activeConcurso.nome}?
                 </h4>
                 <p className="text-sm text-[#E1E5E8]/90 max-w-xl mx-auto leading-relaxed">
-                  "Comece sua preparação com uma estratégia direcionada para o seu objetivo."
+                  "Comece sua preparação com uma estratégia direcionada e simulados com as bancas oficiais."
                 </p>
 
                 <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -620,17 +1264,31 @@ export const ConcursosPage: React.FC = () => {
                       setFormData(prev => ({ ...prev, concurso: cNome }));
                       setTimeout(() => scrollToSection('inscricao'), 150);
                     }}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-sm sm:text-base px-8 py-4 rounded-xl uppercase tracking-wider shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-sm sm:text-base px-8 py-3.5 rounded-xl uppercase tracking-wider shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer"
                   >
-                    <span>FAZER MINHA INSCRIÇÃO</span>
+                    <span>Fazer minha inscrição</span>
                     <ArrowRight className="w-5 h-5 text-[#00223B]" />
                   </button>
+
+                  {getTurmaConcursoPorId(activeConcurso.id) && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const t = getTurmaConcursoPorId(activeConcurso.id);
+                        if (t) setSelectedTurma(t);
+                      }}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0289C6] hover:bg-[#015E96] text-white font-bold text-sm px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                    >
+                      <Calendar className="w-4 h-4 text-[#FFBF00]" />
+                      <span>Ver detalhes da turma</span>
+                    </button>
+                  )}
 
                   <a
                     href={getWhatsAppUrl(activeConcurso.nome)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-sm px-6 py-4 rounded-xl uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-sm px-6 py-3.5 rounded-xl uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer"
                   >
                     <MessageCircle className="w-4 h-4 text-[#25D366]" />
                     <span>Falar no WhatsApp</span>
@@ -638,15 +1296,37 @@ export const ConcursosPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* 18. FONTES E TRANSPARÊNCIA */}
-              <div className="pt-4 border-t border-[#E1E5E8] flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#94A3B8] gap-2">
-                <span>"Informações sujeitas a alterações conforme edital e legislação vigente."</span>
+              {/* FONTES E BOTÃO VOLTAR NO RODAPÉ */}
+              <div className="pt-4 border-t border-[#E1E5E8] flex flex-col sm:flex-row items-center justify-between text-xs text-[#94A3B8] gap-3">
+                <button
+                  type="button"
+                  onClick={() => setActiveConcurso(null)}
+                  className="inline-flex items-center gap-1.5 text-[#004B7C] hover:text-[#00223B] font-bold cursor-pointer"
+                >
+                  <ArrowLeft className="w-4 h-4 text-[#004B7C]" />
+                  <span>Voltar para concursos</span>
+                </button>
                 <span>Fonte: {activeConcurso.fonte}</span>
               </div>
             </div>
           </div>
         </div>
       )}
+
+      {/* ============================================================ */}
+      {/* SEÇÃO “NOSSAS TURMAS” — CONCURSOS PÚBLICOS */}
+      {/* ============================================================ */}
+      <TurmasConcursosSection onSelectTurma={setSelectedTurma} />
+
+      {/* ============================================================ */}
+      {/* SEÇÃO “TURMAS PRO” — SEM CONCURSO ESPECÍFICO */}
+      {/* ============================================================ */}
+      <TurmasPro />
+
+      {/* ============================================================ */}
+      {/* SEÇÃO “COMBOS E PRODUTOS” */}
+      {/* ============================================================ */}
+      <CombosProdutos />
 
       {/* ============================================================ */}
       {/* 15. SEÇÃO — COMO O PROGRESSÃO PREPARA VOCÊ */}
@@ -841,15 +1521,202 @@ export const ConcursosPage: React.FC = () => {
       {/* ============================================================ */}
       {/* 18. FORMULÁRIO DE INSCRIÇÃO / PRÉ-MATRÍCULA */}
       {/* ============================================================ */}
-      <div className="bg-white p-8 flex justify-center">
-              <div className="w-full max-w-[600px]">
-                {/* RD STATION — PROVISÓRIO */}
-                <RDStationForm
-                  formId="caxias_lp_geral-6b17fb580118e7e46ef8"
-                />
+      <section id="inscricao" className="py-16 sm:py-24 bg-white px-4 sm:px-6 lg:px-8 border-t border-[#E1E5E8]">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-10">
+            <span className="text-xs sm:text-sm font-bold text-[#0289C6] uppercase tracking-wider block mb-1">
+              Garanta Sua Condição Especial
+            </span>
+            <h2 className="font-serif-heading text-2xl sm:text-4xl font-black text-[#00223B] tracking-tight uppercase leading-snug">
+              Inscrição para Concursos Públicos
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-[#64748B]">
+              Preencha os campos abaixo para reservar sua vaga nas turmas presenciais de Duque de Caxias e receber o plano de estudos da carreira escolhida.
+            </p>
+          </div>
+
+          <div className="bg-[#F8FAFC] rounded-3xl p-6 sm:p-10 border border-[#E1E5E8] shadow-lg">
+            {formSubmitted ? (
+              <div className="text-center py-8 space-y-4">
+                <div className="w-16 h-16 rounded-full bg-[#10B981]/20 text-[#10B981] flex items-center justify-center mx-auto">
+                  <Check className="w-8 h-8" />
+                </div>
+                <h3 className="font-serif-heading text-2xl font-black text-[#00223B]">
+                  Inscrição Recebida com Sucesso!
+                </h3>
+                <p className="text-sm text-[#64748B] max-w-md mx-auto leading-relaxed">
+                  Obrigado, <strong>{formData.nome}</strong>! Nossa coordenação pedagógica entrará em contato via WhatsApp para confirmar horários, valores promocionais e o início das aulas para o concurso <strong>{formData.concurso}</strong>.
+                </p>
+
+                <div className="pt-4">
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Acabei de fazer a inscrição no site do Progressão para a turma de ${formData.concurso} (${formData.turno} - ${formData.modalidade}). Meu nome é ${formData.nome}.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-md hover:scale-105 active:scale-95 transition-all"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-current" />
+                    <span>Confirmar Agora pelo WhatsApp</span>
+                  </a>
+                </div>
               </div>
-            </div>
-      
+            ) : (
+              <form onSubmit={handleFormSubmit} className="space-y-6">
+                {/* Nome Completo */}
+                <div>
+                  <label htmlFor="nome" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                    Nome Completo *
+                  </label>
+                  <input
+                    id="nome"
+                    type="text"
+                    required
+                    value={formData.nome}
+                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                    placeholder="Ex: Carlos Eduardo da Silva"
+                    className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
+                  />
+                </div>
+
+                {/* WhatsApp & E-mail */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="whatsapp" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                      WhatsApp com DDD *
+                    </label>
+                    <input
+                      id="whatsapp"
+                      type="tel"
+                      required
+                      value={formData.whatsapp}
+                      onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+                      placeholder="(21) 99999-9999"
+                      className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                      E-mail (opcional)
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="seuemail@exemplo.com"
+                      className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Concurso de Interesse */}
+                <div>
+                  <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                    Qual concurso você deseja prestar? *
+                  </label>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {[
+                      'PMERJ',
+                      'INSS',
+                      'PRF Administrativo',
+                      'PRF Agente Federal',
+                      'PCERJ',
+                      'Banco do Brasil',
+                      'DETRAN',
+                      'GM Maricá',
+                      'Transpetro'
+                    ].map((conc) => (
+                      <button
+                        key={conc}
+                        type="button"
+                        onClick={() => setFormData({ ...formData, concurso: conc })}
+                        className={`p-3 rounded-xl text-xs font-bold transition-all border text-left cursor-pointer truncate ${
+                          formData.concurso === conc
+                            ? 'bg-[#004B7C] text-white border-[#004B7C] shadow-sm'
+                            : 'bg-white text-[#0A131F] border-[#CBD5E1] hover:bg-[#F1F5F9]'
+                        }`}
+                      >
+                        {conc}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Turno e Modalidade */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                      Turno de Preferência
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {['Manhã', 'Tarde', 'Noite', 'Sábados'].map((t) => (
+                        <button
+                          key={t}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, turno: t })}
+                          className={`p-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
+                            formData.turno === t
+                              ? 'bg-[#0289C6] text-white border-[#0289C6]'
+                              : 'bg-white text-[#0A131F] border-[#CBD5E1] hover:bg-[#F1F5F9]'
+                          }`}
+                        >
+                          {t}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
+                      Modalidade
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {['Presencial (Caxias)', 'Online / Ao Vivo'].map((m) => (
+                        <button
+                          key={m}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, modalidade: m })}
+                          className={`p-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
+                            formData.modalidade === m
+                              ? 'bg-[#0289C6] text-white border-[#0289C6]'
+                              : 'bg-white text-[#0A131F] border-[#CBD5E1] hover:bg-[#F1F5F9]'
+                          }`}
+                        >
+                          {m}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Botão de Envio */}
+                <button
+                  type="submit"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-sm sm:text-base py-4 px-8 rounded-xl uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
+                >
+                  <span>GARANTIR MINHA INSCRIÇÃO</span>
+                  <ArrowRight className="w-5 h-5 text-[#00223B]" />
+                </button>
+
+                <p className="text-[11px] text-center text-[#94A3B8]">
+                  Seus dados estão protegidos. Não enviamos spam. Atendimento presencial no Progressão Caxias.
+                </p>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* MODAL / PAINEL COMPLETO DE DETALHES DA TURMA SELECIONADA */}
+      {/* ============================================================ */}
+      {selectedTurma && (
+        <TurmaConcursoDetalhesModal
+          turma={selectedTurma}
+          onClose={() => setSelectedTurma(null)}
+        />
+      )}
     </div>
   );
 };

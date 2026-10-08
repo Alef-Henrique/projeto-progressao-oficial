@@ -90,8 +90,10 @@ export interface DidacticMaterialItem {
   id: string;
   category: 'colegio' | 'cursos';
   title: string;
+  segment: string;
   description: string;
   features?: string[];
   image: string;
+  badge?: string;
   link?: string;
 }
