@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Sparkles, 
-  ArrowRight, 
-  ChevronRight, 
-  ChevronLeft, 
-  Star, 
-  MessageCircle, 
+import {
+  Sparkles,
+  ArrowRight,
+  ChevronRight,
+  ChevronLeft,
+  Star,
+  MessageCircle,
   Check
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
@@ -16,6 +16,7 @@ import { AceleradorProdutoModal } from '../components/vestibular/AceleradorProdu
 import { TurmasVestibularSection } from '../components/vestibular/TurmasVestibularSection';
 import { TurmaDetalhesModal } from '../components/turmas/TurmaDetalhesModal';
 import { TurmaDetalhes } from '../data/turmasData';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 
 export const PreVestibularPage: React.FC = () => {
   // Estado para o produto selecionado do Acelerador Vest (Modal de Detalhes)
@@ -42,54 +43,23 @@ export const PreVestibularPage: React.FC = () => {
   const approvedStudents = [
     {
       id: 1,
-      name: 'Mariana Costa',
-      course: 'Medicina • UFRJ (SISU)',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+      name: 'Arthur Teodoro',
+      course: 'Medicina • UFRJ e UERJ',
+      image: '/assets/arthur-teodoro.webp',
       testimonial: 'A preparação no Progressão foi decisiva para eu alcançar a nota necessária em Medicina na UFRJ. O apoio individual na redação e os simulados no padrão exato do ENEM me deram a segurança que eu precisava para a prova.',
       badge: 'APROVADO ✓'
-    },
-    {
-      id: 2,
-      name: 'Camila Martins',
-      course: 'Medicina • UERJ (Conceito A)',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
-      testimonial: 'Conquistei meu Conceito A na UERJ graças aos simulados cronometrados e às aulas direcionadas para o estilo específico de questões da banca da UERJ e do ENEM.',
-      badge: 'APROVADO ✓'
-    },
-    {
-      id: 3,
-      name: 'Felipe Almeida',
-      course: 'Engenharia • UFF (SISU)',
-      image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
-      testimonial: 'O direcionamento nas matérias de exatas e o feedback constante nos simulados me colocaram na frente da concorrência para ingressar na Federal Fluminense.',
-      badge: 'APROVADO ✓'
-    },
-    {
-      id: 4,
-      name: 'Juliana Rocha',
-      course: 'Direito • UNIRIO (SISU)',
-      image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80',
-      testimonial: 'A estrutura acolhedora, os professores experientes e as correções minuciosas de redação fizeram toda a diferença na minha pontuação geral.',
-      badge: 'APROVADO ✓'
-    },
-    {
-      id: 5,
-      name: 'Rafael Oliveira',
-      course: 'Direito • UERJ',
-      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
-      testimonial: 'O foco tanto no ENEM quanto nas especificidades discursivas da UERJ me deu dupla vantagem para conquistar minha vaga universitária.',
-      badge: 'APROVADO ✓'
     }
+
   ];
 
   const handlePrevTestimonial = () => {
-    setCurrentTestimonialIndex((prev) => 
+    setCurrentTestimonialIndex((prev) =>
       prev === 0 ? approvedStudents.length - 1 : prev - 1
     );
   };
 
   const handleNextTestimonial = () => {
-    setCurrentTestimonialIndex((prev) => 
+    setCurrentTestimonialIndex((prev) =>
       (prev + 1) % approvedStudents.length
     );
   };
@@ -142,7 +112,7 @@ export const PreVestibularPage: React.FC = () => {
       {/* ============================================================ */}
       <section className="relative bg-[#00223B] text-white pt-16 pb-20 sm:pt-20 sm:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
         {/* Textura sutil e elegante de listras diagonais suaves e escuras oficial do Progressão */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none z-0"
           style={{
             backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
@@ -208,7 +178,7 @@ export const PreVestibularPage: React.FC = () => {
                 {/* Moldura da Imagem no Formato Quadrado */}
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/15 bg-[#00223B] aspect-square">
                   <img
-                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+                    src="/assets/vestibular.webp"
                     alt="Estudantes jovens estudando e comemorando aprovação no ENEM"
                     className="w-full h-full object-cover object-center"
                     loading="eager"
@@ -359,19 +329,19 @@ export const PreVestibularPage: React.FC = () => {
           {/* Grid de Produtos (Desktop: 3 colunas, Tablet: 2 colunas, Mobile: 1 coluna) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {PRODUTOS_ACELERADOR_VEST.map((produto) => (
-              <div 
+              <div
                 key={produto.id}
                 className="bg-white rounded-2xl overflow-hidden border border-[#E1E5E8] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1 text-[#0A131F]"
               >
                 {/* Topo / Header Visual do Card */}
                 <div className="bg-gradient-to-br from-[#00223B] to-[#001D33] text-white p-5 sm:p-6 relative overflow-hidden shrink-0">
-                  <div 
+                  <div
                     className="absolute inset-0 pointer-events-none opacity-10"
                     style={{
                       backgroundImage: 'repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0px, rgba(255, 255, 255, 0.1) 16px, transparent 16px, transparent 32px)'
                     }}
                   />
-                  
+
                   <div className="relative z-10 space-y-2">
                     <div className="flex items-center justify-between gap-2">
                       <span className="inline-block bg-[#0289C6]/20 border border-[#0289C6]/40 text-[#38BDF8] font-bold text-[10px] px-2.5 py-0.5 rounded-md uppercase tracking-wider">
@@ -474,162 +444,16 @@ export const PreVestibularPage: React.FC = () => {
               Estude onde e quando for melhor para você. Escolha entre diferentes horários e locais disponíveis.
             </p>
           </div>
-
-          <div className="bg-[#F8FAFC] rounded-3xl p-6 sm:p-10 border border-[#E1E5E8] shadow-lg">
-            {formSubmitted ? (
-              <div className="text-center py-8 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-[#10B981]/20 text-[#10B981] flex items-center justify-center mx-auto">
-                  <Check className="w-8 h-8" />
-                </div>
-                <h3 className="font-serif-heading text-2xl font-black text-[#00223B]">
-                  Pré-Inscrição Recebida com Sucesso!
-                </h3>
-                <p className="text-sm text-[#64748B] max-w-md mx-auto leading-relaxed">
-                  Obrigado, <strong>{formData.nome}</strong>! Nossa equipe pedagógica de Duque de Caxias entrará em contato pelo WhatsApp para detalhar horários, valores e benefícios da turma de {formData.preparacao}.
-                </p>
-
-                <div className="pt-4">
-                  <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Acabei de fazer a pré-inscrição no site do Progressão para a turma de ${formData.preparacao} (${formData.horario} - ${formData.modalidade}). Meu nome é ${formData.nome}.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-md transition-all"
-                  >
-                    <MessageCircle className="w-4 h-4 fill-current" />
-                    <span>Confirmar Agora pelo WhatsApp</span>
-                  </a>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleFormSubmit} className="space-y-6">
-                {/* Nome Completo */}
-                <div>
-                  <label htmlFor="nome" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                    Nome Completo
-                  </label>
-                  <input
-                    id="nome"
-                    type="text"
-                    required
-                    value={formData.nome}
-                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                    placeholder="Ex: Mariana Silveira"
-                    className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
-                  />
-                </div>
-
-                {/* WhatsApp & E-mail */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="whatsapp" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                      WhatsApp com DDD
-                    </label>
-                    <input
-                      id="whatsapp"
-                      type="tel"
-                      required
-                      value={formData.whatsapp}
-                      onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                      placeholder="(21) 99999-9999"
-                      className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                      E-mail (opcional)
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="seuemail@exemplo.com"
-                      className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
-                    />
-                  </div>
-                </div>
-
-                {/* Qual preparação você procura? */}
-                <div>
-                  <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                    Qual preparação você procura?
-                  </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                    {['ENEM', 'Pré-Vestibular', 'Vestibulares', 'Ainda não sei'].map((prep) => (
-                      <button
-                        key={prep}
-                        type="button"
-                        onClick={() => setFormData({ ...formData, preparacao: prep })}
-                        className={`p-3 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
-                          formData.preparacao === prep
-                            ? 'bg-[#004B7C] text-white border-[#004B7C] shadow-sm'
-                            : 'bg-white text-[#64748B] border-[#CBD5E1] hover:bg-[#F1F5F9]'
-                        }`}
-                      >
-                        {prep}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Preferência de Horário */}
-                <div>
-                  <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                    Preferência de Horário
-                  </label>
-                  <div className="grid grid-cols-3 gap-2.5">
-                    {['Manhã', 'Tarde', 'Noite'].map((h) => (
-                      <button
-                        key={h}
-                        type="button"
-                        onClick={() => setFormData({ ...formData, horario: h })}
-                        className={`p-3 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
-                          formData.horario === h
-                            ? 'bg-[#004B7C] text-white border-[#004B7C] shadow-sm'
-                            : 'bg-white text-[#64748B] border-[#CBD5E1] hover:bg-[#F1F5F9]'
-                        }`}
-                      >
-                        {h}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Modalidade */}
-                <div>
-                  <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                    Modalidade
-                  </label>
-                  <div className="grid grid-cols-3 gap-2.5">
-                    {['Presencial', 'Online', 'Ainda não sei'].map((m) => (
-                      <button
-                        key={m}
-                        type="button"
-                        onClick={() => setFormData({ ...formData, modalidade: m })}
-                        className={`p-3 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
-                          formData.modalidade === m
-                            ? 'bg-[#004B7C] text-white border-[#004B7C] shadow-sm'
-                            : 'bg-white text-[#64748B] border-[#CBD5E1] hover:bg-[#F1F5F9]'
-                        }`}
-                      >
-                        {m}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Botão de Envio */}
-                <button
-                  type="submit"
-                  className="w-full bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-sm sm:text-base py-4 rounded-xl uppercase tracking-wider shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2"
-                >
-                  <span>QUERO GARANTIR MINHA VAGA</span>
-                  <ArrowRight className="w-5 h-5 text-[#00223B]" />
-                </button>
-              </form>
-            )}
+          <div className="bg-white p-8 flex justify-center">
+            <div className="w-full max-w-[600px]">
+              {/* RD STATION — PROVISÓRIO */}
+              <RDStationForm
+                formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+              />
+            </div>
           </div>
+
+
         </div>
       </section>
 

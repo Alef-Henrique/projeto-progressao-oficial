@@ -4,6 +4,7 @@ import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { CTASection } from '../components/common/CTASection';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { EnsinoMedio } from '../components/EnsinoMedio/EnsinoMedio';
 import { SCHOOL_SEGMENTS_DATA } from '../data/siteData';
 
@@ -43,7 +44,7 @@ export const EnsinoMedioPage: React.FC = () => {
       {/* Hero Section */}
       <section className="relative bg-[#00223B] text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
         {/* Textura sutil de listras diagonais de fundo */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none opacity-25"
           style={{
             backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 22px, transparent 22px, transparent 44px)'
@@ -73,7 +74,7 @@ export const EnsinoMedioPage: React.FC = () => {
             <img
               src={data.image}
               alt="Jovens estudantes no Ensino Médio do Progressão Caxias"
-              className="w-full h-80 sm:h-96 object-cover"
+              className="w-full h-80 sm:h-96 object-contain"
             />
           </div>
 
@@ -124,20 +125,21 @@ export const EnsinoMedioPage: React.FC = () => {
 
       {/* FAQs */}
       <section className="py-16 bg-[#F4F6F8] border-t border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
-        <AccordionFAQ 
-          items={faqsEnsinoMedio} 
-          title="DÚVIDAS FREQUENTES SOBRE O ENSINO MÉDIO" 
+        <AccordionFAQ
+          items={faqsEnsinoMedio}
+          title="DÚVIDAS FREQUENTES SOBRE O ENSINO MÉDIO"
           subtitle="Tire suas dúvidas sobre o funcionamento de nossas turmas e metodologia."
         />
       </section>
 
-      {/* CTA */}
-      <CTASection
-        title="GARANTA A VAGA DO SEU FILHO NO ENSINO MÉDIO"
-        subtitle="O Ensino Médio que prepara com seriedade e resultados comprovados em Duque de Caxias."
-        primaryCtaText="AGENDAR ENTREVISTA DE MATRÍCULA"
-        primaryCtaHref="/contato"
-      />
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
     </div>
   );
 };

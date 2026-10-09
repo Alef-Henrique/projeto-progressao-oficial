@@ -828,7 +828,78 @@ export const TEAM_MEMBERS: TeacherMember[] = [
       'Atendimento pedagógico individualizado'
     ],
     imagePlaceholderText: 'Prof. Renato - Direito'
+  },
+  {
+    id: 'sec-1',
+    name: 'Juliana Carvalho',
+    role: 'Secretaria Acadêmica & Atendimento',
+    category: 'secretaria',
+    image: 'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?auto=format&fit=crop&w=800&q=80',
+    bio: 'Responsável pela gestão de matrículas, emissão de documentação escolar, histórico e atendimento direto às famílias e alunos com presteza e organização.',
+    credentials: [
+      'Gestão de Documentação Escolar e Registros Acadêmicos',
+      'Atendimento ao Aluno e Ouvidoria Institucional',
+      'Especialista em Sistemas Integrados de Gestão Escolar'
+    ],
+    imagePlaceholderText: 'Juliana Carvalho - Secretaria'
+  },
+  {
+    id: 'limp-1',
+    name: 'Marta Ribeiro & Equipe',
+    role: 'Serviços Gerais & Higienização',
+    category: 'limpeza',
+    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
+    bio: 'Equipe dedicada à manutenção, sanitização rigorosa e conservação diária de todas as salas de aula, corredores e áreas de convivência do Progressão Caxias.',
+    credentials: [
+      'Protocolos Avançados de Limpeza e Sanitização Escolar',
+      'Manutenção Contínua e Organização dos Espaços Comuns',
+      'Ambientes Seguros, Acolhedores e Climatizados'
+    ],
+    imagePlaceholderText: 'Marta Ribeiro - Limpeza e Conservação'
+  },
+  {
+    id: 'colegio-1',
+    name: 'Profa. Camila Guimarães',
+    role: 'Coordenação Pedagógica — Segmento Colégio',
+    category: 'colegio',
+    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
+    credentials: [
+      'Especialista em Gestão do Ensino Básico - UFRJ',
+      'Supervisão Escolar e Orientação Curricular BNCC',
+      'Acompanhamento Integral da Vida Escolar'
+    ],
+    imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
+  },
+  {
+    id: 'apoio-1',
+    name: 'Marcos Vinícius Silva',
+    role: 'Inspetoria & Apoio ao Aluno',
+    category: 'apoio',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80',
+    bio: 'Garante a segurança, disciplina positiva e suporte logístico ao cotidiano escolar, auxiliando no fluxo de entrada e saída, intervalos e apoio presencial contínuo aos estudantes.',
+    credentials: [
+      'Mediação de Conflitos e Convivência Escolar',
+      'Segurança Operacional e Primeiros Socorros no Ambiente Escolar',
+      'Suporte Operacional a Professores e Estudantes'
+    ],
+    imagePlaceholderText: 'Marcos Vinícius - Apoio e Disciplina'
+  },
+  {
+    id: 'adm-1',
+    name: 'Patrícia Nogueira',
+    role: 'Gerência Administrativa & Financeira',
+    category: 'administrativo',
+    image: 'https://images.unsplash.com/photo-1573497019236-17f8177b81e8?auto=format&fit=crop&w=800&q=80',
+    bio: 'Supervisiona a operação administrativa, infraestrutura, suprimentos e atendimento financeiro da unidade Duque de Caxias com eficiência e transparência.',
+    credentials: [
+      'Administração de Empresas e Finanças Corporativas',
+      'Gestão de Infraestrutura e Logística Educacional',
+      'Otimização de Processos e Atendimento ao Cliente'
+    ],
+    imagePlaceholderText: 'Patrícia Nogueira - Administrativo'
   }
+
 ];
 
 export const STRUCTURE_ITEMS: StructureItem[] = [
@@ -863,7 +934,8 @@ export const STRUCTURE_ITEMS: StructureItem[] = [
     description: 'Ambiente climatizado e planejado especialmente para turmas preparatórias de concursos públicos, com foco intensivo em alta performance e simulados.',
     image: '/assets/sala-concursos.JPG',
     features: ['Ambiente ventilado e protegido', 'Bebedouros refrigerados e banheiros higienizados', 'Ponto de alimentação e cantina', 'Monitoramento e segurança na entrada e saída']
-  }
+  },
+  
 ];
 
 export const GENERAL_FAQS: FaqItem[] = [

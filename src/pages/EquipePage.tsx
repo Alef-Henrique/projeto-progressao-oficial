@@ -3,6 +3,7 @@ import { UserCheck, GraduationCap, Award, BookOpen, Users } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { CTASection } from '../components/common/CTASection';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { TEAM_MEMBERS } from '../data/siteData';
 
 export const EquipePage: React.FC = () => {
@@ -22,7 +23,7 @@ export const EquipePage: React.FC = () => {
 
       <Breadcrumbs items={[{ label: 'O Progressão' }, { label: 'Nossa Equipe' }]} />
 
-{/* Hero Section */}
+      {/* Hero Section */}
       <section className="relative bg-[#00223B] text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
         {/* Textura sutil de listras diagonais de fundo */}
         <div 
@@ -54,16 +55,23 @@ export const EquipePage: React.FC = () => {
             {[
               { id: 'todos', label: 'Toda a Equipe' },
               { id: 'direcao', label: 'Direção Geral' },
-              { id: 'professores', label: 'Professores' }
+              { id: 'coordenacao', label: 'Coordenação' },
+              { id: 'colegio', label: 'Colégio' },
+              { id: 'professores', label: 'Professores' },
+              { id: 'secretaria', label: 'Secretaria' },
+              { id: 'administrativo', label: 'Administrativo' },
+              { id: 'apoio', label: 'Apoio' },
+              { id: 'limpeza', label: 'Limpeza' }
             ].map(tab => (
               <button
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveCategory(tab.id)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${activeCategory === tab.id
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                  activeCategory === tab.id
                     ? 'bg-[#004B7C] text-white shadow-md'
                     : 'bg-[#E1E5E8]/60 text-[#0A131F]/80 hover:bg-[#E1E5E8] hover:text-[#004B7C]'
-                  }`}
+                }`}
               >
                 {tab.label}
               </button>
@@ -123,6 +131,14 @@ export const EquipePage: React.FC = () => {
           ))}
         </div>
       </section>
+
+      {/* CTA */}
+      <CTASection
+        title="VENHA CONHECER NOSSA EQUIPE PEDAGÓGICA"
+        subtitle="Agende um atendimento presencial em nossa unidade em Duque de Caxias."
+        primaryCtaText="FALAR COM A COORDENAÇÃO"
+        primaryCtaHref="/contato"
+      />
     </div>
   );
 };

@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Award, 
-  CheckCircle2, 
-  ArrowRight, 
+import {
+  Award,
+  CheckCircle2,
+  ArrowRight,
   ArrowLeft,
-  Clock, 
-  Target, 
-  Shield, 
-  X, 
-  FileText, 
-  DollarSign, 
-  Users, 
-  GraduationCap, 
-  Building2, 
-  MessageCircle, 
-  Check, 
-  Layers, 
-  Scale, 
+  Clock,
+  Target,
+  Shield,
+  X,
+  FileText,
+  DollarSign,
+  Users,
+  GraduationCap,
+  Building2,
+  MessageCircle,
+  Check,
+  Layers,
+  Scale,
   Calendar,
   AlertCircle,
   HelpCircle,
@@ -36,6 +36,7 @@ import { CombosProdutos } from '../components/combosProdutos/CombosProdutos';
 import { TurmaConcursoCard } from '../components/turmas/TurmaConcursoCard';
 import { TurmaConcursoDetalhesModal } from '../components/turmas/TurmaConcursoDetalhesModal';
 import { TurmaConcurso, getTurmaConcursoPorId, getTurmasConcursoPorId, TURMAS_CONCURSOS } from '../data/turmasconcursos';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 
 export const ConcursosPage: React.FC = () => {
   // Estado para categoria selecionada no filtro
@@ -175,7 +176,7 @@ export const ConcursosPage: React.FC = () => {
       {/* ============================================================ */}
       <section className="relative bg-gradient-to-br from-[#00223B] via-[#002b49] to-[#001D33] text-white pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden rounded-b-3xl sm:rounded-b-[40px] lg:rounded-b-[48px] shadow-lg border-b border-[#015E96]/30">
         {/* Textura sutil e elegante institucional de listras diagonais */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none z-0 opacity-40"
           style={{
             backgroundImage: 'repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 18px, transparent 18px, transparent 36px)'
@@ -301,8 +302,8 @@ export const ConcursosPage: React.FC = () => {
             {/* Lista com scroll horizontal no mobile */}
             <div className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar w-full md:w-auto py-1">
               {categories.map((cat) => {
-                const count = cat === 'Todos' 
-                  ? CONCURSOS_PUBLICOS_DATA.length 
+                const count = cat === 'Todos'
+                  ? CONCURSOS_PUBLICOS_DATA.length
                   : CONCURSOS_PUBLICOS_DATA.filter(c => c.categoria.includes(cat)).length;
                 const isActive = selectedCategory === cat;
 
@@ -311,16 +312,14 @@ export const ConcursosPage: React.FC = () => {
                     key={cat}
                     type="button"
                     onClick={() => setSelectedCategory(cat)}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
-                      isActive
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${isActive
                         ? 'bg-[#004B7C] text-white shadow-md'
                         : 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A131F]/80 border border-transparent'
-                    }`}
+                      }`}
                   >
                     <span>{cat}</span>
-                    <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-black ${
-                      isActive ? 'bg-[#FFBF00] text-[#00223B]' : 'bg-[#CBD5E1] text-[#0A131F]'
-                    }`}>
+                    <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-black ${isActive ? 'bg-[#FFBF00] text-[#00223B]' : 'bg-[#CBD5E1] text-[#0A131F]'
+                      }`}>
                       {count}
                     </span>
                   </button>
@@ -474,14 +473,14 @@ export const ConcursosPage: React.FC = () => {
       {/* PÁGINA / PAINEL DE DETALHES COMPLETO DO CONCURSO */}
       {/* ============================================================ */}
       {activeConcurso && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 lg:p-6 bg-[#001D33]/85 backdrop-blur-md animate-fadeIn"
           onClick={() => setActiveConcurso(null)}
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
         >
-          <div 
+          <div
             className="bg-white rounded-2xl sm:rounded-3xl max-w-4xl w-full max-h-[92vh] sm:max-h-[88vh] flex flex-col shadow-2xl border border-white/20 overflow-hidden relative animate-scaleUp"
             onClick={(e) => e.stopPropagation()}
           >
@@ -515,7 +514,7 @@ export const ConcursosPage: React.FC = () => {
             </div>
 
             {/* ÁREA COM SCROLL INTERNO VERTICAL */}
-            <div 
+            <div
               ref={modalContentRef}
               className="overflow-y-auto p-5 sm:p-8 space-y-8 flex-1 text-[#0A131F]"
             >
@@ -1535,176 +1534,16 @@ export const ConcursosPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="bg-[#F8FAFC] rounded-3xl p-6 sm:p-10 border border-[#E1E5E8] shadow-lg">
-            {formSubmitted ? (
-              <div className="text-center py-8 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-[#10B981]/20 text-[#10B981] flex items-center justify-center mx-auto">
-                  <Check className="w-8 h-8" />
-                </div>
-                <h3 className="font-serif-heading text-2xl font-black text-[#00223B]">
-                  Inscrição Recebida com Sucesso!
-                </h3>
-                <p className="text-sm text-[#64748B] max-w-md mx-auto leading-relaxed">
-                  Obrigado, <strong>{formData.nome}</strong>! Nossa coordenação pedagógica entrará em contato via WhatsApp para confirmar horários, valores promocionais e o início das aulas para o concurso <strong>{formData.concurso}</strong>.
-                </p>
-
-                <div className="pt-4">
-                  <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Olá! Acabei de fazer a inscrição no site do Progressão para a turma de ${formData.concurso} (${formData.turno} - ${formData.modalidade}). Meu nome é ${formData.nome}.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-md hover:scale-105 active:scale-95 transition-all"
-                  >
-                    <MessageCircle className="w-4 h-4 fill-current" />
-                    <span>Confirmar Agora pelo WhatsApp</span>
-                  </a>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleFormSubmit} className="space-y-6">
-                {/* Nome Completo */}
-                <div>
-                  <label htmlFor="nome" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                    Nome Completo *
-                  </label>
-                  <input
-                    id="nome"
-                    type="text"
-                    required
-                    value={formData.nome}
-                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                    placeholder="Ex: Carlos Eduardo da Silva"
-                    className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
-                  />
-                </div>
-
-                {/* WhatsApp & E-mail */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="whatsapp" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                      WhatsApp com DDD *
-                    </label>
-                    <input
-                      id="whatsapp"
-                      type="tel"
-                      required
-                      value={formData.whatsapp}
-                      onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                      placeholder="(21) 99999-9999"
-                      className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                      E-mail (opcional)
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="seuemail@exemplo.com"
-                      className="w-full px-4 py-3 rounded-xl border border-[#CBD5E1] bg-white text-sm text-[#0A131F] focus:outline-none focus:ring-2 focus:ring-[#004B7C] transition-all"
-                    />
-                  </div>
-                </div>
-
-                {/* Concurso de Interesse */}
-                <div>
-                  <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                    Qual concurso você deseja prestar? *
-                  </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {[
-                      'PMERJ',
-                      'INSS',
-                      'PRF Administrativo',
-                      'PRF Agente Federal',
-                      'PCERJ',
-                      'Banco do Brasil',
-                      'DETRAN',
-                      'GM Maricá',
-                      'Transpetro'
-                    ].map((conc) => (
-                      <button
-                        key={conc}
-                        type="button"
-                        onClick={() => setFormData({ ...formData, concurso: conc })}
-                        className={`p-3 rounded-xl text-xs font-bold transition-all border text-left cursor-pointer truncate ${
-                          formData.concurso === conc
-                            ? 'bg-[#004B7C] text-white border-[#004B7C] shadow-sm'
-                            : 'bg-white text-[#0A131F] border-[#CBD5E1] hover:bg-[#F1F5F9]'
-                        }`}
-                      >
-                        {conc}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Turno e Modalidade */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                      Turno de Preferência
-                    </label>
-                    <div className="grid grid-cols-2 gap-2">
-                      {['Manhã', 'Tarde', 'Noite', 'Sábados'].map((t) => (
-                        <button
-                          key={t}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, turno: t })}
-                          className={`p-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
-                            formData.turno === t
-                              ? 'bg-[#0289C6] text-white border-[#0289C6]'
-                              : 'bg-white text-[#0A131F] border-[#CBD5E1] hover:bg-[#F1F5F9]'
-                          }`}
-                        >
-                          {t}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-[#00223B] uppercase tracking-wider mb-2">
-                      Modalidade
-                    </label>
-                    <div className="grid grid-cols-2 gap-2">
-                      {['Presencial (Caxias)', 'Online / Ao Vivo'].map((m) => (
-                        <button
-                          key={m}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, modalidade: m })}
-                          className={`p-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
-                            formData.modalidade === m
-                              ? 'bg-[#0289C6] text-white border-[#0289C6]'
-                              : 'bg-white text-[#0A131F] border-[#CBD5E1] hover:bg-[#F1F5F9]'
-                          }`}
-                        >
-                          {m}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Botão de Envio */}
-                <button
-                  type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-sm sm:text-base py-4 px-8 rounded-xl uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
-                >
-                  <span>GARANTIR MINHA INSCRIÇÃO</span>
-                  <ArrowRight className="w-5 h-5 text-[#00223B]" />
-                </button>
-
-                <p className="text-[11px] text-center text-[#94A3B8]">
-                  Seus dados estão protegidos. Não enviamos spam. Atendimento presencial no Progressão Caxias.
-                </p>
-              </form>
-            )}
+          <div className="bg-white p-8 flex justify-center">
+            <div className="w-full max-w-[600px]">
+              {/* RD STATION — PROVISÓRIO */}
+              <RDStationForm
+                formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+              />
+            </div>
           </div>
+
+
         </div>
       </section>
 

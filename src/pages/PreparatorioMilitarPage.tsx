@@ -973,12 +973,12 @@ export const PreparatorioMilitarPage: React.FC = () => {
       {/* ============================================================ */}
       {/* 5. METODOLOGIA DE APROVAÇÃO MILITAR DO PROGRESSÃO */}
       {/* ============================================================ */}
-      <section className="py-16 sm:py-20 bg-[#00223B] text-white px-4 sm:px-6 lg:px-8 border-t border-[#015E96]/40">
+            <section className="py-16 sm:py-20 bg-[#00223B] text-white px-4 sm:px-6 lg:px-8 border-t border-[#015E96]/40">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-5 rounded-2xl overflow-hidden shadow-2xl border border-white/15 bg-[#001424]">
               <img
-                src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1000&q=80"
+                src="/assets/david-lopes-02.jpeg"
                 alt="Turma militar em treinamento e resolução de simulados"
                 className="w-full h-80 sm:h-96 object-cover"
                 loading="lazy"
@@ -988,54 +988,54 @@ export const PreparatorioMilitarPage: React.FC = () => {
             <div className="lg:col-span-7 flex flex-col gap-6">
               <div>
                 <span className="text-xs sm:text-sm font-bold text-[#FFBF00] uppercase tracking-wider block mb-1">
-                  Método Comprovado em Caxias
+                  TRADIÇÃO E RESULTADOS EM CONCURSOS MILITARES
                 </span>
-                <h2 className="font-serif-heading text-2xl sm:text-4xl font-black text-white tracking-tight uppercase">
-                  Como Conduzimos Nossos Alunos à Aprovação
+                <h2 className="font-serif-heading text-2xl sm:text-4xl font-black text-white tracking-tight uppercase leading-snug">
+                  PREPARE-SE PARA CONQUISTAR SUA VAGA NA CARREIRA MILITAR
                 </h2>
-                <p className="mt-3 text-sm sm:text-base text-[#E1E5E8]/85 leading-relaxed">
-                  Não preparamos apenas para fazer provas. Treinamos cada candidato para o ritmo, a gestão de tempo sob pressão e a precisão técnica exigidos pelas bancas mais difíceis do Brasil.
+                <p className="mt-3 text-sm sm:text-base text-[#E1E5E8]/90 leading-relaxed font-medium">
+                  Há 31 anos, o Curso Progressão prepara alunos para grandes desafios. Com mais de 30 mil alunos aprovados ao longo de sua trajetória, nossa história reúne resultados em diferentes concursos públicos e carreiras militares. Aqui, você encontra preparação voltada para os objetivos da sua próxima conquista.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-white/10 p-4 rounded-xl border border-white/15">
-                  <h4 className="font-bold text-sm text-[#FFBF00] mb-1 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#FFBF00]" />
-                    Simulados Cronometrados
+                <div className="bg-white/10 p-5 rounded-2xl border border-white/15 flex flex-col justify-start">
+                  <h4 className="font-bold text-sm text-[#FFBF00] mb-1.5 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#FFBF00] shrink-0" />
+                    Concursos militares
                   </h4>
-                  <p className="text-xs text-[#E1E5E8]/80 leading-relaxed">
-                    Reprodução idêntica do tempo, das regras de cartão de respostas e das notas de corte das provas oficiais.
+                  <p className="text-xs text-[#E1E5E8]/90 leading-relaxed font-medium">
+                    Conheça os concursos presentes no histórico do Progressão, como ESA, EEAR, EsPCEx, AFA, EFOMM e PMERJ.
                   </p>
                 </div>
 
-                <div className="bg-white/10 p-4 rounded-xl border border-white/15">
-                  <h4 className="font-bold text-sm text-[#FFBF00] mb-1 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#FFBF00]" />
-                    Foco na Banca Específica
+                <div className="bg-white/10 p-5 rounded-2xl border border-white/15 flex flex-col justify-start">
+                  <h4 className="font-bold text-sm text-[#FFBF00] mb-1.5 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#FFBF00] shrink-0" />
+                    Resultados de destaque
                   </h4>
-                  <p className="text-xs text-[#E1E5E8]/80 leading-relaxed">
-                    Apostilas e listas de exercícios mapeadas de acordo com as peculiaridades de cada força armada.
+                  <p className="text-xs text-[#E1E5E8]/90 leading-relaxed font-medium">
+                    O histórico institucional inclui primeiros lugares em EAGS, ESA e AFA.
                   </p>
                 </div>
 
-                <div className="bg-white/10 p-4 rounded-xl border border-white/15">
-                  <h4 className="font-bold text-sm text-[#FFBF00] mb-1 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#FFBF00]" />
-                    Monitoria Individual
+                <div className="bg-white/10 p-5 rounded-2xl border border-white/15 flex flex-col justify-start">
+                  <h4 className="font-bold text-sm text-[#FFBF00] mb-1.5 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#FFBF00] shrink-0" />
+                    Diferentes caminhos profissionais
                   </h4>
-                  <p className="text-xs text-[#E1E5E8]/80 leading-relaxed">
-                    Plantões de dúvidas presenciais e online para sanar lacunas conceituais antes de cada simulado.
+                  <p className="text-xs text-[#E1E5E8]/90 leading-relaxed font-medium">
+                    Explore as possibilidades de ingresso em diferentes instituições e carreiras militares, de acordo com seus objetivos.
                   </p>
                 </div>
 
-                <div className="bg-white/10 p-4 rounded-xl border border-white/15">
-                  <h4 className="font-bold text-sm text-[#FFBF00] mb-1 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#FFBF00]" />
-                    Professores Especialistas
+                <div className="bg-white/10 p-5 rounded-2xl border border-white/15 flex flex-col justify-start">
+                  <h4 className="font-bold text-sm text-[#FFBF00] mb-1.5 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#FFBF00] shrink-0" />
+                    Encontre seu objetivo
                   </h4>
-                  <p className="text-xs text-[#E1E5E8]/80 leading-relaxed">
-                    Corpo docente veterano, focado no padrão de exigência das academias e escolas militares.
+                  <p className="text-xs text-[#E1E5E8]/90 leading-relaxed font-medium">
+                    Conheça os concursos disponíveis e identifique aquele que corresponde à carreira militar que você deseja seguir.
                   </p>
                 </div>
               </div>

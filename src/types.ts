@@ -53,7 +53,16 @@ export interface TeacherMember {
   id: string;
   name: string;
   role: string;
-  category: 'direcao' | 'coordenacao' | 'professores' | 'pedagogico';
+  category: 
+    | 'direcao' 
+    | 'coordenacao' 
+    | 'professores' 
+    | 'pedagogico' 
+    | 'secretaria' 
+    | 'limpeza' 
+    | 'colegio' 
+    | 'apoio' 
+    | 'administrativo';
   discipline?: string;
   bio: string;
   credentials: string[];

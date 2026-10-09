@@ -5,6 +5,7 @@ import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { CTASection } from '../components/common/CTASection';
 import { FundamentalII } from '../components/FundamentalII/FundamentalII';
+import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { SCHOOL_SEGMENTS_DATA } from '../data/siteData';
 import { WHATSAPP_NUMBER } from '../config/siteConfig';
 
@@ -44,7 +45,7 @@ export const EnsinoFundamental2Page: React.FC = () => {
       {/* Hero Section */}
       <section className="relative bg-[#00223B] text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
         {/* Textura sutil de listras diagonais de fundo */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none opacity-25"
           style={{
             backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 22px, transparent 22px, transparent 44px)'
@@ -92,7 +93,7 @@ export const EnsinoFundamental2Page: React.FC = () => {
             <img
               src={data.image}
               alt="Jovens estudantes no Ensino Fundamental II no Colégio Progressão Caxias"
-              className="w-full h-80 sm:h-96 object-cover"
+              className="w-full h-80 sm:h-96 object-contain"
             />
           </div>
 
@@ -145,7 +146,7 @@ export const EnsinoFundamental2Page: React.FC = () => {
       <section className="py-16 sm:py-20 bg-[#004B7C] text-white px-4 sm:px-6 lg:px-8 border-y border-[#015E96]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            
+
             {/* Coluna da Esquerda: Textos Principais */}
             <div className="lg:col-span-7 flex flex-col gap-5">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-wider w-fit border border-white/20">
@@ -209,20 +210,23 @@ export const EnsinoFundamental2Page: React.FC = () => {
 
       {/* FAQs */}
       <section className="py-16 bg-[#F4F6F8] border-t border-[#E1E5E8] px-4 sm:px-6 lg:px-8">
-        <AccordionFAQ 
-          items={faqsFundamental2} 
-          title="DÚVIDAS FREQUENTES SOBRE O FUNDAMENTAL II" 
+        <AccordionFAQ
+          items={faqsFundamental2}
+          title="DÚVIDAS FREQUENTES SOBRE O FUNDAMENTAL II"
           subtitle="Tire suas dúvidas sobre o funcionamento de nossas turmas e metodologia."
         />
       </section>
 
-      {/* CTA */}
-      <CTASection
-        title="CONHEÇA O FUNDAMENTAL II DO PROGRESSÃO"
-        subtitle="Venha conversar com a coordenação pedagógica e garanta a melhor preparação para seu filho."
-        primaryCtaText="AGENDAR VISITA COM A COORDENAÇÃO"
-        primaryCtaHref="/contato"
-      />
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — PROVISÓRIO */}
+          <RDStationForm
+            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+          />
+        </div>
+      </div>
+
+
     </div>
   );
 };
