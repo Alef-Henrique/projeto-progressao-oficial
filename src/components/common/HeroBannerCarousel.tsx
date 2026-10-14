@@ -107,8 +107,8 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {/* CONTAINER PRINCIPAL: PROPORÇÃO HORIZONTAL FIEL AO DESIGN ORIGINAL */}
-      <div className="relative w-full min-h-[490px] xs:min-h-[500px] sm:min-h-[520px] md:h-[380px] lg:h-[420px] xl:h-[450px] flex items-center justify-center">
+      {/* CONTAINER PRINCIPAL: PROPORÇÃO HORIZONTAL NO DESKTOP E IMERSIVA NO MOBILE */}
+      <div className="relative w-full h-[510px] xs:h-[530px] sm:h-[560px] md:h-[380px] lg:h-[420px] xl:h-[450px] flex items-center justify-center">
         
         {/* ============================================================ */}
         {/* SLIDE 1: 31 ANOS APROVANDO EM CAXIAS - DESDE 1995 */}
@@ -124,11 +124,11 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
 
           {/* LAYOUT DESKTOP & TABLET: COMPOSIÇÃO HORIZONTAL FIEL AO DESIGN ORIGINAL */}
           <div className="hidden md:block absolute inset-0 w-full h-full overflow-hidden bg-[#00223B]">
-            {/* Fundo base texturizado com listras diagonais no fundo */}
+            {/* Fundo base texturizado com listras diagonais suaves e escuras */}
             <div 
-              className="absolute inset-0 pointer-events-none opacity-45 z-0"
+              className="absolute inset-0 pointer-events-none z-0"
               style={{
-                backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
+                backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
               }}
             />
 
@@ -139,11 +139,11 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
                 left: '28%'
               }}
             >
-              {/* Textura de listras diagonais azul contínua preenchendo toda a área direita disponível */}
+              {/* Textura de listras diagonais azul suave e escura */}
               <div 
-                className="absolute inset-0 pointer-events-none opacity-50 z-0"
+                className="absolute inset-0 pointer-events-none z-0"
                 style={{
-                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.075) 0px, rgba(255,255,255,0.075) 18px, transparent 18px, transparent 36px)'
+                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
                 }}
               />
 
@@ -189,42 +189,36 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
             </div>
           </div>
 
-          {/* LAYOUT MOBILE: COMPOSIÇÃO VERTICAL RESPONSIVA (SEM CORTES) */}
-          <div className="flex md:hidden flex-col w-full h-full justify-center px-3.5 sm:px-6 py-3 sm:py-4 z-20 max-w-md mx-auto">
-            {/* Foto dos alunos no topo com fundo de listras diagonais */}
-            <div className="relative w-full aspect-[16/10] max-h-40 xs:max-h-44 sm:max-h-52 overflow-hidden rounded-xl shadow-lg border border-white/15 shrink-0 bg-[#002B48]">
-              {/* Textura de listras diagonais no fundo da imagem */}
-              <div 
-                className="absolute inset-0 pointer-events-none opacity-50 z-0"
-                style={{
-                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
-                }}
-              />
-              <img
-                src="/assets/banner-meninas.png"
-                alt="Alunos da unidade Caxias uniformizados e focados"
-                className="relative z-10 w-full h-full object-cover object-[center_25%]"
-                loading="eager"
-              />
-              <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#00223B]/70 via-transparent to-transparent pointer-events-none" />
-            </div>
+          {/* LAYOUT MOBILE: IMAGEM PREENCHE 100% DA ÁREA COM TEXTOS SOBREPOSTOS NA PARTE INFERIOR */}
+          <div className="md:hidden relative w-full h-full overflow-hidden">
+            {/* Foto dos alunos preenchendo 100% da largura e altura sem barras ou faixas azuis */}
+            <img
+              src="/assets/banner-meninas.png"
+              alt="Alunos da unidade Caxias uniformizados e focados na aprovação"
+              className="w-full h-full object-cover object-[center_20%]"
+              loading="eager"
+            />
 
-            {/* Bloco de Textos abaixo da foto: FUNDO AZUL-MARINHO SÓLIDO (COR LISA SEM LISTRAS) */}
-            <div className="mt-2.5 sm:mt-3 bg-[#001D33] rounded-xl sm:rounded-2xl p-3 xs:p-3.5 sm:p-4 border border-white/10 shadow-lg flex flex-col items-center text-center shrink-0 w-full">
-              <div className="flex flex-col items-center leading-none tracking-tight font-black uppercase w-full">
-                <span className="text-white text-xl xs:text-2xl sm:text-3xl font-black tracking-tight drop-shadow-sm whitespace-nowrap">
+            {/* Gradiente escuro para legibilidade perfeita na parte inferior */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#001424] via-[#001424]/60 to-transparent pointer-events-none" />
+
+            {/* Textos sobre a imagem posicionados na região inferior */}
+            <div className="absolute bottom-10 inset-x-0 px-4 flex flex-col items-center text-center z-20">
+              <div className="flex flex-col items-center leading-[1.05] tracking-tight font-black uppercase">
+                <span className="text-white text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight drop-shadow-md">
                   31 ANOS
                 </span>
-                <span className="text-[#FFBF00] text-xl xs:text-2xl sm:text-3xl font-black tracking-tight my-1 drop-shadow-sm whitespace-nowrap">
+                <span className="text-[#FFBF00] text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight my-1 drop-shadow-md">
                   APROVANDO
                 </span>
-                <span className="text-white text-xl xs:text-2xl sm:text-3xl font-black tracking-tight drop-shadow-sm whitespace-nowrap">
+                <span className="text-white text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight drop-shadow-md">
                   EM CAXIAS
                 </span>
               </div>
 
-              <div className="mt-2.5 sm:mt-3">
-                <span className="inline-block bg-[#FFBF00] text-[#00223B] font-black text-[11px] xs:text-xs sm:text-sm px-3.5 py-1.5 rounded uppercase tracking-wider shadow-md whitespace-nowrap">
+              {/* Selo Desde 1995 */}
+              <div className="mt-2.5">
+                <span className="inline-block bg-[#FFBF00] text-[#00223B] font-black text-[11px] xs:text-xs px-3.5 py-1 rounded-full uppercase tracking-wider shadow-md">
                   DESDE 1995
                 </span>
               </div>
@@ -269,9 +263,9 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
             <div className="flex-1 relative h-full bg-[#002B48] overflow-hidden">
               {/* Textura de listras diagonais contínua para toda a área das 4 imagens */}
               <div 
-                className="absolute inset-0 pointer-events-none opacity-45 z-0"
+                className="absolute inset-0 pointer-events-none z-0"
                 style={{
-                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
+                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
                 }}
               />
 
@@ -310,10 +304,10 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
 
           </div>
 
-          {/* LAYOUT MOBILE: TÍTULO SÓLIDO + ÁREA DE IMAGENS TEXTURIZADA CONTÍNUA */}
-          <div className="flex md:hidden flex-col w-full h-full justify-center px-3.5 sm:px-6 py-3 sm:py-4 z-20 max-w-md mx-auto">
-            {/* Bloco de Texto Superior com Fundo Azul-Marinho Sólido (Sem Textura) */}
-            <div className="bg-[#001D33] rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-white/10 shadow-lg text-center mb-2.5 sm:mb-3 shrink-0">
+          {/* LAYOUT MOBILE: TÍTULO SUPERIOR + GRADE 2X2 DE CARDS COM IMAGENS INTEGRAIS */}
+          <div className="flex md:hidden flex-col w-full h-full justify-between pt-4 pb-11 px-3 xs:px-4 sm:px-6 z-20 max-w-md mx-auto">
+            {/* Bloco de Título Superior */}
+            <div className="text-center shrink-0">
               <div className="flex flex-col items-center leading-none tracking-tight font-black uppercase">
                 <span className="text-white text-lg xs:text-xl sm:text-2xl font-black tracking-tight drop-shadow-sm">
                   TUDO EM
@@ -325,50 +319,42 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
                   UNIDADE
                 </span>
               </div>
-              <span className="text-[#68C5DB] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mt-1 block">
+              <span className="text-[#68C5DB] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] mt-1 block">
                 PROGRESSÃO CAXIAS
               </span>
             </div>
 
-            {/* Área das Imagens com Fundo Azul Texturizado Contínuo com Listras Diagonais */}
-            <div className="relative w-full rounded-2xl overflow-hidden p-2 xs:p-2.5 sm:p-3 bg-[#002B48] border border-white/15 shadow-xl">
-              {/* Textura de listras diagonais contínua para toda a área das imagens */}
-              <div 
-                className="absolute inset-0 pointer-events-none opacity-45 z-0"
-                style={{
-                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
-                }}
-              />
+            {/* Grade 2x2 das Categorias aproveitando 100% da área dos cards */}
+            <div className="grid grid-cols-2 gap-2.5 xs:gap-3 w-full my-auto">
+              {banner2Categories.map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={cat.href}
+                  className="group relative rounded-2xl overflow-hidden border border-white/20 shadow-lg aspect-[4/3.8] xs:aspect-[4/3.6] flex flex-col justify-end bg-[#001726] transition-transform active:scale-95"
+                >
+                  {/* Foto preenchendo 100% do card */}
+                  <img
+                    src={cat.image}
+                    alt={cat.alt}
+                    className="absolute inset-0 w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
 
-              {/* Grid 2x2 das Categorias sobre a textura contínua */}
-              <div className="relative z-10 grid grid-cols-2 gap-2 xs:gap-2.5 sm:gap-3 w-full">
-                {banner2Categories.map((cat) => (
-                  <Link
-                    key={cat.id}
-                    href={cat.href}
-                    className="group relative rounded-xl overflow-hidden border border-white/20 shadow-md flex flex-col bg-[#001726] transition-transform active:scale-95"
-                  >
-                    <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden">
-                      <img
-                        src={cat.image}
-                        alt={cat.alt}
-                        className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#001726]/85 via-transparent to-transparent" />
-                    </div>
-                    
-                    {/* Faixa inferior sólida com linha amarela e textos 100% visíveis e nítidos */}
-                    <div className="bg-[#001D33] border-t-2 border-[#FFBF00] py-2 px-1 text-center relative z-10 flex items-center justify-center min-h-[30px] sm:min-h-[34px]">
-                      <span className="text-white font-black text-xs sm:text-sm tracking-wide uppercase group-hover:text-[#FFBF00] transition-colors whitespace-nowrap block truncate">
-                        {cat.title}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+                  {/* Gradiente escuro para legibilidade */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#001424]/90 via-[#001424]/40 to-transparent pointer-events-none" />
+
+                  {/* Barra inferior com nome e seta circular amarela */}
+                  <div className="relative z-10 p-2.5 xs:p-3 flex items-center justify-between gap-1 w-full">
+                    <span className="text-white font-black text-xs xs:text-sm tracking-wider uppercase drop-shadow block truncate">
+                      {cat.title}
+                    </span>
+                    <span className="w-5 h-5 xs:w-6 xs:h-6 rounded-full bg-[#FFBF00] text-[#00223B] flex items-center justify-center shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                      <ArrowRight className="w-3 h-3 xs:w-3.5 xs:h-3.5 stroke-[3]" />
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
-
           </div>
 
         </div>
@@ -387,11 +373,11 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
 
           {/* LAYOUT DESKTOP & TABLET: COMPOSIÇÃO HORIZONTAL FIEL AO DESIGN ORIGINAL */}
           <div className="hidden md:block absolute inset-0 w-full h-full overflow-hidden bg-[#00223B]">
-            {/* Fundo base texturizado com listras diagonais no fundo */}
+            {/* Fundo base texturizado com listras diagonais suaves e escuras */}
             <div 
-              className="absolute inset-0 pointer-events-none opacity-45 z-0"
+              className="absolute inset-0 pointer-events-none z-0"
               style={{
-                backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
+                backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
               }}
             />
 
@@ -402,11 +388,11 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
                 left: '28%'
               }}
             >
-              {/* Textura de listras diagonais azul contínua preenchendo toda a área direita disponível */}
+              {/* Textura de listras diagonais azul suave e escura */}
               <div 
-                className="absolute inset-0 pointer-events-none opacity-50 z-0"
+                className="absolute inset-0 pointer-events-none z-0"
                 style={{
-                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.075) 0px, rgba(255,255,255,0.075) 18px, transparent 18px, transparent 36px)'
+                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
                 }}
               />
 
@@ -451,52 +437,44 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
                   <span className="font-black text-[#00223B] tracking-wider">PRÉ-MATRÍCULA</span>
                   <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 text-[#00223B] group-hover:translate-x-1 transition-transform shrink-0" />
                 </Link>
-
               </div>
             </div>
           </div>
 
-          {/* LAYOUT MOBILE: COMPOSIÇÃO VERTICAL RESPONSIVA (SEM CORTES) */}
-          <div className="flex md:hidden flex-col w-full h-full justify-center px-3.5 sm:px-6 py-3 sm:py-4 z-20 max-w-md mx-auto">
-            {/* Foto dos aprovados no topo com fundo de listras diagonais */}
-            <div className="relative w-full aspect-[16/10] max-h-40 xs:max-h-44 sm:max-h-52 overflow-hidden rounded-xl shadow-lg border border-white/15 shrink-0 bg-[#002B48]">
-              {/* Textura de listras diagonais no fundo da imagem */}
-              <div 
-                className="absolute inset-0 pointer-events-none opacity-50 z-0"
-                style={{
-                  backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.065) 0px, rgba(255,255,255,0.065) 18px, transparent 18px, transparent 36px)'
-                }}
-              />
-              <img
-                src="/assets/banner-militar-02.png"
-                alt="Aprovados de farda das Forças Armadas - ESA, EEAr e EsPCEx"
-                className="relative z-10 w-full h-full object-cover object-[center_20%]"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#00223B]/70 via-transparent to-transparent pointer-events-none" />
-            </div>
+          {/* LAYOUT MOBILE: IMAGEM PREENCHE 100% DA ÁREA COM TEXTO E BOTÃO SOBREPOSTOS */}
+          <div className="md:hidden relative w-full h-full overflow-hidden">
+            {/* Foto preenchendo 100% da largura e altura sem barras ou faixas azuis */}
+            <img
+              src="/assets/banner-militar-02.png"
+              alt="Turma militar em treinamento e preparação para aprovação"
+              className="w-full h-full object-cover object-[center_20%]"
+              loading="lazy"
+            />
 
-            {/* Bloco de Textos e Botão abaixo da foto: FUNDO AZUL-MARINHO SÓLIDO (COR LISA SEM LISTRAS) */}
-            <div className="mt-2.5 sm:mt-3 bg-[#001D33] rounded-xl sm:rounded-2xl p-3 xs:p-3.5 sm:p-4 border border-white/10 shadow-lg flex flex-col items-center text-center shrink-0 w-full">
-              <div className="flex flex-col items-center leading-none tracking-tight font-black uppercase w-full">
-                <span className="text-white text-xl xs:text-2xl sm:text-3xl font-black tracking-tight drop-shadow-sm">
+            {/* Gradiente escuro para legibilidade perfeita na parte inferior */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#001424] via-[#001424]/75 to-transparent pointer-events-none" />
+
+            {/* Textos e Botão posicionados na região inferior sobre a imagem */}
+            <div className="absolute bottom-10 inset-x-0 px-4 flex flex-col items-center text-center z-20">
+              <div className="flex flex-col items-center leading-[1.05] tracking-tight font-black uppercase">
+                <span className="text-white text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight drop-shadow-md">
                   NASCEMOS
                 </span>
-                <span className="text-[#FFBF00] text-xl xs:text-2xl sm:text-3xl font-black tracking-tight my-1 drop-shadow-sm whitespace-nowrap">
+                <span className="text-[#FFBF00] text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight my-1 drop-shadow-md whitespace-nowrap">
                   PRÉ-MILITAR
                 </span>
               </div>
 
-               {/* BOTÃO PRÉ-MATRÍCULA MOBILE */}
-              <div className="mt-2.5 sm:mt-3 flex justify-center w-full">
+              {/* BOTÃO PRÉ-MATRÍCULA MOBILE */}
+              <div className="mt-3.5 flex justify-center w-full">
                 <Link
                   href="/cursos/preparatorio-militar"
                   aria-label="Fazer Pré-Matrícula no Preparatório Militar"
                   style={{ backgroundColor: '#FFBF00', color: '#00223B', opacity: 1, display: 'inline-flex' }}
-                  className="inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-xs sm:text-sm px-6 py-2.5 rounded-lg uppercase tracking-wider shadow-lg active:scale-95 transition-all whitespace-nowrap group z-20"
+                  className="inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-xs xs:text-sm px-7 py-3 rounded-full uppercase tracking-wider shadow-xl active:scale-95 transition-all whitespace-nowrap group z-20"
                 >
                   <span className="font-black text-[#00223B] tracking-wider">PRÉ-MATRÍCULA</span>
-                  <ArrowRight className="w-4 h-4 text-[#00223B] group-hover:translate-x-1 transition-transform shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-[#00223B] group-hover:translate-x-1 transition-transform shrink-0 stroke-[2.5]" />
                 </Link>
               </div>
             </div>
@@ -506,6 +484,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
 
       </div>
 
+
       {/* ============================================================ */}
       {/* CONTROLES DE NAVEGAÇÃO: BOTÕES PASSADORES (ANTERIOR E PRÓXIMO) */}
       {/* ============================================================ */}
@@ -513,7 +492,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
         type="button"
         onClick={prevSlide}
         aria-label="Slide anterior"
-        className="flex absolute left-1.5 xs:left-2 sm:left-3 lg:left-3 xl:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-full bg-[#001726]/85 hover:bg-[#FFBF00] text-white hover:text-[#00223B] border border-white/20 transition-all duration-200 items-center justify-center shadow-lg active:scale-90 focus:outline-none focus:ring-2 focus:ring-[#FFBF00] touch-manipulation"
+        className="flex absolute left-1.5 xs:left-2 sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-full bg-[#001424]/75 hover:bg-[#FFBF00] text-white hover:text-[#00223B] border border-white/20 transition-all duration-200 items-center justify-center shadow-lg active:scale-90 focus:outline-none focus:ring-2 focus:ring-[#FFBF00] touch-manipulation backdrop-blur-xs"
       >
         <ChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
       </button>
@@ -522,7 +501,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
         type="button"
         onClick={nextSlide}
         aria-label="Próximo slide"
-        className="flex absolute right-1.5 xs:right-2 sm:right-3 lg:right-3 xl:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-full bg-[#001726]/85 hover:bg-[#FFBF00] text-white hover:text-[#00223B] border border-white/20 transition-all duration-200 items-center justify-center shadow-lg active:scale-90 focus:outline-none focus:ring-2 focus:ring-[#FFBF00] touch-manipulation"
+        className="flex absolute right-1.5 xs:right-2 sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-full bg-[#001424]/75 hover:bg-[#FFBF00] text-white hover:text-[#00223B] border border-white/20 transition-all duration-200 items-center justify-center shadow-lg active:scale-90 focus:outline-none focus:ring-2 focus:ring-[#FFBF00] touch-manipulation backdrop-blur-xs"
       >
         <ChevronRight className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
       </button>
