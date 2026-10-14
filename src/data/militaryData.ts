@@ -259,13 +259,13 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     ultimoEditalLabel: 'Último edital consultado',
     banca: 'Força Aérea Brasileira, por meio da EEAR e dos órgãos responsáveis pelo processo seletivo.',
     dataPublicacao: 'Aguardando novo edital',
-    status: 'INSCRIÇÕES ABERTAS',
-    statusTipo: 'aberto',
+    status: 'AGUARDANDO NOVO EDITAL',
+    statusTipo: 'previsto',
     inscricoes: {
       inicio: 'Aguardando novo edital',
       fim: ''
     },
-    dataProva: '[INFORMAR DATA DA PROVA]',
+    dataProva: 'Aguardando novo edital',
     vagas: 'Consultar o edital específico do CFS 2/2027 para confirmar o total.',
     escolaridade: 'Ensino Médio completo.',
     idade: 'Em regra, mínimo de 17 anos e não completar 25 anos até 31 de dezembro do ano da matrícula, conforme o edital.',
@@ -354,7 +354,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     imagem: '/assets/capas-militar/Concurso-eags.jpg',
     orgao: 'Força Aérea Brasileira - FAB (EEAr - Guaratinguetá/SP)',
     edital: 'Exame de Admissão ao Estágio de Adaptação à Graduação de Sargentos da Aeronáutica',
-    dataPublicacao: '[INFORMAR DATA DE PUBLICAÇÃO]',
+    dataPublicacao: 'Aguardando novo edital',
     status: 'AGUARDANDO NOVO EDITAL',
     statusTipo: 'previsto',
     inscricoes: {
@@ -459,7 +459,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     edital: 'Instruções Específicas para o Exame de Admissão aos CFO da AFA',
     ultimoEdital: '2026, para ingresso em 2027, publicado em abril de 2026.',
     banca: 'Força Aérea Brasileira, por meio dos órgãos responsáveis pelo processo seletivo.',
-    dataPublicacao: '[INFORMAR DATA DE PUBLICAÇÃO]',
+    dataPublicacao: 'Aguardando novo edital',
     status: 'AGUARDANDO NOVO EDITAL',
     statusTipo: 'previsto',
     inscricoes: {
@@ -564,7 +564,7 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     edital: 'Edital do Processo Seletivo de Admissão à EFOMM (CIAGA e CIABA)',
     ultimoEdital: 'Publicado em maio de 2026.',
     banca: 'Marinha do Brasil, por meio dos Centros de Instrução e do Serviço de Seleção do Pessoal da Marinha.',
-    dataPublicacao: '[INFORMAR DATA DE PUBLICAÇÃO]',
+    dataPublicacao: 'Aguardando novo edital',
     status: 'AGUARDANDO NOVO EDITAL',
     statusTipo: 'previsto',
     inscricoes: {
@@ -665,9 +665,9 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     edital: 'Concurso de Admissão à EsPCEx / Linha de Ensino Militar Bélico do Exército Brasileiro',
     ultimoEdital: 'Publicado em 22 de abril de 2026.',
     banca: 'Exército Brasileiro, por meio da EsPCEx e dos órgãos responsáveis pelo concurso.',
-    dataPublicacao: '[INFORMAR DATA DE PUBLICAÇÃO]',
-    status: 'INSCRIÇÕES ABERTAS',
-    statusTipo: 'aberto',
+    dataPublicacao: 'Aguardando novo edital',
+    status: 'AGUARDANDO NOVO EDITAL',
+    statusTipo: 'previsto',
     inscricoes: {
       inicio: 'Aguardando novo edital',
       fim: ''
