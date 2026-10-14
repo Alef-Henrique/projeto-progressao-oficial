@@ -159,13 +159,13 @@ export const TurmasOnline: React.FC<TurmasOnlineProps> = ({ onSelectTurma }) => 
                   </div>
 
                   <a
-                    href="#formulario"
+                    href="#formulario-online"
                     onClick={(e) => {
                       e.preventDefault();
                       if (onSelectTurma) {
                         onSelectTurma(turma.nome);
                       }
-                      const formEl = document.getElementById('formulario');
+                      const formEl = document.getElementById('formulario-online');
                       if (formEl) {
                         formEl.scrollIntoView({ behavior: 'smooth' });
                       }

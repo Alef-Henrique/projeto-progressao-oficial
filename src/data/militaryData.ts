@@ -74,11 +74,11 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     status: 'AGUARDANDO NOVO EDITAL',
     statusTipo: 'previsto',
     inscricoes: {
-      inicio: '[INFORMAR INÍCIO DAS INSCRIÇÕES]',
-      fim: '[INFORMAR TÉRMINO DAS INSCRIÇÕES]'
+      inicio: 'Aguardando novo edital',
+      fim: ''
     },
-    dataProva: '[INFORMAR DATA DA PROVA]',
-    vagas: '[INFORMAR VAGAS CONFORME DISTRITO NAVAL]',
+    dataProva: 'Aguardando novo edital',
+    vagas: 'Aguardando novo edital',
     escolaridade: 'Nível Superior completo (Bacharelado ou Licenciatura nas áreas do edital)',
     idade: 'Ter entre 18 e 40 anos até 31 de dezembro do ano de incorporação',
     nacionalidade: 'Brasileiro nato ou naturalizado',
@@ -179,10 +179,10 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     status: 'AGUARDANDO NOVO EDITAL',
     statusTipo: 'previsto',
     inscricoes: {
-      inicio: '[INFORMAR INÍCIO DAS INSCRIÇÕES]',
-      fim: '[INFORMAR TÉRMINO DAS INSCRIÇÕES]'
+      inicio: 'Aguardando novo edital',
+      fim: ''
     },
-    dataProva: '[INFORMAR DATA DA PROVA]',
+    dataProva: 'Aguardando novo edital',
     vagas: '1.100 vagas.',
     escolaridade: 'Ensino Médio completo ou cursando a 3ª série, conforme a área e o edital. Para Saúde, exige-se também curso técnico de Enfermagem e registro no COREN.',
     idade: 'Área Geral: 17 a 24 anos; Música e Saúde: 17 a 26 anos, conforme os limites do edital.',
@@ -258,12 +258,12 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     ultimoEdital: 'CFS 2/2027, publicado em 2026.',
     ultimoEditalLabel: 'Último edital consultado',
     banca: 'Força Aérea Brasileira, por meio da EEAR e dos órgãos responsáveis pelo processo seletivo.',
-    dataPublicacao: '[INFORMAR DATA DE PUBLICAÇÃO]',
+    dataPublicacao: 'Aguardando novo edital',
     status: 'INSCRIÇÕES ABERTAS',
     statusTipo: 'aberto',
     inscricoes: {
-      inicio: '[INFORMAR INÍCIO DAS INSCRIÇÕES]',
-      fim: '[INFORMAR TÉRMINO DAS INSCRIÇÕES]'
+      inicio: 'Aguardando novo edital',
+      fim: ''
     },
     dataProva: '[INFORMAR DATA DA PROVA]',
     vagas: 'Consultar o edital específico do CFS 2/2027 para confirmar o total.',
@@ -358,11 +358,11 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     status: 'AGUARDANDO NOVO EDITAL',
     statusTipo: 'previsto',
     inscricoes: {
-      inicio: '[INFORMAR INÍCIO DAS INSCRIÇÕES]',
-      fim: '[INFORMAR TÉRMINO DAS INSCRIÇÕES]'
+      inicio: 'Aguardando novo edital',
+      fim: ''
     },
-    dataProva: '[INFORMAR DATA DA PROVA]',
-    vagas: '[INFORMAR VAGAS CONFORME ESPECIALIDADE TÉCNICA]',
+    dataProva: 'Aguardando novo edital',
+    vagas: 'Aguardando novo edital',
     escolaridade: 'Ensino Médio e Curso Técnico de Nível Médio na especialidade de edital (Administração, Enfermagem, Eletrônica, Informática, Eletricidade, etc.)',
     idade: 'Ter entre 17 e 24 anos de idade até 31 de dezembro do ano da matrícula',
     nacionalidade: 'Brasileiro nato',
@@ -463,10 +463,10 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     status: 'AGUARDANDO NOVO EDITAL',
     statusTipo: 'previsto',
     inscricoes: {
-      inicio: '[INFORMAR INÍCIO DAS INSCRIÇÕES]',
-      fim: '[INFORMAR TÉRMINO DAS INSCRIÇÕES]'
+      inicio: 'Aguardando novo edital',
+      fim: ''
     },
-    dataProva: '[INFORMAR DATA DA PROVA]',
+    dataProva: 'Aguardando novo edital',
     vagas: '55 vagas para as três carreiras.',
     escolaridade: 'Ensino Médio concluído até a matrícula.',
     idade: 'Não ter menos de 17 anos nem completar 23 anos até 31 de dezembro do ano da matrícula.',
@@ -568,10 +568,10 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     status: 'AGUARDANDO NOVO EDITAL',
     statusTipo: 'previsto',
     inscricoes: {
-      inicio: '[INFORMAR INÍCIO DAS INSCRIÇÕES]',
-      fim: '[INFORMAR TÉRMINO DAS INSCRIÇÕES]'
+      inicio: 'Aguardando novo edital',
+      fim: ''
     },
-    dataProva: '[INFORMAR DATA DA PROVA]',
+    dataProva: 'Aguardando novo edital',
     vagas: '368 vagas no total.',
     escolaridade: 'Ensino Médio completo até a data exigida para matrícula.',
     idade: 'Mínimo de 17 e máximo de 23 anos em 1º de janeiro do ano de realização do curso, conforme o edital.',
@@ -669,10 +669,10 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     status: 'INSCRIÇÕES ABERTAS',
     statusTipo: 'aberto',
     inscricoes: {
-      inicio: '[INFORMAR INÍCIO DAS INSCRIÇÕES]',
-      fim: '[INFORMAR TÉRMINO DAS INSCRIÇÕES]'
+      inicio: 'Aguardando novo edital',
+      fim: ''
     },
-    dataProva: '[INFORMAR DATA DA PROVA]',
+    dataProva: 'Aguardando novo edital',
     vagas: '440, sendo 400 para candidatos do sexo masculino e 40 para o feminino.',
     escolaridade: 'Ensino Médio concluído ou em conclusão no ano da inscrição, conforme o edital.',
     idade: 'Ter entre 17 e 22 anos, completados até 31 de dezembro do ano da matrícula.',
@@ -770,10 +770,10 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     status: 'AGUARDANDO NOVO EDITAL',
     statusTipo: 'previsto',
     inscricoes: {
-      inicio: '[INFORMAR INÍCIO DAS INSCRIÇÕES]',
-      fim: '[INFORMAR TÉRMINO DAS INSCRIÇÕES]'
+      inicio: 'Aguardando novo edital',
+      fim: ''
     },
-    dataProva: '[INFORMAR DATA DA PROVA]',
+    dataProva: 'Aguardando novo edital',
     vagas: '156, sendo 142 masculinas e 14 femininas.',
     escolaridade: 'Ensino Fundamental completo ou conclusão do 9º ano, conforme o edital.',
     idade: '15 anos completos e menos de 18 anos em 30 de junho do ano de início do curso.',
@@ -861,10 +861,10 @@ export const MILITARY_PREPARATORIES: MilitaryPreparatory[] = [
     status: 'AGUARDANDO NOVO EDITAL',
     statusTipo: 'previsto',
     inscricoes: {
-      inicio: '[INFORMAR INÍCIO DAS INSCRIÇÕES]',
-      fim: '[INFORMAR TÉRMINO DAS INSCRIÇÕES]'
+      inicio: 'Aguardando novo edital',
+      fim: ''
     },
-    dataProva: '[INFORMAR DATA DA PROVA]',
+    dataProva: 'Aguardando novo edital',
     vagas: '150 para candidatos de ambos os sexos.',
     escolaridade: 'Ensino Fundamental concluído até a data exigida para matrícula.',
     idade: 'Não ter menos de 14 anos nem completar 19 anos até 31 de dezembro de 2027.',

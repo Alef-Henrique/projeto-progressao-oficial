@@ -826,7 +826,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
         </div>
       </section>
 
-      <div className="bg-white p-8 flex justify-center">
+      <div className="bg-white p-8 flex justify-center" id="formulario-online">
         <div className="w-full max-w-[600px]">
           {/* RD STATION — PROVISÓRIO */}
           <RDStationForm

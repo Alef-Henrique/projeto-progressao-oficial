@@ -15,6 +15,7 @@ import {
 import { TurmaEnsinoMedioDetalhe } from './data';
 import { useRouter } from '../../routing/RouterContext';
 import { WHATSAPP_NUMBER } from '../../../config/siteConfig';
+import { RDStationForm } from '../../rdstation/RDStationForm';
 
 interface EnsinoMedioDetalheProps {
   turma: TurmaEnsinoMedioDetalhe;
@@ -370,7 +371,7 @@ export const EnsinoMedioDetalhe: React.FC<EnsinoMedioDetalheProps> = ({ turma })
 
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="/contato"
+                href="#formulario-ensino-medio"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-xs sm:text-sm px-7 py-4 rounded-xl uppercase tracking-wider shadow-lg hover:shadow-xl transition-all cursor-pointer"
               >
                 <Calendar className="w-4 h-4" />
@@ -391,6 +392,16 @@ export const EnsinoMedioDetalhe: React.FC<EnsinoMedioDetalheProps> = ({ turma })
         </section>
 
       </div>
+
+            <div className="bg-white p-8 flex justify-center" id="formulario-ensino-medio">
+              <div className="w-full max-w-[600px]">
+                {/* RD STATION — PROVISÓRIO */}
+                <RDStationForm
+                  formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+                />
+              </div>
+            </div>
+
     </div>
   );
 };

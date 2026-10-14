@@ -214,7 +214,7 @@ export const ConcursosPage: React.FC = () => {
                 {/* Botão principal (amarelo institucional de alto destaque) */}
                 <button
                   type="button"
-                  onClick={() => scrollToSection('concursos-grid')}
+                  onClick={() => scrollToSection('nossas-turmas')}
                   className="inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-sm sm:text-base px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                 >
                   <span>Ver concursos</span>

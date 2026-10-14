@@ -439,7 +439,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
                       Inscrições
                     </span>
                     <span className="text-white font-bold block">
-                      {selectedPreparatory.inscricoes.inicio} até {selectedPreparatory.inscricoes.fim}
+                      {selectedPreparatory.inscricoes.inicio} {selectedPreparatory.inscricoes.fim}
                     </span>
                   </div>
                   <div>
@@ -1054,7 +1054,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
       {/* ============================================================ */}
       {/* 7. SEÇÃO CTA FINAL: MATRÍCULAS E INFORMAÇÕES */}
       {/* ============================================================ */}
-      <div className="bg-white p-8 flex justify-center">
+      <div className="bg-white p-8 flex justify-center" id="formulario-contato-militar">
         <div className="w-full max-w-[600px]">
           {/* RD STATION — PROVISÓRIO */}
           <RDStationForm

@@ -743,7 +743,7 @@ export const TEAM_MEMBERS: TeacherMember[] = [
     imagePlaceholderText: 'Prof. Carlos Eduardo - Direção Geral'
   },
   {
-    id: 'coord-1',
+    id: 'prof-3',
     name: 'Prof. Marcelo',
     role: 'Professor de Português',
     category: 'professores',
@@ -757,10 +757,10 @@ export const TEAM_MEMBERS: TeacherMember[] = [
     imagePlaceholderText: 'Profa. Mariana Silveira - Coordenação Colégio'
   },
   {
-    id: 'coord-2',
+    id: 'prof-2',
     name: 'Prof. Maycon',
     role: 'Professor de Direito',
-    category: 'coordenacao',
+    category: 'professores',
     image: '/assets/maycon-direito.png',
     bio: 'Estrategista de bancas militares (ESA, EsPCEx, AFA, Colégio Naval) e vestibulares (UERJ/ENEM). Orienta o planejamento de simulados, mapeamento de editais e cronogramas de revisão intensiva dos alunos.',
     credentials: [
@@ -786,7 +786,7 @@ export const TEAM_MEMBERS: TeacherMember[] = [
     imagePlaceholderText: 'Prof. Felipe Ramos - Matemática'
   },
   {
-    id: 'prof-2',
+    id: 'prof-4',
     name: 'Prof(a). Castanheira',
     role: 'Professora de Português e Redação',
     category: 'professores',
@@ -801,7 +801,7 @@ export const TEAM_MEMBERS: TeacherMember[] = [
     imagePlaceholderText: 'Profa. Beatriz Lima - Português e Redação'
   },
   {
-    id: 'prof-3',
+    id: 'prof-5',
     name: 'Prof. Robinho',
     role: 'Professor de Matemática',
     category: 'professores',
@@ -816,7 +816,7 @@ export const TEAM_MEMBERS: TeacherMember[] = [
     imagePlaceholderText: 'Prof. Robinho - Matemática'
   },
   {
-    id: 'ped-1',
+    id: 'prof-6',
     name: 'Prof. Renato',
     role: 'Professor de Direito',
     category: 'professores',
@@ -830,11 +830,11 @@ export const TEAM_MEMBERS: TeacherMember[] = [
     imagePlaceholderText: 'Prof. Renato - Direito'
   },
   {
-    id: 'sec-1',
-    name: 'Juliana Carvalho',
-    role: 'Secretaria Acadêmica & Atendimento',
-    category: 'secretaria',
-    image: 'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?auto=format&fit=crop&w=800&q=80',
+    id: 'coor-1',
+    name: 'Ingrid Fonseca',
+    role: 'Coordenadora de Concursos Públicos',
+    category: 'coordenacao',
+    image: '/assets/cordenacao-02/coordenador-ingrid.png',
     bio: 'Responsável pela gestão de matrículas, emissão de documentação escolar, histórico e atendimento direto às famílias e alunos com presteza e organização.',
     credentials: [
       'Gestão de Documentação Escolar e Registros Acadêmicos',
@@ -845,10 +845,10 @@ export const TEAM_MEMBERS: TeacherMember[] = [
   },
   {
     id: 'limp-1',
-    name: 'Marta Ribeiro & Equipe',
+    name: 'Luciana, Rosângela e Tereza',
     role: 'Serviços Gerais & Higienização',
     category: 'limpeza',
-    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
+    image: '/assets/tias-limpeza-luciana-rosangela-tereza.png',
     bio: 'Equipe dedicada à manutenção, sanitização rigorosa e conservação diária de todas as salas de aula, corredores e áreas de convivência do Progressão Caxias.',
     credentials: [
       'Protocolos Avançados de Limpeza e Sanitização Escolar',
@@ -858,11 +858,11 @@ export const TEAM_MEMBERS: TeacherMember[] = [
     imagePlaceholderText: 'Marta Ribeiro - Limpeza e Conservação'
   },
   {
-    id: 'colegio-1',
-    name: 'Profa. Camila Guimarães',
-    role: 'Coordenação Pedagógica — Segmento Colégio',
-    category: 'colegio',
-    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    id: 'coor-2',
+    name: 'Ana Arruda',
+    role: 'Coordenadora',
+    category: 'coordenacao',
+    image: '/assets/cordenacao-02/coordenador-ana.png',
     bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
     credentials: [
       'Especialista em Gestão do Ensino Básico - UFRJ',
@@ -871,12 +871,182 @@ export const TEAM_MEMBERS: TeacherMember[] = [
     ],
     imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
   },
+    {
+    id: 'coor-3',
+    name: 'Prof. Alexandre Pinto',
+    role: 'Coordenação de Concursos Públicos Online',
+    category: 'coordenacao',
+    image: '/assets/cordenacao-02/coordenador-Prof-Alexandre-concursos-online.png',
+    bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
+    credentials: [
+      'Especialista em Gestão do Ensino Básico - UFRJ',
+      'Supervisão Escolar e Orientação Curricular BNCC',
+      'Acompanhamento Integral da Vida Escolar'
+    ],
+    imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
+  },
+      {
+    id: 'coor-4',
+    name: 'Prof. Marcelo Sampaio',
+    role: 'Coordenação de Concursos Pré-Militares',
+    category: 'coordenacao',
+    image: '/assets/cordenacao-02/coordenador-prof-marcelo-pre-militar.png',
+    bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
+    credentials: [
+      'Especialista em Gestão do Ensino Básico - UFRJ',
+      'Supervisão Escolar e Orientação Curricular BNCC',
+      'Acompanhamento Integral da Vida Escolar'
+    ],
+    imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
+  },
+        {
+    id: 'coor-5',
+    name: 'Rosilayne Letícia',
+    role: 'Coordenadora',
+    category: 'coordenacao',
+    image: '/assets/cordenacao-02/coordenadora-rosilayne.png',
+    bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
+    credentials: [
+      'Especialista em Gestão do Ensino Básico - UFRJ',
+      'Supervisão Escolar e Orientação Curricular BNCC',
+      'Acompanhamento Integral da Vida Escolar'
+    ],
+    imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
+  },
+      {
+    id: 'coor-6',
+    name: 'Lucas Matheus',
+    role: 'Coordenador',
+    category: 'coordenacao',
+    image: '/assets/cordenacao-02/coordenador-lucas.png',
+    bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
+    credentials: [
+      'Especialista em Gestão do Ensino Básico - UFRJ',
+      'Supervisão Escolar e Orientação Curricular BNCC',
+      'Acompanhamento Integral da Vida Escolar'
+    ],
+    imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
+  },
+        {
+    id: 'sec-1',
+    name: 'Bianca Diniz',
+    role: 'Secretaria',
+    category: 'secretaria',
+    image: '/assets/secretaria/Bianca-Diniz.png',
+    bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
+    credentials: [
+      'Especialista em Gestão do Ensino Básico - UFRJ',
+      'Supervisão Escolar e Orientação Curricular BNCC',
+      'Acompanhamento Integral da Vida Escolar'
+    ],
+    imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
+  },
+    
+        {
+    id: 'sec-2',
+    name: 'Dilson',
+    role: 'Secretaria',
+    category: 'secretaria',
+    image: '/assets/secretaria/Dilson.png',
+    bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
+    credentials: [
+      'Especialista em Gestão do Ensino Básico - UFRJ',
+      'Supervisão Escolar e Orientação Curricular BNCC',
+      'Acompanhamento Integral da Vida Escolar'
+    ],
+    imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
+  },
+          {
+    id: 'sec-3',
+    name: 'Keila Souza',
+    role: 'Secretaria',
+    category: 'secretaria',
+    image: '/assets/secretaria/Keila-Souza.png',
+    bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
+    credentials: [
+      'Especialista em Gestão do Ensino Básico - UFRJ',
+      'Supervisão Escolar e Orientação Curricular BNCC',
+      'Acompanhamento Integral da Vida Escolar'
+    ],
+    imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
+  },
+          {
+    id: 'sec-4',
+    name: 'Livia Silva',
+    role: 'Secretaria',
+    category: 'secretaria',
+    image: '/assets/secretaria/Livia-Silva.png',
+    bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
+    credentials: [
+      'Especialista em Gestão do Ensino Básico - UFRJ',
+      'Supervisão Escolar e Orientação Curricular BNCC',
+      'Acompanhamento Integral da Vida Escolar'
+    ],
+    imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
+  },
+          {
+    id: 'sec-5',
+    name: 'Matheus Rayzer',
+    role: 'Secretaria',
+    category: 'secretaria',
+    image: '/assets/secretaria/Matheus-Rayzer.png',
+    bio: 'Articula a proposta formativa do Ensino Fundamental e Médio, mediando a relação família-escola, desenvolvimento socioemocional e práticas curriculares inovadoras.',
+    credentials: [
+      'Especialista em Gestão do Ensino Básico - UFRJ',
+      'Supervisão Escolar e Orientação Curricular BNCC',
+      'Acompanhamento Integral da Vida Escolar'
+    ],
+    imagePlaceholderText: 'Profa. Camila Guimarães - Colégio'
+  },
+
   {
     id: 'apoio-1',
-    name: 'Marcos Vinícius Silva',
-    role: 'Inspetoria & Apoio ao Aluno',
+    name: 'Igor',
+    role: 'Apoio',
     category: 'apoio',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80',
+    image: '/assets/apoio/apoio-igor.png',
+    bio: 'Garante a segurança, disciplina positiva e suporte logístico ao cotidiano escolar, auxiliando no fluxo de entrada e saída, intervalos e apoio presencial contínuo aos estudantes.',
+    credentials: [
+      'Mediação de Conflitos e Convivência Escolar',
+      'Segurança Operacional e Primeiros Socorros no Ambiente Escolar',
+      'Suporte Operacional a Professores e Estudantes'
+    ],
+    imagePlaceholderText: 'Marcos Vinícius - Apoio e Disciplina'
+  },
+    {
+    id: 'apoio-2',
+    name: 'Leonardo',
+    role: 'Apoio',
+    category: 'apoio',
+    image: '/assets/apoio/leonardo-apoio.png',
+    bio: 'Garante a segurança, disciplina positiva e suporte logístico ao cotidiano escolar, auxiliando no fluxo de entrada e saída, intervalos e apoio presencial contínuo aos estudantes.',
+    credentials: [
+      'Mediação de Conflitos e Convivência Escolar',
+      'Segurança Operacional e Primeiros Socorros no Ambiente Escolar',
+      'Suporte Operacional a Professores e Estudantes'
+    ],
+    imagePlaceholderText: 'Marcos Vinícius - Apoio e Disciplina'
+  },
+      {
+    id: 'apoio-3',
+    name: 'Celso',
+    role: 'Manutenção',
+    category: 'apoio',
+    image: '/assets/apoio/manutencao-celso.png',
+    bio: 'Garante a segurança, disciplina positiva e suporte logístico ao cotidiano escolar, auxiliando no fluxo de entrada e saída, intervalos e apoio presencial contínuo aos estudantes.',
+    credentials: [
+      'Mediação de Conflitos e Convivência Escolar',
+      'Segurança Operacional e Primeiros Socorros no Ambiente Escolar',
+      'Suporte Operacional a Professores e Estudantes'
+    ],
+    imagePlaceholderText: 'Marcos Vinícius - Apoio e Disciplina'
+  },
+        {
+    id: 'apoio-4',
+    name: 'Zé',
+    role: 'Porteiro',
+    category: 'apoio',
+    image: '/assets/apoio/porteiro-ze.png',
     bio: 'Garante a segurança, disciplina positiva e suporte logístico ao cotidiano escolar, auxiliando no fluxo de entrada e saída, intervalos e apoio presencial contínuo aos estudantes.',
     credentials: [
       'Mediação de Conflitos e Convivência Escolar',
@@ -887,18 +1057,61 @@ export const TEAM_MEMBERS: TeacherMember[] = [
   },
   {
     id: 'adm-1',
-    name: 'Patrícia Nogueira',
-    role: 'Gerência Administrativa & Financeira',
+    name: 'Erika Franci',
+    role: 'Administrativo',
     category: 'administrativo',
-    image: 'https://images.unsplash.com/photo-1573497019236-17f8177b81e8?auto=format&fit=crop&w=800&q=80',
+    image: '/assets/erika-adm.png',
     bio: 'Supervisiona a operação administrativa, infraestrutura, suprimentos e atendimento financeiro da unidade Duque de Caxias com eficiência e transparência.',
     credentials: [
       'Administração de Empresas e Finanças Corporativas',
       'Gestão de Infraestrutura e Logística Educacional',
       'Otimização de Processos e Atendimento ao Cliente'
     ],
-    imagePlaceholderText: 'Patrícia Nogueira - Administrativo'
-  }
+    imagePlaceholderText: 'Erika Franci - Administrativo'
+  },
+    {
+    id: 'coleg-1',
+    name: 'Marcia Lopes',
+    role: 'Coordenadora do Colégio',
+    category: 'colegio',
+    image: '/assets/secretaria-colegio/marcia-lopes.png',
+    bio: 'Supervisiona a operação administrativa, infraestrutura, suprimentos e atendimento financeiro da unidade Duque de Caxias com eficiência e transparência.',
+    credentials: [
+      'Administração de Empresas e Finanças Corporativas',
+      'Gestão de Infraestrutura e Logística Educacional',
+      'Otimização de Processos e Atendimento ao Cliente'
+    ],
+    imagePlaceholderText: 'Marcia Lopes - Coordenadora do Colégio'
+  },
+      {
+    id: 'coleg-2',
+    name: 'Rodrigo Cesar',
+    role: 'Secretário do Colégio',
+    category: 'colegio',
+    image: '/assets/secretaria-colegio/sec-Rodrigo-Cesar.png',
+    bio: 'Supervisiona a operação administrativa, infraestrutura, suprimentos e atendimento financeiro da unidade Duque de Caxias com eficiência e transparência.',
+    credentials: [
+      'Administração de Empresas e Finanças Corporativas',
+      'Gestão de Infraestrutura e Logística Educacional',
+      'Otimização de Processos e Atendimento ao Cliente'
+    ],
+    imagePlaceholderText: 'Rodrigo Cesar - Secretário do Colégio'
+  },
+        {
+    id: 'coleg-3',
+    name: 'Vitor Hugor',
+    role: 'Secretário do Colégio',
+    category: 'colegio',
+    image: '/assets/secretaria-colegio/sec-vitor-hugor.png',
+    bio: 'Supervisiona a operação administrativa, infraestrutura, suprimentos e atendimento financeiro da unidade Duque de Caxias com eficiência e transparência.',
+    credentials: [
+      'Administração de Empresas e Finanças Corporativas',
+      'Gestão de Infraestrutura e Logística Educacional',
+      'Otimização de Processos e Atendimento ao Cliente'
+    ],
+    imagePlaceholderText: 'Vitor Hugor - Secretário do Colégio'
+  },
+
 
 ];
 

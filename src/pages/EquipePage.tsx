@@ -49,7 +49,7 @@ export const EquipePage: React.FC = () => {
       </section>
 
       {/* Filter Tabs */}
-      <section className="py-8 bg-white border-b border-[#E1E5E8] sticky top-20 z-30 shadow-xs">
+      <section className="py-8 bg-white border-b border-[#E1E5E8] shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center flex-wrap gap-2 sm:gap-3">
             {[
@@ -132,13 +132,6 @@ export const EquipePage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <CTASection
-        title="VENHA CONHECER NOSSA EQUIPE PEDAGÓGICA"
-        subtitle="Agende um atendimento presencial em nossa unidade em Duque de Caxias."
-        primaryCtaText="FALAR COM A COORDENAÇÃO"
-        primaryCtaHref="/contato"
-      />
     </div>
   );
 };
