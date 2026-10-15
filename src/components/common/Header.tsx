@@ -151,8 +151,8 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 className={`nav-menu-btn group flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 ${isHistoryActive || activeDropdown === 'progressao'
-                    ? 'is-active text-white font-semibold'
-                    : 'text-[#E1E5E8] hover:text-white'
+                  ? 'is-active text-white font-semibold'
+                  : 'text-[#E1E5E8] hover:text-white'
                   }`}
                 aria-expanded={activeDropdown === 'progressao'}
                 aria-haspopup="true"
@@ -160,10 +160,10 @@ export const Header: React.FC = () => {
                 <span className="relative z-10">Nossa História</span>
                 <ChevronDown
                   className={`relative z-10 w-4 h-4 transition-all duration-200 ${activeDropdown === 'progressao'
-                      ? 'rotate-180 text-[#0289C6]'
-                      : isHistoryActive
-                        ? 'text-[#0289C6]'
-                        : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
+                    ? 'rotate-180 text-[#0289C6]'
+                    : isHistoryActive
+                      ? 'text-[#0289C6]'
+                      : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
                     }`}
                 />
               </button>
@@ -218,8 +218,8 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 className={`nav-menu-btn group flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 ${isColegioActive || activeDropdown === 'colegio'
-                    ? 'is-active text-white font-semibold'
-                    : 'text-[#E1E5E8] hover:text-white'
+                  ? 'is-active text-white font-semibold'
+                  : 'text-[#E1E5E8] hover:text-white'
                   }`}
                 aria-expanded={activeDropdown === 'colegio'}
                 aria-haspopup="true"
@@ -227,10 +227,10 @@ export const Header: React.FC = () => {
                 <span className="relative z-10">Colégio</span>
                 <ChevronDown
                   className={`relative z-10 w-4 h-4 transition-all duration-200 ${activeDropdown === 'colegio'
-                      ? 'rotate-180 text-[#0289C6]'
-                      : isColegioActive
-                        ? 'text-[#0289C6]'
-                        : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
+                    ? 'rotate-180 text-[#0289C6]'
+                    : isColegioActive
+                      ? 'text-[#0289C6]'
+                      : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
                     }`}
                 />
               </button>
@@ -286,8 +286,8 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 className={`nav-menu-btn group flex items-center gap-1 px-3 py-2 rounded-md transition-colors duration-200 ${isCursosActive || activeDropdown === 'cursos'
-                    ? 'is-active text-white font-semibold'
-                    : 'text-[#E1E5E8] hover:text-white'
+                  ? 'is-active text-white font-semibold'
+                  : 'text-[#E1E5E8] hover:text-white'
                   }`}
                 aria-expanded={activeDropdown === 'cursos'}
                 aria-haspopup="true"
@@ -295,10 +295,10 @@ export const Header: React.FC = () => {
                 <span className="relative z-10">Cursos</span>
                 <ChevronDown
                   className={`relative z-10 w-4 h-4 transition-all duration-200 ${activeDropdown === 'cursos'
-                      ? 'rotate-180 text-[#0289C6]'
-                      : isCursosActive
-                        ? 'text-[#0289C6]'
-                        : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
+                    ? 'rotate-180 text-[#0289C6]'
+                    : isCursosActive
+                      ? 'text-[#0289C6]'
+                      : 'text-[#E1E5E8] group-hover:text-white group-hover:translate-y-[1px]'
                     }`}
                 />
               </button>
@@ -341,14 +341,18 @@ export const Header: React.FC = () => {
                       </div>
                     </Link>
                     <Link
-                      href="/cursos/tecnicos"
-                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/cursos/tecnicos' ? 'bg-[#015E96] text-[#0289C6] font-semibold' : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
+                      href="/cursos/online"
+                      className={`flex items-center gap-3 p-2.5 rounded-lg text-sm transition-colors ${currentPath === '/cursos/online'
+                          ? 'bg-[#015E96] text-[#0289C6] font-semibold'
+                          : 'text-[#E1E5E8] hover:bg-[#015E96]/50 hover:text-white'
                         }`}
                     >
                       <Laptop className="w-4 h-4 text-[#0289C6] shrink-0" />
                       <div>
                         <div className="font-semibold text-white">Progressão Online</div>
-                        <div className="text-[11px] text-[#E1E5E8]/70">Preparação online para concursos públicos</div>
+                        <div className="text-[11px] text-[#E1E5E8]/70">
+                          Preparação online para concursos públicos
+                        </div>
                       </div>
                     </Link>
                   </div>
@@ -359,8 +363,8 @@ export const Header: React.FC = () => {
             <Link
               href="/resultados"
               className={`nav-menu-btn px-3 py-2 rounded-md transition-colors duration-200 ${isResultadosActive
-                  ? 'is-active text-white font-semibold'
-                  : 'text-[#E1E5E8] hover:text-white'
+                ? 'is-active text-white font-semibold'
+                : 'text-[#E1E5E8] hover:text-white'
                 }`}
             >
               <span className="relative z-10">Resultados</span>
@@ -369,8 +373,8 @@ export const Header: React.FC = () => {
             <Link
               href="/contato"
               className={`nav-menu-btn px-3 py-2 rounded-md transition-colors duration-200 ${isContatoActive
-                  ? 'is-active text-white font-semibold'
-                  : 'text-[#E1E5E8] hover:text-white'
+                ? 'is-active text-white font-semibold'
+                : 'text-[#E1E5E8] hover:text-white'
                 }`}
             >
               <span className="relative z-10">Contato</span>
@@ -490,8 +494,8 @@ export const Header: React.FC = () => {
                   <Link
                     href="/cursos/pre-vestibular"
                     className={`text-sm py-1.5 px-3 rounded-lg transition-colors ${currentPath === '/cursos/pre-vestibular' || currentPath === '/cursos/enem'
-                        ? 'text-[#0289C6] font-semibold bg-white/5'
-                        : 'text-[#E1E5E8] hover:text-white hover:bg-white/5'
+                      ? 'text-[#0289C6] font-semibold bg-white/5'
+                      : 'text-[#E1E5E8] hover:text-white hover:bg-white/5'
                       }`}
                   >
                     Pré-Vestibular & ENEM
@@ -499,7 +503,7 @@ export const Header: React.FC = () => {
                   <Link href="/cursos/concursos" className="text-sm py-1.5 px-3 rounded-lg text-[#E1E5E8] hover:text-white hover:bg-white/5">
                     Concursos Públicos
                   </Link>
-                  <Link href="/cursos/tecnicos" className="text-sm py-1.5 px-3 rounded-lg text-[#E1E5E8] hover:text-white hover:bg-white/5">
+                  <Link href="/cursos/online" className="text-sm py-1.5 px-3 rounded-lg text-[#E1E5E8] hover:text-white hover:bg-white/5">
                     Progressão Online
                   </Link>
                 </div>
