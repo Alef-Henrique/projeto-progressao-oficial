@@ -352,7 +352,7 @@ export const TURMA_PMERJ_CONCURSO: TurmaConcurso = {
   cargaTotal: '180 encontros',
   frequencia: 'Noite: 4 noites por semana | Sábado: 1 encontro integral semanal',
   horario: '18h30 às 21h45 (noite) · 08h30 às 16h30 (sábado)',
-  bonus: 'Oficina de redação discursiva inclusa',
+  bonus: '',
   materias: [
     'Língua Portuguesa e Interpretação de Textos',
     'Matemática Básica e Raciocínio Lógico',
@@ -374,7 +374,7 @@ export const TURMA_GM_SAO_GONCALO_CONCURSO: TurmaConcurso = {
   categoria: 'Nossa turma',
   titulo: 'Guarda Municipal de São Gonçalo',
   subtitulo: 'Banca SELECON · 100 Vagas Imediatas',
-  periodo: '01/09/2026 a 22/01/2027',
+  periodo: '13/10/2026 a 22/01/2027',
   turnos: 'Noite / Sábado',
   cargaTotal: '72 encontros = 216 horas',
   frequencia: '3 a 4 encontros semanais',

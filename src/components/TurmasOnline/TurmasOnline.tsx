@@ -139,7 +139,8 @@ export const TurmasOnline: React.FC<TurmasOnlineProps> = ({ onSelectTurma }) => 
             {TURMAS_ONLINE_DATA.map((turma) => (
               <div 
                 key={turma.id}
-                className="bg-white rounded-3xl border border-[#E1E5E8] p-6 sm:p-8 lg:p-9 shadow-sm hover:shadow-md transition-shadow"
+                id={turma.id}
+                className="bg-white rounded-3xl border border-[#E1E5E8] p-6 sm:p-8 lg:p-9 shadow-sm hover:shadow-md transition-shadow scroll-mt-28"
               >
                 {/* Cabeçalho da Turma */}
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-[#E1E5E8]">
@@ -159,13 +160,13 @@ export const TurmasOnline: React.FC<TurmasOnlineProps> = ({ onSelectTurma }) => 
                   </div>
 
                   <a
-                    href="#formulario-online"
+                    href="#formulario"
                     onClick={(e) => {
                       e.preventDefault();
                       if (onSelectTurma) {
                         onSelectTurma(turma.nome);
                       }
-                      const formEl = document.getElementById('formulario-online');
+                      const formEl = document.getElementById('formulario');
                       if (formEl) {
                         formEl.scrollIntoView({ behavior: 'smooth' });
                       }

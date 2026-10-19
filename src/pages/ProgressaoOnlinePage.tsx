@@ -7,7 +7,6 @@ import {
   PhoneCall,
   MessageCircle,
   Check,
-  X,
   Play,
   Award,
   BookOpen,
@@ -21,7 +20,7 @@ import { SEO } from '../components/common/SEO';
 import { WHATSAPP_NUMBER } from '../config/siteConfig';
 import { MentoriasSection } from '../components/mentorias/MentoriasSection';
 import { MentoriaDetalhesModal } from '../components/mentorias/MentoriaDetalhesModal';
-import { MentoriaDetalhes } from '../data/mentoriasData';
+import { MentoriaDetalhes, MENTORIAS_ONLINE } from '../data/mentoriasData';
 import { TurmasOnline } from '../components/TurmasOnline/TurmasOnline';
 import { TURMAS_ONLINE_DATA } from '../components/TurmasOnline/data';
 import { RDStationForm } from '../components/rdstation/RDStationForm';
@@ -43,6 +42,9 @@ export interface OnlineCourseItem {
   subjects: string[];
   requirements: string;
   careerAdvancement?: string;
+  targetSectionId?: string;
+  buttonLabel?: string;
+  isMentoria?: boolean;
 }
 
 const CONCURSOS_ONLINE: OnlineCourseItem[] = [
@@ -66,7 +68,9 @@ const CONCURSOS_ONLINE: OnlineCourseItem[] = [
     ],
     subjects: ['Língua Portuguesa', 'Redação', 'Direito Constitucional', 'Direito Penal', 'Direitos Humanos', 'Legislação Aplicada à PMERJ'],
     requirements: 'Ensino Médio completo, idade entre 18 e 32 anos e CNH categoria B ou superior.',
-    careerAdvancement: 'Progressão na carreira militar de Soldado até Subtenente, com opção de concurso interno para Oficialato.'
+    careerAdvancement: 'Progressão na carreira militar de Soldado até Subtenente, com opção de concurso interno para Oficialato.',
+    targetSectionId: 'pmerj-online',
+    buttonLabel: 'Ver Turmas'
   },
   {
     id: 'inss',
@@ -88,11 +92,13 @@ const CONCURSOS_ONLINE: OnlineCourseItem[] = [
     ],
     subjects: ['Seguridade Social', 'Direito Constitucional', 'Direito Administrativo', 'Língua Portuguesa', 'Raciocínio Lógico', 'Informática'],
     requirements: 'Ensino Médio completo expedido por instituição reconhecida pelo MEC.',
-    careerAdvancement: 'Plano de Carreira do Seguro Social com progressões por tempo de serviço e gratificações de desempenho.'
+    careerAdvancement: 'Plano de Carreira do Seguro Social com progressões por tempo de serviço e gratificações de desempenho.',
+    targetSectionId: 'inss-online-tecnico',
+    buttonLabel: 'Ver Turmas'
   },
   {
     id: 'prf-adm',
-    name: 'PRF Administrativo',
+    name: 'PRF Agente Administrativo',
     fullName: 'Polícia Rodoviária Federal — Área Administrativa',
     category: 'Carreiras Federais',
     level: 'Nível Médio',
@@ -110,30 +116,11 @@ const CONCURSOS_ONLINE: OnlineCourseItem[] = [
     ],
     subjects: ['Língua Portuguesa', 'Redação Oficial', 'Noções de Direito Administrativo', 'Noções de Direito Constitucional', 'Noções de Informática', 'Ética no Serviço Público'],
     requirements: 'Certificado de conclusão de Ensino Médio regular.',
-    careerAdvancement: 'Carreira federal com estabilidade (Regime Jurídico Único - Lei 8.112/90) e progressão por classes.'
+    careerAdvancement: 'Carreira federal com estabilidade (Regime Jurídico Único - Lei 8.112/90) e progressão por classes.',
+    targetSectionId: 'prf-online-agente-administrativo',
+    buttonLabel: 'Ver Turmas'
   },
-  {
-    id: 'prf-agente',
-    name: 'PRF Agente Federal',
-    fullName: 'Polícia Rodoviária Federal — Policial Rodoviário Federal',
-    category: 'Segurança Pública',
-    level: 'Nível Superior',
-    statusBadge: 'Turma de Elite',
-    salary: 'R$ 10.790,87 inicial (topo > R$ 18.000)',
-    image: '/assets/capas-concursos/prf.avif',
-    workload: '220h de curso completo + módulos avançados',
-    description: 'Preparação aprofundada para a carreira policial rodoviária federal, dominando legislação de trânsito, direito público e física aplicada.',
-    includedItems: [
-      'Legislação Especial de Trânsito esmiuçada (CTB e Resoluções CONTRAN)',
-      'Direito Penal, Processual Penal e Legislação Extravagante',
-      'Módulo de Física e Cinemática voltado para a prova da PRF',
-      'Orientação teórica e planejamento para o TAF (Teste de Aptidão Física)',
-      'Mais de 2.000 questões comentadas em vídeo'
-    ],
-    subjects: ['Legislação de Trânsito', 'Língua Portuguesa', 'Raciocínio Lógico-Matemático', 'Física', 'Direito Constitucional', 'Direito Penal', 'Direitos Humanos'],
-    requirements: 'Diploma de Nível Superior em qualquer área de formação e CNH categoria B ou superior.',
-    careerAdvancement: 'Carreira estruturada em Terceira Classe, Segunda Classe, Primeira Classe e Classe Especial.'
-  },
+
   {
     id: 'pcerj',
     name: 'PCERJ',
@@ -154,7 +141,9 @@ const CONCURSOS_ONLINE: OnlineCourseItem[] = [
     ],
     subjects: ['Língua Portuguesa', 'Direito Constitucional', 'Direito Administrativo', 'Direito Penal', 'Direito Processual Penal', 'Leis Especiais'],
     requirements: 'Nível Superior em qualquer graduação e CNH B.',
-    careerAdvancement: 'Plano de cargos e salários com evolução de 3ª a 1ª Classe e Classe Comissária.'
+    careerAdvancement: 'Plano de cargos e salários com evolução de 3ª a 1ª Classe e Classe Comissária.',
+    targetSectionId: 'pcerj-online',
+    buttonLabel: 'Ver Turmas'
   },
   {
     id: 'banco-do-brasil',
@@ -176,123 +165,137 @@ const CONCURSOS_ONLINE: OnlineCourseItem[] = [
     ],
     subjects: ['Conhecimentos Bancários', 'Língua Portuguesa', 'Matemática e Matemática Financeira', 'Atendimento e Vendas', 'Informática / Tecnologia', 'Língua Inglesa'],
     requirements: 'Certificado de conclusão de Nível Médio regular.',
-    careerAdvancement: 'Plano de ascensão interno com bolsas de estudo, cargos de gerência e participação nos lucros e resultados (PLR semestral).'
+    careerAdvancement: 'Plano de ascensão interno com bolsas de estudo, cargos de gerência e participação nos lucros e resultados (PLR semestral).',
+    targetSectionId: 'bb-online-escriturario',
+    buttonLabel: 'Ver Turmas'
   },
   {
-    id: 'detran-adm',
-    name: 'DETRAN — Técnico Administrativo',
-    fullName: 'Departamento de Trânsito do Estado do Rio de Janeiro',
-    category: 'Área Administrativa',
-    level: 'Nível Médio',
-    statusBadge: 'Comissão Formada',
-    salary: 'R$ 3.768,00 a R$ 4.500,00 + gratificações',
-    image: '/assets/capas-concursos/detranrj.jpg',
-    workload: '120h de aulas focadas',
-    description: 'Treinamento completo para atuação nas rotinas de protocolo, suporte administrativo e atendimento ao cidadão no DETRAN-RJ.',
-    includedItems: [
-      'Regulamentos internos e noções de Direito Administrativo estadual',
-      'Redação Oficial e Técnicas de Comunicação em serviço público',
-      'Módulo completo de Informática com questões de bancas estaduais',
-      'Banco de questões revisadas e atualizadas',
-      'Apostila digital exclusiva Progressão em PDF'
-    ],
-    subjects: ['Língua Portuguesa', 'Redação Oficial', 'Noções de Direito Constitucional', 'Noções de Direito Administrativo', 'Informática', 'Legislação do DETRAN-RJ'],
-    requirements: 'Nível Médio completo expedido por órgão oficial.',
-    careerAdvancement: 'Estabilidade estatutária do Estado do Rio de Janeiro e gratificações funcionais.'
-  },
-  {
-    id: 'detran-transito',
-    name: 'DETRAN — Técnico de Trânsito',
-    fullName: 'Departamento de Trânsito do Estado do Rio de Janeiro',
-    category: 'Trânsito',
-    level: 'Nível Médio',
-    statusBadge: 'Comissão Formada',
-    salary: 'R$ 3.768,00 a R$ 4.800,00 + auxílios',
-    image: '/assets/capas-concursos/detranrj.jpg',
-    workload: '130h de conteúdo especializado',
-    description: 'Curso intensivo centrado nas normas do Código de Trânsito Brasileiro e resoluções do CONTRAN para atuação em fiscalização e exames.',
-    includedItems: [
-      'Código de Trânsito Brasileiro (CTB) analisado artigo por artigo',
-      'Infrações de trânsito, penalidades e medidas administrativas',
-      'Estudo prático de casos reais de fiscalização e operações de trânsito',
-      'Simulados temáticos por módulo de legislação',
-      'Canal exclusivo para tirar dúvidas pedagógicas'
-    ],
-    subjects: ['Código de Trânsito Brasileiro', 'Resoluções do CONTRAN', 'Língua Portuguesa', 'Noções de Direito Administrativo', 'Informática'],
-    requirements: 'Ensino Médio completo e Carteira Nacional de Habilitação (categoria B).',
-    careerAdvancement: 'Progressão na carreira técnica do DETRAN-RJ com acréscimo de adicionais de atividade.'
-  },
-  {
-    id: 'detran-id',
-    name: 'DETRAN — Identificação Civil',
-    fullName: 'Departamento de Trânsito do Estado do Rio de Janeiro',
-    category: 'Área Administrativa',
-    level: 'Nível Médio',
-    statusBadge: 'Comissão Formada',
-    salary: 'R$ 3.768,00 + benefícios',
-    image: '/assets/capas-concursos/detranrj.jpg',
-    workload: '110h de videoaulas direcionadas',
-    description: 'Formação especializada nos procedimentos de coleta datiloscópica, emissão de documentos de identidade e atendimento ao público.',
-    includedItems: [
-      'Legislação de Registros Públicos e Identificação Civil no RJ',
-      'Atendimento humanizado e ética no serviço público fluminense',
-      'Informática aplicada aos sistemas de identificação',
-      'Baterias de questões comentadas pelos professores',
-      'Material complementar de apoio teórico em PDF'
-    ],
-    subjects: ['Língua Portuguesa', 'Noções de Identificação Civil', 'Direito Constitucional', 'Direito Administrativo', 'Informática'],
-    requirements: 'Ensino Médio completo.',
-    careerAdvancement: 'Quadro efetivo estatutário do DETRAN-RJ com progressão de padrões remuneratórios.'
-  },
-  {
-    id: 'gm-marica',
-    name: 'GM Maricá',
-    fullName: 'Guarda Municipal de Maricá',
+    id: 'gm-sao-goncalo',
+    name: 'GM São Gonçalo',
+    fullName: 'Guarda Municipal de São Gonçalo',
     category: 'Segurança Pública',
     level: 'Nível Médio',
-    statusBadge: 'Edital Autorizado',
-    salary: 'R$ 4.000,00 a R$ 5.500,00 (c/ gratificações)',
-    image: '/assets/capas-concursos/guarda-marica.jpg',
-    workload: '120h de videoaulas + simulados',
-    description: 'Preparação para o concurso municipal de Maricá, contemplando o Estatuto das Guardas Municipais e legislação local.',
+    statusBadge: 'Inscrições em Andamento',
+    salary: 'R$ 3.172,96 (inicial) + adicionais',
+    image: '/assets/capas-concursos/guarda.jpg',
+    workload: '125h (50 encontros) ao vivo + PDFs',
+    description: 'Preparação completa para o Concurso da Guarda Municipal de São Gonçalo: banca Instituto SELECON, 100 vagas imediatas + 500 CR, leis extravagantes e conhecimentos específicos.',
     includedItems: [
-      'Estatuto Geral das Guardas Municipais (Lei Federal 13.022)',
-      'Legislação Municipal de Maricá e Lei Orgânica',
-      'Noções de Direito Constitucional e Penal para guardas civis',
-      'Dicas estratégicas para o TAF (Teste de Aptidão Física)',
-      'Simulados inéditos com gabarito explicado'
+      'Curso online ao vivo transmitido pelo YouTube com gravações na plataforma',
+      'Material em PDF de uso em sala incluso',
+      'Disciplinas completas: Português, Direito, Legislação Extravagante, Específicos e Informática',
+      'Resolução de questões comentadas padrão Instituto SELECON',
+      'Simulados temáticos e suporte tira-dúvidas'
     ],
-    subjects: ['Língua Portuguesa', 'Legislação Municipal de Maricá', 'Lei 13.022/2014', 'Direito Constitucional', 'Direito Penal', 'Informática'],
-    requirements: 'Ensino Médio completo e CNH categoria A e B.',
-    careerAdvancement: 'Regime estatutário municipal com plano de cargos, gratificação de risco de trânsito/policiamento e estabilidade.'
+    subjects: ['Língua Portuguesa', 'Noções de Direito', 'Legislação Extravagante', 'Conhecimentos Específicos', 'Informática'],
+    requirements: 'Ensino Médio completo e CNH categoria AB ou superior.',
+    careerAdvancement: 'Carreira pública municipal com estabilidade estatutária, 100 vagas imediatas + 500 CR e adicionais de periculosidade.',
+    targetSectionId: 'gm-sao-goncalo-online',
+    buttonLabel: 'Ver Turmas'
   },
   {
-    id: 'transpetro',
-    name: 'Transpetro 2026',
-    fullName: 'Concurso da Transpetro 2026',
-    category: 'Bancárias & Estatais',
-    level: 'Nível Médio / Técnico / Superior',
-    statusBadge: 'Prova em 29/11',
-    salary: 'R$ 5.464 a R$ 15.034,81 + benefícios',
-    image: '/assets/capas-concursos/transpetro.webp',
-    workload: '140h de conteúdo especializado',
-    description: 'Curso focado nas provas da Cesgranrio para a Transpetro, subsidiária de logística e transporte de combustíveis da Petrobras.',
+    id: 'mentoria-portugues-publicos',
+    name: 'Mentoria Português Concursos',
+    fullName: 'Mentoria de Língua Portuguesa para Concursos Públicos',
+    category: 'Área Administrativa',
+    level: 'Nível Médio e Superior',
+    statusBadge: 'Mentoria ao Vivo',
+    salary: 'Acompanhamento Estratégico',
+    image: '/assets/capas-concursos/guarda.jpg',
+    workload: 'Encontros semanais ao vivo + PDFs',
+    description: 'Mentoria especializada de Língua Portuguesa para concursos públicos: teoria aplicada, resolução guiada de questões de bancas e correção individual de redação.',
     includedItems: [
-      'Língua Portuguesa e Inglês técnico para o perfil Cesgranrio',
-      'Matemática e Raciocínio Lógico aplicados a concursos de estatais',
-      'Módulos específicos para as principais ênfases de nível médio/técnico',
-      'Treinamento intensivo de questões de provas anteriores',
-      'Simulado geral com análise de desempenho e pontos de melhoria'
+      'Aulas ao vivo semanais com interação direta e tira-dúvidas',
+      'Envio antecipado de listas de exercícios e materiais teóricos em PDF',
+      'Análise de perfil das principais bancas examinadoras (FGV, Cebraspe, FCC)',
+      'Plantão de dúvidas e acompanhamento pedagógico individualizado',
+      'Simulados de fixação com gabarito e resolução comentada'
     ],
-    subjects: ['Língua Portuguesa', 'Língua Inglesa', 'Matemática / Raciocínio Lógico', 'Conhecimentos Específicos da Área', 'Noções de SMS (Segurança, Meio Ambiente e Saúde)'],
-    requirements: 'Ensino Médio regular ou Técnico correspondente à ênfase escolhida.',
-    careerAdvancement: 'Contratação CLT com previdência complementar (Petros), plano de saúde AMS Petrobras e participação nos lucros (PLR).'
+    subjects: ['Gramática Aplicada', 'Interpretação e Compreensão de Texto', 'Redação Oficial e Discursiva', 'Resolução de Questões de Bancas'],
+    requirements: 'Aberto a todos os candidatos que buscam excelência em Língua Portuguesa para concursos.',
+    careerAdvancement: 'Domínio da disciplina de maior peso e caráter eliminatório em concursos públicos.',
+    targetSectionId: 'mentorias-online',
+    buttonLabel: 'Ver Mentorias',
+    isMentoria: true
+  },
+  {
+    id: 'mentoria-portugues-militares',
+    name: 'Mentoria Português Militar',
+    fullName: 'Mentoria de Língua Portuguesa para Carreiras Militares',
+    category: 'Segurança Pública',
+    level: 'Nível Médio e Superior',
+    statusBadge: 'Mentoria ao Vivo',
+    salary: 'Acompanhamento Especializado',
+    image: '/assets/capas-militar/colegio-naval.jpeg',
+    workload: 'Encontros semanais ao vivo + Simulados',
+    description: 'Treinamento aprofundado nas exigências gramaticais e de interpretação das bancas militares (ESA, EEAr, EsPCEx, AFA, RM2 e EAGS).',
+    includedItems: [
+      'Aulas ao vivo focadas nas peculiaridades de cada banca militar',
+      'Baterias de questões de provas anteriores comentadas em vídeo',
+      'Técnicas de redação no padrão rigoroso das Forças Armadas',
+      'Acompanhamento contínuo de rendimento e dúvidas',
+      'Simulados temáticos com controle estrito de tempo de prova'
+    ],
+    subjects: ['Morfologia e Sintaxe Militar', 'Interpretação Textual de Bancas', 'Estilística e Figuras de Linguagem', 'Redação Padrão Militar'],
+    requirements: 'Candidatos a concursos militares das Forças Armadas e Forças Auxiliares.',
+    careerAdvancement: 'Diferencial decisivo para a classificação e obtenção das primeiras colocações.',
+    targetSectionId: 'mentorias-online',
+    buttonLabel: 'Ver Mentorias',
+    isMentoria: true
+  },
+  {
+    id: 'mentoria-eags-aeronautica',
+    name: 'Mentoria EAGS',
+    fullName: 'Mentoria EAGS — Exame de Admissão ao EAGS da Aeronáutica',
+    category: 'Segurança Pública',
+    level: 'Nível Médio / Técnico',
+    statusBadge: 'Mentoria ao Vivo',
+    salary: '115h de Aulas (46 encontros)',
+    image: '/assets/capas-militar/concurso-aeronautica.png',
+    workload: '46 encontros — 115 horas de aula ao vivo',
+    description: 'Preparação específica de Língua Portuguesa direcionada ao Exame de Admissão ao EAGS da Aeronáutica. Aulas ao vivo, PDFs antecipados e simulados com correção.',
+    includedItems: [
+      'Aulas ao vivo com professores experientes e interação em tempo real',
+      'Envio antecipado de PDFs com conteúdos e exercícios da banca provável',
+      'Vídeos curtos semanais dedicados ao esclarecimento de dúvidas',
+      'Simulados temáticos a cada 4 semanas com correção detalhada',
+      'Gravações disponíveis na plataforma por até 24 horas'
+    ],
+    subjects: ['Língua Portuguesa para EAGS', 'Gramática e Interpretação de Texto', 'Resolução Comentada de Questões', 'Técnicas de Prova para Aeronáutica'],
+    requirements: 'Candidatos com formação técnica compatível com as especialidades do EAGS.',
+    careerAdvancement: 'Ingresso como Terceiro-Sargento da Força Aérea Brasileira (FAB) com estabilidade e carreira militar.',
+    targetSectionId: 'mentoria-eags-aeronautica',
+    buttonLabel: 'Ver Mentoria',
+    isMentoria: true
+  },
+  {
+    id: 'mentoria-rm2-marinha',
+    name: 'Mentoria RM2',
+    fullName: 'Mentoria RM2 — Serviço Militar Voluntário da Marinha',
+    category: 'Segurança Pública',
+    level: 'Nível Superior',
+    statusBadge: 'Mentoria ao Vivo',
+    salary: '87,5h de Aulas (35 encontros)',
+    image: '/assets/capas-militar/RM2.jpg',
+    workload: '35 encontros — 87,5 horas de aula ao vivo',
+    description: 'Preparação focada em Língua Portuguesa para o processo seletivo do Serviço Militar Voluntário de Oficiais Temporários da Marinha do Brasil (RM2).',
+    includedItems: [
+      'Aulas ao vivo focadas no padrão de cobrança da Marinha do Brasil',
+      'Envio antecipado de PDFs teóricos e listas de exercícios da banca',
+      'Vídeos curtos com resolução de dúvidas pontuais',
+      'Simulados regulares com modelo idêntico ao processo seletivo RM2',
+      'Gravações disponibilizadas na plataforma em até 24h'
+    ],
+    subjects: ['Língua Portuguesa para RM2', 'Compreensão e Interpretação Textual', 'Sintaxe e Norma Padrão', 'Treinamento de Questões da Marinha'],
+    requirements: 'Homens e mulheres com Ensino Superior completo em diversas áreas de graduação.',
+    careerAdvancement: 'Oficial Temporário da Marinha do Brasil com remuneração inicial superior a R$ 9.000,00 e plano militar.',
+    targetSectionId: 'mentoria-rm2-marinha',
+    buttonLabel: 'Ver Mentoria',
+    isMentoria: true
   }
 ];
 
 export const ProgressaoOnlinePage: React.FC = () => {
-  // Modal com mini-página do curso selecionado
-  const [activeCourse, setActiveCourse] = useState<OnlineCourseItem | null>(null);
   // Modal de detalhes da mentoria selecionada
   const [selectedMentoria, setSelectedMentoria] = useState<MentoriaDetalhes | null>(null);
 
@@ -309,7 +312,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
 
   // Prevenir scroll do body quando o modal estiver aberto
   useEffect(() => {
-    if (activeCourse || selectedMentoria) {
+    if (selectedMentoria) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -317,13 +320,12 @@ export const ProgressaoOnlinePage: React.FC = () => {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [activeCourse, selectedMentoria]);
+  }, [selectedMentoria]);
 
   // Fechar modal com tecla ESC
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setActiveCourse(null);
         setSelectedMentoria(null);
       }
     };
@@ -334,15 +336,18 @@ export const ProgressaoOnlinePage: React.FC = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 90;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      element.classList.add('ring-4', 'ring-[#FFBF00]', 'ring-offset-2', 'transition-all', 'duration-500');
+      setTimeout(() => {
+        element.classList.remove('ring-4', 'ring-[#FFBF00]', 'ring-offset-2');
+      }, 2500);
     }
-  };
-
-  const getWhatsAppCourseUrl = (courseName: string) => {
-    const message = encodeURIComponent(
-      `Olá! Tenho interesse no curso online para o concurso ${courseName} do Progressão Online. Gostaria de saber valores, cronograma e formas de matrícula.`
-    );
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -355,7 +360,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
     <div className="flex flex-col w-full bg-[#F8FAFC]">
       <SEO
         title="Progressão Online - Cursos EAD para Concursos Públicos"
-        description="Estude com a tradição do Progressão onde estiver. Cursos online para PMERJ, INSS, PRF, PCERJ, Banco do Brasil, DETRAN e mais, com videoaulas, materiais em PDF e simulados."
+        description="Estude com a tradição do Progressão onde estiver. Cursos online para PMERJ, INSS, PRF, PCERJ, Banco do Brasil, GM Maricá, Transpetro e mais, com videoaulas, materiais em PDF e simulados."
         canonicalPath="/cursos/tecnicos"
       />
 
@@ -587,7 +592,13 @@ export const ProgressaoOnlinePage: React.FC = () => {
           {CONCURSOS_ONLINE.map((course) => (
             <div
               key={course.id}
-              onClick={() => setActiveCourse(course)}
+              onClick={() => {
+                if (course.targetSectionId) {
+                  scrollToSection(course.targetSectionId);
+                } else {
+                  scrollToSection(course.isMentoria ? 'mentorias-online' : 'turmas-online');
+                }
+              }}
               role="button"
               tabIndex={0}
               className="bg-white rounded-3xl overflow-hidden border border-[#E1E5E8] shadow-sm hover:shadow-xl hover:border-[#0289C6]/60 transition-all duration-300 flex flex-col group hover:-translate-y-1 cursor-pointer"
@@ -614,7 +625,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
               </div>
 
               {/* Corpo do Card */}
-              <div className="p-6 flex flex-col flex-1 justify-between">
+              <div className="p-6 flex flex-col flex-1 justify-between gap-5">
                 <div>
                   {/* Nome completo do órgão */}
                   <p className="text-xs font-semibold text-[#0289C6] mb-2 leading-snug">
@@ -625,6 +636,26 @@ export const ProgressaoOnlinePage: React.FC = () => {
                   <p className="text-xs sm:text-sm text-[#0A131F]/75 leading-relaxed line-clamp-3">
                     {course.description}
                   </p>
+                </div>
+
+                {/* Botão de Ação do Card */}
+                <div className="pt-4 border-t border-[#E1E5E8]/80 mt-auto">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (course.targetSectionId) {
+                        scrollToSection(course.targetSectionId);
+                      } else {
+                        scrollToSection(course.isMentoria ? 'mentorias-online' : 'turmas-online');
+                      }
+                    }}
+                    aria-label={`${course.buttonLabel || 'Ver Turmas'} do curso ${course.name}`}
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-sm hover:shadow-md transition-all active:scale-95 cursor-pointer"
+                  >
+                    <span>{course.buttonLabel || 'Ver Turmas'}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#FFBF00]" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -825,8 +856,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
 
         </div>
       </section>
-
-      <div className="bg-white p-8 flex justify-center" id="formulario-online">
+      <div className="bg-white p-8 flex justify-center">
         <div className="w-full max-w-[600px]">
           {/* RD STATION — PROVISÓRIO */}
           <RDStationForm
@@ -834,166 +864,6 @@ export const ProgressaoOnlinePage: React.FC = () => {
           />
         </div>
       </div>
-
-
-      {/* ============================================================ */}
-      {/* 6. MODAL INTERATIVO: MINI-PÁGINA DO CURSO SELECIONADO */}
-      {/* ============================================================ */}
-      {activeCourse && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/75 backdrop-blur-sm animate-fade-in"
-          onClick={() => setActiveCourse(null)}
-        >
-          <div
-            className="bg-white rounded-3xl w-full max-w-3xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-white/20 animate-scale-in"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Cabeçalho do Modal com Foto e Informações Principais */}
-            <div className="relative h-48 sm:h-56 shrink-0 bg-[#001D33] overflow-hidden">
-              <img
-                src={activeCourse.image}
-                alt={activeCourse.name}
-                className="w-full h-full object-cover opacity-60"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001D33] via-[#001D33]/60 to-transparent" />
-
-              {/* Botão de Fechar */}
-              <button
-                onClick={() => setActiveCourse(null)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center backdrop-blur-md transition-colors z-20 cursor-pointer"
-                title="Fechar (ESC)"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              {/* Conteúdo sobreposto na imagem */}
-              <div className="absolute bottom-4 left-6 right-6 z-10 text-white">
-                <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FFBF00] text-[#00223B]">
-                    {activeCourse.level}
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md text-white border border-white/20">
-                    {activeCourse.category}
-                  </span>
-                  <span className="text-xs text-[#25D366] font-semibold flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] inline-block" />
-                    {activeCourse.statusBadge}
-                  </span>
-                </div>
-                <h2 className="font-serif-heading text-2xl sm:text-3xl font-bold leading-tight">
-                  {activeCourse.name}
-                </h2>
-                <p className="text-xs sm:text-sm text-[#E1E5E8] line-clamp-1">
-                  {activeCourse.fullName}
-                </p>
-              </div>
-            </div>
-
-            {/* Conteúdo com Scroll Interno */}
-            <div className="p-6 overflow-y-auto space-y-6 text-[#0A131F]">
-
-              {/* Bloco de Visão Geral */}
-              <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#0289C6] mb-2">
-                  Sobre a Carreira e o Concurso
-                </h4>
-                <p className="text-sm text-[#0A131F]/80 leading-relaxed">
-                  {activeCourse.description}
-                </p>
-              </div>
-
-              {/* Grid de Requisitos e Remuneração */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-[#F8FAFC] border border-[#E1E5E8] rounded-2xl p-4">
-                  <span className="text-xs font-semibold text-[#0A131F]/60 block mb-1">
-                    Remuneração Inicial
-                  </span>
-                  <span className="text-lg font-bold text-[#00223B] block mb-2">
-                    {activeCourse.salary}
-                  </span>
-                  {activeCourse.careerAdvancement && (
-                    <p className="text-xs text-[#0A131F]/70 leading-relaxed">
-                      <strong>Evolução:</strong> {activeCourse.careerAdvancement}
-                    </p>
-                  )}
-                </div>
-
-                <div className="bg-[#F8FAFC] border border-[#E1E5E8] rounded-2xl p-4">
-                  <span className="text-xs font-semibold text-[#0A131F]/60 block mb-1">
-                    Requisitos Exigidos
-                  </span>
-                  <p className="text-xs text-[#0A131F]/80 leading-relaxed mb-2 font-medium">
-                    {activeCourse.requirements}
-                  </p>
-                  <span className="text-[11px] text-[#0A131F]/60">
-                    <strong>Carga horária:</strong> {activeCourse.workload}
-                  </span>
-                </div>
-              </div>
-
-              {/* O que está incluso no curso */}
-              <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#00223B] mb-3">
-                  O que está incluso na sua matrícula online
-                </h4>
-                <div className="space-y-2.5">
-                  {activeCourse.includedItems.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#0A131F]/80">
-                      <CheckCircle2 className="w-4 h-4 text-[#0289C6] shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Disciplinas Contempladas */}
-              <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#00223B] mb-2.5">
-                  Disciplinas da Grade Curricular
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {activeCourse.subjects.map((sub, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 rounded-lg bg-[#00223B]/5 border border-[#00223B]/10 text-xs font-medium text-[#00223B]"
-                    >
-                      {sub}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-            {/* Rodapé do Modal com Botões de Ação */}
-            <div className="p-4 sm:p-5 bg-[#F8FAFC] border-t border-[#E1E5E8] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0">
-              <div className="text-xs text-[#0A131F]/70 hidden sm:block">
-                Dúvidas sobre o edital? Fale com a secretaria agora mesmo.
-              </div>
-
-              <div className="flex items-center gap-3 w-full sm:w-auto">
-                <button
-                  onClick={() => setActiveCourse(null)}
-                  className="px-5 py-2.5 rounded-xl border border-[#E1E5E8] text-xs font-bold text-[#0A131F]/70 hover:bg-gray-100 transition-colors cursor-pointer"
-                >
-                  Fechar
-                </button>
-
-                <a
-                  href={getWhatsAppCourseUrl(activeCourse.name)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Garantir Vaga no WhatsApp</span>
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      )}
 
       {/* ============================================================ */}
       {/* MODAL / PÁGINA SOBREPOSTA DE DETALHES DA MENTORIA */}
