@@ -53,6 +53,7 @@ export const COMBOS_PRODUTOS_DATA: CombosProdutosData = {
         'Operação Desempenho',
         'Aulões Estratégicos Prog',
         'Central de Questões Progressão',
+        'OPA (Orientação Pedagógica Avançada)',
         'Bônus: Aulão Extra Personalizado'
       ],
       destaque: true,
@@ -66,7 +67,8 @@ export const COMBOS_PRODUTOS_DATA: CombosProdutosData = {
       texto: 'Treinar o aluno para a prova real, desenvolver estratégia e melhorar o desempenho.',
       itens: [
         'Turma presencial',
-        'Operação Desempenho (simulados presenciais + correções estratégicas)'
+        'Operação Desempenho (simulados presenciais + correções estratégicas)',
+        'OPA (Orientação Pedagógica Avançada)'
       ],
       ctaLabel: 'QUERO ME MATRICULAR',
       ctaUrl: '#inscricao'
@@ -77,7 +79,8 @@ export const COMBOS_PRODUTOS_DATA: CombosProdutosData = {
       titulo: 'Sem combo',
       texto: 'Somente a turma tradicional presencial.',
       itens: [
-        'Turma presencial'
+        'Turma presencial',
+        'OPA (Orientação Pedagógica Avançada)'
       ],
       ctaLabel: 'QUERO ME MATRICULAR',
       ctaUrl: '#inscricao'

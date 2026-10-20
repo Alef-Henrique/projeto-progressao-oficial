@@ -13,7 +13,8 @@ import {
   Users,
   FileCheck,
   AlertCircle,
-  Radio
+  Radio,
+  Calendar
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
@@ -586,6 +587,30 @@ export const ProgressaoOnlinePage: React.FC = () => {
             Conheça as oportunidades disponíveis no Progressão Online com todas as informações de requisitos e disciplinas.
           </p>
         </div>
+                {/* Destaque Oficial: Início das Turmas Online e Mentorias */}
+        <div className="mb-10 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#00223B] via-[#00385F] to-[#00223B] text-white border-2 border-[#FFBF00]/50 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3.5 text-center sm:text-left">
+            <div className="w-11 h-11 rounded-xl bg-[#FFBF00] text-[#00223B] flex items-center justify-center shrink-0 shadow-md">
+              <Calendar className="w-5 h-5 text-[#00223B]" />
+            </div>
+            <div>
+              <span className="text-[11px] sm:text-xs font-extrabold text-[#FFBF00] uppercase tracking-wider block">
+                Início das Aulas Confirmado
+              </span>
+              <p className="text-sm sm:text-base md:text-lg font-bold text-white leading-snug">
+                As turmas online e as mentorias iniciam no dia <span className="text-[#FFBF00] font-black underline underline-offset-4 decoration-[#FFBF00]">09/11</span>.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => scrollToSection('formulario-online')}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-xs sm:text-sm px-6 py-3 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer shrink-0"
+          >
+            <span>Garantir Minha Vaga</span>
+            <ArrowRight className="w-4 h-4 text-[#00223B]" />
+          </button>
+        </div>
 
         {/* Grade de Cards Responsiva */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
@@ -856,7 +881,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
 
         </div>
       </section>
-      <div className="bg-white p-8 flex justify-center">
+      <div className="bg-white p-8 flex justify-center" id='formulario-online'>
         <div className="w-full max-w-[600px]">
           {/* RD STATION — PROVISÓRIO */}
           <RDStationForm

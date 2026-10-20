@@ -131,7 +131,7 @@ export const Header: React.FC = () => {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif-heading font-bold text-base sm:text-lg text-white tracking-wide leading-tight group-hover:text-[#0289C6] transition-colors">
+              <span className="font-serif-heading font-bold text-sm sm:text-base text-white tracking-wide leading-tight group-hover:text-[#0289C6] transition-colors">
                 PROGRESSÃO CAXIAS
               </span>
               <span className="text-[10px] uppercase tracking-widest text-[#E1E5E8] font-semibold">

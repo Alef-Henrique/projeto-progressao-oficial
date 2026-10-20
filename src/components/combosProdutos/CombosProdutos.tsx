@@ -1,15 +1,20 @@
 import React from 'react';
-import { 
-  Sparkles, 
-  CheckCircle2, 
-  Layers, 
-  Award, 
-  Zap, 
-  FileText, 
-  Calendar, 
-  Compass, 
+import {
+  Sparkles,
+  CheckCircle2,
+  Layers,
+  Award,
+  Zap,
+  FileText,
+  Calendar,
+  Compass,
   ShieldCheck,
-  Check
+  Check,
+  BookOpen,
+  Target,
+  TrendingUp,
+  GraduationCap
+
 } from 'lucide-react';
 import { COMBOS_PRODUTOS_DATA } from './data';
 
@@ -19,7 +24,7 @@ export const CombosProdutos: React.FC = () => {
   return (
     <section id="combos-e-produtos" className="py-16 sm:py-24 bg-[#F8FAFC] border-t border-[#E1E5E8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ============================================================ */}
         {/* 1. INTRODUÇÃO DA SEÇÃO */}
         {/* ============================================================ */}
@@ -59,22 +64,20 @@ export const CombosProdutos: React.FC = () => {
           {/* Grid de 3 Cards de Combos */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch">
             {combos.map((combo) => (
-              <div 
+              <div
                 key={combo.id}
-                className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${
-                  combo.destaque
+                className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${combo.destaque
                     ? 'bg-gradient-to-b from-[#00223B] to-[#00385F] text-white border-2 border-[#FFBF00] shadow-xl md:-translate-y-1'
                     : 'bg-white text-[#0A131F] border border-[#E1E5E8] shadow-sm hover:shadow-md'
-                }`}
+                  }`}
               >
                 {/* Badge Superior */}
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${
-                      combo.destaque 
-                        ? 'bg-[#FFBF00] text-[#00223B]' 
+                    <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${combo.destaque
+                        ? 'bg-[#FFBF00] text-[#00223B]'
                         : 'bg-[#004B7C]/10 text-[#004B7C]'
-                    }`}>
+                      }`}>
                       {combo.tag}
                     </span>
 
@@ -86,16 +89,14 @@ export const CombosProdutos: React.FC = () => {
                   </div>
 
                   {/* Título do Combo */}
-                  <h4 className={`font-serif-heading text-2xl sm:text-3xl font-black uppercase tracking-tight mb-3 ${
-                    combo.destaque ? 'text-white' : 'text-[#00223B]'
-                  }`}>
+                  <h4 className={`font-serif-heading text-2xl sm:text-3xl font-black uppercase tracking-tight mb-3 ${combo.destaque ? 'text-white' : 'text-[#00223B]'
+                    }`}>
                     {combo.titulo}
                   </h4>
 
                   {/* Descrição do Combo */}
-                  <p className={`text-xs sm:text-sm leading-relaxed mb-6 font-medium ${
-                    combo.destaque ? 'text-[#E1E5E8]/90' : 'text-[#64748B]'
-                  }`}>
+                  <p className={`text-xs sm:text-sm leading-relaxed mb-6 font-medium ${combo.destaque ? 'text-[#E1E5E8]/90' : 'text-[#64748B]'
+                    }`}>
                     {combo.texto}
                   </p>
 
@@ -104,9 +105,8 @@ export const CombosProdutos: React.FC = () => {
 
                   {/* Lista de Itens do Combo */}
                   <div className="space-y-3 mb-6">
-                    <span className={`text-[11px] font-extrabold uppercase tracking-wider block ${
-                      combo.destaque ? 'text-[#FFBF00]' : 'text-[#004B7C]'
-                    }`}>
+                    <span className={`text-[11px] font-extrabold uppercase tracking-wider block ${combo.destaque ? 'text-[#FFBF00]' : 'text-[#004B7C]'
+                      }`}>
                       O que está incluso:
                     </span>
                     <ul className="space-y-2.5">
@@ -114,16 +114,14 @@ export const CombosProdutos: React.FC = () => {
                         const isBonus = item.startsWith('Bônus:');
                         return (
                           <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm">
-                            <Check className={`w-4 h-4 shrink-0 mt-0.5 ${
-                              combo.destaque 
+                            <Check className={`w-4 h-4 shrink-0 mt-0.5 ${combo.destaque
                                 ? (isBonus ? 'text-[#FFBF00]' : 'text-[#25D366]')
                                 : 'text-emerald-600'
-                            }`} />
-                            <span className={`font-semibold leading-relaxed ${
-                              combo.destaque
+                              }`} />
+                            <span className={`font-semibold leading-relaxed ${combo.destaque
                                 ? (isBonus ? 'text-[#FFBF00] font-bold' : 'text-white')
                                 : (isBonus ? 'text-[#B45309] font-bold' : 'text-[#00223B]')
-                            }`}>
+                              }`}>
                               {item}
                             </span>
                           </li>
@@ -144,18 +142,16 @@ export const CombosProdutos: React.FC = () => {
                         formEl.scrollIntoView({ behavior: 'smooth' });
                       }
                     }}
-                    className={`w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md active:scale-[0.99] ${
-                      combo.destaque
+                    className={`w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md active:scale-[0.99] ${combo.destaque
                         ? 'bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B]'
                         : 'bg-[#004B7C] hover:bg-[#00223B] text-white'
-                    }`}
+                      }`}
                   >
                     QUERO ME MATRICULAR
                   </a>
 
-                  <div className={`pt-3 border-t text-[11px] font-semibold text-center ${
-                    combo.destaque ? 'border-white/10 text-[#E1E5E8]/70' : 'border-[#E1E5E8] text-[#64748B]'
-                  }`}>
+                  <div className={`pt-3 border-t text-[11px] font-semibold text-center ${combo.destaque ? 'border-white/10 text-[#E1E5E8]/70' : 'border-[#E1E5E8] text-[#64748B]'
+                    }`}>
                     Preparação Presencial Progressão
                   </div>
                 </div>
@@ -189,7 +185,7 @@ export const CombosProdutos: React.FC = () => {
           {/* Grid de 4 Produtos */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7">
             {produtos.map((produto) => (
-              <div 
+              <div
                 key={produto.id}
                 className="bg-white rounded-3xl border border-[#E1E5E8] p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
               >
@@ -266,39 +262,58 @@ export const CombosProdutos: React.FC = () => {
         {/* ============================================================ */}
         {/* 4. ÁREA DE OPA — ORIENTAÇÃO PEDAGÓGICA AVANÇADA */}
         {/* ============================================================ */}
-        <div className="pt-10 border-t border-[#E1E5E8]">
+        <div id="secao-opa" className="pt-10 border-t border-[#E1E5E8] scroll-mt-24 sm:scroll-mt-28">
           <div className="bg-gradient-to-br from-[#00223B] via-[#002b49] to-[#001D33] text-white rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#015E96]/50 shadow-xl relative overflow-hidden">
             {/* Elemento Decorativo */}
             <div className="absolute top-0 right-0 -mt-12 -mr-12 w-64 h-64 bg-[#0289C6]/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 max-w-4xl">
               {/* Badge e Título */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFBF00] text-[#00223B] text-xs font-black uppercase tracking-wider mb-4 shadow-xs">
-                <Compass className="w-3.5 h-3.5" />
-                <span>{opa.sigla}</span>
-              </div>
+              <span className="text-xs sm:text-sm font-extrabold text-[#FFBF00] uppercase tracking-wider block mb-2">
+                DIFERENCIAL EXCLUSIVO
+              </span>
 
-              <h3 className="font-serif-heading text-2xl sm:text-4xl font-black text-white uppercase tracking-tight mb-3">
-                {opa.nome}
+              <h3 className="font-serif-heading text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mb-1">
+                OPA
               </h3>
 
-              <p className="text-sm sm:text-base lg:text-lg text-[#E1E5E8]/90 leading-relaxed font-medium mb-8">
+              <h4 className="text-lg sm:text-2xl font-bold text-white mb-1">
+                Orientação Pedagógica Avançada
+              </h4>
+
+              <p className="text-sm sm:text-base text-[#FFBF00] font-bold mb-4">
+                Mais direcionamento, mais resultados!
+              </p>
+
+              <p className="text-xs sm:text-sm lg:text-base text-[#E1E5E8]/90 leading-relaxed font-medium mb-6">
                 {opa.texto}
               </p>
 
-              {/* Grid de Itens da OPA */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                {opa.itens.map((item, idx) => (
-                  <div 
-                    key={idx}
-                    className="p-5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-sm flex items-start gap-3"
-                  >
-                    <CheckCircle2 className="w-5 h-5 text-[#FFBF00] shrink-0 mt-0.5" />
-                    <span className="text-xs sm:text-sm font-semibold text-white leading-relaxed">
-                      {item}
-                    </span>
-                  </div>
-                ))}
+              {/* Divisor sutil */}
+              <div className="h-px w-full bg-white/20 mb-6" />
+
+              {/* 4 Pilares da OPA da imagem */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div className="p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-sm flex flex-col gap-2">
+                  <BookOpen className="w-5 h-5 text-[#FFBF00]" />
+                  <span className="text-sm font-bold text-white">Organização dos estudos</span>
+                  <span className="text-xs text-[#E1E5E8]/80 leading-relaxed">Cronograma personalizado e metodologia para otimizar seu tempo.</span>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-sm flex flex-col gap-2">
+                  <Target className="w-5 h-5 text-[#FFBF00]" />
+                  <span className="text-sm font-bold text-white">Foco e estratégia</span>
+                  <span className="text-xs text-[#E1E5E8]/80 leading-relaxed">Direcionamento preciso nos tópicos de maior peso da banca examinadora.</span>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-sm flex flex-col gap-2">
+                  <TrendingUp className="w-5 h-5 text-[#FFBF00]" />
+                  <span className="text-sm font-bold text-white">Acompanhamento da evolução</span>
+                  <span className="text-xs text-[#E1E5E8]/80 leading-relaxed">Métricas de rendimento, análise de erros e evolução contínua.</span>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-sm flex flex-col gap-2">
+                  <GraduationCap className="w-5 h-5 text-[#FFBF00]" />
+                  <span className="text-sm font-bold text-white">Direcionamento pedagógico</span>
+                  <span className="text-xs text-[#E1E5E8]/80 leading-relaxed">Consultoria individualizada com professores especialistas para sua posse.</span>
+                </div>
               </div>
 
               {/* Botão CTA da OPA */}
@@ -320,7 +335,6 @@ export const CombosProdutos: React.FC = () => {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

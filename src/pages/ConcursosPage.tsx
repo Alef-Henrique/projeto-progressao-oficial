@@ -24,7 +24,9 @@ import {
   MapPin,
   FileCheck,
   Compass,
-  BookOpen
+  BookOpen,
+  Sparkles,
+  Gift
 } from 'lucide-react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
@@ -142,6 +144,14 @@ export const ConcursosPage: React.FC = () => {
       }, 100);
     }
   }, []);
+
+
+  // Bônus de 1 mês grátis nas turmas presenciais (sem custo adicional)
+  // Exceções oficiais: não vale para turmas presenciais CBMERJ, GM Maricá, GM São Gonçalo e Transpetro
+  const EXCECOES_BONUS_PRESENCIAL = ['cbmerj', 'gm-marica', 'gm-sao-goncalo', 'transpetro'];
+  const hasBonusPresencial = (concursoId: string) => {
+    return !EXCECOES_BONUS_PRESENCIAL.includes(concursoId.toLowerCase());
+  };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -313,8 +323,8 @@ export const ConcursosPage: React.FC = () => {
                     type="button"
                     onClick={() => setSelectedCategory(cat)}
                     className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${isActive
-                        ? 'bg-[#004B7C] text-white shadow-md'
-                        : 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A131F]/80 border border-transparent'
+                      ? 'bg-[#004B7C] text-white shadow-md'
+                      : 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A131F]/80 border border-transparent'
                       }`}
                   >
                     <span>{cat}</span>
@@ -436,6 +446,34 @@ export const ConcursosPage: React.FC = () => {
                         {concurso.escolaridade}
                       </span>
                     </div>
+                  </div>
+
+                  {/* Destaque OPA — Botão Direcionado para a Seção OPA */}
+                  <div className="space-y-1.5 mt-1">
+                    <button
+                      type="button"
+                      onClick={() => scrollToSection('secao-opa')}
+                      aria-label="Conhecer o diferencial OPA - Projeto Exclusivo Incluso"
+                      className="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-[#00223B] hover:bg-[#002f52] border border-[#015E96]/50 hover:border-[#FFBF00]/60 text-white shadow-xs transition-all duration-200 cursor-pointer group/opa active:scale-[0.99] text-left"
+                    >
+                      <span className="px-1.5 py-0.5 rounded bg-[#FFBF00] text-[#00223B] text-[10px] font-black uppercase tracking-wider shrink-0 group-hover/opa:bg-[#F59E0B] transition-colors">
+                        OPA
+                      </span>
+                      <span className="text-[11px] sm:text-xs font-semibold text-white group-hover/opa:text-[#FFBF00] transition-colors truncate">
+                        Diferencial Exclusivo Incluso
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#FFBF00] shrink-0 ml-auto group-hover/opa:translate-x-1 transition-transform" />
+                    </button>
+                    {/* Destaque: Bônus de 1 mês grátis nas turmas presenciais */}
+                    {hasBonusPresencial(concurso.id) && (
+                      <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-50 border border-emerald-200/90 text-emerald-950 shadow-xs">
+                        <Gift className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <p className="text-[11px] sm:text-xs font-semibold text-emerald-950 leading-tight truncate">
+                          <strong className="text-emerald-700 font-extrabold mr-1">+1 Mês Grátis:</strong>
+                          Ao contratar uma turma presencial!
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                   {/* Botões do Card */}
@@ -1173,6 +1211,17 @@ export const ConcursosPage: React.FC = () => {
                           </h3>
                         </div>
                       </div>
+
+                      {/* Destaque Bônus 1 Mês Grátis se elegível */}
+                      {hasBonusPresencial(activeConcurso.id) && (
+                        <div className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 shadow-xs mb-3">
+                          <Gift className="w-5 h-5 text-emerald-600 shrink-0" />
+                          <div className="text-xs sm:text-sm">
+                            <strong className="text-emerald-850 font-bold block sm:inline">Bônus Especial de Matrícula: </strong>
+                            <span>Ao contratar a turma presencial</span>
+                          </div>
+                        </div>
+                      )}
 
                       <div className="grid grid-cols-1 gap-6">
                         {activeConcurso.turmasPreparatorias.map((turmaItem, tIdx) => (
