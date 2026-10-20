@@ -109,14 +109,13 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
     >
       {/* CONTAINER PRINCIPAL: PROPORÇÃO HORIZONTAL NO DESKTOP E IMERSIVA NO MOBILE */}
       <div className="relative w-full h-[510px] xs:h-[530px] sm:h-[560px] md:h-[380px] lg:h-[420px] xl:h-[450px] flex items-center justify-center">
-        
+
         {/* ============================================================ */}
         {/* SLIDE 1: 31 ANOS APROVANDO EM CAXIAS - DESDE 1995 */}
         {/* ============================================================ */}
         <div
-          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-            currentSlide === 0 ? 'opacity-100 z-20 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
-          }`}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${currentSlide === 0 ? 'opacity-100 z-20 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
+            }`}
           aria-hidden={currentSlide !== 0}
         >
           {/* Fundo base neutro sólido */}
@@ -125,7 +124,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
           {/* LAYOUT DESKTOP & TABLET: COMPOSIÇÃO HORIZONTAL FIEL AO DESIGN ORIGINAL */}
           <div className="hidden md:block absolute inset-0 w-full h-full overflow-hidden bg-[#00223B]">
             {/* Fundo base texturizado com listras diagonais suaves e escuras */}
-            <div 
+            <div
               className="absolute inset-0 pointer-events-none z-0"
               style={{
                 backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
@@ -133,14 +132,14 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
             />
 
             {/* 1. ÁREA DIREITA: FUNDO AZUL COM LISTRAS DIAGONAIS CONTÍNUAS (ATRÁS DA FOTOGRAFIA) */}
-            <div 
+            <div
               className="absolute right-0 top-0 bottom-0 h-full z-10 overflow-hidden bg-[#00223B]"
               style={{
                 left: '28%'
               }}
             >
               {/* Textura de listras diagonais azul suave e escura */}
-              <div 
+              <div
                 className="absolute inset-0 pointer-events-none z-0"
                 style={{
                   backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
@@ -149,9 +148,10 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
 
               {/* Fotografia ampla preservando a nitidez total das pessoas */}
               <img
-                src="/assets/banner-meninas.png"
+                src="/assets/banner-home.png"
                 alt="Alunos da unidade Caxias uniformizados e focados na preparação acadêmica"
-                className="relative z-10 w-full h-full object-cover object-[36%_18%]"
+                className="relative z-10 w-full h-full object-contain object-center scale-110"
+
                 style={{
                   maskImage: 'linear-gradient(105deg, transparent 0%, transparent 10%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 100%)',
                   WebkitMaskImage: 'linear-gradient(105deg, transparent 0%, transparent 10%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 100%)'
@@ -161,7 +161,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
             </div>
 
             {/* 2. ÁREA DO TEXTO: FUNDO AZUL-MARINHO SÓLIDO COM CORTE DIAGONAL DIRETO SOBRE A FOTO */}
-            <div 
+            <div
               className="absolute left-0 top-0 bottom-0 h-full z-20 bg-[#001D33] flex flex-col justify-center pl-8 sm:pl-10 lg:pl-16 xl:pl-24 pr-4"
               style={{
                 width: '40%',
@@ -193,7 +193,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
           <div className="md:hidden relative w-full h-full overflow-hidden">
             {/* Foto dos alunos preenchendo 100% da largura e altura sem barras ou faixas azuis */}
             <img
-              src="/assets/banner-meninas.png"
+              src="/assets/banner-home.png"
               alt="Alunos da unidade Caxias uniformizados e focados na aprovação"
               className="w-full h-full object-cover object-[center_20%]"
               loading="eager"
@@ -232,14 +232,13 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
         {/* COMPOSIÇÃO DE DOIS FUNDOS: TEXTO SÓLIDO + IMAGENS TEXTURIZADAS */}
         {/* ============================================================ */}
         <div
-          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-            currentSlide === 1 ? 'opacity-100 z-20 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
-          }`}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${currentSlide === 1 ? 'opacity-100 z-20 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
+            }`}
           aria-hidden={currentSlide !== 1}
         >
           {/* LAYOUT DESKTOP & TABLET: DOIS FUNDOS DISTINTOS CONFORME O BANNER DE REFERÊNCIA */}
           <div className="hidden md:flex w-full h-full relative items-stretch">
-            
+
             {/* 1. ÁREA DO TEXTO: FUNDO AZUL-MARINHO SÓLIDO (SEM TEXTURA) */}
             <div className="w-[30%] lg:w-[28%] xl:w-[25%] h-full bg-[#001D33] flex flex-col justify-center pl-8 sm:pl-10 lg:pl-16 xl:pl-24 pr-6 z-20 shrink-0 border-r border-white/20 shadow-2xl">
               <div className="flex flex-col items-start leading-[0.95] tracking-tight font-black uppercase text-left">
@@ -262,7 +261,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
             {/* 2. ÁREA DAS IMAGENS: FUNDO AZUL COM TEXTURA DE LISTRAS DIAGONAIS CONTÍNUA COMPARTILHADA */}
             <div className="flex-1 relative h-full bg-[#002B48] overflow-hidden">
               {/* Textura de listras diagonais contínua para toda a área das 4 imagens */}
-              <div 
+              <div
                 className="absolute inset-0 pointer-events-none z-0"
                 style={{
                   backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
@@ -275,9 +274,8 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
                   <Link
                     key={cat.id}
                     href={cat.href}
-                    className={`group relative flex flex-col justify-end h-full overflow-hidden ${
-                      idx < 3 ? 'border-r border-white/20' : ''
-                    } transition-all duration-300 hover:brightness-105`}
+                    className={`group relative flex flex-col justify-end h-full overflow-hidden ${idx < 3 ? 'border-r border-white/20' : ''
+                      } transition-all duration-300 hover:brightness-105`}
                   >
                     {/* Foto vertical sobre a textura contínua */}
                     <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -363,9 +361,8 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
         {/* SLIDE 3: NASCEMOS PRÉ-MILITAR - MATRÍCULAS ABERTAS */}
         {/* ============================================================ */}
         <div
-          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-            currentSlide === 2 ? 'opacity-100 z-20 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
-          }`}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${currentSlide === 2 ? 'opacity-100 z-20 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
+            }`}
           aria-hidden={currentSlide !== 2}
         >
           {/* Fundo base neutro sólido */}
@@ -374,7 +371,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
           {/* LAYOUT DESKTOP & TABLET: COMPOSIÇÃO HORIZONTAL FIEL AO DESIGN ORIGINAL */}
           <div className="hidden md:block absolute inset-0 w-full h-full overflow-hidden bg-[#00223B]">
             {/* Fundo base texturizado com listras diagonais suaves e escuras */}
-            <div 
+            <div
               className="absolute inset-0 pointer-events-none z-0"
               style={{
                 backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
@@ -382,14 +379,14 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
             />
 
             {/* 1. ÁREA DIREITA: FUNDO AZUL COM LISTRAS DIAGONAIS CONTÍNUAS (ATRÁS DA FOTOGRAFIA) */}
-            <div 
+            <div
               className="absolute right-0 top-0 bottom-0 h-full z-10 overflow-hidden bg-[#00223B]"
               style={{
                 left: '28%'
               }}
             >
               {/* Textura de listras diagonais azul suave e escura */}
-              <div 
+              <div
                 className="absolute inset-0 pointer-events-none z-0"
                 style={{
                   backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
@@ -400,7 +397,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
               <img
                 src="/assets/banner-militar-02.png"
                 alt="Aprovados de farda das Forças Armadas - ESA, EEAr e EsPCEx do Curso Progressão"
-                className="relative z-10 w-full h-full object-cover object-[70%_20%]"
+                className="relative z-10 w-full h-full object-contain object-center scale-110"
                 style={{
                   maskImage: 'linear-gradient(105deg, transparent 0%, transparent 10%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 100%)',
                   WebkitMaskImage: 'linear-gradient(105deg, transparent 0%, transparent 10%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 100%)'
@@ -410,7 +407,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
             </div>
 
             {/* 2. ÁREA DO TEXTO: FUNDO AZUL-MARINHO SÓLIDO COM CORTE DIAGONAL DIRETO SOBRE A FOTO */}
-            <div 
+            <div
               className="absolute left-0 top-0 bottom-0 h-full z-20 bg-[#001D33] flex flex-col justify-center pl-8 sm:pl-10 lg:pl-16 xl:pl-24 pr-4"
               style={{
                 width: '40%',

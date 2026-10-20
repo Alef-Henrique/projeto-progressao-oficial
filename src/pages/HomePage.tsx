@@ -43,7 +43,7 @@ const OBJECTIVE_CARDS = [
     title: 'Pré-Vestibular & ENEM',
     description: 'Preparação integrada com metodologia TRI, Redação Nota 1000 e foco no vestibular da UERJ.',
     href: '/cursos/pre-vestibular',
-    image: '/assets/img-pre-vestibular.jpeg',
+    image: '/assets/vestibular.webp',
   },
   {
     id: 'concursos',
