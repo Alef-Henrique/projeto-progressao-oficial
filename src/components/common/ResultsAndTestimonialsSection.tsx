@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { AnimatedCounter } from './AnimatedCounter';
 import { ApprovedInstitutionsCarousel } from './ApprovedInstitutionsCarousel';
+import { ApprovedStudentsCarousel } from './ApprovedStudentsCarousel';
 
 interface ResultsAndTestimonialsSectionProps {
   showViewAllButton?: boolean;
@@ -175,6 +176,9 @@ export const ResultsAndTestimonialsSection: React.FC<ResultsAndTestimonialsSecti
 
       {/* CARROSSEL DAS INSTITUIÇÕES ONDE OS ALUNOS FORAM APROVADOS */}
       <ApprovedInstitutionsCarousel />
+
+            {/* NOVA SEÇÃO: CARROSSEL DE FOTOS DOS ALUNOS APROVADOS (COM NOME E CONCURSO) */}
+      <ApprovedStudentsCarousel />
 
       {/* Carrossel Automático (Cards são Imagens Somente) */}
       <div
