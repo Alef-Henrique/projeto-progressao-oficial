@@ -397,7 +397,7 @@ export const HeroBannerCarousel: React.FC<HeroBannerCarouselProps> = () => {
               <img
                 src="/assets/banner-militar-02.png"
                 alt="Aprovados de farda das Forças Armadas - ESA, EEAr e EsPCEx do Curso Progressão"
-                className="relative z-10 w-full h-full object-contain object-center scale-110"
+                className="relative z-10 w-full h-full object-contain object-center scale-140"
                 style={{
                   maskImage: 'linear-gradient(105deg, transparent 0%, transparent 10%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 100%)',
                   WebkitMaskImage: 'linear-gradient(105deg, transparent 0%, transparent 10%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 100%)'
