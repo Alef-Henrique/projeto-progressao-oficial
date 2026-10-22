@@ -17,13 +17,13 @@ export const Footer: React.FC = () => {
           {/* Brand & Introduction */}
           <div className="lg:col-span-1 flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-3 group">
-            <div className="h-14 flex items-center group-hover:scale-105 transition-transform">
-              <img
-                src="/assets/logo-oficial.webp"
-                alt="Progressão Caxias - Colégio & Curso"
-                className="h-full w-auto object-contain"
-              />
-            </div>
+              <div className="h-14 flex items-center group-hover:scale-105 transition-transform">
+                <img
+                  src="/assets/logo-oficial.webp"
+                  alt="Progressão Caxias - Colégio & Curso"
+                  className="h-full w-auto object-contain"
+                />
+              </div>
               <div className="flex flex-col">
                 <span className="font-serif-heading font-bold text-lg text-white leading-tight">
                   PROGRESSÃO CAXIAS
@@ -31,10 +31,13 @@ export const Footer: React.FC = () => {
                 <span className="text-[10px] uppercase tracking-widest text-white font-semibold">
                   COLÉGIO & CURSO
                 </span>
+                <span className="text-[10px] sm:text-[11px] italic font-medium text-white/80 tracking-wide leading-tight mt-0.5">
+                  Ensino de Qualidade
+                </span>
               </div>
             </Link>
             <p className="text-xs sm:text-sm text-[#E1E5E8]/80 leading-relaxed">
-            Rigor, disciplina e resultado. Formando gerações e liderando aprovações em Duque de Caxias.
+              Rigor, disciplina e resultado. Formando gerações e liderando aprovações em Duque de Caxias.
 
             </p>
           </div>
