@@ -13,7 +13,7 @@ export const TURMAS_PRO_DATA: TurmaPro[] = [
   {
     id: 'pro-socio-concurseiro',
     turma: 'Pro Sócio Concurseiro',
-    periodo: '13/10/26 a 30/06/27',
+    periodo: '09/11/2026 a 30/07/2027',
     carga: '198 h',
     duracao: '9 meses',
     bonus: '3 meses',
@@ -23,7 +23,7 @@ export const TURMAS_PRO_DATA: TurmaPro[] = [
   {
     id: 'pro-carreiras-policiais-ciclo-01',
     turma: 'Pro Carreiras Policiais · Ciclo 01',
-    periodo: '13/10/26 a 30/06/27',
+    periodo: '09/11/2026 a 30/07/2027',
     carga: '198 h',
     duracao: '9 + 3 de bônus',
     bonus: '3 meses',
@@ -33,7 +33,7 @@ export const TURMAS_PRO_DATA: TurmaPro[] = [
   {
     id: 'pro-carreiras-policiais-turbo',
     turma: 'Pro Carreiras Policiais Turbo',
-    periodo: '13/10/26 a 31/03/28',
+    periodo: '09/11/26 a 28/04/28',
     carga: '396 h',
     duracao: '18 meses',
     bonus: '2 meses',
@@ -43,7 +43,7 @@ export const TURMAS_PRO_DATA: TurmaPro[] = [
   {
     id: 'pro-turbo-pro01-pro02',
     turma: 'Pro Turbo (Pro 01 + Pro 02)',
-    periodo: '13/10/26 a 31/03/28',
+    periodo: '09/11/26 a 28/04/28',
     carga: '396 h',
     duracao: '18 meses',
     bonus: '2 meses',

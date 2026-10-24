@@ -138,7 +138,7 @@ export const Header: React.FC = () => {
                 COLÉGIO & CURSO
               </span>
               <span className="text-[10px] sm:text-[11px] italic font-medium text-white/80 tracking-wide leading-tight mt-0.5">
-                Ensino de Qualidade
+                Ensino de Resultados
               </span>
             </div>
           </Link>

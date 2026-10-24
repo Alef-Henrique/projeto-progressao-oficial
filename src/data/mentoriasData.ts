@@ -205,7 +205,7 @@ export const MENTORIAS_ONLINE: MentoriaDetalhes[] = [
   // 2. MENTORIA DE LÍNGUA PORTUGUESA — CONCURSOS PÚBLICOS
   {
     id: 'mentoria-portugues-publicos',
-    titulo: 'Mentoria de Língua Portuguesa — Concursos Públicos',
+    titulo: 'Mentoria de Língua Portuguesa — Concursos Públicos - 09/11/26 a 26/02/27',
     subtitulo: 'Online, ao vivo',
     descricaoHero: 'Preparação completa em Língua Portuguesa para candidatos aos principais concursos públicos civis.',
     badge: 'Progressão Online — Ao Vivo',
@@ -222,6 +222,7 @@ export const MENTORIAS_ONLINE: MentoriaDetalhes[] = [
         videos: '1 vez por semana',
         observacao: 'A frequência pode variar por imprevistos ou pela agenda dos professores.'
       },
+      
       horario: {
         aula: '18h45 às 21h30',
         intervalo: '15 minutos de intervalo',

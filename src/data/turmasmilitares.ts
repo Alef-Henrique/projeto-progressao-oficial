@@ -168,12 +168,12 @@ export const TURMA_CN_EPCAR_2027: TurmaMilitar = {
   titulo: 'Pré-Militar CN/EPCAR 2027 — Tarde',
   subtitulo: 'Preparação completa para estudantes que buscam ingresso no Colégio Naval ou na EPCAR.',
   foco: 'Colégio Naval e EPCAR 2027',
-  periodo: '13/10/2026 a 12/11/2027',
+  periodo: '09/11/2026 a 12/11/2027',
   turno: 'Tarde',
   horario: '13h20 às 16h35',
   cargaTotal: '196 encontros',
   visaoGeral: {
-    duracao: '13/10/2026 a 12/11/2027',
+    duracao: '09/11/2026 a 12/11/2027',
     cargaHoraria: {
       total: '196 encontros',
       distribuicao: [
@@ -191,11 +191,11 @@ export const TURMA_CN_EPCAR_2027: TurmaMilitar = {
   },
   ciclo1: {
     nome: '1º Ciclo',
-    periodo: '13/10/2026 a 17/12/2026',
+    periodo: '09/11/2026 a 17/12/2026',
     encontros: 28,
     frequencia: '3 a 4 vezes por semana',
     conteudoIntrodutorio: {
-      periodo: '13/10/2026 a 06/11/2026',
+      periodo: '09/11/2026',
       encontros: '10 encontros, realizados de 3 a 4 vezes por semana.'
     },
     aprofundamentoI: {
@@ -374,7 +374,7 @@ export const TURMA_TSM_2027: TurmaMilitar = {
   heroTexto: 'Para quem quer ingressar na AFA, na EFOMM ou na EsPCEx.',
   heroAvisoTurnos: 'Turmas de manhã e de tarde, com o mesmo calendário.',
   foco: 'AFA, EFOMM e EsPCEx 2027',
-  periodo: '13/10/2026 a 17/09/2027',
+  periodo: '09/11/2026 a 17/09/2027',
   turno: 'Manhã e Tarde',
   horario: 'Manhã: 08h15 às 11h30 | Tarde: 13h20 às 16h35',
   cargaTotal: '231 encontros*',
@@ -396,7 +396,7 @@ export const TURMA_TSM_2027: TurmaMilitar = {
     observacaoGeral: 'Tempos extras: No 2º ciclo, também poderão ocorrer aos sábados. Os tempos extras podem ser oferecidos parcialmente ou não ser oferecidos, a critério da coordenação.'
   },
   visaoGeral: {
-    duracao: '13/10/2026 a 17/09/2027',
+    duracao: '09/11/2026 a 17/09/2027',
     cargaHoraria: {
       total: '231 encontros*',
       distribuicao: [
@@ -415,11 +415,11 @@ export const TURMA_TSM_2027: TurmaMilitar = {
   },
   ciclo1: {
     nome: '1º Ciclo',
-    periodo: '13/10/2026 a 17/12/2026',
+    periodo: '09/11/2026 a 17/12/2026',
     encontros: 28,
     frequencia: '3 a 4 vezes por semana',
     conteudoIntrodutorio: {
-      periodo: '13/10/2026 a 06/11/2026',
+      periodo: '09/11/2026',
       encontros: '10 encontros, realizados de 3 a 4 vezes por semana.'
     },
     aprofundamentoI: {
@@ -593,7 +593,7 @@ export const TURMA_TMOS_2027: TurmaMilitar = {
   heroTexto: 'Preparação para os concursos da EEAR e da ESA.',
   heroAvisoTurnos: 'Turmas de manhã e de tarde, com o mesmo calendário.',
   foco: 'EEAR e ESA 2027',
-  periodo: '13/10/2026 a 19/11/2027',
+  periodo: '09/11/2026 a 19/11/2027',
   turno: 'Manhã e Tarde',
   horario: 'Manhã: 08h15 às 11h30 | Tarde: 13h20 às 16h35',
   cargaTotal: '222 encontros',
@@ -614,7 +614,7 @@ export const TURMA_TMOS_2027: TurmaMilitar = {
     observacaoGeral: 'No 2º ciclo, os tempos extras também poderão ocorrer aos sábados. Os tempos extras podem ser oferecidos parcialmente ou não ser oferecidos, a critério da coordenação.'
   },
   visaoGeral: {
-    duracao: '13/10/2026 a 19/11/2027',
+    duracao: '09/11/2026 a 19/11/2027',
     cargaHoraria: {
       total: '222 encontros',
       distribuicao: [
