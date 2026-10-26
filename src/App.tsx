@@ -9,6 +9,7 @@ import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
 import { WhatsAppButton } from './components/common/WhatsAppButton';
 import { PrivacyTermsModal } from './components/common/PrivacyTermsModal';
+import { MetaPixelPageView } from './components/MetaPixelPageView';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -135,6 +136,7 @@ const PageRenderer: React.FC = () => {
 export default function App() {
   return (
     <RouterProvider>
+      <MetaPixelPageView />
       {/* Skip to Content Accessible Link */}
       <a
         href="#main-content"
