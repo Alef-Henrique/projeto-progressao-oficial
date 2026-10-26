@@ -45,6 +45,12 @@ const PageRenderer: React.FC = () => {
     const slug = normalizedPath.replace(/^\/concursos\/turmas-pro\/?/, '');
     return <TurmaProDetalhePage turmaId={slug} />;
   }
+if (
+  normalizedPath.startsWith('/concursos/') &&
+  normalizedPath !== '/concursos/turmas-pro'
+) {
+  return <ConcursosPage />;
+}
 
   if (normalizedPath.startsWith('/colegio/fundamental-2/') && normalizedPath !== '/colegio/fundamental-2') {
     const slug = normalizedPath.replace(/^\/colegio\/fundamental-2\/?/, '');

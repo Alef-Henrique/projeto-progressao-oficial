@@ -28,6 +28,7 @@ import {
   Sparkles,
   Gift
 } from 'lucide-react';
+import { useRouter } from '../components/routing/RouterContext';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { SEO } from '../components/common/SEO';
 import { WHATSAPP_NUMBER } from '../config/siteConfig';
@@ -41,11 +42,32 @@ import { TurmaConcurso, getTurmaConcursoPorId, getTurmasConcursoPorId, TURMAS_CO
 import { RDStationForm } from '../components/rdstation/RDStationForm';
 
 export const ConcursosPage: React.FC = () => {
+
+  const { currentPath, navigate } = useRouter();
   // Estado para categoria selecionada no filtro
   const [selectedCategory, setSelectedCategory] = useState<ConcursoCategory>('Todos');
 
   // Estado para o concurso atualmente aberto no modal (mini página)
   const [activeConcurso, setActiveConcurso] = useState<ConcursoPublico | null>(null);
+
+  // Abre automaticamente o modal quando a URL é /concursos/pmerj
+  useEffect(() => {
+    const path = currentPath.split('?')[0].replace(/\/$/, '');
+    const prefix = '/concursos/';
+
+    if (!path.startsWith(prefix)) {
+      setActiveConcurso(null);
+      return;
+    }
+
+    const concursoId = path.slice(prefix.length);
+
+    const concurso = CONCURSOS_PUBLICOS_DATA.find(
+      (item) => item.id === concursoId
+    );
+
+    setActiveConcurso(concurso ?? null);
+  }, [currentPath]);
 
   // Estado para a turma selecionada para ver detalhes
   const [selectedTurma, setSelectedTurma] = useState<TurmaConcurso | null>(null);
@@ -480,7 +502,9 @@ export const ConcursosPage: React.FC = () => {
                   <div className="space-y-2 mt-1">
                     <button
                       type="button"
-                      onClick={() => setActiveConcurso(concurso)}
+                      onClick={() => {
+                        navigate(`/concursos/${concurso.id}`);
+                      }}
                       aria-label={`Ver detalhes do concurso ${concurso.nome}`}
                       className="w-full inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-[0.98] cursor-pointer"
                     >
@@ -513,7 +537,13 @@ export const ConcursosPage: React.FC = () => {
       {activeConcurso && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 lg:p-6 bg-[#001D33]/85 backdrop-blur-md animate-fadeIn"
-          onClick={() => setActiveConcurso(null)}
+          onClick={() => {
+            setActiveConcurso(null);
+
+            if (currentPath === '/concursos/pmerj') {
+              navigate('/cursos/concursos');
+            }
+          }}
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
@@ -527,7 +557,13 @@ export const ConcursosPage: React.FC = () => {
               <div className="flex items-center gap-3">
                 <button
                   type="button"
-                  onClick={() => setActiveConcurso(null)}
+                  onClick={() => {
+                    setActiveConcurso(null);
+
+                    if (currentPath === '/concursos/pmerj') {
+                      navigate('/cursos/concursos');
+                    }
+                  }}
                   className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#E1E5E8] hover:text-[#FFBF00] transition-colors py-1 px-2.5 rounded-lg hover:bg-white/10 cursor-pointer"
                   aria-label="Voltar para concursos"
                 >
@@ -543,7 +579,18 @@ export const ConcursosPage: React.FC = () => {
               {/* Botão Fechar no Cabeçalho */}
               <button
                 type="button"
-                onClick={() => setActiveConcurso(null)}
+                onClick={() => {
+                  const cNome = activeConcurso.nome;
+
+                  setActiveConcurso(null);
+                  setFormData(prev => ({ ...prev, concurso: cNome }));
+
+                  if (currentPath.startsWith('/concursos/')) {
+                    navigate('/cursos/concursos');
+                  }
+
+                  setTimeout(() => scrollToSection('concursos'), 150);
+                }}
                 aria-label="Fechar painel de detalhes"
                 className="p-2 sm:p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer shrink-0 border border-white/15"
               >
@@ -1308,8 +1355,13 @@ export const ConcursosPage: React.FC = () => {
                     type="button"
                     onClick={() => {
                       const cNome = activeConcurso.nome;
+
                       setActiveConcurso(null);
                       setFormData(prev => ({ ...prev, concurso: cNome }));
+                      if (currentPath.startsWith('/concursos/')) {
+                        navigate('/cursos/concursos');
+                      }
+
                       setTimeout(() => scrollToSection('inscricao'), 150);
                     }}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-sm sm:text-base px-8 py-3.5 rounded-xl uppercase tracking-wider shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer"
@@ -1348,7 +1400,13 @@ export const ConcursosPage: React.FC = () => {
               <div className="pt-4 border-t border-[#E1E5E8] flex flex-col sm:flex-row items-center justify-between text-xs text-[#94A3B8] gap-3">
                 <button
                   type="button"
-                  onClick={() => setActiveConcurso(null)}
+                  onClick={() => {
+                    setActiveConcurso(null);
+
+                    if (currentPath === '/concursos/pmerj') {
+                      navigate('/cursos/concursos');
+                    }
+                  }}
                   className="inline-flex items-center gap-1.5 text-[#004B7C] hover:text-[#00223B] font-bold cursor-pointer"
                 >
                   <ArrowLeft className="w-4 h-4 text-[#004B7C]" />
