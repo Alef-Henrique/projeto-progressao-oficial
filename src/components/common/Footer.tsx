@@ -124,7 +124,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link href="/cursos/tecnicos" className="hover:text-white hover:translate-x-1 transition-all inline-block">
-                  Cursos Técnicos
+                  Progressão Online
                 </Link>
               </li>
             </ul>
