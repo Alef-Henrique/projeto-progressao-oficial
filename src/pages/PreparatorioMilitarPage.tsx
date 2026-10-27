@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Shield, 
-  CheckCircle2, 
-  Target, 
-  Clock, 
-  Award, 
-  BookOpen, 
-  X, 
-  ArrowRight, 
-  ArrowLeft, 
-  DollarSign, 
-  Calendar, 
-  GraduationCap, 
-  Users, 
-  FileText, 
+import {
+  Shield,
+  CheckCircle2,
+  Target,
+  Clock,
+  Award,
+  BookOpen,
+  X,
+  ArrowRight,
+  ArrowLeft,
+  DollarSign,
+  Calendar,
+  GraduationCap,
+  Users,
+  FileText,
   Sparkles,
   Building2,
   TrendingUp,
@@ -32,10 +32,10 @@ import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { SEO } from '../components/common/SEO';
 import { AccordionFAQ } from '../components/common/AccordionFAQ';
 import { Link } from '../components/routing/RouterContext';
-import { 
-  MILITARY_PREPARATORIES, 
-  CAREER_DIFFERENTIALS, 
-  MilitaryPreparatory 
+import {
+  MILITARY_PREPARATORIES,
+  CAREER_DIFFERENTIALS,
+  MilitaryPreparatory
 } from '../data/militaryData';
 import { COURSES_DATA } from '../data/siteData';
 import { WHATSAPP_NUMBER } from '../config/siteConfig';
@@ -142,7 +142,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
       {/* ============================================================ */}
       <section className="relative bg-[#00223B] text-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
         {/* Textura sutil e elegante de listras diagonais suaves e escuras oficial do Progressão */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none z-0"
           style={{
             backgroundImage: 'repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.07) 0px, rgba(0, 0, 0, 0.07) 18px, transparent 18px, transparent 36px)'
@@ -234,7 +234,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#00223B]/85 via-[#00223B]/30 to-transparent pointer-events-none" />
-                  
+
                   {/* Status do Edital no Topo Direito (Fácil Edição) */}
                   <div className="absolute top-3 right-3 z-10">
                     <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider shadow-md border ${badge.bg}`}>
@@ -315,10 +315,10 @@ export const PreparatorioMilitarPage: React.FC = () => {
                       >
                         <Video className="w-3.5 h-3.5 text-[#0289C6]" />
                         <span>
-                          {prep.id === 'eags' 
-                            ? 'Ver detalhes da mentoria EAGS' 
-                            : prep.id === 'rm2' 
-                              ? 'Ver detalhes da mentoria RM2' 
+                          {prep.id === 'eags'
+                            ? 'Ver detalhes da mentoria EAGS'
+                            : prep.id === 'rm2'
+                              ? 'Ver detalhes da mentoria RM2'
                               : 'Ver detalhes da mentoria'}
                         </span>
                       </button>
@@ -345,7 +345,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
       {/* 3. MINI PÁGINA / MODAL PADRONIZADO (SAIBA MAIS) */}
       {/* ============================================================ */}
       {selectedPreparatory && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-[#001424]/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 lg:p-8 animate-fadeIn"
           onClick={() => setSelectedPreparatory(null)}
           role="dialog"
@@ -364,7 +364,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
                     {selectedPreparatory.subtitulo}
                   </span>
                 )}
-                <h2 
+                <h2
                   id="modal-preparatory-title"
                   className="font-serif-heading text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight uppercase"
                 >
@@ -384,7 +384,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
             </div>
 
             {/* ÁREA COM SCROLL VERTICAL INTERNO COM AS 10 SEÇÕES OBRIGATÓRIAS */}
-            <div 
+            <div
               ref={modalContentRef}
               className="overflow-y-auto p-5 sm:p-8 space-y-10 flex-1 text-[#0A131F]"
             >
@@ -399,7 +399,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#001D33] via-[#001D33]/70 to-transparent" />
-                  
+
                   {/* Badge de Status no Banner */}
                   <div className="absolute top-4 right-4 z-10">
                     {(() => {
@@ -681,7 +681,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
 
                 <div className={selectedPreparatory.beneficios.length > 1 ? "grid grid-cols-1 sm:grid-cols-2 gap-3.5" : "flex flex-col gap-3.5"}>
                   {selectedPreparatory.beneficios.map((ben, idx) => (
-                    <div 
+                    <div
                       key={idx}
                       className="bg-[#F8FAFC] p-4 sm:p-5 rounded-xl border border-[#E1E5E8] flex items-start gap-3 hover:border-[#0289C6]/40 transition-colors"
                     >
@@ -715,7 +715,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {selectedPreparatory.disciplinas.map((disc, idx) => (
-                    <div 
+                    <div
                       key={idx}
                       className="bg-[#F8FAFC] p-3.5 sm:p-4 rounded-xl border border-[#E1E5E8] flex items-start gap-3 hover:border-[#0289C6]/50 hover:bg-white transition-all shadow-2xs"
                     >
@@ -803,7 +803,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {selectedPreparatory.preparacao.modalidades.map((mod, idx) => (
-                      <div 
+                      <div
                         key={idx}
                         className="bg-white/10 p-3.5 rounded-xl border border-white/15 flex items-center gap-2.5"
                       >
@@ -910,9 +910,9 @@ export const PreparatorioMilitarPage: React.FC = () => {
       {/* 3.1 PÁGINA / MODAL SOBREPOSTO DE DETALHES DA TURMA */}
       {/* ============================================================ */}
       {selectedTurma && (
-        <TurmaDetalhesModal 
-          turma={selectedTurma} 
-          onClose={() => setSelectedTurma(null)} 
+        <TurmaDetalhesModal
+          turma={selectedTurma}
+          onClose={() => setSelectedTurma(null)}
         />
       )}
 
@@ -920,9 +920,9 @@ export const PreparatorioMilitarPage: React.FC = () => {
       {/* 3.2 PÁGINA / MODAL SOBREPOSTO DE DETALHES DA MENTORIA */}
       {/* ============================================================ */}
       {selectedMentoria && (
-        <MentoriaDetalhesModal 
-          mentoria={selectedMentoria} 
-          onClose={() => setSelectedMentoria(null)} 
+        <MentoriaDetalhesModal
+          mentoria={selectedMentoria}
+          onClose={() => setSelectedMentoria(null)}
         />
       )}
       {/* ============================================================ */}
@@ -973,7 +973,7 @@ export const PreparatorioMilitarPage: React.FC = () => {
       {/* ============================================================ */}
       {/* 5. METODOLOGIA DE APROVAÇÃO MILITAR DO PROGRESSÃO */}
       {/* ============================================================ */}
-            <section className="py-16 sm:py-20 bg-[#00223B] text-white px-4 sm:px-6 lg:px-8 border-t border-[#015E96]/40">
+      <section className="py-16 sm:py-20 bg-[#00223B] text-white px-4 sm:px-6 lg:px-8 border-t border-[#015E96]/40">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-5 rounded-2xl overflow-hidden shadow-2xl border border-white/15 bg-[#001424]">
@@ -1056,9 +1056,9 @@ export const PreparatorioMilitarPage: React.FC = () => {
       {/* ============================================================ */}
       <div className="bg-white p-8 flex justify-center" id="formulario-contato-militar">
         <div className="w-full max-w-[600px]">
-          {/* RD STATION — PROVISÓRIO */}
+          {/* RD STATION — OFICIAL — PRÉ-MILITAR */}
           <RDStationForm
-            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+            formId="cx-org_site_pre_militar-d07fccfe8e56544ad161"
           />
         </div>
       </div>

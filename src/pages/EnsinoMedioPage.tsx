@@ -134,9 +134,9 @@ export const EnsinoMedioPage: React.FC = () => {
 
       <div className="bg-white p-8 flex justify-center">
         <div className="w-full max-w-[600px]">
-          {/* RD STATION — PROVISÓRIO */}
+          {/* RD STATION — OFICIAL — ENSINO MÉDIO */}
           <RDStationForm
-            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+            formId="cx-org_site_ensino_medio-e1f3e9929da80e4dcb1f"
           />
         </div>
       </div>

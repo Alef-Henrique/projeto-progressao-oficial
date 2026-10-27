@@ -219,9 +219,9 @@ export const EnsinoFundamental2Page: React.FC = () => {
 
       <div className="bg-white p-8 flex justify-center" id="formulario-fundamental-2">
         <div className="w-full max-w-[600px]">
-          {/* RD STATION — PROVISÓRIO */}
+          {/* RD STATION — COLÉGIO FUNDAMENTAL 2 */}
           <RDStationForm
-            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+            formId="cx-org_site_fundamental_2-be5bacdd5101ac3a6c9a"
           />
         </div>
       </div>

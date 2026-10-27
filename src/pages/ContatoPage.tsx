@@ -132,10 +132,10 @@ export const ContatoPage: React.FC = () => {
 
       <Breadcrumbs items={[{ label: 'Contato & Matrículas' }]} />
 
-     {/* Hero Section */}
+      {/* Hero Section */}
       <section className="relative bg-[#00223B] text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-[#015E96]/30">
         {/* Textura sutil de listras diagonais de fundo */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none opacity-25"
           style={{
             backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 22px, transparent 22px, transparent 44px)'
@@ -177,7 +177,7 @@ export const ContatoPage: React.FC = () => {
             </div>
 
             {/* Info Cards */}
-             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
               <div className="bg-white p-5 rounded-2xl border border-[#E1E5E8] shadow-xs flex items-start gap-4 sm:col-span-2">
                 <div className="w-10 h-10 rounded-xl bg-[#004B7C] text-white flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin className="w-5 h-5 text-[#0289C6]" />
@@ -251,16 +251,6 @@ export const ContatoPage: React.FC = () => {
             </div>
           </div>
 
-
-          <div className="bg-white p-8 flex justify-center">
-            <div className="w-full max-w-[600px]">
-              {/* RD STATION — PROVISÓRIO */}
-              <RDStationForm
-                formId="caxias_lp_geral-6b17fb580118e7e46ef8"
-              />
-            </div>
-          </div>
-
         </div>
       </section>
 
@@ -330,6 +320,14 @@ export const ContatoPage: React.FC = () => {
           </div>
         </div>
       </section>
+      <div className="bg-white p-8 flex justify-center">
+        <div className="w-full max-w-[600px]">
+          {/* RD STATION — CONTATO */}
+          <RDStationForm
+            formId="cx-org_site_contato-b37589761661111b9713"
+          />
+        </div>
+      </div>
     </div>
   );
 };

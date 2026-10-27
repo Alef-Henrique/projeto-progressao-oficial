@@ -587,7 +587,7 @@ export const ProgressaoOnlinePage: React.FC = () => {
             Conheça as oportunidades disponíveis no Progressão Online com todas as informações de requisitos e disciplinas.
           </p>
         </div>
-                {/* Destaque Oficial: Início das Turmas Online e Mentorias */}
+        {/* Destaque Oficial: Início das Turmas Online e Mentorias */}
         <div className="mb-10 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#00223B] via-[#00385F] to-[#00223B] text-white border-2 border-[#FFBF00]/50 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3.5 text-center sm:text-left">
             <div className="w-11 h-11 rounded-xl bg-[#FFBF00] text-[#00223B] flex items-center justify-center shrink-0 shadow-md">
@@ -883,9 +883,9 @@ export const ProgressaoOnlinePage: React.FC = () => {
       </section>
       <div className="bg-white p-8 flex justify-center" id='formulario-online'>
         <div className="w-full max-w-[600px]">
-          {/* RD STATION — PROVISÓRIO */}
+          {/* RD STATION — OFICIAL — PROGRESSÃO ONLINE */}
           <RDStationForm
-            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+            formId="cx-org_site_progressao_online-0f4278541570173de3d3"
           />
         </div>
       </div>

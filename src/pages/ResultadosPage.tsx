@@ -265,14 +265,6 @@ export const ResultadosPage: React.FC = () => {
         </div>
       </section>
 
-      <div className="bg-white p-8 flex justify-center">
-        <div className="w-full max-w-[600px]">
-          {/* RD STATION — PROVISÓRIO */}
-          <RDStationForm
-            formId="caxias_lp_geral-6b17fb580118e7e46ef8"
-          />
-        </div>
-      </div>
 
     </div>
   );

@@ -446,9 +446,9 @@ export const PreVestibularPage: React.FC = () => {
           </div>
           <div className="bg-white p-8 flex justify-center">
             <div className="w-full max-w-[600px]">
-              {/* RD STATION — PROVISÓRIO */}
+              {/* RD STATION — OFICIAL — PRÉ-VESTIBULAR */}
               <RDStationForm
-                formId="caxias_lp_geral-6b17fb580118e7e46ef8"
+                formId="cx-org_site_pre_vestibular-564c68079cbba6cc69da"
               />
             </div>
           </div>
