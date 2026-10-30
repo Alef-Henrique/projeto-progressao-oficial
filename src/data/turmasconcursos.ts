@@ -1,4 +1,4 @@
-
+import type { ConcursoValoresInfo } from './concursosData';
 export interface TurmaConcursoAuloes {
   encontros: string;
   horarioOuDia?: string;
@@ -50,6 +50,7 @@ export interface TurmaConcurso {
   simulados?: TurmaConcursoSimulados;
   auloesEstrategicos?: TurmaConcursoAuloes;
   observacaoCarga?: string;
+  valoresInfo?: ConcursoValoresInfo;
 }
 
 // 1. INSS – Técnico do Seguro Social – Outubro/26
@@ -452,9 +453,321 @@ export const TURMA_TOP_MASTER_PMERJ_CONCURSO: TurmaConcurso = {
     encontros: '4 encontros = 24 horas, aos domingos'
   }
 };
+// 13. Banco do Brasil – Escriturário (Novembro/26)
+export const TURMA_BANCO_DO_BRASIL_CONCURSO: TurmaConcurso = {
+  id: 'turma-banco-do-brasil',
+  concursoId: 'banco-do-brasil',
+  categoria: 'Nossa turma',
+  titulo: 'Banco do Brasil – Escriturário',
+  subtitulo: 'Banco do Brasil – Escriturário · Novembro/26',
+  periodo: '09/11/2026 a 26/03/2027',
+  modalidade: 'Presencial',
+  turnos: 'Noite (18:45 às 21:45)',
+  cargaTotal: '50 encontros = 150 horas',
+  frequencia: 'De 1 a 5 vezes na semana',
+  horario: '18:45 às 21:45',
+  formato: 'Turma fechada em módulo',
+  bonus: 'Ao contratar esta turma, o aluno ganha mais um mês grátis, sem nenhum custo adicional',
+  paraQuemE: 'Candidatos de nível médio que desejam ingressar no Banco do Brasil com remuneração inicial de R$ 5.569,07 (com auxílio de R$ 1.946,84), jornada de 6h e rápida evolução de carreira.',
+  foco: 'Preparação focada no padrão da Cesgranrio abrangendo todo o edital: Conhecimentos Bancários, Matemática Financeira, Redação, Legislação, Vendas e Informática.',
+  materias: [
+    'Português',
+    'Redação',
+    'Inglês',
+    'Matemática',
+    'Matemática Financeira',
+    'Atualidades do Mercado Financeiro',
+    'Conhecimentos Bancários',
+    'Ética e LGPD',
+    'Leis',
+    'Informática',
+    'Estratégia Empresarial',
+    'Técnicas de Vendas',
+    'Estatuto da Pessoa com Deficiência e CDC'
+  ],
+  materiasPresenciais: [
+    'Português',
+    'Redação',
+    'Inglês',
+    'Matemática',
+    'Matemática Financeira',
+    'Atualidades do Mercado Financeiro',
+    'Conhecimentos Bancários',
+    'Ética e LGPD',
+    'Leis',
+    'Informática',
+    'Estratégia Empresarial',
+    'Técnicas de Vendas',
+    'Estatuto da Pessoa com Deficiência e CDC'
+  ],
+  simulados: {
+    operacaoDesempenho: 'Simulados com correção detalhada e ranking de desempenho no perfil Cesgranrio'
+  },
+  valoresInfo: {
+    titulo: 'Valores',
+    subtitulo: 'Condições de investimento promocionais por lote com vagas limitadas',
+    aVista: '5% de desconto',
+    cartaoCredito: 'parcelado em até 10 cotas',
+    boletoBancario: 'parcelado em até 07 cotas (valores promocionais por lote, abaixo)',
+    lotes: [
+      {
+        lote: '1º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 236,01',
+        destaque: 'Melhor Condição'
+      },
+      {
+        lote: '2º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 246,05'
+      },
+      {
+        lote: '3º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 256,10'
+      }
+    ]
+  }
+};
+
+// 14. Guarda Municipal de Maricá – Novembro/26
+export const TURMA_GM_MARICA_CONCURSO: TurmaConcurso = {
+  id: 'turma-gm-marica-novembro-26',
+  concursoId: 'guarda-marica',
+  categoria: 'Nossa turma',
+  titulo: 'Guarda Municipal de Maricá - Novembro/2026',
+  subtitulo: 'Edital previsto para abril/2026 · Banca COSEAC/UFF · Mais de 800 vagas · Até R$ 5.000',
+  modalidade: 'Presencial',
+  formato: 'Turma fechada em módulo',
+  periodo: '09/11/2026 a 26/03/2027',
+  turnos: 'Noite',
+  cargaTotal: '50 encontros = 150 horas',
+  frequencia: 'De 1 a 5 vezes na semana',
+  horario: '18:45 às 21:45',
+  horarioRotulo: 'Horário',
+  bonus: 'Ao contratar esta turma, o aluno ganha mais um mês grátis, sem nenhum custo adicional',
+  paraQuemE: 'Candidatos com Ensino Médio completo e CNH categoria "A" ou "B" (18 a 35 anos) que desejam estabilidade e remuneração de até R$ 5.000 na Guarda Municipal de Maricá.',
+  foco: 'Preparação completa para o edital previsto para abril/2026 com foco na banca COSEAC/UFF e simulados com resolução comentada.',
+  cargoInfo: {
+    cargo: 'Guarda Municipal (Mais de 800 vagas · Remuneração de até R$ 5.000)',
+    requisito: 'Ensino Médio completo + CNH categoria "A" ou "B" (comprovados na nomeação) · Idade de 18 a 35 anos'
+  },
+  materiasPresenciais: [
+    'Língua Portuguesa',
+    'Raciocínio Lógico-Matemático',
+    'Informática',
+    'Direito Constitucional',
+    'Direito Administrativo',
+    'Direito Penal',
+    'Direito Processual Penal',
+    'Direitos Humanos',
+    'Legislação Específica'
+  ],
+  materias: [
+    'Língua Portuguesa',
+    'Raciocínio Lógico-Matemático',
+    'Informática',
+    'Direito Constitucional',
+    'Direito Administrativo',
+    'Direito Penal',
+    'Direito Processual Penal',
+    'Direitos Humanos',
+    'Legislação Específica'
+  ],
+  conhecimentosBasicos: [
+    'Língua Portuguesa',
+    'Raciocínio Lógico-Matemático',
+    'Informática'
+  ],
+  conhecimentosEspecificos: [
+    'Direito Constitucional',
+    'Direito Administrativo',
+    'Direito Penal',
+    'Direito Processual Penal',
+    'Direitos Humanos',
+    'Legislação Específica'
+  ],
+  simulados: {
+    operacaoDesempenho: 'Simulados com correção detalhada e ranking de desempenho no perfil da banca COSEAC/UFF'
+  },
+  valoresInfo: {
+    titulo: 'Valores',
+    subtitulo: 'Condições de investimento promocionais por lote com vagas limitadas',
+    aVista: '5% de desconto',
+    cartaoCredito: 'parcelado em até 10 cotas',
+    boletoBancario: 'parcelado em até 07 cotas (valores promocionais por lote, abaixo)',
+    lotes: [
+      {
+        lote: '1º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 236,01',
+        destaque: 'Melhor Condição'
+      },
+      {
+        lote: '2º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 246,05'
+      },
+      {
+        lote: '3º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 256,10'
+      }
+    ]
+  }
+};
+// 15. CBMERJ – Soldado Temporário – Novembro/26
+export const TURMA_CBMERJ_SOLDADO_CONCURSO: TurmaConcurso = {
+  id: 'turma-cbmerj-soldado-novembro-26',
+  concursoId: 'cbmerj-soldado-temporario',
+  categoria: 'Nossa turma',
+  titulo: 'CBMERJ – Soldado Temporário · Novembro/2026',
+  subtitulo: 'Banca Instituto AOCP · 1.500 vagas autorizadas · Idade 18 a 25 anos',
+  modalidade: 'Presencial',
+  formato: 'Turma fechada em módulo',
+  periodo: '09/11/2026 a 26/03/2027',
+  turnos: 'Noite',
+  cargaTotal: '50 encontros = 150 horas',
+  frequencia: 'De 1 a 5 vezes na semana',
+  horario: '18:45 às 21:45',
+  horarioRotulo: 'Horário',
+  bonus: 'Ao contratar esta turma, o aluno ganha mais um mês grátis, sem nenhum custo adicional',
+  paraQuemE: 'Candidatos com Ensino Médio completo e CNH categoria "B" (18 a 25 anos) que desejam ingressar nas fileiras do Corpo de Bombeiros Militar do Estado do Rio de Janeiro.',
+  foco: 'Preparação focada nas disciplinas do Instituto AOCP (Língua Portuguesa, Matemática e Raciocínio Lógico) com simulados e resolução intensiva de questões de bancas anteriores.',
+  cargoInfo: {
+    cargo: 'Soldado Temporário CBMERJ (1.500 vagas autorizadas)',
+    requisito: 'Ensino Médio completo + CNH categoria "B" (comprovados na nomeação) · Idade de 18 a 25 anos'
+  },
+  materiasPresenciais: [
+    'Língua Portuguesa',
+    'Matemática',
+    'Raciocínio Lógico'
+  ],
+  materias: [
+    'Língua Portuguesa',
+    'Matemática',
+    'Raciocínio Lógico'
+  ],
+  conhecimentosBasicos: [
+    'Língua Portuguesa',
+    'Matemática',
+    'Raciocínio Lógico'
+  ],
+  simulados: {
+    operacaoDesempenho: 'Simulados comentados no padrão de questões da banca Instituto AOCP'
+  },
+  valoresInfo: {
+    titulo: 'Valores',
+    subtitulo: 'Condições de investimento promocionais por lote com vagas limitadas para o CBMERJ',
+    aVista: '5% de desconto',
+    cartaoCredito: 'parcelado em até 10 cotas',
+    boletoBancario: 'parcelado em até 07 cotas (valores promocionais por lote, abaixo)',
+    lotes: [
+      {
+        lote: '1º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 236,01',
+        destaque: 'Melhor Condição'
+      },
+      {
+        lote: '2º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 246,05'
+      },
+      {
+        lote: '3º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 256,10'
+      }
+    ]
+  }
+};
+
+// 16. Detran/RJ – Três Turmas Unificadas em 1 Card (Novembro/26)
+export const TURMA_DETRAN_RJ_CONCURSO: TurmaConcurso = {
+  id: 'turma-detran-rj-novembro-26',
+  concursoId: 'detran-rj',
+  categoria: 'Nossa turma',
+  titulo: 'Detran/RJ – 3 Turmas (Trânsito, Identificação Civil e Administrativo)',
+  subtitulo: 'Novembro/2026 a Março/2027 · 3 Cargos de Nível Médio · Carga de 150h',
+  modalidade: 'Presencial',
+  formato: 'Turma fechada em módulo',
+  periodo: '09/11/2026 a 26/03/2027',
+  turnos: 'Noite',
+  cargaTotal: '50 encontros = 150 horas',
+  frequencia: 'De 1 a 5 vezes na semana',
+  horario: '18:45 às 21:45 (Trânsito 430) · 18:30 às 21:45 (Identificação Civil 222 e Adm 112)',
+  horarioRotulo: 'Horários por Cargo',
+  bonus: 'Ao contratar esta turma, o aluno ganha mais um mês grátis, sem nenhum custo adicional',
+  paraQuemE: 'Candidatos com Ensino Médio completo que desejam conquistar estabilidade pública em um dos 3 cargos do Detran/RJ (Trânsito, Identificação Civil ou Administrativo).',
+  foco: 'Preparação intensiva de 50 encontros cobrindo todo o edital (50 questões) com simulados ranqueados e resolução direcionada de questões.',
+  cargoInfo: {
+    cargo: 'Assistente Técnico de Trânsito (430), Identificação Civil (222) e Administrativo (112)',
+    requisito: 'Ensino Médio completo · Último concurso: 800 vagas'
+  },
+  areasAtendidas: [
+    'Detran/RJ – Assistente Técnico de Trânsito (430) | Horário: 18:45 às 21:45',
+    'Detran/RJ – Assistente Técnico de Identificação Civil (222) | Horário: 18:30 às 21:45',
+    'Detran/RJ – Assistente Técnico Administrativo (112) | Horário: 18:30 às 21:45'
+  ],
+  materiasPresenciais: [
+    'Língua Portuguesa (10 questões)',
+    'Língua Estrangeira – inglês ou espanhol (05 questões)',
+    'Legislação de Trânsito (10 questões)',
+    'Noções de Informática (05 questões)',
+    'Conhecimentos Específicos (20 questões)'
+  ],
+  materias: [
+    'Língua Portuguesa (10 questões)',
+    'Língua Estrangeira – inglês ou espanhol (05 questões)',
+    'Legislação de Trânsito (10 questões)',
+    'Noções de Informática (05 questões)',
+    'Conhecimentos Específicos (20 questões)'
+  ],
+  conhecimentosBasicos: [
+    'Língua Portuguesa (10 questões)',
+    'Língua Estrangeira – inglês ou espanhol (05 questões)',
+    'Legislação de Trânsito (10 questões)',
+    'Noções de Informática (05 questões)',
+    'Conhecimentos Específicos (20 questões)'
+  ],
+  simulados: {
+    operacaoDesempenho: 'Simulados de 50 questões no modelo de prova do concurso Detran/RJ com correção detalhada'
+  },
+  valoresInfo: {
+    titulo: 'Valores',
+    subtitulo: 'Condições de investimento promocionais por lote com vagas limitadas para o Detran/RJ',
+    aVista: '5% de desconto',
+    cartaoCredito: 'parcelado em até 10 cotas',
+    boletoBancario: 'parcelado em até 07 cotas (valores promocionais por lote, abaixo)',
+    lotes: [
+      {
+        lote: '1º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 236,01',
+        destaque: 'Melhor Condição'
+      },
+      {
+        lote: '2º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 246,05'
+      },
+      {
+        lote: '3º lote – valor promocional',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 cotas de R$ 256,10'
+      }
+    ]
+  }
+};
 
 // Array Oficial de Turmas de Concursos Públicos
 export const TURMAS_CONCURSOS: TurmaConcurso[] = [
+
+  TURMA_DETRAN_RJ_CONCURSO,
+  TURMA_CBMERJ_SOLDADO_CONCURSO,
+  TURMA_GM_MARICA_CONCURSO,
+  TURMA_BANCO_DO_BRASIL_CONCURSO,
   TURMA_INSS_CONCURSO,
   TURMA_PRF_CONCURSO,
   TURMA_PCERJ_CONCURSO,
@@ -471,8 +784,20 @@ export const TURMAS_CONCURSOS: TurmaConcurso[] = [
 
 function matchesConcursoId(turmaConcursoId: string, searchId: string): boolean {
   if (turmaConcursoId === searchId) return true;
+    if ((turmaConcursoId === 'detran-rj' || turmaConcursoId === 'detran') &&
+      (searchId === 'detran-rj' || searchId === 'detran')) {
+    return true;
+  }
   if ((turmaConcursoId === 'prf' || turmaConcursoId === 'prf-agente-federal') &&
       (searchId === 'prf' || searchId === 'prf-agente-federal')) {
+    return true;
+  }
+    if ((turmaConcursoId === 'guarda-marica' || turmaConcursoId === 'gm-marica') &&
+      (searchId === 'guarda-marica' || searchId === 'gm-marica')) {
+    return true;
+  }
+    if ((turmaConcursoId === 'cbmerj-soldado-temporario' || turmaConcursoId === 'cbmerj') &&
+      (searchId === 'cbmerj-soldado-temporario' || searchId === 'cbmerj')) {
     return true;
   }
   return false;

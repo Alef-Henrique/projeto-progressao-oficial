@@ -4,6 +4,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { TurmaConcurso } from '../../data/turmasconcursos';
+import type { ConcursoValoresInfo } from '../../data/concursosData';
 
 interface TurmaConcursoCardProps {
   turma: TurmaConcurso;
@@ -72,6 +73,17 @@ export const TurmaConcursoCard: React.FC<TurmaConcursoCardProps> = ({
               </span>
               <span className="font-bold text-[#00223B] text-xs block">
                 {turma.modalidade}
+              </span>
+            </div>
+          )}
+          
+          {turma.formato && (
+            <div className="bg-[#F8FAFC] p-2.5 rounded-xl border border-[#E1E5E8]">
+              <span className="text-[10px] font-bold text-[#004B7C] uppercase tracking-wider block mb-0.5">
+                Formato
+              </span>
+              <span className="font-bold text-[#00223B] text-xs block truncate" title={turma.formato}>
+                {turma.formato}
               </span>
             </div>
           )}

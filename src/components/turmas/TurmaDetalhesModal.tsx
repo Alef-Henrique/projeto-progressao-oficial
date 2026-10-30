@@ -25,6 +25,7 @@ import {
 import { TurmaDetalhes } from '../../data/turmasmilitares';
 import { WHATSAPP_NUMBER } from '../../config/siteConfig';
 
+
 interface TurmaDetalhesModalProps {
   turma: TurmaDetalhes;
   onClose: () => void;

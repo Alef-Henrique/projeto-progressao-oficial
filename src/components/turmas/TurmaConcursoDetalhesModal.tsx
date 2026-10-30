@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { TurmaConcurso } from '../../data/turmasconcursos';
 import { WHATSAPP_NUMBER } from '../../config/siteConfig';
+import { TabelaValoresTurma } from '../common/TabelaValoresTurma';
 
 interface TurmaConcursoDetalhesModalProps {
   turma: TurmaConcurso;
@@ -477,7 +478,17 @@ export const TurmaConcursoDetalhesModal: React.FC<TurmaConcursoDetalhesModalProp
               )}
             </div>
           )}
+                    {/* Valores e Formas de Pagamento */}
+          {turma.valoresInfo && (
+            <TabelaValoresTurma
+              valoresInfo={turma.valoresInfo}
+              turmaOuConcursoNome={turma.titulo}
+              showCta={false}
+            />
+          )}
         </div>
+        
+
 
         {/* Rodapé CTA */}
         <div className="p-4 sm:p-6 bg-[#001D33] border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">

@@ -40,6 +40,7 @@ import { TurmaConcursoCard } from '../components/turmas/TurmaConcursoCard';
 import { TurmaConcursoDetalhesModal } from '../components/turmas/TurmaConcursoDetalhesModal';
 import { TurmaConcurso, getTurmaConcursoPorId, getTurmasConcursoPorId, TURMAS_CONCURSOS } from '../data/turmasconcursos';
 import { RDStationForm } from '../components/rdstation/RDStationForm';
+import { TabelaValoresTurma } from '../components/common/TabelaValoresTurma';
 
 export const ConcursosPage: React.FC = () => {
 
@@ -486,15 +487,29 @@ export const ConcursosPage: React.FC = () => {
                       </span>
                       <ArrowRight className="w-3.5 h-3.5 text-[#FFBF00] shrink-0 ml-auto group-hover/opa:translate-x-1 transition-transform" />
                     </button>
-                    {/* Destaque: Bônus de 1 mês grátis nas turmas presenciais */}
+                    {/* Botão +1 Mês Grátis */}
                     {hasBonusPresencial(concurso.id) && (
-                      <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-50 border border-emerald-200/90 text-emerald-950 shadow-xs">
-                        <Gift className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <p className="text-[11px] sm:text-xs font-semibold text-emerald-950 leading-tight truncate">
-                          <strong className="text-emerald-700 font-extrabold mr-1">+1 Mês Grátis:</strong>
-                          Ao contratar uma turma presencial!
-                        </p>
-                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const turma = getTurmaConcursoPorId(concurso.id);
+                          if (turma) {
+                            setSelectedTurma(turma);
+                          } else {
+                            setActiveConcurso(concurso);
+                          }
+                        }}
+                        aria-label="Bônus exclusivo: +1 Mês Grátis ao contratar a turma presencial"
+                        className="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300/90 text-emerald-950 shadow-xs transition-all duration-200 cursor-pointer group/bonus active:scale-[0.99] text-left"
+                      >
+                        <span className="px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[10px] font-black uppercase tracking-wider shrink-0 group-hover/bonus:bg-emerald-700 transition-colors">
+                          +1 Mês Grátis
+                        </span>
+                        <span className="text-[11px] sm:text-xs font-semibold text-emerald-900 group-hover/bonus:text-emerald-950 transition-colors truncate">
+                          Ao contratar a turma presencial
+                        </span>
+                        <Gift className="w-3.5 h-3.5 text-emerald-600 shrink-0 ml-auto group-hover/bonus:scale-110 transition-transform" />
+                      </button>
                     )}
                   </div>
 
@@ -939,6 +954,7 @@ export const ConcursosPage: React.FC = () => {
                       </div>
                     </div>
                   )}
+                 
                 </div>
               </div>
 
@@ -1300,6 +1316,16 @@ export const ConcursosPage: React.FC = () => {
 
                 return null;
               })()}
+              {/* ============================================================ */}
+              {/* VALORES E FORMAS DE PAGAMENTO DA TURMA */}
+              {/* ============================================================ */}
+              {activeConcurso.valoresInfo && (
+                <TabelaValoresTurma
+                  valoresInfo={activeConcurso.valoresInfo}
+                  turmaOuConcursoNome={activeConcurso.nome}
+                  showCta={true}
+                />
+              )}
 
               {/* ============================================================ */}
               {/* ESTRUTURA DE REMUNERAÇÃO E BENEFÍCIOS */}

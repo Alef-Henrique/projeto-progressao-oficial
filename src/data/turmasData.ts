@@ -2159,8 +2159,11 @@ export const TURMA_GM_SAO_GONCALO: TurmaDetalhes = {
   }
 };
 
+
+
 // Array de turmas de Concursos Públicos
 export const TURMAS_CONCURSOS: TurmaDetalhes[] = [
+
   TURMA_PMERJ,
   TURMA_PCERJ,
   TURMA_INSS,
