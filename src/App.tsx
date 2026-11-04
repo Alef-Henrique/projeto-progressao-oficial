@@ -17,7 +17,6 @@ import { SobrePage } from './pages/SobrePage';
 import { EstruturaPage } from './pages/EstruturaPage';
 import { EquipePage } from './pages/EquipePage';
 import { ColegioHubPage } from './pages/ColegioHubPage';
-import { EducacaoInfantilPage } from './pages/EducacaoInfantilPage';
 import { EnsinoFundamental2Page } from './pages/EnsinoFundamental2Page';
 import { EnsinoMedioPage } from './pages/EnsinoMedioPage';
 import { PreparatorioMilitarPage } from './pages/PreparatorioMilitarPage';
@@ -29,6 +28,7 @@ import { ResultadosPage } from './pages/ResultadosPage';
 import { ContatoPage } from './pages/ContatoPage';
 import { TurmaProDetalhePage } from './pages/TurmaProDetalhePage';
 import { FundamentalIIDetalhePage } from './pages/FundamentalIIDetalhePage';
+import { TurmaDetalhesPage } from './pages/TurmaDetalhesPage';
 import { EnsinoMedioDetalhePage } from './pages/EnsinoMedioDetalhePage';
 import { Home } from 'lucide-react';
 
@@ -40,7 +40,16 @@ const PageRenderer: React.FC = () => {
   const normalizedPath = cleanPath.length > 1 && cleanPath.endsWith('/')
     ? cleanPath.slice(0, -1)
     : cleanPath;
+  // Rota individual para cada turma (ex: /turmas/guardas-municipais-rj)
+  if (normalizedPath.startsWith('/turmas/') && normalizedPath !== '/turmas') {
+    const slug = normalizedPath.replace(/^\/turmas\/?/, '');
+    return <TurmaDetalhesPage slug={slug} />;
+  }
 
+  if (normalizedPath.startsWith('/turma/') && normalizedPath !== '/turma') {
+    const slug = normalizedPath.replace(/^\/turma\/?/, '');
+    return <TurmaDetalhesPage slug={slug} />;
+  }
   if (normalizedPath.startsWith('/concursos/turmas-pro/')) {
     const slug = normalizedPath.replace(/^\/concursos\/turmas-pro\/?/, '');
     return <TurmaProDetalhePage turmaId={slug} />;

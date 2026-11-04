@@ -1202,6 +1202,87 @@ export const CONCURSOS_PUBLICOS_DATA: ConcursoPublico[] = [
         }
       ]
     }
+  },
+    {
+    id: 'petrobras-nivel-medio',
+    nome: 'Petrobras – Nível Médio',
+    nomeCompleto: 'Petróleo Brasileiro S.A. – Nível Médio Técnico',
+    descricaoCurta: 'Preparação em Conhecimentos Básicos (Língua Portuguesa e Matemática) no padrão Cesgranrio para os cargos de nível médio técnico da Petrobras.',
+    categoria: ['Estatais'],
+    cargo: 'Profissional Petrobras de Nível Técnico Júnior',
+    imagem: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+    escolaridade: 'Ensino Médio / Técnico',
+    destaqueEscolaridade: 'Nível Médio',
+    remuneracaoInicial: 'R$ 5.563,90',
+    remuneracaoFinal: 'R$ 5.563,90+',
+    remuneracaoResumo: 'R$ 5.563,90',
+    jornada: 'Conforme regime e escala Petrobras (administrativo ou turno)',
+    orgao: 'Petrobras (Petróleo Brasileiro S.A.)',
+    instituicao: 'Petrobras',
+    banca: 'Fundação Cesgranrio (Confirmada)',
+    ultimoEdital: 'Dezembro/2023',
+    ultimoEditalLabel: 'Último edital publicado',
+    vagas: 'Edital em preparação',
+    previsaoProva: '1º semestre de 2027',
+    situacao: 'Banca Cesgranrio confirmada · Edital previsto para dez/2026',
+    statusTipo: 'previsto',
+    tagCard: 'BANCA CESGRANRIO CONFIRMADA',
+    disciplinasTitulo: 'Conhecimentos Básicos (comum a todas as áreas)',
+    disciplinas: [
+      'Língua Portuguesa (Cesgranrio)',
+      'Matemática (Cesgranrio)'
+    ],
+    sobre: 'A Petrobras tem novo edital previsto para dezembro de 2026 com banca Fundação Cesgranrio já confirmada. A seleção visa preencher vagas de nível médio técnico com remuneração inicial de R$ 5.563,90. A preparação do Curso Progressão foca nas disciplinas comuns de Conhecimentos Básicos (Língua Portuguesa e Matemática).',
+    requisitos: [
+      { titulo: 'Escolaridade', descricao: 'Ensino médio técnico completo em uma das áreas técnicas requeridas pelo edital da Petrobras.' },
+      { titulo: 'Idade', descricao: 'Idade mínima de 18 anos completos na data de admissão.' },
+      { titulo: 'Nacionalidade', descricao: 'Brasileira ou portuguesa amparada pelo estatuto de igualdade.' }
+    ],
+    etapas: [
+      { numero: '01', titulo: 'Prova Objetiva (Cesgranrio)', descricao: 'Conhecimentos Básicos (Língua Portuguesa e Matemática) e Conhecimentos Específicos.' },
+      { numero: '02', titulo: 'Avaliação de Qualificação Biopsicossocial', descricao: 'Exames médicos admissionais, laboratoriais e avaliação de aptidão física/mental.' }
+    ],
+    diferenciais: [
+      { titulo: 'Banca Cesgranrio Confirmada', descricao: 'Tradição e histórico em provas da Petrobras com foco nas questões de bancas recentes.' },
+      { titulo: 'Remuneração Inicial R$ 5.563,90', descricao: 'Excelente remuneração para nível técnico com plano de benefícios da Petrobras.' },
+      { titulo: 'Aulas Presenciais Noturnas', descricao: 'Horário das 18h45 às 21h45 planejado para quem trabalha.' }
+    ],
+    perfil: [
+      'Domínio das regras gramaticais e interpretação textual no modelo Cesgranrio',
+      'Agilidade em resolução de cálculos matemáticos e raciocínio quantitativo',
+      'Foco em resolução intensiva de provas anteriores da banca'
+    ],
+    observacao: 'Duração: 16/11/2026 a 28/04/2027 (60h / 20 encontros). Turno Noturno: 18h45 às 21h45. Material didático em PDF.',
+    fonte: 'Petrobras / Fundação Cesgranrio / Comunicados Oficiais.',
+    turmasPreparatorias: [
+      {
+        nome: 'Petrobras – Nível Médio (Conhecimentos Básicos)',
+        subtitulo: '16/11/2026 a 28/04/2027 · Noite (18:45 às 21:45) · 60h · Cesgranrio',
+        periodo: '16/11/2026 a 28/04/2027',
+        carga: '20 encontros = 60 horas',
+        frequencia: '2 a 3 vezes na semana',
+        horario: '18h45 às 21h45',
+        conhecimentosBasicos: [
+          'Língua Portuguesa',
+          'Matemática'
+        ]
+      }
+    ],
+    valoresInfo: {
+      titulo: 'Valores',
+      subtitulo: 'Valor do curso: R$ 649,90 · Conhecimentos Básicos Petrobras',
+      aVista: '10% de desconto: R$ 584,91',
+      cartaoCredito: 'parcelado em até 10 vezes de R$ 58,49 sem juros',
+      boletoBancario: 'condição facilitada na secretaria',
+      lotes: [
+        {
+          lote: 'Curso Presencial Noturno',
+          sinal: 'Consulte a secretaria',
+          cotasBoleto: 'Parcelamento facilitado',
+          destaque: '10x R$ 58,49 sem juros'
+        }
+      ]
+    }
   }
 
   

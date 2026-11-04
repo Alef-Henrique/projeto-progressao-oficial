@@ -1,4 +1,10 @@
+// ====================================================================
+// TURMAS DE CONCURSOS PÚBLICOS — FONTE OFICIAL DE DADOS
+// Arquivo isolado e independente de turmas militares
+// ====================================================================
+
 import type { ConcursoValoresInfo } from './concursosData';
+
 export interface TurmaConcursoAuloes {
   encontros: string;
   horarioOuDia?: string;
@@ -17,10 +23,14 @@ export interface TurmaConcursoCargoInfo {
 
 export interface TurmaConcurso {
   id: string;
+  slug?: string; // Slug amigável para rota dedicada (ex: 'guardas-municipais-rj')
   concursoId: string; // Vínculo com o concurso (inss, prf, pcerj, transpetro, etc.)
   categoria: 'Nossa turma';
   titulo: string;
   subtitulo?: string;
+  imagem?: string;
+  bannerImage?: string;
+  linkMatricula?: string;
   modalidade?: string;
   formato?: string;
   periodo: string;
@@ -56,11 +66,15 @@ export interface TurmaConcurso {
 // 1. INSS – Técnico do Seguro Social – Outubro/26
 export const TURMA_INSS_CONCURSO: TurmaConcurso = {
   id: 'turma-inss-outubro-26',
+  slug: 'inss-tecnico-seguro-social',
   concursoId: 'inss',
   categoria: 'Nossa turma',
-  titulo: 'INSS – Técnico do Seguro Social – Novembro/26',
-  periodo: '07/11/26 a 27/03/27(Aos Sábados) 09/11/2026 a 30/07/2027(Manhã)',
-  turnos: 'Manhã / Sábado',
+  titulo: 'INSS – Técnico do Seguro Social – Outubro/26',
+  bannerImage: '/assets/logos-concursos/logo-inss.jpg',
+  modalidade: 'Presencial',
+  formato: 'Turma Regular Presencial',
+  periodo: '13/10/26 a 30/06/27',
+  turnos: 'Noite / Sábado',
   cargaNoite: '66 encontros = 198 horas',
   cargaSabado: '22 encontros = 176 horas',
   frequencia: 'De 1 a 5 vezes por semana',
@@ -96,11 +110,14 @@ export const TURMA_INSS_CONCURSO: TurmaConcurso = {
 // 2. PRF – Outubro/26
 export const TURMA_PRF_CONCURSO: TurmaConcurso = {
   id: 'turma-prf-outubro-26',
+  slug: 'prf-agente-federal',
   concursoId: 'prf-agente-federal',
   categoria: 'Nossa turma',
-  titulo: 'Turma PRF – Novembro/26',
-  periodo: '09/11/26 a 30/07/27(Manhã) / 07/11/26 a 24/04/27(Sábado)',
-  turnos: 'Manhã / Sábado',
+  titulo: 'Turma PRF – Outubro/26',
+  bannerImage: '/assets/logos-concursos/prf-logo.png',
+  modalidade: 'Presencial',
+  periodo: '13/10/26 a 30/06/27',
+  turnos: 'Noite / Sábado',
   cargaNoite: '66 encontros = 198 horas',
   cargaSabado: '22 encontros = 176 horas',
   frequencia: 'De 1 a 5 vezes por semana',
@@ -149,11 +166,15 @@ export const TURMA_PRF_CONCURSO: TurmaConcurso = {
 // 3. PCERJ – Investigador e Inspetor de Polícia – Outubro/26
 export const TURMA_PCERJ_CONCURSO: TurmaConcurso = {
   id: 'turma-pcerj-outubro-26',
+  slug: 'pcerj-investigador-inspetor',
   concursoId: 'pcerj',
   categoria: 'Nossa turma',
   titulo: 'PCERJ – Investigador e Inspetor de Polícia – Outubro/26',
-  periodo: '09/11/26 a 30/07/27(Manhã) 07/11/26 a 24/04/27(Sábado)',
-  turnos: 'Manhã / Sábado',
+  bannerImage: '/assets/logos-concursos/logo-pcerj.png',
+  modalidade: 'Presencial',
+  formato: 'Turma Regular Presencial',
+  periodo: '13/10/26 a 30/06/27',
+  turnos: 'Noite / Sábado',
   cargaNoite: '66 encontros = 198 horas',
   cargaSabado: '22 encontros = 176 horas',
   frequencia: 'De 2 a 5 vezes por semana',
@@ -194,11 +215,14 @@ export const TURMA_PCERJ_CONCURSO: TurmaConcurso = {
 // 4. PRF – Agente Administrativo – Outubro/26
 export const TURMA_PRF_ADMINISTRATIVO_CONCURSO: TurmaConcurso = {
   id: 'turma-prf-agente-adm-outubro-26',
+  slug: 'prf-agente-administrativo',
   concursoId: 'prf-administrativo',
   categoria: 'Nossa turma',
-  titulo: 'PRF – Agente Administrativo – Novembro/26',
-  periodo: '09/11/26 a 30/07(Manhã) 07/11/26 a 27/03/27(Sábado)',
-  turnos: 'Manhã / Sábado',
+  titulo: 'PRF – Agente Administrativo – Outubro/26',
+  bannerImage: '/assets/logos-concursos/prf-logo.png',
+  modalidade: 'Presencial',
+  periodo: '13/10/26 a 30/06/27 (9 meses)',
+  turnos: 'Noite / Sábado',
   cargaNoite: '66 encontros = 198 horas',
   cargaSabado: '18 encontros = 144 horas',
   frequencia: 'De 1 a 5 vezes por semana',
@@ -237,11 +261,16 @@ export const TURMA_PRF_ADMINISTRATIVO_CONCURSO: TurmaConcurso = {
 // 5. Transpetro – Administração
 export const TURMA_TRANSPETRO_ADMINISTRACAO_CONCURSO: TurmaConcurso = {
   id: 'turma-transpetro-administracao',
+  slug: 'transpetro-administracao',
   concursoId: 'transpetro',
   categoria: 'Nossa turma',
   titulo: 'Transpetro – Administração',
   subtitulo: 'Administração e Controle · Ênfase 1 do Edital 3',
+  bannerImage: '/assets/logos-concursos/transpetro-logo.jpg',
+  modalidade: 'Presencial',
+  formato: 'Turma Regular Presencial',
   periodo: '08/09 a 27/11/26',
+  turnos: 'Noite / Sábado',
   cargaTotal: '50 encontros = 150 horas',
   frequencia: 'De 3 a 5 vezes por semana',
   horario: '18h45 às 21h45 (noite) · 08h00 às 17h10 (sábado)',
@@ -262,14 +291,19 @@ export const TURMA_TRANSPETRO_ADMINISTRACAO_CONCURSO: TurmaConcurso = {
 // 6. Transpetro – Auxiliar do Mar
 export const TURMA_TRANSPETRO_AUXILIAR_MAR_CONCURSO: TurmaConcurso = {
   id: 'turma-transpetro-auxiliar-mar',
+  slug: 'transpetro-auxiliar-mar',
   concursoId: 'transpetro',
   categoria: 'Nossa turma',
   titulo: 'Transpetro – Auxiliar do Mar',
   subtitulo: 'Edital 1',
+  bannerImage: '/assets/logos-concursos/transpetro-logo.jpg',
+  modalidade: 'Presencial',
+  formato: 'Turma Regular Presencial',
   periodo: '08/09 a 16/10',
-  cargaTotal: '72 horas, 2 vezes por semana (pode variar por imprevistos ou pela agenda dos professores)',
+  turnos: 'Noite / Sábado',
+  cargaTotal: '72 horas, 2 vezes por semana',
   frequencia: '2 vezes por semana',
-  horario: '18h45 às 21h45, com 15 minutos de intervalo (noite) · 08h00 às 17h10 (sábado)',
+  horario: '18h45 às 21h45 (noite) · 08h00 às 17h10 (sábado)',
   areasAtendidas: [
     'Auxiliar de Saúde',
     'Condutor Bombeador',
@@ -289,14 +323,19 @@ export const TURMA_TRANSPETRO_AUXILIAR_MAR_CONCURSO: TurmaConcurso = {
 // 7. Transpetro – Oficial do Mar
 export const TURMA_TRANSPETRO_OFICIAL_MAR_CONCURSO: TurmaConcurso = {
   id: 'turma-transpetro-oficial-mar',
+  slug: 'transpetro-oficial-mar',
   concursoId: 'transpetro',
   categoria: 'Nossa turma',
   titulo: 'Transpetro – Oficial do Mar',
   subtitulo: 'Edital 2',
+  bannerImage: '/assets/logos-concursos/transpetro-logo.jpg',
+  modalidade: 'Presencial',
+  formato: 'Turma Regular Presencial',
   periodo: '08/09 a 16/10',
-  cargaTotal: '72 horas, de 2 a 3 vezes por semana (pode variar por imprevistos ou pela agenda dos professores)',
+  turnos: 'Noite / Sábado',
+  cargaTotal: '72 horas, de 2 a 3 vezes por semana',
   frequencia: 'De 2 a 3 vezes por semana',
-  horario: '18h45 às 21h45, com 15 minutos de intervalo (noite) · 08h00 às 17h10 (sábado)',
+  horario: '18h45 às 21h45 (noite) · 08h00 às 17h10 (sábado)',
   areasAtendidas: [
     'Segundo Oficial de Máquinas',
     'Segundo Oficial de Náutica'
@@ -310,14 +349,19 @@ export const TURMA_TRANSPETRO_OFICIAL_MAR_CONCURSO: TurmaConcurso = {
 // 8. Transpetro – Médio Terra
 export const TURMA_TRANSPETRO_MEDIO_TERRA_CONCURSO: TurmaConcurso = {
   id: 'turma-transpetro-medio-terra',
+  slug: 'transpetro-medio-terra',
   concursoId: 'transpetro',
   categoria: 'Nossa turma',
   titulo: 'Transpetro – Médio Terra',
   subtitulo: 'Edital 3',
+  bannerImage: '/assets/logos-concursos/transpetro-logo.jpg',
+  modalidade: 'Presencial',
+  formato: 'Turma Regular Presencial',
   periodo: '08/09 a 16/10',
-  cargaTotal: '72 horas, de 2 a 3 vezes por semana (pode variar por imprevistos ou pela agenda dos professores)',
+  turnos: 'Noite / Sábado',
+  cargaTotal: '72 horas, de 2 a 3 vezes por semana',
   frequencia: 'De 2 a 3 vezes por semana',
-  horario: '18h45 às 21h45, com 15 minutos de intervalo (noite) · 08h00 às 17h10 (sábado)',
+  horario: '18h45 às 21h45 (noite) · 08h00 às 17h10 (sábado)',
   areasAtendidas: [
     'Administração e Controle',
     'Ambiental',
@@ -344,16 +388,20 @@ export const TURMA_TRANSPETRO_MEDIO_TERRA_CONCURSO: TurmaConcurso = {
 // 9. PMERJ – Soldado da Polícia Militar
 export const TURMA_PMERJ_CONCURSO: TurmaConcurso = {
   id: 'turma-pmerj-2026',
+  slug: 'pmerj-soldado',
   concursoId: 'pmerj',
   categoria: 'Nossa turma',
   titulo: 'PMERJ – Soldado Policial Militar',
   subtitulo: 'Soldado Policial Militar do Estado do Rio de Janeiro (Banca FGV)',
-  periodo: '09/11/2026 a 26/03/2027 - (Manhã/Noite) 07/11/26 a 27/03/27 - (Sábado) ',
-  turnos: 'Manhã/Noite/Sábado',
+  bannerImage: '/assets/logos-concursos/logo-pmerj.jpg',
+  modalidade: 'Presencial',
+  formato: 'Turma Regular Presencial',
+  periodo: '10/02/2026 a 18/12/2026',
+  turnos: 'Noite / Sábado',
   cargaTotal: '180 encontros',
   frequencia: 'Noite: 4 noites por semana | Sábado: 1 encontro integral semanal',
   horario: '18h30 às 21h45 (noite) · 08h30 às 16h30 (sábado)',
-  bonus: '',
+  bonus: 'Oficina de redação discursiva inclusa',
   materias: [
     'Língua Portuguesa e Interpretação de Textos',
     'Matemática Básica e Raciocínio Lógico',
@@ -371,11 +419,15 @@ export const TURMA_PMERJ_CONCURSO: TurmaConcurso = {
 // 10. Guarda Municipal de São Gonçalo
 export const TURMA_GM_SAO_GONCALO_CONCURSO: TurmaConcurso = {
   id: 'turma-gm-sao-goncalo',
+  slug: 'guarda-municipal-sao-goncalo',
   concursoId: 'gm-sao-goncalo',
   categoria: 'Nossa turma',
   titulo: 'Guarda Municipal de São Gonçalo',
   subtitulo: 'Banca SELECON · 100 Vagas Imediatas',
-  periodo: '13/10/2026 a 22/01/2027',
+  bannerImage: '/assets/logos-concursos/logo-guarda-saogoncalo.jpg',
+  modalidade: 'Presencial',
+  formato: 'Turma Regular Presencial',
+  periodo: '01/09/2026 a 22/01/2027',
   turnos: 'Noite / Sábado',
   cargaTotal: '72 encontros = 216 horas',
   frequencia: '3 a 4 encontros semanais',
@@ -396,11 +448,14 @@ export const TURMA_GM_SAO_GONCALO_CONCURSO: TurmaConcurso = {
 // 11. Guarda Municipal de São Gonçalo – Intensivo
 export const TURMA_GM_SAO_GONCALO_INTENSIVO_CONCURSO: TurmaConcurso = {
   id: 'turma-gm-sao-goncalo-intensivo',
+  slug: 'guarda-municipal-sao-goncalo-intensivo',
   concursoId: 'gm-sao-goncalo',
   categoria: 'Nossa turma',
   titulo: 'Turma GM São Gonçalo – Intensivo (17/10/26 a 23/01/27)',
   subtitulo: 'Segunda turma presencial, com menos encontros e dias mais longos. Disciplinas conforme o Edital nº 001/PMSG/2026.',
+  bannerImage: '/assets/logos-concursos/logo-guarda-saogoncalo.jpg',
   modalidade: 'Presencial',
+  formato: 'Turma Intensiva de Sábado',
   periodo: '17/10/26 a 23/01/27',
   turnos: 'Sábado (Intensivo)',
   cargaTotal: '11 encontros = 100 horas',
@@ -422,12 +477,15 @@ export const TURMA_GM_SAO_GONCALO_INTENSIVO_CONCURSO: TurmaConcurso = {
 // 12. Top Master – Soldado PMERJ 2026/2027
 export const TURMA_TOP_MASTER_PMERJ_CONCURSO: TurmaConcurso = {
   id: 'turma-top-master-pmerj',
+  slug: 'top-master-pmerj',
   concursoId: 'pmerj',
   categoria: 'Nossa turma',
   titulo: 'Top Master – Soldado PMERJ 2026/2027',
   subtitulo: 'Preparação avançada: aprofundamento dos conteúdos e treino por meio de exercícios, simulados e estratégias de prova.',
-  periodo: '13/10/26 a 26/02/27',
+  bannerImage: '/assets/logos-concursos/logo-pmerj.jpg',
   modalidade: 'Presencial',
+  formato: 'Turma Avançada (Top Master)',
+  periodo: '13/10/26 a 26/02/27',
   cargaTotal: '50 encontros = 150 horas',
   horario: '18h45 às 21h45',
   bonus: 'Ao contratar, 1 mês adicional gratuito',
@@ -453,13 +511,16 @@ export const TURMA_TOP_MASTER_PMERJ_CONCURSO: TurmaConcurso = {
     encontros: '4 encontros = 24 horas, aos domingos'
   }
 };
+
 // 13. Banco do Brasil – Escriturário (Novembro/26)
 export const TURMA_BANCO_DO_BRASIL_CONCURSO: TurmaConcurso = {
   id: 'turma-banco-do-brasil',
+  slug: 'banco-do-brasil',
   concursoId: 'banco-do-brasil',
   categoria: 'Nossa turma',
   titulo: 'Banco do Brasil – Escriturário',
   subtitulo: 'Banco do Brasil – Escriturário · Novembro/26',
+  bannerImage: '/assets/logos-concursos/BB-logo.jpg',
   periodo: '09/11/2026 a 26/03/2027',
   modalidade: 'Presencial',
   turnos: 'Noite (18:45 às 21:45)',
@@ -533,10 +594,12 @@ export const TURMA_BANCO_DO_BRASIL_CONCURSO: TurmaConcurso = {
 // 14. Guarda Municipal de Maricá – Novembro/26
 export const TURMA_GM_MARICA_CONCURSO: TurmaConcurso = {
   id: 'turma-gm-marica-novembro-26',
+  slug: 'guarda-municipal-marica',
   concursoId: 'guarda-marica',
   categoria: 'Nossa turma',
   titulo: 'Guarda Municipal de Maricá - Novembro/2026',
   subtitulo: 'Edital previsto para abril/2026 · Banca COSEAC/UFF · Mais de 800 vagas · Até R$ 5.000',
+  bannerImage: '/assets/logos-concursos/logo-marica.png',
   modalidade: 'Presencial',
   formato: 'Turma fechada em módulo',
   periodo: '09/11/2026 a 26/03/2027',
@@ -616,13 +679,16 @@ export const TURMA_GM_MARICA_CONCURSO: TurmaConcurso = {
     ]
   }
 };
+
 // 15. CBMERJ – Soldado Temporário – Novembro/26
 export const TURMA_CBMERJ_SOLDADO_CONCURSO: TurmaConcurso = {
   id: 'turma-cbmerj-soldado-novembro-26',
+  slug: 'cbmerj-soldado-temporario',
   concursoId: 'cbmerj-soldado-temporario',
   categoria: 'Nossa turma',
   titulo: 'CBMERJ – Soldado Temporário · Novembro/2026',
   subtitulo: 'Banca Instituto AOCP · 1.500 vagas autorizadas · Idade 18 a 25 anos',
+  bannerImage: '/assets/logos-concursos/Brasão_CBM_RJ.png',
   modalidade: 'Presencial',
   formato: 'Turma fechada em módulo',
   periodo: '09/11/2026 a 26/03/2027',
@@ -686,10 +752,12 @@ export const TURMA_CBMERJ_SOLDADO_CONCURSO: TurmaConcurso = {
 // 16. Detran/RJ – Três Turmas Unificadas em 1 Card (Novembro/26)
 export const TURMA_DETRAN_RJ_CONCURSO: TurmaConcurso = {
   id: 'turma-detran-rj-novembro-26',
+  slug: 'detran-rj',
   concursoId: 'detran-rj',
   categoria: 'Nossa turma',
   titulo: 'Detran/RJ – 3 Turmas (Trânsito, Identificação Civil e Administrativo)',
   subtitulo: 'Novembro/2026 a Março/2027 · 3 Cargos de Nível Médio · Carga de 150h',
+  bannerImage: '/assets/logos-concursos/logo-detran.png',
   modalidade: 'Presencial',
   formato: 'Turma fechada em módulo',
   periodo: '09/11/2026 a 26/03/2027',
@@ -761,9 +829,150 @@ export const TURMA_DETRAN_RJ_CONCURSO: TurmaConcurso = {
   }
 };
 
+// 17. Guardas Municipais do Estado do Rio de Janeiro (Preparação Unificada)
+export const TURMA_GUARDAS_MUNICIPAIS_RJ_CONCURSO: TurmaConcurso = {
+  id: 'turma-guardas-municipais-rj',
+  slug: 'guardas-municipais-rj',
+  concursoId: 'guardas-municipais-rj',
+  categoria: 'Nossa turma',
+  titulo: 'Guardas Municipais do Estado do Rio de Janeiro',
+  subtitulo: '16/11/2026 a 30/05/2027 · Preparação Geral Unificada (São Gonçalo, Queimados, Maricá, Petrópolis e mais) · 180h',
+  bannerImage: '/assets/logos-concursos/BRASAO_GMRIO.png',
+  modalidade: 'Presencial',
+  formato: 'Turma fechada em módulo',
+  periodo: '16/11/2026 a 30/05/2027',
+  turnos: 'Noturno',
+  cargaTotal: '60 encontros = 180 horas',
+  frequencia: '3 vezes na semana (podendo variar devido a imprevistos/agendas)',
+  horario: '18h45 às 21h45 (com 15 min de intervalo)',
+  horarioRotulo: 'Horário Previsto',
+  bonus: 'Material Didático (PDF) de uso em sala incluso · 1 mês grátis sem custo adicional',
+  paraQuemE: 'Candidatos com Ensino Médio completo (18 a 35 anos) que buscam estabilidade no serviço público municipal com remunerações de R$ 2.800 a R$ 5.100.',
+  foco: 'Preparação unificada de alto rendimento baseada nos últimos editais das Guardas Municipais do RJ (São Gonçalo, Queimados, Maricá, Petrópolis, Cordeiro, Saquarema e Resende).',
+  cargoInfo: {
+    cargo: 'Guarda Civil Municipal (1.600+ vagas previstas no Estado do RJ)',
+    requisito: 'Ensino Médio completo · Faixa etária comum de 18 a 35 anos'
+  },
+  areasAtendidas: [
+    'São Gonçalo (Banca Selecon – 100 vagas imediatas + 1.000 em cadastro reserva)',
+    'Queimados (Banca IAN – Edital previsto para setembro/2026)',
+    'Maricá (Novo concurso com expectativa de até 400 vagas em andamento)',
+    'Petrópolis (Anúncio prévio contemplando 110 vagas)',
+    'Cordeiro (Concurso com escolha de banca em andamento)',
+    'Saquarema e Resende (Editais municipais previstos 2026/2027)'
+  ],
+  materiasPresenciais: [
+    'Língua Portuguesa (Núcleo Básico)',
+    'Raciocínio Lógico-Matemático (Núcleo Básico)',
+    'Informática (Núcleo Básico)',
+    'Direito Constitucional (Núcleo Jurídico)',
+    'Direito Penal (Núcleo Jurídico)',
+    'Estatuto Geral das Guardas Municipais (Lei 13.022/14)',
+    'Estatuto da Criança e do Adolescente (ECA)',
+    'Estatuto do Idoso',
+    'Lei Maria da Penha',
+    'Abuso de Autoridade (Lei nº 13.869/2019)'
+  ],
+  materias: [
+    'Língua Portuguesa (Núcleo Básico)',
+    'Raciocínio Lógico-Matemático (Núcleo Básico)',
+    'Informática (Núcleo Básico)',
+    'Direito Constitucional (Núcleo Jurídico)',
+    'Direito Penal (Núcleo Jurídico)',
+    'Estatuto Geral das Guardas Municipais (Lei 13.022/14)',
+    'Estatuto da Criança e do Adolescente (ECA)',
+    'Estatuto do Idoso',
+    'Lei Maria da Penha',
+    'Abuso de Autoridade (Lei nº 13.869/2019)'
+  ],
+  conhecimentosBasicos: [
+    'Língua Portuguesa',
+    'Raciocínio Lógico-Matemático',
+    'Informática'
+  ],
+  conhecimentosEspecificos: [
+    'Direito Constitucional',
+    'Direito Penal',
+    'Estatuto Geral das Guardas Municipais (Lei 13.022/14)',
+    'Estatuto da Criança e do Adolescente (ECA)',
+    'Estatuto do Idoso',
+    'Lei Maria da Penha',
+    'Abuso de Autoridade (Lei nº 13.869/2019)'
+  ],
+  semCombo: 'Curso Regular sem combos: R$ 1.790,00 (10% de desconto à vista R$ 1.611,00)',
+  comboMulti: 'Disponível para aquisição separada com módulos especiais para turbinar a aprendizagem',
+  simulados: {
+    operacaoDesempenho: 'Simulados ranqueados cronometrados nos padrões Selecon, IAN e bancas do RJ'
+  },
+  valoresInfo: {
+    titulo: 'Valores',
+    subtitulo: 'Curso sem combos: R$ 1.790,00 · Preparação completa para Guardas Municipais do RJ',
+    aVista: '10% de desconto: R$ 1.611,00',
+    cartaoCredito: 'parcelado em até 10 vezes de R$ 161,10 sem juros',
+    boletoBancario: 'sinal de R$ 99,00 + 7 parcelas de R$ 241,57',
+    lotes: [
+      {
+        lote: 'Curso Regular (sem combos)',
+        sinal: 'R$ 99,00',
+        cotasBoleto: '07 parcelas de R$ 241,57',
+        destaque: '10x R$ 161,10 sem juros'
+      }
+    ]
+  }
+};
+// 18. Petrobras – Nível Médio (Conhecimentos Básicos - Cesgranrio)
+export const TURMA_PETROBRAS_NIVEL_MEDIO_CONCURSO: TurmaConcurso = {
+  id: 'turma-petrobras-nivel-medio',
+  slug: 'petrobras-nivel-medio',
+  concursoId: 'petrobras-nivel-medio',
+  categoria: 'Nossa turma',
+  titulo: 'Petrobras – Nível Médio',
+  subtitulo: '16/11/2026 a 28/04/2027 · Conhecimentos Básicos (Língua Portuguesa e Matemática) · Cesgranrio · 60h',
+  bannerImage: '/assets/logos-concursos/logo-petrobras.png',
+  modalidade: 'Presencial',
+  formato: 'Turma fechada em módulo',
+  periodo: '16/11/2026 a 28/04/2027',
+  turnos: 'Noturno',
+  cargaTotal: '20 encontros = 60 horas',
+  frequencia: '2 a 3 vezes na semana',
+  horario: '18h45 às 21h45 (com 15 min de intervalo)',
+  horarioRotulo: 'Horário Previsto',
+  bonus: 'Foco na banca Cesgranrio · Remuneração de R$ 5.563,90',
+  paraQuemE: 'Candidatos com curso técnico de nível médio nas áreas exigidas no edital que buscam carreira na Petrobras com remuneração inicial de R$ 5.563,90.',
+  foco: 'Preparação focada no padrão da banca Cesgranrio em Conhecimentos Básicos (Língua Portuguesa e Matemática).',
+  cargoInfo: {
+    cargo: 'Profissional Petrobras de Nível Técnico Júnior (Nível Médio/Técnico)',
+    requisito: 'Curso técnico de nível médio em uma das áreas exigidas no edital'
+  },
+  materiasPresenciais: [
+    'Língua Portuguesa (Cesgranrio)',
+    'Matemática (Cesgranrio)'
+  ],
+  materias: [
+    'Língua Portuguesa',
+    'Matemática'
+  ],
+  semCombo: 'Valor do curso: R$ 649,90 (10% de desconto à vista R$ 584,91 ou 10x de R$ 58,49 sem juros)',
+  valoresInfo: {
+    titulo: 'Valores',
+    subtitulo: 'Valor do curso: R$ 649,90 · Conhecimentos Básicos Petrobras',
+    aVista: '10% de desconto: R$ 584,91',
+    cartaoCredito: 'parcelado em até 10 vezes de R$ 58,49 sem juros',
+    boletoBancario: 'condição facilitada no carnê/boleto',
+    lotes: [
+      {
+        lote: 'Curso Presencial Noturno',
+        sinal: 'Consulte a secretaria',
+        cotasBoleto: 'Parcelamento facilitado',
+        destaque: '10x R$ 58,49 sem juros'
+      }
+    ]
+  }
+};
 // Array Oficial de Turmas de Concursos Públicos
 export const TURMAS_CONCURSOS: TurmaConcurso[] = [
-
+  TURMA_GUARDAS_MUNICIPAIS_RJ_CONCURSO,
+  TURMA_PETROBRAS_NIVEL_MEDIO_CONCURSO,
   TURMA_DETRAN_RJ_CONCURSO,
   TURMA_CBMERJ_SOLDADO_CONCURSO,
   TURMA_GM_MARICA_CONCURSO,
@@ -784,7 +993,17 @@ export const TURMAS_CONCURSOS: TurmaConcurso[] = [
 
 function matchesConcursoId(turmaConcursoId: string, searchId: string): boolean {
   if (turmaConcursoId === searchId) return true;
-    if ((turmaConcursoId === 'detran-rj' || turmaConcursoId === 'detran') &&
+
+    if ((turmaConcursoId === 'petrobras-nivel-medio' || turmaConcursoId === 'petrobras') &&
+      (searchId === 'petrobras-nivel-medio' || searchId === 'petrobras')) {
+    return true;
+  }
+  
+  if ((turmaConcursoId === 'guardas-municipais-rj' || turmaConcursoId === 'gm-rj') &&
+      (searchId === 'guardas-municipais-rj' || searchId === 'gm-rj')) {
+    return true;
+  }
+  if ((turmaConcursoId === 'detran-rj' || turmaConcursoId === 'detran') &&
       (searchId === 'detran-rj' || searchId === 'detran')) {
     return true;
   }
@@ -792,11 +1011,11 @@ function matchesConcursoId(turmaConcursoId: string, searchId: string): boolean {
       (searchId === 'prf' || searchId === 'prf-agente-federal')) {
     return true;
   }
-    if ((turmaConcursoId === 'guarda-marica' || turmaConcursoId === 'gm-marica') &&
+  if ((turmaConcursoId === 'guarda-marica' || turmaConcursoId === 'gm-marica') &&
       (searchId === 'guarda-marica' || searchId === 'gm-marica')) {
     return true;
   }
-    if ((turmaConcursoId === 'cbmerj-soldado-temporario' || turmaConcursoId === 'cbmerj') &&
+  if ((turmaConcursoId === 'cbmerj-soldado-temporario' || turmaConcursoId === 'cbmerj') &&
       (searchId === 'cbmerj-soldado-temporario' || searchId === 'cbmerj')) {
     return true;
   }
@@ -815,3 +1034,28 @@ export function getTurmasConcursoPorId(concursoId: string): TurmaConcurso[] {
 
 // Alias de retrocompatibilidade
 export const getTurmaForConcurso = getTurmaConcursoPorId;
+
+// Helper para obter turma pelo slug ou ID da URL (ex: 'guardas-municipais-rj')
+export function getTurmaBySlug(slug: string): TurmaConcurso | undefined {
+  if (!slug) return undefined;
+  const clean = slug.toLowerCase().replace(/^\/turmas\/?/, '').replace(/\/$/, '').trim();
+
+  // 1. Busca exata por slug
+  const bySlug = TURMAS_CONCURSOS.find(t => t.slug === clean);
+  if (bySlug) return bySlug;
+
+  // 2. Busca exata por id ou sem prefixo 'turma-'
+  const byId = TURMAS_CONCURSOS.find(t => t.id === clean || t.id === `turma-${clean}` || t.id.replace(/^turma-/, '') === clean);
+  if (byId) return byId;
+
+  // 3. Busca por concursoId
+  const byConcurso = TURMAS_CONCURSOS.find(t => matchesConcursoId(t.concursoId, clean));
+  if (byConcurso) return byConcurso;
+
+  // 4. Busca flexível aproximada
+  return TURMAS_CONCURSOS.find(t => {
+    if (t.slug && (clean.includes(t.slug) || t.slug.includes(clean))) return true;
+    if (t.id && clean.includes(t.id)) return true;
+    return false;
+  });
+}

@@ -37,7 +37,6 @@ import { TurmasConcursosSection } from '../components/turmas/TurmasConcursosSect
 import { TurmasPro } from '../components/TurmasPro/TurmasPro';
 import { CombosProdutos } from '../components/combosProdutos/CombosProdutos';
 import { TurmaConcursoCard } from '../components/turmas/TurmaConcursoCard';
-import { TurmaConcursoDetalhesModal } from '../components/turmas/TurmaConcursoDetalhesModal';
 import { TurmaConcurso, getTurmaConcursoPorId, getTurmasConcursoPorId, TURMAS_CONCURSOS } from '../data/turmasconcursos';
 import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { TabelaValoresTurma } from '../components/common/TabelaValoresTurma';
@@ -70,8 +69,7 @@ export const ConcursosPage: React.FC = () => {
     setActiveConcurso(concurso ?? null);
   }, [currentPath]);
 
-  // Estado para a turma selecionada para ver detalhes
-  const [selectedTurma, setSelectedTurma] = useState<TurmaConcurso | null>(null);
+
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   // Helper para exibir apenas uma tag span no card conforme solicitado:
@@ -494,7 +492,7 @@ export const ConcursosPage: React.FC = () => {
                         onClick={() => {
                           const turma = getTurmaConcursoPorId(concurso.id);
                           if (turma) {
-                            setSelectedTurma(turma);
+                            navigate('/turmas/' + (turma.slug || turma.id.replace(/^turma-/, '')));
                           } else {
                             setActiveConcurso(concurso);
                           }
@@ -518,7 +516,13 @@ export const ConcursosPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => {
-                        navigate(`/concursos/${concurso.id}`);
+                        if (concurso.id === 'guardas-municipais-rj') {
+                          navigate('/turmas/guardas-municipais-rj');
+                        } else if (concurso.id === 'petrobras-nivel-medio') {
+                          navigate('/turmas/petrobras-nivel-medio');
+                        } else {
+                          setActiveConcurso(concurso);
+                        }
                       }}
                       aria-label={`Ver detalhes do concurso ${concurso.nome}`}
                       className="w-full inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-[0.98] cursor-pointer"
@@ -954,7 +958,7 @@ export const ConcursosPage: React.FC = () => {
                       </div>
                     </div>
                   )}
-                 
+
                 </div>
               </div>
 
@@ -1244,12 +1248,17 @@ export const ConcursosPage: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {turmasDoConcurso.map((turmaItem) => (
                           <TurmaConcursoCard
                             key={turmaItem.id}
                             turma={turmaItem}
                             onSelectTurma={(t) => setSelectedTurma(t)}
+                            onMatricula={(t) => {
+                              setActiveConcurso(null);
+                              setFormData(prev => ({ ...prev, concurso: t.titulo }));
+                              setTimeout(() => scrollToSection('inscricao'), 150);
+                            }}
                             showButton={true}
                           />
                         ))}
@@ -1401,7 +1410,10 @@ export const ConcursosPage: React.FC = () => {
                       type="button"
                       onClick={() => {
                         const t = getTurmaConcursoPorId(activeConcurso.id);
-                        if (t) setSelectedTurma(t);
+                        if (t) {
+                          setActiveConcurso(null);
+                          navigate('/turmas/' + (t.slug || t.id.replace(/^turma-/, '')));
+                        }
                       }}
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0289C6] hover:bg-[#015E96] text-white font-bold text-sm px-6 py-3.5 rounded-xl uppercase tracking-wider shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
                     >
@@ -1448,7 +1460,13 @@ export const ConcursosPage: React.FC = () => {
       {/* ============================================================ */}
       {/* SEÇÃO “NOSSAS TURMAS” — CONCURSOS PÚBLICOS */}
       {/* ============================================================ */}
-      <TurmasConcursosSection onSelectTurma={setSelectedTurma} />
+      <TurmasConcursosSection
+        onSelectTurma={(turma) => navigate('/turmas/' + (turma.slug || turma.id.replace(/^turma-/, '')))}
+        onMatricula={(turma) => {
+          setFormData(prev => ({ ...prev, concurso: turma.titulo }));
+          setTimeout(() => scrollToSection('inscricao'), 150);
+        }}
+      />
 
       {/* ============================================================ */}
       {/* SEÇÃO “TURMAS PRO” — SEM CONCURSO ESPECÍFICO */}
@@ -1680,15 +1698,6 @@ export const ConcursosPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* MODAL / PAINEL COMPLETO DE DETALHES DA TURMA SELECIONADA */}
-      {/* ============================================================ */}
-      {selectedTurma && (
-        <TurmaConcursoDetalhesModal
-          turma={selectedTurma}
-          onClose={() => setSelectedTurma(null)}
-        />
-      )}
     </div>
   );
 };
