@@ -969,10 +969,202 @@ export const TURMA_PETROBRAS_NIVEL_MEDIO_CONCURSO: TurmaConcurso = {
     ]
   }
 };
+
+// 19. Petrobras – Suprimentos de Bens e Serviços (Ênfase em Administração)
+export const TURMA_PETROBRAS_SUPRIMENTOS_CONCURSO: TurmaConcurso = {
+  id: 'turma-petrobras-suprimentos-administracao',
+  slug: 'petrobras-suprimentos-administracao',
+  concursoId: 'petrobras-suprimentos-administracao',
+  categoria: 'Nossa turma',
+  titulo: 'Petrobras – Suprimentos de Bens e Serviços',
+  subtitulo: '16/11/2026 a 28/04/2027 · Ênfase em Administração · 6 disciplinas · Cesgranrio · 180h',
+  bannerImage: '/assets/logos-concursos/logo-petrobras.png',
+  modalidade: 'Presencial',
+  formato: 'Turma fechada em módulo',
+  periodo: '16/11/2026 a 28/04/2027',
+  turnos: 'Noturno',
+  cargaTotal: '60 encontros = 180 horas',
+  frequencia: '3 a 4 vezes na semana',
+  horario: '18h45 às 21h45 (com 15 min de intervalo)',
+  horarioRotulo: 'Horário Previsto',
+  bonus: 'Foco na banca Cesgranrio · Remuneração de R$ 5.563,90',
+  paraQuemE: 'Candidatos com curso técnico de nível médio nas áreas de Administração, Comércio, Contabilidade, Finanças, Logística ou áreas afins que buscam carreira na Petrobras.',
+  foco: 'Preparação completa para a área de Suprimentos: Conhecimentos Básicos e Específicos no estilo Cesgranrio.',
+  cargoInfo: {
+    cargo: 'Profissional Petrobras de Nível Técnico Júnior – Suprimentos de Bens e Serviços / Administração',
+    requisito: 'Curso técnico em Administração, Comércio, Contabilidade, Finanças, Informática, Logística ou Suprimento'
+  },
+  materiasPresenciais: [
+    'Língua Portuguesa',
+    'Matemática',
+    'Noções de Administração',
+    'Conceitos de Logística e Gerenciamento da Cadeia de Suprimentos',
+    'Legislação',
+    'Noções de Contabilidade'
+  ],
+  materias: [
+    'Língua Portuguesa',
+    'Matemática',
+    'Noções de Administração',
+    'Conceitos de Logística e Gerenciamento da Cadeia de Suprimentos',
+    'Legislação',
+    'Noções de Contabilidade'
+  ],
+  semCombo: 'Valor do curso: R$ 1.799,30 (10% de desconto à vista R$ 1.619,37 ou 10x de R$ 179,93 sem juros)',
+  valoresInfo: {
+    titulo: 'Valores',
+    subtitulo: 'Valor do curso: R$ 1.799,30 · Petrobras Suprimentos / Administração',
+    aVista: '10% de desconto: R$ 1.619,37',
+    cartaoCredito: 'parcelado em até 10 vezes de R$ 179,93 sem juros',
+    boletoBancario: 'condição facilitada na secretaria',
+    lotes: [
+      {
+        lote: 'Curso Presencial Noturno',
+        sinal: 'Consulte a secretaria',
+        cotasBoleto: 'Parcelamento facilitado',
+        destaque: '10x R$ 179,93 sem juros'
+      }
+    ]
+  }
+};
+
+// 20. Sabadão Transpetro – Aulões de Reta Final
+export const TURMA_SABADAO_TRANSPETRO_CONCURSO: TurmaConcurso = {
+  id: 'turma-sabadao-transpetro',
+  slug: 'sabadao-transpetro',
+  concursoId: 'transpetro',
+  categoria: 'Nossa turma',
+  titulo: 'Sabadão Transpetro – Aulões de Reta Final',
+  subtitulo: 'Sábado, 05 de Dezembro · Das 8h às 17h30 · Véspera da Prova · Cesgranrio · A partir de R$ 20,00',
+  bannerImage: '/assets/logos-concursos/transpetro-logo.jpg',
+  modalidade: 'Presencial',
+  formato: 'Aulões de Véspera (Avulsos ou Blocos)',
+  periodo: '05 de Dezembro (Sábado)',
+  turnos: 'Manhã e Tarde (08h às 17h30)',
+  cargaTotal: '8 horas de revisão intensiva',
+  frequencia: 'Sábado de véspera da prova',
+  horario: '08h00 às 17h30',
+  horarioRotulo: 'Horário dos Aulões',
+  bonus: 'Revisão intensiva na véspera com os professores especialistas na Cesgranrio',
+  paraQuemE: 'Candidatos aos cargos de Médio Terra, Superior Terra e Administração e Controle da Transpetro que desejam revisar os pontos mais cobrados na véspera da prova.',
+  foco: 'Revisão direcionada no padrão Cesgranrio para a prova do dia 06/12.',
+  cargoInfo: {
+    cargo: 'Médio Terra · Superior Terra · Administração e Controle',
+    requisito: 'Candidatos inscritos no concurso Transpetro'
+  },
+  materiasPresenciais: [
+    'Língua Portuguesa',
+    'Matemática',
+    'Língua Inglesa',
+    'Administração',
+    'Contabilidade e Logística'
+  ],
+  materias: [
+    'Língua Portuguesa',
+    'Matemática',
+    'Língua Inglesa',
+    'Administração',
+    'Contabilidade e Logística'
+  ],
+  semCombo: 'A partir de R$ 20,00 por aula (Blocos R$ 40,00 / Dia Completo R$ 64,00 com 20% OFF)',
+  valoresInfo: {
+    titulo: 'Investimento Sabadão Transpetro',
+    subtitulo: 'Aulas avulsas ou blocos com até 20% de desconto',
+    aVista: 'Aula Avulsa R$ 20,00 | Bloco R$ 40,00 | Dia Completo R$ 64,00',
+    cartaoCredito: 'Cartão de crédito, Pix ou dinheiro na secretaria',
+    boletoBancario: 'Condições facilitadas na secretaria',
+    lotes: [
+      {
+        lote: 'Aula Avulsa (2 horas)',
+        sinal: 'R$ 20,00',
+        cotasBoleto: 'Pagamento único',
+        destaque: 'R$ 20,00 por aula'
+      },
+      {
+        lote: 'Blocos 1 + 2 (Dia Completo)',
+        sinal: 'R$ 64,00',
+        cotasBoleto: 'Pagamento único com 20% OFF',
+        destaque: 'R$ 64,00 (20% OFF)'
+      }
+    ]
+  }
+};
+
+
+// 21. Semana Transpetro – Aulões de Reta Final
+export const TURMA_SEMANA_TRANSPETRO_CONCURSO: TurmaConcurso = {
+  id: 'turma-semana-transpetro',
+  slug: 'semana-transpetro',
+  concursoId: 'transpetro',
+  categoria: 'Nossa turma',
+  titulo: 'Semana Transpetro – Aulões de Reta Final',
+  subtitulo: 'De 30/11 a 04/12 · Noites das 18h45 às 21h45 · Reta Final Cesgranrio · A partir de R$ 25,00',
+  bannerImage: '/assets/logos-concursos/transpetro-logo.jpg',
+  modalidade: 'Presencial',
+  formato: 'Aulões Noturnos de Reta Final (Avulsos ou Combos)',
+  periodo: '30/11 a 04/12 (Segunda a Sexta)',
+  turnos: 'Noite (18h45 às 21h45)',
+  cargaTotal: '3h a 15h de revisão intensiva',
+  frequencia: 'Uma aula por noite na semana da prova',
+  horario: '18h45 às 21h45',
+  horarioRotulo: 'Horário dos Aulões Noturnos',
+  bonus: 'Revisão intensiva noite a noite na semana da prova com professores especialistas na Cesgranrio',
+  paraQuemE: 'Candidatos aos cargos de Médio Terra, Superior Terra e Administração e Controle da Transpetro que desejam revisar disciplinas específicas no turno da noite.',
+  foco: 'Revisão noturna focada na banca Fundação Cesgranrio para a prova do dia 06/12.',
+  cargoInfo: {
+    cargo: 'Médio Terra · Superior Terra · Administração e Controle',
+    requisito: 'Candidatos inscritos no concurso Transpetro'
+  },
+  materiasPresenciais: [
+    'Língua Portuguesa',
+    'Administração',
+    'Matemática',
+    'Língua Inglesa',
+    'Contabilidade e Logística'
+  ],
+  materias: [
+    'Língua Portuguesa',
+    'Administração',
+    'Matemática',
+    'Língua Inglesa',
+    'Contabilidade e Logística'
+  ],
+  semCombo: 'A partir de R$ 25,00 por aula (Combo 1 R$ 55,00 / Combo 2 R$ 75,00)',
+  valoresInfo: {
+    titulo: 'Investimento Semana Transpetro',
+    subtitulo: 'Aulas avulsas ou combos com desconto',
+    aVista: 'Aula Avulsa R$ 25,00 | Combo 1 R$ 55,00 | Combo 2 R$ 75,00',
+    cartaoCredito: 'Cartão de crédito, Pix ou dinheiro na secretaria',
+    boletoBancario: 'Condições facilitadas na secretaria',
+    lotes: [
+      {
+        lote: 'Aula Avulsa (3 horas)',
+        sinal: 'R$ 25,00',
+        cotasBoleto: 'Pagamento único',
+        destaque: 'R$ 25,00 por aula'
+      },
+      {
+        lote: 'Combo 1 (2 aulas)',
+        sinal: 'R$ 55,00',
+        cotasBoleto: 'Pagamento único',
+        destaque: 'R$ 55,00'
+      },
+      {
+        lote: 'Combo 2 (4 aulas)',
+        sinal: 'R$ 75,00',
+        cotasBoleto: 'Pagamento único com desconto',
+        destaque: 'R$ 75,00'
+      }
+    ]
+  }
+};
 // Array Oficial de Turmas de Concursos Públicos
 export const TURMAS_CONCURSOS: TurmaConcurso[] = [
   TURMA_GUARDAS_MUNICIPAIS_RJ_CONCURSO,
   TURMA_PETROBRAS_NIVEL_MEDIO_CONCURSO,
+  TURMA_PETROBRAS_SUPRIMENTOS_CONCURSO,
+  TURMA_SABADAO_TRANSPETRO_CONCURSO,
+  TURMA_SEMANA_TRANSPETRO_CONCURSO,
   TURMA_DETRAN_RJ_CONCURSO,
   TURMA_CBMERJ_SOLDADO_CONCURSO,
   TURMA_GM_MARICA_CONCURSO,
@@ -993,6 +1185,18 @@ export const TURMAS_CONCURSOS: TurmaConcurso[] = [
 
 function matchesConcursoId(turmaConcursoId: string, searchId: string): boolean {
   if (turmaConcursoId === searchId) return true;
+    if ((turmaConcursoId === 'semana-transpetro' || turmaConcursoId === 'transpetro') &&
+      (searchId === 'semana-transpetro' || searchId === 'transpetro')) {
+    return true;
+  }
+    if ((turmaConcursoId === 'sabadao-transpetro' || turmaConcursoId === 'transpetro') &&
+      (searchId === 'sabadao-transpetro' || searchId === 'transpetro')) {
+    return true;
+  }
+    if ((turmaConcursoId === 'petrobras-suprimentos-administracao' || turmaConcursoId === 'petrobras-suprimentos') &&
+      (searchId === 'petrobras-suprimentos-administracao' || searchId === 'petrobras-suprimentos')) {
+    return true;
+  }
 
     if ((turmaConcursoId === 'petrobras-nivel-medio' || turmaConcursoId === 'petrobras') &&
       (searchId === 'petrobras-nivel-medio' || searchId === 'petrobras')) {

@@ -724,7 +724,7 @@ export const CONCURSOS_PUBLICOS_DATA: ConcursoPublico[] = [
     nomeCompleto: 'Concurso Banco do Brasil – Escriturário',
     descricaoCurta: 'Carreira bancária no Banco do Brasil. Atendimento ao público, produtos financeiros, comercialização e operações bancárias.',
     categoria: ['Estatais', 'Administrativo'],
-    imagem: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+    imagem: '/assets/logos-concursos/banco-do-brasil.jpg',
     escolaridade: 'Ensino Médio completo',
     destaqueEscolaridade: 'Nível Médio',
     remuneracaoInicial: 'R$ 3.622,23 + R$ 1.946,84 (Benefícios) = R$ 5.569,07',
@@ -843,7 +843,7 @@ export const CONCURSOS_PUBLICOS_DATA: ConcursoPublico[] = [
     nomeCompleto: 'Concurso Guarda Municipal de Maricá – GM Maricá',
     descricaoCurta: 'Mais de 800 vagas previstas com remuneração de até R$ 5.000 para Guarda Municipal de Maricá (Nível Médio + CNH A ou B).',
     categoria: ['Segurança Pública'],
-    imagem: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1200&q=80',
+    imagem: '/assets/logos-concursos/guarda-marica.jpg',
     cargo: 'Guarda Municipal',
     escolaridade: 'Nível Médio Completo',
     destaqueEscolaridade: 'Nível Médio',
@@ -957,7 +957,7 @@ export const CONCURSOS_PUBLICOS_DATA: ConcursoPublico[] = [
     nomeCompleto: 'Concurso CBMERJ – Soldado Temporário (Bombeiro Militar RJ)',
     descricaoCurta: '1.500 vagas autorizadas (nível médio e superior) para o Corpo de Bombeiros Militar do Estado do Rio de Janeiro pela banca Instituto AOCP.',
     categoria: ['Segurança Pública'],
-    imagem: 'https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=1200&q=80',
+    imagem: '/assets/logos-concursos/cbmerj-capa.jpg',
     cargo: 'Soldado Temporário',
     escolaridade: 'Ensino Médio',
     destaqueEscolaridade: 'Nível Médio',
@@ -1057,7 +1057,7 @@ export const CONCURSOS_PUBLICOS_DATA: ConcursoPublico[] = [
     nomeCompleto: 'Concurso Detran/RJ – Departamento de Trânsito do Estado do Rio de Janeiro',
     descricaoCurta: 'Oportunidade para nível médio no Detran/RJ com 3 cargos: Assistente Técnico de Trânsito, Identificação Civil e Administrativo.',
     categoria: ['Trânsito', 'Administrativo'],
-    imagem: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80',
+    imagem: '/assets/logos-concursos/detranrj.png',
     cargo: 'Assistente Técnico (3 Áreas)',
     escolaridade: 'Ensino Médio completo',
     destaqueEscolaridade: 'Nível Médio',
@@ -1210,7 +1210,7 @@ export const CONCURSOS_PUBLICOS_DATA: ConcursoPublico[] = [
     descricaoCurta: 'Preparação em Conhecimentos Básicos (Língua Portuguesa e Matemática) no padrão Cesgranrio para os cargos de nível médio técnico da Petrobras.',
     categoria: ['Estatais'],
     cargo: 'Profissional Petrobras de Nível Técnico Júnior',
-    imagem: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+    imagem: '/assets/logos-concursos/petrobras-capa.jpg',
     escolaridade: 'Ensino Médio / Técnico',
     destaqueEscolaridade: 'Nível Médio',
     remuneracaoInicial: 'R$ 5.563,90',
@@ -1280,6 +1280,97 @@ export const CONCURSOS_PUBLICOS_DATA: ConcursoPublico[] = [
           sinal: 'Consulte a secretaria',
           cotasBoleto: 'Parcelamento facilitado',
           destaque: '10x R$ 58,49 sem juros'
+        }
+      ]
+    }
+  },
+  {
+    id: 'petrobras-suprimentos-administracao',
+    nome: 'Petrobras – Suprimentos de Bens e Serviços',
+    nomeCompleto: 'Petróleo Brasileiro S.A. – Suprimentos de Bens e Serviços (Ênfase em Administração)',
+    descricaoCurta: 'Preparação completa para a área de Suprimentos: Conhecimentos Básicos e Específicos no estilo Cesgranrio com 180 horas presenciais à noite.',
+    categoria: ['Estatais', 'Administrativo'],
+    cargo: 'Profissional Petrobras de Nível Técnico Júnior – Suprimentos de Bens e Serviços',
+    imagem: '/assets/logos-concursos/petro-bens.jpg',
+    escolaridade: 'Ensino Médio Técnico',
+    destaqueEscolaridade: 'Nível Médio',
+    remuneracaoInicial: 'R$ 5.563,90',
+    remuneracaoFinal: 'R$ 5.563,90+',
+    remuneracaoResumo: 'R$ 5.563,90',
+    jornada: '40h semanais / regime administrativo ou operacional',
+    orgao: 'Petrobras (Petróleo Brasileiro S.A.)',
+    instituicao: 'Petrobras',
+    banca: 'Fundação Cesgranrio (Confirmada)',
+    ultimoEdital: 'Dezembro/2023',
+    ultimoEditalLabel: 'Último edital publicado',
+    vagas: 'Edital em preparação',
+    previsaoProva: '1º semestre de 2027',
+    situacao: 'Banca Cesgranrio confirmada · Edital previsto para dez/2026',
+    statusTipo: 'previsto',
+    tagCard: 'BANCA CESGRANRIO CONFIRMADA',
+    disciplinasTitulo: 'Conhecimentos Básicos e Específicos',
+    disciplinas: [
+      'Língua Portuguesa',
+      'Matemática',
+      'Noções de Administração',
+      'Conceitos de Logística e Gerenciamento da Cadeia de Suprimentos',
+      'Legislação',
+      'Noções de Contabilidade'
+    ],
+    sobre: 'A Petrobras tem novo edital previsto para dezembro de 2026 com banca Fundação Cesgranrio confirmada. A ênfase em Administração para Suprimentos de Bens e Serviços exige curso técnico de nível médio nas áreas de Administração, Comércio, Contabilidade, Finanças, Logística ou afins, com remuneração inicial de R$ 5.563,90.',
+    requisitos: [
+      { titulo: 'Escolaridade', descricao: 'Curso técnico de nível médio em Administração, Comércio, Comércio Exterior, Contabilidade, Finanças, Informática, Logística ou Suprimento.' },
+      { titulo: 'Idade', descricao: 'Idade mínima de 18 anos completos na data de admissão.' },
+      { titulo: 'Flexibilidade', descricao: 'O curso técnico pode ser feito durante a preparação ou mesmo depois da aprovação (vagas para cadastro reserva).' }
+    ],
+    etapas: [
+      { numero: '01', titulo: 'Prova Objetiva (Cesgranrio)', descricao: 'Conhecimentos Básicos e Específicos com 6 disciplinas com base no edital Cesgranrio.' },
+      { numero: '02', titulo: 'Qualificação Biopsicossocial', descricao: 'Exames médicos, laboratoriais e checagem de aptidão física e mental.' }
+    ],
+    diferenciais: [
+      { titulo: 'Banca Cesgranrio Confirmada', descricao: 'Estudo focado no estilo clássico da Cesgranrio com resolução massiva de provas.' },
+      { titulo: 'Remuneração Inicial R$ 5.563,90', descricao: 'Salário de R$ 5.563,90 para nível médio técnico com benefícios atrativos.' },
+      { titulo: 'Carga de 180 Horas', descricao: '60 encontros presenciais no turno da noite das 18h45 às 21h45.' }
+    ],
+    perfil: [
+      'Interesse por compras públicas, gestão de estoques, almoxarifado e suprimentos',
+      'Noções sólidas de administração geral, legislação correlata e contabilidade básica',
+      'Domínio de matemática financeira e raciocínio lógico no padrão Cesgranrio'
+    ],
+    observacao: 'Duração: 16/11/2026 a 28/04/2027 (180h / 60 encontros). Turno Noturno: 18h45 às 21h45. Material em PDF.',
+    fonte: 'Petrobras / Fundação Cesgranrio / Comunicados Oficiais.',
+    turmasPreparatorias: [
+      {
+        nome: 'Petrobras – Suprimentos de Bens e Serviços (Administração)',
+        subtitulo: '16/11/2026 a 28/04/2027 · Noite (18:45 às 21:45) · 180h · Cesgranrio',
+        periodo: '16/11/2026 a 28/04/2027',
+        carga: '60 encontros = 180 horas',
+        frequencia: '3 a 4 vezes na semana',
+        horario: '18h45 às 21h45',
+        conhecimentosBasicos: [
+          'Língua Portuguesa',
+          'Matemática'
+        ],
+        conhecimentosEspecificos: [
+          'Noções de Administração',
+          'Conceitos de Logística e Gerenciamento da Cadeia de Suprimentos',
+          'Legislação',
+          'Noções de Contabilidade'
+        ]
+      }
+    ],
+    valoresInfo: {
+      titulo: 'Valores',
+      subtitulo: 'Valor do curso: R$ 1.799,30 · Petrobras Suprimentos / Administração',
+      aVista: '10% de desconto: R$ 1.619,37',
+      cartaoCredito: 'parcelado em até 10 vezes de R$ 179,93 sem juros',
+      boletoBancario: 'condição facilitada na secretaria',
+      lotes: [
+        {
+          lote: 'Curso Presencial Noturno',
+          sinal: 'Consulte a secretaria',
+          cotasBoleto: 'Parcelamento facilitado',
+          destaque: '10x R$ 179,93 sem juros'
         }
       ]
     }

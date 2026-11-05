@@ -177,7 +177,49 @@ export const ConcursosPage: React.FC = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const header = document.querySelector('header');
+      const headerOffset = header ? header.offsetHeight + 16 : 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleScrollToTurmas = (concursoId: string) => {
+    const possibleIds = [
+      `turmas-${concursoId}`,
+      concursoId === 'prf-agente-federal' ? 'turmas-prf' : '',
+      concursoId === 'prf' ? 'turmas-prf-agente-federal' : '',
+      'nossas-turmas'
+    ].filter(Boolean);
+
+    let targetElement: HTMLElement | null = null;
+    for (const testId of possibleIds) {
+      const el = document.getElementById(testId);
+      if (el) {
+        targetElement = el;
+        break;
+      }
+    }
+
+    if (targetElement) {
+      const header = document.querySelector('header');
+      const headerOffset = header ? header.offsetHeight + 16 : 80;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      targetElement.classList.add('ring-2', 'ring-[#FFBF00]', 'ring-offset-2', 'rounded-2xl', 'transition-all', 'duration-500');
+      setTimeout(() => {
+        targetElement?.classList.remove('ring-2', 'ring-[#FFBF00]', 'ring-offset-2');
+      }, 2500);
     }
   };
 
@@ -515,33 +557,37 @@ export const ConcursosPage: React.FC = () => {
                   <div className="space-y-2 mt-1">
                     <button
                       type="button"
+                      onClick={() => handleScrollToTurmas(concurso.id)}
+                      aria-label={`Ver turmas para o concurso ${concurso.nome}`}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-[#FFBF00] hover:bg-[#F59E0B] text-[#00223B] font-black text-xs sm:text-sm py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-[0.98] cursor-pointer group"
+                    >
+                      <GraduationCap className="w-4 h-4 text-[#00223B]" />
+                      <span>Ver Turmas</span>
+                    </button>
+
+                    <button
+                      type="button"
                       onClick={() => {
                         if (concurso.id === 'guardas-municipais-rj') {
                           navigate('/turmas/guardas-municipais-rj');
                         } else if (concurso.id === 'petrobras-nivel-medio') {
                           navigate('/turmas/petrobras-nivel-medio');
+                        } else if (concurso.id === 'petrobras-suprimentos-administracao' || concurso.id === 'petrobras-suprimentos') {
+                          navigate('/turmas/petrobras-suprimentos-administracao');
+                        } else if (concurso.id === 'sabadao-transpetro') {
+                          navigate('/turmas/sabadao-transpetro');
+                        } else if (concurso.id === 'semana-transpetro') {
+                          navigate('/turmas/semana-transpetro');
                         } else {
                           setActiveConcurso(concurso);
                         }
                       }}
                       aria-label={`Ver detalhes do concurso ${concurso.nome}`}
-                      className="w-full inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg transition-all active:scale-[0.98] cursor-pointer"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-[#004B7C] hover:bg-[#00223B] text-white font-bold text-xs sm:text-sm py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-xs hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
                     >
                       <span>Ver detalhes</span>
                       <ArrowRight className="w-4 h-4 text-[#FFBF00] group-hover:translate-x-1 transition-transform" />
                     </button>
-
-                    {turmaVinculada && (
-                      <button
-                        type="button"
-                        onClick={() => setSelectedTurma(turmaVinculada)}
-                        aria-label={`Ver detalhes da turma de ${concurso.nome}`}
-                        className="w-full inline-flex items-center justify-center gap-2 bg-[#F8FAFC] hover:bg-[#E1E5E8] text-[#004B7C] border border-[#E1E5E8] hover:border-[#004B7C]/40 font-bold text-xs py-2 px-3 rounded-xl uppercase tracking-wider transition-all active:scale-[0.98] cursor-pointer"
-                      >
-                        <Calendar className="w-3.5 h-3.5 text-[#004B7C]" />
-                        <span>Ver detalhes da turma</span>
-                      </button>
-                    )}
                   </div>
                 </div>
               </div>
@@ -1227,105 +1273,6 @@ export const ConcursosPage: React.FC = () => {
               )}
 
               {/* ============================================================ */}
-              {/* TURMAS PREPARATÓRIAS ESPECÍFICAS (NOSSAS TURMAS DO CONCURSO) */}
-              {/* ============================================================ */}
-              {(() => {
-                const turmasDoConcurso = getTurmasConcursoPorId(activeConcurso.id);
-                if (turmasDoConcurso.length > 0) {
-                  return (
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-8 h-8 rounded-lg bg-[#004B7C] flex items-center justify-center text-white shrink-0">
-                          <GraduationCap className="w-4 h-4 text-[#FFBF00]" />
-                        </div>
-                        <div>
-                          <span className="text-[11px] font-bold text-[#0289C6] uppercase tracking-wider block">
-                            Preparação Oficial Progressão Caxias
-                          </span>
-                          <h3 className="font-serif-heading text-lg sm:text-2xl font-bold text-[#00223B]">
-                            Nossa Turma · {activeConcurso.nome}
-                          </h3>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {turmasDoConcurso.map((turmaItem) => (
-                          <TurmaConcursoCard
-                            key={turmaItem.id}
-                            turma={turmaItem}
-                            onSelectTurma={(t) => setSelectedTurma(t)}
-                            onMatricula={(t) => {
-                              setActiveConcurso(null);
-                              setFormData(prev => ({ ...prev, concurso: t.titulo }));
-                              setTimeout(() => scrollToSection('inscricao'), 150);
-                            }}
-                            showButton={true}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-
-                if (activeConcurso.turmasPreparatorias && activeConcurso.turmasPreparatorias.length > 0) {
-                  return (
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-8 h-8 rounded-lg bg-[#004B7C] flex items-center justify-center text-white shrink-0">
-                          <GraduationCap className="w-4 h-4 text-[#FFBF00]" />
-                        </div>
-                        <div>
-                          <span className="text-[11px] font-bold text-[#0289C6] uppercase tracking-wider block">
-                            Preparação Oficial Progressão Caxias
-                          </span>
-                          <h3 className="font-serif-heading text-lg sm:text-2xl font-bold text-[#00223B]">
-                            Nossa Turma · {activeConcurso.nome}
-                          </h3>
-                        </div>
-                      </div>
-
-                      {/* Destaque Bônus 1 Mês Grátis se elegível */}
-                      {hasBonusPresencial(activeConcurso.id) && (
-                        <div className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 shadow-xs mb-3">
-                          <Gift className="w-5 h-5 text-emerald-600 shrink-0" />
-                          <div className="text-xs sm:text-sm">
-                            <strong className="text-emerald-850 font-bold block sm:inline">Bônus Especial de Matrícula: </strong>
-                            <span>Ao contratar a turma presencial</span>
-                          </div>
-                        </div>
-                      )}
-
-                      <div className="grid grid-cols-1 gap-6">
-                        {activeConcurso.turmasPreparatorias.map((turmaItem, tIdx) => (
-                          <div
-                            key={tIdx}
-                            className="bg-white rounded-2xl border-2 border-[#004B7C]/20 shadow-sm overflow-hidden hover:border-[#0289C6] transition-all"
-                          >
-                            <div className="bg-gradient-to-r from-[#00223B] to-[#004B7C] text-white p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                              <div>
-                                <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#FFBF00] text-[#00223B] mb-1.5">
-                                  Nossa turma
-                                </span>
-                                <h4 className="font-serif-heading text-base sm:text-xl font-bold text-white">
-                                  {turmaItem.nome}
-                                </h4>
-                                {turmaItem.subtitulo && (
-                                  <p className="text-xs sm:text-sm text-[#FFBF00] font-medium mt-0.5">
-                                    {turmaItem.subtitulo}
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-
-                return null;
-              })()}
-              {/* ============================================================ */}
               {/* VALORES E FORMAS DE PAGAMENTO DA TURMA */}
               {/* ============================================================ */}
               {activeConcurso.valoresInfo && (
@@ -1335,41 +1282,6 @@ export const ConcursosPage: React.FC = () => {
                   showCta={true}
                 />
               )}
-
-              {/* ============================================================ */}
-              {/* ESTRUTURA DE REMUNERAÇÃO E BENEFÍCIOS */}
-              {/* ============================================================ */}
-              <div className="bg-gradient-to-br from-[#00223B] to-[#004B7C] text-white p-6 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden">
-                <div className="relative z-10">
-                  <div className="flex items-center gap-2 text-[#FFBF00] text-xs font-bold uppercase tracking-wider mb-2">
-                    <DollarSign className="w-4 h-4" />
-                    <span>Plano Remuneratório</span>
-                  </div>
-                  <h4 className="font-serif-heading text-xl sm:text-2xl font-black text-white mb-6">
-                    Quanto posso ganhar?
-                  </h4>
-
-                  <div className="grid grid-cols-1 gap-4 mb-4">
-                    <div className="bg-white/10 p-4 rounded-2xl border border-white/15">
-                      <span className="text-xs text-[#94A3B8] uppercase block font-semibold">Remuneração Inicial</span>
-                      <div className="text-2xl sm:text-3xl font-black text-[#FFBF00] font-serif-heading mt-1">
-                        {activeConcurso.remuneracaoInicial}
-                      </div>
-                    </div>
-                  </div>
-
-                  <p className="text-xs sm:text-sm text-[#E1E5E8]/90 leading-relaxed mb-4">
-                    {activeConcurso.remuneracaoResumo}
-                  </p>
-
-                  <div className="flex items-start gap-2 bg-black/20 p-3 rounded-xl border border-white/10 text-[11px] text-[#94A3B8]">
-                    <AlertCircle className="w-4 h-4 text-[#FFBF00] shrink-0 mt-0.5" />
-                    <span>
-                      "Os valores podem variar conforme cargo, gratificações, benefícios, adicionais, progressão funcional e legislação vigente."
-                    </span>
-                  </div>
-                </div>
-              </div>
 
               {/* ============================================================ */}
               {/* CTA DENTRO DO PAINEL DE DETALHES */}

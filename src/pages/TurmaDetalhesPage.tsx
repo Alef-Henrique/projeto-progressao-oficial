@@ -28,6 +28,10 @@ import { TabelaValoresTurma } from '../components/common/TabelaValoresTurma';
 import { RDStationForm } from '../components/rdstation/RDStationForm';
 import { GuardasMunicipaisDetalhesView } from '../components/turmas/GuardasMunicipaisDetalhesView';
 import { PetrobrasDetalhesView } from '../components/turmas/PetrobrasDetalhesView';
+import { PetrobrasSuprimentosDetalhesView } from '../components/turmas/PetrobrasSuprimentosDetalhesView';
+import { SabadaoTranspetroDetalhesView } from '../components/turmas/SabadaoTranspetroDetalhesView';
+import { SemanaTranspetroDetalhesView } from '../components/turmas/SemanaTranspetroDetalhesView';
+
 
 interface TurmaDetalhesPageProps {
   slug?: string;
@@ -46,6 +50,31 @@ export const TurmaDetalhesPage: React.FC<TurmaDetalhesPageProps> = ({ slug }) =>
   if (currentSlug === 'petrobras-nivel-medio' || currentSlug === 'turma-petrobras-nivel-medio' || currentSlug === 'petrobras') {
     return <PetrobrasDetalhesView />;
   }
+  
+  // Novo layout personalizado para Petrobras – Suprimentos de Bens e Serviços (Administração)
+  if (
+    currentSlug === 'petrobras-suprimentos-administracao' || 
+    currentSlug === 'turma-petrobras-suprimentos-administracao' || 
+    currentSlug === 'petrobras-suprimentos'
+  ) {
+    return <PetrobrasSuprimentosDetalhesView />;
+  }
+    
+  // Novo layout personalizado para Sabadão Transpetro – Aulões de Reta Final
+  if (
+    currentSlug === 'sabadao-transpetro' || 
+    currentSlug === 'turma-sabadao-transpetro'
+  ) {
+    return <SabadaoTranspetroDetalhesView />;
+  }
+    // Novo layout personalizado para Semana Transpetro – Aulões de Reta Final
+  if (
+    currentSlug === 'semana-transpetro' || 
+    currentSlug === 'turma-semana-transpetro'
+  ) {
+    return <SemanaTranspetroDetalhesView />;
+  }
+  
   const turma: TurmaConcurso | undefined = getTurmaBySlug(currentSlug);
 
   // Estado do formulário de matrícula rápido integrado na página
